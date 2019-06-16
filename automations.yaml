@@ -9,3 +9,24 @@
   - data:
       entity_id: all
     service: light.turn_on
+- id: '1560716169783'
+  alias: Lights on weekday morning
+  trigger:
+  - at: 05:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: light.living_room_lamp
+    service: light.turn_on
+- id: '1560716243441'
+  alias: Lights off after sunrise
+  trigger:
+  - event: sunrise
+    offset: 0:30
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: all
+    service: light.turn_off
