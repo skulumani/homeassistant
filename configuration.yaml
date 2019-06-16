@@ -39,6 +39,8 @@ notify:
     recp_nr: "+16303366257"
     signal_cli_path: /usr/local/bin/signal-cli
 
+hello_state:
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
