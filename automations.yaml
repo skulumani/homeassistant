@@ -1,0 +1,11 @@
+- id: '1558230448181'
+  alias: Lights on at Sunset
+  trigger:
+  - event: sunset
+    offset: -0:30
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: all
+    service: light.turn_on
