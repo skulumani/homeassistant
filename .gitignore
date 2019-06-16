@@ -1,4 +1,4 @@
-mple .gitignore file for your config dir.
+# Example .gitignore file for your config dir.
 # A * ensures that everything will be ignored.
 *
 
@@ -6,6 +6,7 @@ mple .gitignore file for your config dir.
 !*.yaml
 !.gitignore
 !*.md
+!*.py
 
 # Ignore folders.
 .storage
