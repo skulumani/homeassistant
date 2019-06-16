@@ -33,7 +33,7 @@ tts:
   - platform: google_translate
 
 notify:
-  - name: signal_notification
+  - name: signal_notify
     platform: signalmessenger
     sender_nr: "+12029305414"
     recp_nr: "+16303366257"
