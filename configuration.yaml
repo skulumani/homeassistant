@@ -33,13 +33,15 @@ tts:
   - platform: google_translate
 
 notify:
-  - name: signal_notify
+  - name: signal
     platform: signalmessenger
-    sender_nr: "+12029305414"
-    recp_nr: "+16303366257"
-    signal_cli_path: /usr/local/bin/signal-cli
+    # sender_nr: "+12029305414"
+    # recp_nr: "+16303366257"
+    # signal_cli_path: /usr/local/bin/signal-cli
 
 hello_state:
+
+hello_service:
 
 group: !include groups.yaml
 automation: !include automations.yaml
