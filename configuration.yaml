@@ -39,6 +39,11 @@ notify:
     # recp_nr: "+16303366257"
     # signal_cli_path: /usr/local/bin/signal-cli
 
+no_ip:
+  domain: wolverines.freedynamicdns.org
+  username: !secret noip_username
+  password: !secret noip_password
+
 hello_state:
 
 hello_service:
