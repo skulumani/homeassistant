@@ -1,4 +1,10 @@
 ## Updating python and updating the virtual environment
+0. Stop homeassistant
+
+~~~
+sudo systemctl stop home-assistant@homeassistant.service
+ps -ef | grep home
+~~~
 
 1. Update python using `update_python.sh`
 
