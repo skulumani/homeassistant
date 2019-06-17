@@ -66,6 +66,15 @@ hello_state:
 
 hello_service:
 
+# speedtest
+speedtestdotnet:
+  scan_interval:
+    hours: 2
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

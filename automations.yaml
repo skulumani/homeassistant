@@ -30,8 +30,11 @@
   - data:
       entity_id: all
     service: light.turn_off
-- id: "Matrix Bot"
-  alias: "Reaction to !testword"
+  - data:
+      message: Turn off lights after sunrise
+    service: matrix.send_message
+- id: Matrix Bot
+  alias: Reaction to !testword
   trigger:
     platform: event
     event_type: matrix_command
@@ -40,4 +43,12 @@
   action:
     service: notify.matrix_notify
     data:
-      message: "You wrote !testword"
+      message: You wrote !testword
+- id: '1560740677249'
+  alias: Lights off at 2300
+  trigger:
+  - at: '23:00'
+    platform: time
+  condition: []
+  action:
+  - service: light.turn_off
