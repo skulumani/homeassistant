@@ -43,6 +43,6 @@ read -p "Press enter to continue"
 # install
 ./configure
 make
-# sudo checkinstall make install
+sudo make install
 
 cd $CUR_DIR
