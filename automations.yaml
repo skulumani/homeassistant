@@ -30,3 +30,14 @@
   - data:
       entity_id: all
     service: light.turn_off
+- id: "Matrix Bot"
+  alias: "Reaction to !testword"
+  trigger:
+    platform: event
+    event_type: matrix_command
+    event_data:
+      command: testword
+  action:
+    service: notify.matrix_notify
+    data:
+      message: "You wrote !testword"

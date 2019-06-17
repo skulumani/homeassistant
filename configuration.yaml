@@ -32,17 +32,35 @@ sensor:
 tts:
   - platform: google_translate
 
-notify:
-  - name: signal
-    platform: signalmessenger
-    # sender_nr: "+12029305414"
-    # recp_nr: "+16303366257"
-    # signal_cli_path: /usr/local/bin/signal-cli
 
 no_ip:
   domain: wolverines.freedynamicdns.org
   username: !secret noip_username
   password: !secret noip_password
+
+matrix:
+  homeserver: https://matrix.org
+  username: !secret matrix_username
+  password: !secret matrix_password
+  rooms:
+    - "!RZInnssIgfBYMGRmtY:matrix.org"
+    - "!kgrzdnIkVTmRcWQVWK:matrix.org"
+  commands:
+    - word: testword
+      name: testword
+
+notify:
+  - name: matrix_notify
+    platform: matrix
+    default_room: "!kgrzdnIkVTmRcWQVWK:matrix.org"
+
+# - name: signal
+  # platform: signalmessenger
+  # sender_nr: "+12029305414"
+  # recp_nr: "+16303366257"
+  # signal_cli_path: /usr/local/bin/signal-cli
+
+automation:
 
 hello_state:
 
