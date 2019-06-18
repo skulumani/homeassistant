@@ -53,6 +53,12 @@ notify:
   - name: matrix_notify
     platform: matrix
     default_room: "!kgrzdnIkVTmRcWQVWK:matrix.org"
+  - name: twitter_notify
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_token_secret
 
 # - name: signal
   # platform: signalmessenger
