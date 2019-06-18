@@ -82,3 +82,4 @@ exit
 sudo systemctl start home-assistant@homeassistant.service
 ~~~
 
+* [Common tasks](https://www.home-assistant.io/docs/installation/hassbian/common-tasks/)
