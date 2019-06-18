@@ -23,10 +23,27 @@ default_config:
 # Discover some devices automatically
 discovery:
 
-# Sensors
+# darksky
 sensor:
-  # Weather prediction
-  - platform: yr
+  - platform: darksky
+    api_key: !secret darksky_api
+    longitude: -77.033961
+    latitude: 38.968746
+    forecast:
+      - 0
+    hourly_forecast:
+      - 0
+      - 1
+    monitored_conditions:
+      - summary
+      - icon
+      - temperature
+      - apparent_temperature
+      - minutely_summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+    scan_interval:
+      minutes: 30
 
 # Text to speech
 tts:
@@ -83,27 +100,6 @@ fastdotcom:
   scan_interval:
     minutes: 120
 
-# darksky
-sensor:
-  - platform: darksky
-    api_key: !secret darksky_api
-    longitude: -77.033961
-    latitude: 38.968746
-    forecast:
-      - 0
-    hourly_forecast:
-      - 0
-      - 1
-    monitored_conditions:
-      - summary
-      - icon
-      - temperature
-      - apparent_temperature
-      - minutely_summary
-      - nearest_storm_distance
-      - nearest_storm_bearing
-    scan_interval:
-      minutes: 30
 
 # android ip camera
 # camera:
