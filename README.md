@@ -1,3 +1,10 @@
+## Start/Stop 
+
+~~~
+sudo systemctl restart home-assistant@homeassistant.service
+sudo journalctl -f -u home-assistant@homeassistant
+~~~
+
 ## Updating python and updating the virtual environment
 0. Stop homeassistant
 
