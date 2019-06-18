@@ -98,6 +98,11 @@ sensor:
     scan_interval:
       minutes: 30
 
+# android ip camera
+camera:
+  - platform: mjpeg
+    mjpeg_url: http://10.0.0.4:8080/video
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
