@@ -70,3 +70,15 @@ Some useful links
 * https://community.home-assistant.io/t/python-3-6-upgrade-of-a-virtualenv/21722
 * https://raspberrypi.stackexchange.com/questions/59381/how-do-i-update-my-rpi3-to-python-3-6
 * https://stackoverflow.com/questions/37079195/how-do-you-update-to-the-latest-python-3-5-1-version-on-a-raspberry-pi
+
+## Update homeassistant
+
+~~~
+sudo systemctl stop home-assistant@homeassistant.service
+sudo -u homeassistant -H -s
+source /srv/homeassistant/bin/activate
+pip3 install --upgrade homeassistant
+exit
+sudo systemctl start home-assistant@homeassistant.service
+~~~
+
