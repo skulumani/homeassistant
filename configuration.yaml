@@ -66,8 +66,6 @@ notify:
   # recp_nr: "+16303366257"
   # signal_cli_path: /usr/local/bin/signal-cli
 
-automation:
-
 hello_state:
 
 hello_service:
