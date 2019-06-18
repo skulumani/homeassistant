@@ -29,7 +29,11 @@ deactivate
 5. Use new python version to create another enviornment
 
 ~~~
-python3.7 -m venv /srv/homeassistant
+cd /srv
+sudo mkdir homeassistant
+sudo chown homeassistant:homeassistant homeassistant
+sudo -u homeassistant -H -s
+python3.7 -m venv .
 source /srv/homeassistant/bin/activate
 ~~~
 
