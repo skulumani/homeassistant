@@ -81,8 +81,11 @@ speedtestdotnet:
     - download
     - upload
 
+fastdotcom:
+  scan_interval:
+    minutes: 120
+
 # darksky
-# Example configuration.yaml entry
 sensor:
   - platform: darksky
     api_key: !secret darksky_api
@@ -105,9 +108,9 @@ sensor:
       minutes: 30
 
 # android ip camera
-camera:
-  - platform: mjpeg
-    mjpeg_url: http://10.0.0.4:8080/video
+# camera:
+#   - platform: mjpeg
+#     mjpeg_url: http://10.0.0.4:8080/video
 
 group: !include groups.yaml
 automation: !include automations.yaml
