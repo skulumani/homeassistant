@@ -13,6 +13,9 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+frontend:
+  themes: !include themes.yaml
+
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
@@ -96,9 +99,9 @@ speedtestdotnet:
     - download
     - upload
 
-fastdotcom:
-  scan_interval:
-    minutes: 120
+# fastdotcom:
+#   scan_interval:
+#     minutes: 120
 
 
 # android ip camera

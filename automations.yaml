@@ -27,8 +27,7 @@
     platform: sun
   condition: []
   action:
-  - data:
-      entity_id: all
+  - data: {}
     service: light.turn_off
   - data:
       message: Turn off lights after sunrise
@@ -52,3 +51,14 @@
   condition: []
   action:
   - service: light.turn_off
+  - data:
+      message: You wrote !testword
+    service: notify.matrix_notify
+- alias: 'Set theme at startup'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: Dark - Green
