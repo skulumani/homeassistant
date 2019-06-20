@@ -9,6 +9,10 @@
   - data:
       entity_id: all
     service: light.turn_on
+  # - service: notify.matrix_notify
+  #   data:
+  #     message: 'Test {{now().strftime("%Y%m%d-%H%M%S")}}'
+
 - id: '1560716169783'
   alias: Lights on weekday morning
   trigger:
@@ -19,6 +23,10 @@
   - data:
       entity_id: light.living_room_lamp
     service: light.turn_on
+  - service: notify.matrix_notify
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the morning.'
+
 - id: '1560716243441'
   alias: Lights off after sunrise
   trigger:
@@ -27,11 +35,13 @@
     platform: sun
   condition: []
   action:
-  - data: {}
+  - data: 
+      entity_id: all
     service: light.turn_off
   - data:
-      message: Turn off lights after sunrise
-    service: matrix.send_message
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights off at sunrise'
+    service: notify.matrix_notify
+
 - id: Matrix Bot
   alias: Reaction to !testword
   trigger:
@@ -43,6 +53,7 @@
     service: notify.matrix_notify
     data:
       message: You wrote !testword
+
 - id: '1560740677249'
   alias: Lights off at 2300
   trigger:
@@ -52,8 +63,19 @@
   action:
   - service: light.turn_off
   - data:
-      message: You wrote !testword
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
     service: notify.matrix_notify
+
+# This sends a message to matrix room every 5 seconds
+# - alias: Test notification
+#   trigger:
+#     - platform: time_pattern
+#       seconds: '/5'
+#   action:
+#     - service: notify.matrix_notify
+#       data:
+#         message: 'Test '
+
 - alias: 'Set theme at startup'
   trigger:
     platform: homeassistant
@@ -61,4 +83,4 @@
   action:
     service: frontend.set_theme
     data:
-      name: Dark - Green
+      name: Dark - Blue

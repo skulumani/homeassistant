@@ -26,6 +26,12 @@ default_config:
 # Discover some devices automatically
 discovery:
 
+device_tracker:
+  - platform: google_maps
+    username: !secret google_username
+    password: !secret google_password
+    max_gps_accuracy: 200
+
 # darksky
 sensor:
   - platform: darksky
