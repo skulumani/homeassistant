@@ -1,0 +1,8 @@
+{
+    "domain": "signalmessenger",
+    "name": "Signal Notifications",
+    "documentation": "https://shankarkulumani.com",
+    "dependencies": ["notify"],
+    "codeowners": ["@skulumani"],
+    "requirements": ["pydbus"]
+}

@@ -26,11 +26,11 @@ default_config:
 # Discover some devices automatically
 discovery:
 
-device_tracker:
-  - platform: google_maps
-    username: !secret google_username
-    password: !secret google_password
-    max_gps_accuracy: 200
+# device_tracker:
+#   - platform: google_maps
+#     username: !secret google_username
+#     password: !secret google_password
+#     max_gps_accuracy: 200
 
 # darksky
 sensor:
@@ -53,16 +53,33 @@ sensor:
       - nearest_storm_bearing
     scan_interval:
       minutes: 30
+  - platform: systemmonitor
+    resources:
+      # - type: disk_use_percent
+      #   arg: /home
+      - type: memory_use_percent
+      - type: processor_use
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+  
+upnp:
+  sensors: false
+  port_mapping: false
 
 # Text to speech
 tts:
   - platform: google_translate
 
 
-no_ip:
-  domain: wolverines.freedynamicdns.org
-  username: !secret noip_username
-  password: !secret noip_password
+# no_ip:
+#   domain: wolverines.freedynamicdns.org
+#   username: !secret noip_username
+#   password: !secret noip_password
 
 matrix:
   homeserver: https://matrix.org
@@ -74,6 +91,10 @@ matrix:
   commands:
     - word: testword
       name: testword
+# signal messenger
+signalmessenger:
+
+
 
 notify:
   - name: matrix_notify
@@ -85,12 +106,18 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
-
-# - name: signal
-  # platform: signalmessenger
-  # sender_nr: "+12029305414"
-  # recp_nr: "+16303366257"
-  # signal_cli_path: /usr/local/bin/signal-cli
+  - name: signal_notify
+    platform: signalmessenger
+    sender_nr: !secret signal_sender_number
+    recp_nr: !secret signal_receiver_number
+    signal_cli_path: /usr/local/bin
+    signal_conf_path: /home/homeassistant/.local/share/signal-cli
+  - name: signal_group_notify
+    platform: signalmessenger
+    sender_nr: !secret signal_sender_number
+    group: !secret signal_group_id
+    signal_cli_path: /usr/local/bin
+    signal_conf_path: /home/homeassistant/.local/share/signal-cli
 
 hello_state:
 
