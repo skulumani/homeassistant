@@ -1,3 +1,14 @@
+## Installation
+
+## Autostart
+
+~~~
+cp /home/homeassistant/.homeassistant/setup/home-asssitant@homeassistant.service /etc/systemd/system
+sudo systemctl --system daemon-reload
+sudo systemctl enable home-assistant@homeassistant
+sudo systemctl start home-assistant@homeassistant.service
+~~~
+
 ## Start/Stop 
 
 Replace restart with start/stop
