@@ -124,13 +124,13 @@ hello_state:
 hello_service:
 
 # speedtest
-speedtestdotnet:
-  scan_interval:
-    hours: 2
-  monitored_conditions:
-    - ping
-    - download
-    - upload
+# speedtestdotnet:
+#   scan_interval:
+#     hours: 2
+#   monitored_conditions:
+#     - ping
+#     - download
+#     - upload
 
 # fastdotcom:
 #   scan_interval:

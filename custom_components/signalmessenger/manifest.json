@@ -4,5 +4,5 @@
     "documentation": "https://shankarkulumani.com",
     "dependencies": ["notify"],
     "codeowners": ["@skulumani"],
-    "requirements": ["pydbus"]
+    "requirements": []
 }

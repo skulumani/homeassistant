@@ -55,10 +55,6 @@ def get_service(hass, config, discovery_info=None):
 class SignalNotificationService(BaseNotificationService):
     """Implement the notification service for Join."""
 
-    try:
-        import pydbus
-    except ImportError:
-        _LOGGER.error("Pydbus not working")
 
     def __init__(self, sender_nr, recp_nr, group, signal_cli_path, signal_conf_path):
         """Initialize the service."""
