@@ -9,9 +9,9 @@
   - data:
       entity_id: all
     service: light.turn_on
-  # - service: notify.matrix_notify
-  #   data:
-  #     message: 'Test {{now().strftime("%Y%m%d-%H%M%S")}}'
+  - service: notify.signal_notify
+    data:
+      message: 'Test {{now().strftime("%Y%m%d-%H%M%S")}}'
 
 - id: '1560716169783'
   alias: Lights on weekday morning
@@ -23,7 +23,7 @@
   - data:
       entity_id: light.living_room_lamp
     service: light.turn_on
-  - service: notify.matrix_notify
+  - service: notify.signal_notify
     data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the morning.'
 
@@ -40,7 +40,7 @@
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights off at sunrise'
-    service: notify.matrix_notify
+    service: notify.signal_notify
 
 - id: Matrix Bot
   alias: Reaction to !testword
@@ -64,15 +64,15 @@
   - service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
-    service: notify.matrix_notify
+    service: notify.signal_notify
 
 # This sends a message to matrix room every 5 seconds
 # - alias: Test notification
 #   trigger:
 #     - platform: time_pattern
-#       seconds: '/5'
+#       seconds: '/10'
 #   action:
-#     - service: notify.matrix_notify
+#     - service: notify.signal_notify
 #       data:
 #         message: 'Test '
 
