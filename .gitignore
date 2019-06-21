@@ -6,6 +6,8 @@ home-assistant.log
 home-assistant_v2.db
 .matrix.conf
 tts/
+*.pyc
+*.cookies.*
 
 # You can whitelist files/folders with !, these will not be ignored.
 !*.yaml
