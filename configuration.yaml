@@ -23,6 +23,10 @@ default_config:
 # http:
 #   base_url: example.duckdns.org:8123
 
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
 # Discover some devices automatically
 discovery:
 
@@ -52,7 +56,7 @@ sensor:
       - nearest_storm_distance
       - nearest_storm_bearing
     scan_interval:
-      minutes: 30
+      minutes: 2
   - platform: systemmonitor
     resources:
       # - type: disk_use_percent
@@ -76,10 +80,10 @@ tts:
   - platform: google_translate
 
 
-# no_ip:
-#   domain: wolverines.freedynamicdns.org
-#   username: !secret noip_username
-#   password: !secret noip_password
+no_ip:
+  domain: !secret noip_domain
+  username: !secret noip_username
+  password: !secret noip_password
 
 matrix:
   homeserver: https://matrix.org
@@ -91,8 +95,8 @@ matrix:
   commands:
     - word: testword
       name: testword
-# signal messenger
-signalmessenger:
+
+# signalmessenger:
 
 
 
@@ -106,31 +110,31 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
-  - name: signal_notify
-    platform: signalmessenger
-    sender_nr: !secret signal_sender_number
-    recp_nr: !secret signal_receiver_number
-    signal_cli_path: /usr/local/bin
-    signal_conf_path: /home/homeassistant/.local/share/signal-cli
-  - name: signal_group_notify
-    platform: signalmessenger
-    sender_nr: !secret signal_sender_number
-    group: !secret signal_group_id
-    signal_cli_path: /usr/local/bin
-    signal_conf_path: /home/homeassistant/.local/share/signal-cli
+  # - name: signal_notify
+  #   platform: signalmessenger
+  #   sender_nr: !secret signal_sender_number
+  #   recp_nr: !secret signal_receiver_number
+  #   signal_cli_path: /usr/local/bin
+  #   signal_conf_path: /home/homeassistant/.local/share/signal-cli
+  # - name: signal_group_notify
+  #   platform: signalmessenger
+  #   sender_nr: !secret signal_sender_number
+  #   group: !secret signal_group_id
+  #   signal_cli_path: /usr/local/bin
+  #   signal_conf_path: /home/homeassistant/.local/share/signal-cli
 
 hello_state:
 
 hello_service:
 
 # speedtest
-# speedtestdotnet:
-#   scan_interval:
-#     hours: 2
-#   monitored_conditions:
-#     - ping
-#     - download
-#     - upload
+speedtestdotnet:
+  scan_interval:
+    hours: 2
+  monitored_conditions:
+    - ping
+    - download
+    - upload
 
 # fastdotcom:
 #   scan_interval:
@@ -138,9 +142,9 @@ hello_service:
 
 
 # android ip camera
-# camera:
-#   - platform: mjpeg
-#     mjpeg_url: http://10.0.0.4:8080/video
+camera:
+  - platform: mjpeg
+    mjpeg_url: http://10.0.0.4:8080/video
 
 group: !include groups.yaml
 automation: !include automations.yaml
