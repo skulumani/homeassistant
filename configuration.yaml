@@ -96,9 +96,7 @@ matrix:
     - word: testword
       name: testword
 
-# signalmessenger:
-
-
+signalmessenger:
 
 notify:
   - name: matrix_notify
@@ -110,12 +108,12 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
-  # - name: signal_notify
-  #   platform: signalmessenger
-  #   sender_nr: !secret signal_sender_number
-  #   recp_nr: !secret signal_receiver_number
-  #   signal_cli_path: /usr/local/bin
-  #   signal_conf_path: /home/homeassistant/.local/share/signal-cli
+  - name: signal_notify
+    platform: signalmessenger
+    sender_nr: !secret signal_sender_number
+    recp_nr: !secret signal_receiver_number
+    signal_cli_path: /usr/local/bin
+    signal_conf_path: /home/homeassistant/.local/share/signal-cli
   # - name: signal_group_notify
   #   platform: signalmessenger
   #   sender_nr: !secret signal_sender_number
