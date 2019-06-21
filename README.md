@@ -1,5 +1,7 @@
 ## Start/Stop 
 
+Replace restart with start/stop
+
 ~~~
 sudo systemctl restart home-assistant@homeassistant.service
 sudo journalctl -f -u home-assistant@homeassistant
