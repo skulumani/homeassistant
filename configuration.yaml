@@ -46,15 +46,26 @@ sensor:
       - 0
     hourly_forecast:
       - 0
-      - 1
+      - 6
+      - 12
+      - 18
+      - 24
+      - 30
+      - 36
+      - 42
+      - 48
     monitored_conditions:
-      - summary
-      - icon
       - temperature
       - apparent_temperature
-      - minutely_summary
       - nearest_storm_distance
       - nearest_storm_bearing
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - cloud_cover
+      - precip_probability
+      - precip_type
+      - precip_intensity
     scan_interval:
       minutes: 2
   - platform: systemmonitor
@@ -63,9 +74,6 @@ sensor:
       #   arg: /home
       - type: memory_use_percent
       - type: processor_use
-      - type: load_1m
-      - type: load_5m
-      - type: load_15m
       - type: network_in
         arg: eth0
       - type: network_out
@@ -140,9 +148,9 @@ speedtestdotnet:
 
 
 # android ip camera
-camera:
-  - platform: mjpeg
-    mjpeg_url: http://10.0.0.4:8080/video
+# camera:
+#   - platform: mjpeg
+#     mjpeg_url: http://10.0.0.4:8080/video
 
 group: !include groups.yaml
 automation: !include automations.yaml

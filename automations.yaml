@@ -70,3 +70,36 @@
     service: frontend.set_theme
     data:
       name: Dark - Blue
+- alias: Rainy Day
+  trigger:
+    - platform: state
+      entity_id: sensor.precip_intensity
+      to: 'rain'
+  condition:
+    # - condition: state
+    #   entity_id: group.all_devices
+    #   state: 'home'
+    - condition: time
+      after: '14:00'
+      before: '23:00'
+  action:
+  - service: light.turn_on
+    entity_id: all
+  - service: notify.signal_notify
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights off'
+- alias: 'Rain is over'
+  trigger:
+    - platform: state
+      entity_id: sensor.precip_intensity
+      to: 'None'
+  condition:
+    - condition: sun
+      after: 'sunset'
+      after_offset: '-01:00:00'
+  action:
+  - service: light.turn_off
+    entity_id: all
+  - service: notify.signal_notify
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights off'
