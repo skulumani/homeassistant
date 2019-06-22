@@ -9,10 +9,9 @@
   - data:
       entity_id: all
     service: light.turn_on
-  - service: notify.signal_notify
-    data:
-      message: 'Test {{now().strftime("%Y%m%d-%H%M%S")}}'
-
+  - data:
+      message: '{{now().strftime("%Y%m%d-%H%M%S")}} Lights on at sunset'
+    service: notify.signal_notify
 - id: '1560716169783'
   alias: Lights on weekday morning
   trigger:
@@ -25,8 +24,8 @@
     service: light.turn_on
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the morning.'
-
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the
+        morning.'
 - id: '1560716243441'
   alias: Lights off after sunrise
   trigger:
@@ -35,13 +34,12 @@
     platform: sun
   condition: []
   action:
-  - data: 
+  - data:
       entity_id: all
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights off at sunrise'
     service: notify.signal_notify
-
 - id: Matrix Bot
   alias: Reaction to !testword
   trigger:
@@ -53,7 +51,6 @@
     service: notify.matrix_notify
     data:
       message: You wrote !testword
-
 - id: '1560740677249'
   alias: Lights off at 2300
   trigger:
@@ -65,18 +62,7 @@
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
     service: notify.signal_notify
-
-# This sends a message to matrix room every 5 seconds
-# - alias: Test notification
-#   trigger:
-#     - platform: time_pattern
-#       seconds: '/10'
-#   action:
-#     - service: notify.signal_notify
-#       data:
-#         message: 'Test '
-
-- alias: 'Set theme at startup'
+- alias: Set theme at startup
   trigger:
     platform: homeassistant
     event: start
