@@ -58,7 +58,9 @@
     platform: time
   condition: []
   action:
-  - service: light.turn_off
+  - data:
+      entity_id: all
+    service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
     service: notify.signal_notify

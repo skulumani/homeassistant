@@ -13,6 +13,8 @@ from homeassistant.components.notify import (
 from homeassistant.const import CONF_API_KEY
 import homeassistant.helpers.config_validation as cv
 
+
+
 REQUIREMENTS = []
 
 _LOGGER = logging.getLogger("signalmessenger")
@@ -66,6 +68,11 @@ class SignalNotificationService(BaseNotificationService):
     def send_message(self, message="", **kwargs):
         """Send a message to a user."""
 
+        # add path to attachments in second input (list of strings)
+        # from pydbus import SystemBus
+        # signal_send = SystemBus().get('org.asamk.Signal')
+        # signal_send.sendMessage("dbus message", [], [self.recp_nr])
+
         # Establish default command line arguments
         mainargs = [self.signal_cli_path]
         if self.signal_conf_path is not None:
@@ -91,7 +98,7 @@ class SignalNotificationService(BaseNotificationService):
                 else:
                     mainargs.extend(attachments)
 
-        _LOGGER.error(message)
+        # _LOGGER.error(message)
         # Raise an Exception if something goes wrong
         p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -99,6 +106,7 @@ class SignalNotificationService(BaseNotificationService):
         p.wait()
         output, err = p.communicate()
         ret = p.returncode
+        
 
         if ret != 0:
             raise Exception("Signal Error %d: '%s'" % (ret, err))
