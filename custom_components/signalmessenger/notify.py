@@ -17,8 +17,6 @@ REQUIREMENTS = []
 
 _LOGGER = logging.getLogger("signalmessenger")
 
-
-
 CONF_SENDER_NR = 'sender_nr'
 CONF_RECP_NR = 'recp_nr'
 CONF_GROUP = 'group'
@@ -68,13 +66,6 @@ class SignalNotificationService(BaseNotificationService):
     def send_message(self, message="", **kwargs):
         """Send a message to a user."""
 
-        try:
-            from pydbus import SystemBus
-            bus = SystemBus()
-            signal_send = SystemBus().get('org.asamk.Signal')
-        except:
-            _LOGGER.error("pydbus import broken")
-
         # Establish default command line arguments
         mainargs = [self.signal_cli_path]
         if self.signal_conf_path is not None:
@@ -100,24 +91,16 @@ class SignalNotificationService(BaseNotificationService):
                 else:
                     mainargs.extend(attachments)
 
-        # try to send a message using dbus and revert if it fails
-        try:
-            # if kwargs is not None:
-            #     data = kwargs.get('data', None)
-            #     if data and data.get('attachments', False):
-            #         attachments = kwargs['data']['attachments']
-            #         if isinstance(attachments, str):
-            #             signal_send.sendMessage(message, [attachments], [self.recp_nr])
-            # else:
-            signal_send.sendMessage(message, [], [self.recp_nr])
-        except:
-            # Raise an Exception if something goes wrong
-            p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        _LOGGER.error(message)
+        # Raise an Exception if something goes wrong
+        p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-            # Wait for completion
-            p.wait()
-            output, err = p.communicate()
-            ret = p.returncode
+        # Wait for completion
+        p.wait()
+        output, err = p.communicate()
+        ret = p.returncode
 
-            if ret != 0:
-                raise Exception("Signal Error %d: '%s'" % (ret, err))
+        if ret != 0:
+            raise Exception("Signal Error %d: '%s'" % (ret, err))
+
+
