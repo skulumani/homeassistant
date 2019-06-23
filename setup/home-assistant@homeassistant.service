@@ -4,8 +4,8 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=%i
-ExecStart=/srv/homeassistant/bin/hass -c "/home/%i/.homeassistant"
+User=homeassistant
+ExecStart=/srv/homeassistant/bin/hass -c "/home/homeassistant/.homeassistant"
 Restart=on-failure
 RestartSec=10s
 

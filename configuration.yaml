@@ -13,6 +13,9 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+# logger:
+#   default: debug
+
 frontend:
   themes: !include themes.yaml
 
@@ -30,11 +33,13 @@ duckdns:
 # Discover some devices automatically
 discovery:
 
-# device_tracker:
-#   - platform: google_maps
-#     username: !secret google_username
-#     password: !secret google_password
-#     max_gps_accuracy: 200
+google_location:
+
+device_tracker:
+  - platform: google_location
+    username: !secret google_username
+    password: !secret google_password
+    max_gps_accuracy: 200
 
 # darksky
 sensor:

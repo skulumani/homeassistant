@@ -23,7 +23,7 @@ ATTR_NICKNAME = 'nickname'
 
 CONF_MAX_GPS_ACCURACY = 'max_gps_accuracy'
 
-CREDENTIALS_FILE = '.google_maps_location_sharing.cookies'
+CREDENTIALS_FILE = '/home/homeassistant/.homeasistant/setup/location_sharing.cookies'
 
 MIN_TIME_BETWEEN_SCANS = timedelta(seconds=30)
 
@@ -46,7 +46,7 @@ class GoogleMapsScanner:
     def __init__(self, hass, config: ConfigType, see) -> None:
         """Initialize the scanner."""
         from locationsharinglib import Service
-        from locationsharinglib.locationsharinglibexceptions import InvalidUser
+        from locationsharinglib.locationsharinglibexceptions import InvalidCookies, InvalidData
 
         self.see = see
         self.username = config[CONF_USERNAME]
@@ -54,9 +54,7 @@ class GoogleMapsScanner:
         self.max_gps_accuracy = config[CONF_MAX_GPS_ACCURACY]
 
         try:
-            credfile = "{}.{}".format(hass.config.path(CREDENTIALS_FILE),
-                                      slugify(self.username))
-            self.service = Service(self.username, self.password, credfile)
+            self.service = Service(cookies_file='/home/homeassistant/.homeassistant/location_sharing.cookies', authenticating_account='shankar.kulumani@gmail.com')
             self._update_info()
 
             track_time_interval(
@@ -64,12 +62,12 @@ class GoogleMapsScanner:
 
             self.success_init = True
 
-        except InvalidUser:
-            _LOGGER.error("You have specified invalid login credentials")
+        except (InvalidCookies,InvalidData) as e:
+            _LOGGER.error("You have specified invalid login credentials: {}".format(e))
             self.success_init = False
 
     def _update_info(self, now=None):
-        for person in self.service.get_all_people():
+        for person in self.service.get_shared_people():
             try:
                 dev_id = 'google_maps_{0}'.format(slugify(person.id))
             except TypeError:
