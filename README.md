@@ -103,3 +103,29 @@ sudo systemctl start home-assistant@homeassistant.service
 ~~~
 
 * [Common tasks](https://www.home-assistant.io/docs/installation/hassbian/common-tasks/)
+
+## Google Location sharing
+
+1. Create a dummy google account (no 2FA) and share all other users with this account
+2. Install locationsharinglib
+
+~~~
+source /srv/homeassistant/bin/activate
+pip install locationsharinglib mapscookiegettercli
+~~~
+
+3. Create cookies file on a linux machine with GUI and chrome
+
+~~~
+maps-cookie-getter
+~~~
+
+4. Move file to `/home/.homeassistant/setup` and test
+
+~~~
+python location.py
+~~~
+
+5. Move file to `/home/.homeassistant` if working
+
+6. Restart Home assistant
