@@ -73,6 +73,42 @@ device_tracker:
   - platform: xfinity
     host: 10.0.0.1
 
+# Bayesian Sensors for Home detection for each person
+binary_sensor:
+    - platform: bayesian
+      prior: 0.5
+      name: 'Christine Presence'
+      probability_threshold: 0.9
+      device_class: 'presence'
+      observations:
+        - entity_id: 'device_tracker.christine_s9'
+          prob_given_true: 0.9
+          prob_given_false: 0.2
+          platform: 'state'
+          to_state: 'home'
+        - entity_id: 'device_tracker.google_maps_107286426735337214006'
+          prob_given_true: 0.7
+          prob_given_false: 0.4
+          platform: 'state'
+          to_state: 'home'
+    - platform: bayesian
+      prior: 0.5
+      name: 'Shankar Presence'
+      probability_threshold: 0.9
+      device_class: 'presence'
+      observations:
+        - entity_id: 'device_tracker.shankar_pixel'
+          prob_given_true: 0.9
+          prob_given_false: 0.2
+          platform: 'state'
+          to_state: 'home'
+        - entity_id: 'device_tracker.google_maps_100911281029769970893'
+          prob_given_true: 0.7
+          prob_given_false: 0.4
+          platform: 'state'
+          to_state: 'home'
+
+
 # darksky
 sensor:
   - platform: darksky
