@@ -25,7 +25,7 @@ CONF_MAX_GPS_ACCURACY = 'max_gps_accuracy'
 
 CREDENTIALS_FILE = '/home/homeassistant/.homeasistant/setup/location_sharing.cookies'
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=30)
+MIN_TIME_BETWEEN_SCANS = timedelta(minutes=2)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_PASSWORD): cv.string,
