@@ -16,6 +16,25 @@ homeassistant:
 # logger:
 #   default: debug
 
+zone:
+  - name: Home
+    latitude: 38.96874
+    longitude: -77.03393
+    radius: 100
+    icon: mdi:home
+  - name: Collins
+    latitude: 38.990599
+    longitude: -77.413826
+    radius: 300
+    icon: mdi:briefcase
+  - name: Pro Bono Center
+    latitude: 38.901528
+    longitude: -77.016012
+    radius: 100
+    icon: mdi:briefcase
+
+person:
+
 frontend:
   themes: !include themes.yaml
 
@@ -39,7 +58,9 @@ device_tracker:
   - platform: google_location
     username: !secret google_username
     password: !secret google_password
-    max_gps_accuracy: 200
+    max_gps_accuracy: 50
+  - platform: xfinity
+    host: 10.0.0.1
 
 # darksky
 sensor:
