@@ -34,6 +34,15 @@ zone:
     icon: mdi:briefcase
 
 person:
+  - name: Shankar
+    id: shankar
+    user_id: 62fd3d74cac24c3e985e9e750f16cb64
+    device_trackers:
+      - device_tracker.shankar_pixel
+  - name: Christine
+    id: christine
+    device_trackers:
+      - device_tracker.christine_s9
 
 frontend:
   themes: !include themes.yaml

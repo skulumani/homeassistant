@@ -1,0 +1,5 @@
+family:
+  name: Family
+  entities:
+    - device_tracker.christine_s9
+    - device_tracker.shankar_pixel
