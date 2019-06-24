@@ -39,10 +39,12 @@ person:
     user_id: 62fd3d74cac24c3e985e9e750f16cb64
     device_trackers:
       - device_tracker.shankar_pixel
+      - device_tracker.google_maps_100911281029769970893
   - name: Christine
     id: christine
     device_trackers:
       - device_tracker.christine_s9
+      - device_tracker.google_maps_107286426735337214006
 
 frontend:
   themes: !include themes.yaml
