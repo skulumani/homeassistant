@@ -147,6 +147,9 @@ speedtestdotnet:
     - download
     - upload
 
+sun:
+  elevation: 87
+
 # fastdotcom:
 #   scan_interval:
 #     minutes: 120
