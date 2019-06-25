@@ -78,23 +78,23 @@ binary_sensor:
     - platform: bayesian
       prior: 0.5
       name: 'Christine Presence'
-      probability_threshold: 0.9
+      probability_threshold: 0.8
       device_class: 'presence'
       observations:
         - entity_id: 'device_tracker.christine_s9'
           prob_given_true: 0.9
-          prob_given_false: 0.2
+          prob_given_false: 0.1
           platform: 'state'
           to_state: 'home'
         - entity_id: 'device_tracker.google_maps_107286426735337214006'
-          prob_given_true: 0.7
-          prob_given_false: 0.4
+          prob_given_true: 0.5
+          prob_given_false: 0.1
           platform: 'state'
           to_state: 'home'
     - platform: bayesian
       prior: 0.5
       name: 'Shankar Presence'
-      probability_threshold: 0.9
+      probability_threshold: 0.8
       device_class: 'presence'
       observations:
         - entity_id: 'device_tracker.shankar_pixel'
@@ -107,6 +107,11 @@ binary_sensor:
           prob_given_false: 0.4
           platform: 'state'
           to_state: 'home'
+    - platform: rest
+      name: 'Nexus Motion'
+      sensor_class: motion
+      resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
+      value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
 
 
 # darksky
@@ -160,6 +165,11 @@ upnp:
 tts:
   - platform: google_translate
 
+device_sun_light_trigger:
+  light_group: group.living_room_lights
+  light_profile: relax
+  device_group: group.family
+  disable_turn_off: false
 
 no_ip:
   domain: !secret noip_domain
@@ -223,10 +233,17 @@ sun:
 #     minutes: 120
 
 
-# android ip camera
-# camera:
-#   - platform: mjpeg
-#     mjpeg_url: http://10.0.0.4:8080/video
+android_ip_camera:
+  - host: 10.0.0.4
+    port: 8080
+    sensors:
+      - battery_temp
+      - battery_voltage
+      - light
+      - motion
+    switches:
+      - overlay
+      - video_recording
 
 group: !include groups.yaml
 automation: !include automations.yaml

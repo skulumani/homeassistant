@@ -5,3 +5,9 @@ family:
     - device_tracker.shankar_pixel
     - device_tracker.google_maps_107286426735337214006 # christine
     - device_tracker.google_maps_100911281029769970893 # shankar
+
+living_room_lights:
+  name: 'Living Room Lights'
+  entities:
+    - light.living_room_lamp
+    - light.entry_lamp
