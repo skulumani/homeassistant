@@ -12,6 +12,8 @@ homeassistant:
   time_zone: America/New_York
   # Customization file
   customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /tmp
 
 # logger:
 #   default: debug
@@ -109,9 +111,9 @@ binary_sensor:
           to_state: 'home'
     - platform: rest
       name: 'Nexus Motion'
-      sensor_class: motion
       resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
       value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
+      # sensor_class: motion
 
 
 # darksky
@@ -224,6 +226,7 @@ speedtestdotnet:
     - ping
     - download
     - upload
+  manual: true
 
 sun:
   elevation: 87
@@ -233,7 +236,7 @@ sun:
 #     minutes: 120
 
 
-android_ip_camera:
+android_ip_webcam:
   - host: 10.0.0.4
     port: 8080
     sensors:
