@@ -167,12 +167,6 @@ upnp:
 tts:
   - platform: google_translate
 
-device_sun_light_trigger:
-  light_group: group.living_room_lights
-  light_profile: relax
-  device_group: group.family
-  disable_turn_off: false
-
 no_ip:
   domain: !secret noip_domain
   username: !secret noip_username
