@@ -122,18 +122,6 @@ sensor:
     api_key: !secret darksky_api
     longitude: -77.033961
     latitude: 38.968746
-    forecast:
-      - 0
-    hourly_forecast:
-      - 0
-      - 6
-      - 12
-      - 18
-      - 24
-      - 30
-      - 36
-      - 42
-      - 48
     monitored_conditions:
       - temperature
       - apparent_temperature
@@ -148,6 +136,18 @@ sensor:
       - precip_intensity
     scan_interval:
       minutes: 2
+    # forecast: days into future 0-7 days
+    #   - 0
+    # hourly_forecast: # hours into future 0 - 48
+    #   - 0
+    #   - 6
+    #   - 12
+    #   - 18
+    #   - 24
+    #   - 30
+    #   - 36
+    #   - 42
+    #   - 48
   - platform: systemmonitor
     resources:
       # - type: disk_use_percent
@@ -158,6 +158,13 @@ sensor:
         arg: eth0
       - type: network_out
         arg: eth0
+  - platform: template
+    sensors:
+      solar_angle:
+        friendly_name: "Sun Angle"
+        unit_of_measurement: '°'
+        value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'elevation')) }}"
+
   
 upnp:
   sensors: false
