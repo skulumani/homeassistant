@@ -164,6 +164,11 @@ sensor:
         friendly_name: "Sun Angle"
         unit_of_measurement: '°'
         value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'elevation')) }}"
+  - platform: template
+    sensors:
+      ambient_light:
+        friendly_name: 'Ambient Light'
+        value_template: "{{ '%.2f'|format( (6 - state_attr('sun.sun', 'elevation')) + (1 - sensor.dark_sky_cloud_coverage/100)  ) }}"
 
   
 upnp:
