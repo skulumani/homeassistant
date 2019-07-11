@@ -72,7 +72,7 @@ device_tracker:
     username: !secret google_username
     password: !secret google_password
     max_gps_accuracy: 50
-    scan_interval: 120 # seconds to scan for devices
+    # scan_interval: 120 
     credentials_file: '/home/homeassistant/.homeassistant/location_sharing.cookies'
   - platform: xfinity
     host: 10.0.0.1

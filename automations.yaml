@@ -1,10 +1,13 @@
 - id: '1558230448181'
   alias: Lights on at Sunset
   trigger:
-  - platform: numeric_state
-    entity_id: sun.sun
-    value_template: '{{ state.attributes.elevation }}'
-    below: 6
+  - platform: sun
+    event: sunset
+    offset: "-00:45:00"
+  # - platform: numeric_state
+  #   entity_id: sun.sun
+  #   value_template: '{{ state.attributes.elevation }}'
+  #   below: 6
   condition: 
   - condition: time
     after: '14:00'
