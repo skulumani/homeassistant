@@ -58,12 +58,17 @@ class SignalNotificationService(BaseNotificationService):
 
 
     def __init__(self, sender_nr, recp_nr, group, signal_cli_path, signal_conf_path):
+        from pydbus import SystemBus
+    
         """Initialize the service."""
         self.sender_nr = sender_nr
         self.recp_nr = recp_nr
         self.group = group
         self.signal_cli_path = path.join(signal_cli_path, "signal-cli")
         self.signal_conf_path = signal_conf_path
+
+        # self.signal_listen = SystemBus().get('org.asamk.Signal')
+        self.signal_send = SystemBus().get('org.asamk.Signal')
 
     def send_message(self, message="", **kwargs):
         """Send a message to a user."""
