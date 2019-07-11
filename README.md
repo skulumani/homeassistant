@@ -129,3 +129,5 @@ python location.py
 5. Move file to `/home/.homeassistant` if working
 
 6. Restart Home assistant
+
+[Example](https://github.com/dennyreiter/hass-gmaps)
