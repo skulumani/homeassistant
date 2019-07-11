@@ -103,15 +103,16 @@ class SignalNotificationService(BaseNotificationService):
                 else:
                     mainargs.extend(attachments)
 
+        self.signal_send.sendMessage(message, [], [self.recp_nr])
+        ret = 0
         # _LOGGER.error(message)
         # Raise an Exception if something goes wrong
-        p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        # self.signal_send.sendMessage(message, [], [self.recp_nr])
+        # p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         # Wait for completion
-        p.wait()
-        output, err = p.communicate()
-        ret = p.returncode
+        # p.wait()
+        # output, err = p.communicate()
+        # ret = p.returncode
         
 
         if ret != 0:
