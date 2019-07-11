@@ -106,7 +106,7 @@ class SignalNotificationService(BaseNotificationService):
         # _LOGGER.error(message)
         # Raise an Exception if something goes wrong
         p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        self.signal_send.sendMessage(message, [], [self.recp_nr])
+        # self.signal_send.sendMessage(message, [], [self.recp_nr])
 
         # Wait for completion
         p.wait()

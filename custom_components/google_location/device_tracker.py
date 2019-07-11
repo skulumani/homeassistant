@@ -34,7 +34,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_USERNAME): cv.string,
     vol.Optional(CONF_CREDENTIALS_FILE, default=CREDENTIALS_FILE): cv.string,
     vol.Optional(CONF_MAX_GPS_ACCURACY, default=1000): vol.Coerce(float),
-    vol.Optional(CONF_SCAN_INTERVAL, default=120): vol.Coerce(float),
+    vol.Optional(CONF_SCAN_INTERVAL, default=240): vol.Coerce(float),
 })
 
 
@@ -57,6 +57,7 @@ class GoogleMapsScanner:
         self.password = config[CONF_PASSWORD]
         self.max_gps_accuracy = config[CONF_MAX_GPS_ACCURACY]
         self.scan_interval = timedelta(seconds=config[CONF_SCAN_INTERVAL])
+        # self.scan_interval = config[CONF_SCAN_INTERVAL]
         self.credentials_file = config[CONF_CREDENTIALS_FILE]
 
         try:
