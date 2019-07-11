@@ -25,7 +25,7 @@ CONF_MAX_GPS_ACCURACY = 'max_gps_accuracy'
 CONF_SCAN_INTERVAL = 'scan_interval'
 CONF_CREDENTIALS_FILE = 'credentials_file'
 
-CREDENTIALS_FILE = '/home/homeassistant/.homeasistant/setup/location_sharing.cookies'
+CREDENTIALS_FILE = '/home/homeassistant/.homeasistant/location_sharing.cookies'
 
 MIN_TIME_BETWEEN_SCANS = timedelta(minutes=5)
 
