@@ -38,10 +38,10 @@ zone:
 person:
   - name: Shankar
     id: shankar
-    user_id: 62fd3d74cac24c3e985e9e750f16cb64
     device_trackers:
       - device_tracker.shankar_pixel
       - device_tracker.google_maps_100911281029769970893
+    # user_id: 62fd3d74cac24c3e985e9e750f16cb64
   - name: Christine
     id: christine
     device_trackers:
@@ -170,7 +170,7 @@ sensor:
     sensors:
       ambient_light:
         friendly_name: 'Ambient Light'
-        value_template: "{{ '%.2f'|format( (6 - states.sun.sun.attributes.elevation) + (1 - sensor.dark_sky_cloud_coverage/100)  ) }}"
+        value_template: "{{ '%.2f'|format( (6 - states.sun.sun.attributes.elevation) + (1 - states.sensor.dark_sky_cloud_coverage|int/100)  ) }}"
 
   
 upnp:
