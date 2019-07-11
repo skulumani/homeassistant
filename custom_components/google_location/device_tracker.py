@@ -22,6 +22,8 @@ ATTR_LAST_SEEN = 'last_seen'
 ATTR_NICKNAME = 'nickname'
 
 CONF_MAX_GPS_ACCURACY = 'max_gps_accuracy'
+CONF_SCAN_INTERVAL = 'scan_interval'
+CONF_CREDENTIALS_FILE = 'credentials_file'
 
 CREDENTIALS_FILE = '/home/homeassistant/.homeasistant/setup/location_sharing.cookies'
 
@@ -30,7 +32,9 @@ MIN_TIME_BETWEEN_SCANS = timedelta(minutes=5)
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_PASSWORD): cv.string,
     vol.Required(CONF_USERNAME): cv.string,
-    vol.Optional(CONF_MAX_GPS_ACCURACY, default=100000): vol.Coerce(float),
+    vol.Optional(CONF_CREDENTIALS_FILE, default=CREDENTIALS_FILE): cv.string,
+    vol.Optional(CONF_MAX_GPS_ACCURACY, default=1000): vol.Coerce(float),
+    vol.Optional(CONF_SCAN_INTERVAL, default=60): vol.Coerce(float),
 })
 
 
@@ -52,13 +56,15 @@ class GoogleMapsScanner:
         self.username = config[CONF_USERNAME]
         self.password = config[CONF_PASSWORD]
         self.max_gps_accuracy = config[CONF_MAX_GPS_ACCURACY]
+        self.scan_interval = timedelta(seconds=config[CONF_SCAN_INTERVAL])
+        self.credentials_file = config[CONF_CREDENTIALS_FILE]
 
         try:
-            self.service = Service(cookies_file='/home/homeassistant/.homeassistant/location_sharing.cookies', authenticating_account='shankar.kulumani@gmail.com')
+            self.service = Service(cookies_file=self.credentials_file, authenticating_account=self.username)
             self._update_info()
 
             track_time_interval(
-                hass, self._update_info, MIN_TIME_BETWEEN_SCANS)
+                hass, self._update_info, self.scan_interval)
 
             self.success_init = True
 

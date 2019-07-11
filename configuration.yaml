@@ -72,6 +72,8 @@ device_tracker:
     username: !secret google_username
     password: !secret google_password
     max_gps_accuracy: 50
+    scan_interval: 120 # seconds to scan for devices
+    credentials_file: '/home/homeassistant/.homeassistant/location_sharing.cookies'
   - platform: xfinity
     host: 10.0.0.1
 
@@ -109,11 +111,11 @@ binary_sensor:
           prob_given_false: 0.4
           platform: 'state'
           to_state: 'home'
-    - platform: rest
-      name: 'Nexus Motion'
-      resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
-      value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
-      # sensor_class: motion
+    # - platform: rest
+    #   name: 'Nexus Motion'
+    #   resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
+    #   value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
+    #   # sensor_class: motion
 
 
 # darksky
@@ -242,17 +244,17 @@ sun:
 #     minutes: 120
 
 
-android_ip_webcam:
-  - host: 10.0.0.4
-    port: 8080
-    sensors:
-      - battery_temp
-      - battery_voltage
-      - light
-      - motion
-    switches:
-      - overlay
-      - video_recording
+# android_ip_webcam:
+#   - host: 10.0.0.4
+#     port: 8080
+#     sensors:
+#       - battery_temp
+#       - battery_voltage
+#       - light
+#       - motion
+#     switches:
+#       - overlay
+#       - video_recording
 
 group: !include groups.yaml
 automation: !include automations.yaml
