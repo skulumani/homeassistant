@@ -1,17 +1,19 @@
 - id: '1558230448181'
   alias: Lights on at Sunset
   trigger:
-  - platform: sun
-    event: sunset
-    offset: "-00:45:00"
+  # - platform: sun
+  #   event: sunset
+  #   offset: "-00:45:00"
   # - platform: numeric_state
   #   entity_id: sun.sun
   #   value_template: '{{ state.attributes.elevation }}'
   #   below: 6
-  condition: 
-  - condition: time
-    after: '14:00'
-    before: '23:00'
+  - platform: template
+    value_template: "{{ states.sensor.period_of_day.state != 'day' }}"
+  condition: []
+  # - condition: time
+  #   after: '14:00'
+  #   before: '23:00'
   action:
   - data:
       entity_id: all
@@ -31,8 +33,7 @@
     service: light.turn_on
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the
-        morning.'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the morning.'
 - id: '1560716243441'
   alias: Lights off after sunrise
   trigger:
