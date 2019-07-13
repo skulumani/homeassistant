@@ -170,6 +170,37 @@ sensor:
       ambient_light:
         friendly_name: 'Ambient Light'
         value_template: "{{ '%.2f'|format( (6 - states.sun.sun.attributes.elevation) + (1 - states.sensor.dark_sky_cloud_coverage|int/100)  ) }}"
+  - platform: template
+    sensors:
+      period_of_day:
+        friendly_name: "Period of the day"
+        value_template: >-
+          {% if (as_timestamp(states.sun.sun.attributes.next_dusk)) - (as_timestamp(states.sun.sun.attributes.next_setting)) < 0 %}
+            dusk
+          {% elif (as_timestamp(state.sun.sun.attributes.next_rising)) - (as_timestamp(states.sun.sun.attributes.next_dawn)) < 0 %}
+            dawn
+          {% elif (states.sun.sun.attributes.elevation) < -18 %}
+            night
+          {% elif (states.sun.sun.attributes.elevation) < -12 %}
+            astronomical_twilight
+          {% elif (states.sun.sun.attributes.elevation) < -6 %}
+            nautical_twilight
+          {% elif (states.sun.sun.attributes.elevation) < 0 %}
+            civil_twilight
+          {% else %}
+            day
+          {% endif %}
+        icon_template: >-
+          {% if (as_timestamp(states.sun.sun.attributes.next_dusk)) - (as_timestamp(states.sun.sun.attributes.next_setting)) < 0 %}
+            mdi:weather-sunset-down
+          {% elif (as_timestamp(state.sun.sun.attributes.next_rising)) - (as_timestamp(states.sun.sun.attributes.next_dawn)) < 0 %}
+            mdi:weather-sunset-up
+          {% elif (states.sun.sun.attributes.elevation) < -4 %}
+            mdi:weather-night
+          {% else %}
+            mdi:weather-sunny
+          {% endif %}
+
 
   
 upnp:
