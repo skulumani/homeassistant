@@ -9,7 +9,7 @@
   #   value_template: '{{ state.attributes.elevation }}'
   #   below: 6
   - platform: template
-    value_template: "{{ is_state(sensor.period_of_day, 'day') }}"
+    value_template: "{{ states.sensor.period_of_day.state != 'day' }}"
   condition: []
   # - condition: time
   #   after: '14:00'
@@ -17,6 +17,7 @@
   action:
   - data:
       entity_id: all
+      transition: 300
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
@@ -30,6 +31,7 @@
   action:
   - data:
       entity_id: light.living_room_lamp
+      transition: 300
     service: light.turn_on
   - service: notify.signal_notify
     data:
@@ -44,6 +46,7 @@
   action:
   - data:
       entity_id: all
+      transition: 300
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights off at sunrise'
@@ -68,6 +71,7 @@
   action:
   - data:
       entity_id: all
+      transition: 300
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
@@ -97,7 +101,7 @@
     entity_id: all
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights off'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights on'
 - alias: 'Rain is over'
   trigger:
     - platform: state
