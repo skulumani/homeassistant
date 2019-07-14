@@ -119,3 +119,21 @@
   - service: notify.signal_notify
     data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights off'
+- id: update_morning_commute_sensor
+  alias: "Commute - Update morning commute sensor"
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      minutes: '/2'
+  condition:
+    - condition: time
+      after: '05:00:00'
+      before: '6:00:00'
+    - condition: time
+      weekday:
+        - tue
+        - wed
+        - thu
+  action:
+    - service: homeassistant.update_entity
+      entity_id: sensor.morning_commute
