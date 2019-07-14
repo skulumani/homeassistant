@@ -1,0 +1,79 @@
+# Sensors
+- platform: darksky
+  api_key: !secret darksky_api
+  longitude: -77.033961
+  latitude: 38.968746
+  monitored_conditions:
+    - temperature
+    - apparent_temperature
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - wind_speed
+    - wind_gust
+    - wind_bearing
+    - cloud_cover
+    - precip_probability
+    - precip_type
+    - precip_intensity
+  scan_interval:
+    minutes: 2
+  # forecast: days into future 0-7 days
+  #   - 0
+  # hourly_forecast: # hours into future 0 - 48
+  #   - 0
+  #   - 6
+  #   - 12
+  #   - 18
+  #   - 24
+  #   - 30
+  #   - 36
+  #   - 42
+  #   - 48
+- platform: systemmonitor
+  resources:
+    # - type: disk_use_percent
+    #   arg: /home
+    - type: memory_use_percent
+    - type: processor_use
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+- platform: template
+  sensors:
+    solar_angle:
+      friendly_name: "Sun Angle"
+      unit_of_measurement: '°'
+      value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'elevation')) }}"
+- platform: template
+  sensors:
+    ambient_light:
+      friendly_name: 'Ambient Light'
+      unit_of_measurement: 'N'
+      value_template: "{{ '%.2f'|format(  state_attr('sun.sun', 'elevation') * (1 - states('sensor.dark_sky_cloud_coverage') | float/100)  ) }}"
+- platform: template
+  sensors:
+    period_of_day:
+      friendly_name: "Period of the day"
+      value_template: >-
+        {% if state_attr('sun.sun', 'elevation') < -18 %}
+          night
+        {% elif state_attr('sun.sun', 'elevation') < -12 %}
+          astronomical_twilight
+        {% elif state_attr('sun.sun', 'elevation') < -6 %}
+          nautical_twilight
+        {% elif state_attr('sun.sun', 'elevation') < 0 %}
+          civil_twilight
+        {% else %}
+          day
+        {% endif %}
+      icon_template: >-
+        {% if (as_timestamp(state_attr('sun.sun', 'next_dusk')) - (as_timestamp(state_attr('sun.sun', 'next_setting')))) < 0 %}
+          mdi:weather-sunset-down
+        {% elif (as_timestamp(state_attr('sun.sun', 'next_rising')) - (as_timestamp(state_attr('sun.sun', 'next_dawn')))) < 0 %}
+          mdi:weather-sunset-up
+        {% elif state_attr('sun.sun', 'elevation') < 0 %}
+          mdi:weather-night
+        {% else %}
+          mdi:weather-sunny
+        {% endif %}

@@ -18,35 +18,9 @@ homeassistant:
 # logger:
 #   default: debug
 
-zone:
-  - name: Home
-    latitude: 38.96874
-    longitude: -77.03393
-    radius: 100
-    icon: mdi:home
-  - name: Collins
-    latitude: 38.990599
-    longitude: -77.413826
-    radius: 300
-    icon: mdi:briefcase
-  - name: Pro Bono Center
-    latitude: 38.901528
-    longitude: -77.016012
-    radius: 100
-    icon: mdi:briefcase
+zone: !include zone.yaml
 
-person:
-  - name: Shankar
-    id: shankar
-    device_trackers:
-      - device_tracker.shankar_pixel
-      - device_tracker.google_maps_100911281029769970893
-    # user_id: 62fd3d74cac24c3e985e9e750f16cb64
-  - name: Christine
-    id: christine
-    device_trackers:
-      - device_tracker.christine_s9
-      - device_tracker.google_maps_107286426735337214006
+person: !include person.yaml
 
 frontend:
   themes: !include themes.yaml
@@ -67,139 +41,14 @@ discovery:
 
 google_location:
 
-device_tracker:
-  - platform: google_location
-    username: !secret google_username
-    password: !secret google_password
-    max_gps_accuracy: 100
-    credentials_file: '/home/homeassistant/.homeassistant/location_sharing.cookies'
-  - platform: xfinity
-    host: 10.0.0.1
+device_tracker: !include device_tracker.yaml
 
 # Bayesian Sensors for Home detection for each person
-binary_sensor:
-    - platform: bayesian
-      prior: 0.5
-      name: 'Christine Presence'
-      probability_threshold: 0.8
-      device_class: 'presence'
-      observations:
-        - entity_id: 'device_tracker.christine_s9'
-          prob_given_true: 0.9
-          prob_given_false: 0.1
-          platform: 'state'
-          to_state: 'home'
-        - entity_id: 'device_tracker.google_maps_107286426735337214006'
-          prob_given_true: 0.5
-          prob_given_false: 0.1
-          platform: 'state'
-          to_state: 'home'
-    - platform: bayesian
-      prior: 0.5
-      name: 'Shankar Presence'
-      probability_threshold: 0.8
-      device_class: 'presence'
-      observations:
-        - entity_id: 'device_tracker.shankar_pixel'
-          prob_given_true: 0.9
-          prob_given_false: 0.2
-          platform: 'state'
-          to_state: 'home'
-        - entity_id: 'device_tracker.google_maps_100911281029769970893'
-          prob_given_true: 0.7
-          prob_given_false: 0.4
-          platform: 'state'
-          to_state: 'home'
-    # - platform: rest
-    #   name: 'Nexus Motion'
-    #   resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
-    #   value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
-    #   # sensor_class: motion
-
+binary_sensor: !include binary_sensor.yaml
 
 # darksky
-sensor:
-  - platform: darksky
-    api_key: !secret darksky_api
-    longitude: -77.033961
-    latitude: 38.968746
-    monitored_conditions:
-      - temperature
-      - apparent_temperature
-      - nearest_storm_distance
-      - nearest_storm_bearing
-      - wind_speed
-      - wind_gust
-      - wind_bearing
-      - cloud_cover
-      - precip_probability
-      - precip_type
-      - precip_intensity
-    scan_interval:
-      minutes: 2
-    # forecast: days into future 0-7 days
-    #   - 0
-    # hourly_forecast: # hours into future 0 - 48
-    #   - 0
-    #   - 6
-    #   - 12
-    #   - 18
-    #   - 24
-    #   - 30
-    #   - 36
-    #   - 42
-    #   - 48
-  - platform: systemmonitor
-    resources:
-      # - type: disk_use_percent
-      #   arg: /home
-      - type: memory_use_percent
-      - type: processor_use
-      - type: network_in
-        arg: eth0
-      - type: network_out
-        arg: eth0
-  - platform: template
-    sensors:
-      solar_angle:
-        friendly_name: "Sun Angle"
-        unit_of_measurement: '°'
-        value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'elevation')) }}"
-  - platform: template
-    sensors:
-      ambient_light:
-        friendly_name: 'Ambient Light'
-        unit_of_measurement: 'N'
-        value_template: "{{ '%.2f'|format(  state_attr('sun.sun', 'elevation') * (1 - states('sensor.dark_sky_cloud_coverage') | float/100)  ) }}"
-  - platform: template
-    sensors:
-      period_of_day:
-        friendly_name: "Period of the day"
-        value_template: >-
-          {% if state_attr('sun.sun', 'elevation') < -18 %}
-            night
-          {% elif state_attr('sun.sun', 'elevation') < -12 %}
-            astronomical_twilight
-          {% elif state_attr('sun.sun', 'elevation') < -6 %}
-            nautical_twilight
-          {% elif state_attr('sun.sun', 'elevation') < 0 %}
-            civil_twilight
-          {% else %}
-            day
-          {% endif %}
-        icon_template: >-
-          {% if (as_timestamp(state_attr('sun.sun', 'next_dusk')) - (as_timestamp(state_attr('sun.sun', 'next_setting')))) < 0 %}
-            mdi:weather-sunset-down
-          {% elif (as_timestamp(state_attr('sun.sun', 'next_rising')) - (as_timestamp(state_attr('sun.sun', 'next_dawn')))) < 0 %}
-            mdi:weather-sunset-up
-          {% elif state_attr('sun.sun', 'elevation') < 0 %}
-            mdi:weather-night
-          {% else %}
-            mdi:weather-sunny
-          {% endif %}
+sensor: !include sensor.yaml
 
-
-  
 upnp:
   sensors: false
   port_mapping: false

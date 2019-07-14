@@ -1,0 +1,38 @@
+# Binary sensor
+- platform: bayesian
+  prior: 0.5
+  name: 'Christine Presence'
+  probability_threshold: 0.8
+  device_class: 'presence'
+  observations:
+    - entity_id: 'device_tracker.christine_s9'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.google_maps_107286426735337214006'
+      prob_given_true: 0.8
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+- platform: bayesian
+  prior: 0.5
+  name: 'Shankar Presence'
+  probability_threshold: 0.8
+  device_class: 'presence'
+  observations:
+    - entity_id: 'device_tracker.shankar_pixel'
+      prob_given_true: 0.9
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.google_maps_100911281029769970893'
+      prob_given_true: 0.7
+      prob_given_false: 0.2
+      platform: 'state'
+      to_state: 'home'
+# - platform: rest
+#   name: 'Nexus Motion'
+#   resource: http://10.0.0.4:8080/sensors.json?sense=motion_active
+#   value_template: '{{ value_json.motion_active.data[0][1][0] | round(0) }}'
+#   # sensor_class: motion
