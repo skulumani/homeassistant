@@ -18,6 +18,7 @@
   - data:
       entity_id: all
       transition: 300
+      brightness: 125
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
@@ -32,6 +33,7 @@
   - data:
       entity_id: light.living_room_lamp
       transition: 300
+      brightness: 125
     service: light.turn_on
   - service: notify.signal_notify
     data:
