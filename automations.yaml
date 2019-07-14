@@ -28,7 +28,14 @@
   trigger:
   - at: 05:00
     platform: time
-  condition: []
+  condition: 
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
   action:
   - data:
       entity_id: light.living_room_lamp
@@ -137,3 +144,32 @@
   action:
     - service: homeassistant.update_entity
       entity_id: sensor.home_to_collins
+- id: change_light_commute_time
+  trigger:
+    platform: time_pattern
+    minutes: '/1' 
+  condition:
+    - condition: time
+      after: '05:00:00'
+      before: '06:00:00'
+    - condition: time
+      weekday:
+        - tue
+        - wed
+        - thu
+  action:
+  - service: light.turn_on
+    data: 
+      entity_id: light.living_room_lamp
+      brightness: 125
+      color: >
+        {% set drive_time = state('sensor.home_to_collins') %}
+        {% if 0 <= drive_time <= 50 %}
+        green
+        {% elif 50 < drive_time <= 60 %}
+        orange
+        {% elif drive_time > 60 %}
+        red
+        {% else %}
+        white # in case the drive time isn't inside any of these if statements
+        {% endif %}
