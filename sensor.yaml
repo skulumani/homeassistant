@@ -77,8 +77,13 @@
         {% else %}
           mdi:weather-sunny
         {% endif %}
-- platform: google_travel_time
-  name: Home to Collins
-  api_key: !secret google_distance_api
+# - platform: google_travel_time
+#   name: Home to Collins
+#   api_key: !secret google_distance_api
+#   origin: zone.Home
+#   destination: zone.Collins
+- platform: waze_travel_time
   origin: zone.Home
   destination: zone.Collins
+  region: 'US'
+  name: "waze_home_to_collins"
