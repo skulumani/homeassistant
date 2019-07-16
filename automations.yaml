@@ -131,7 +131,7 @@
   initial_state: 'on'
   trigger:
     - platform: time_pattern
-      minutes: '/1'
+      minutes: '/5'
   condition:
     - condition: time
       after: '05:00:00'
@@ -150,7 +150,7 @@
 - id: change_light_commute_time
   trigger:
     platform: time_pattern
-    minutes: '/1' 
+    minutes: '/5' 
   condition:
     - condition: time
       after: '05:00:00'
@@ -165,14 +165,14 @@
     data: 
       entity_id: light.living_room_lamp
       brightness: 125
-      color: >
+      rgb_color: >
         {% set drive_time = state('sensor.waze_home_to_collins') %}
         {% if 0 <= drive_time <= 50 %}
-        green
+        [0, 255, 0]
         {% elif 50 < drive_time <= 60 %}
-        orange
+        [255, 165, 0]
         {% elif drive_time > 60 %}
-        red
+        [255, 0, 0]
         {% else %}
-        white # in case the drive time isn't inside any of these if statements
+        [212, 235, 255] # in case the drive time isn't inside any of these if statements
         {% endif %}
