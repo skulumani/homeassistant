@@ -131,3 +131,17 @@ python location.py
 6. Restart Home assistant
 
 [Example](https://github.com/dennyreiter/hass-gmaps)
+
+## Raspberry Pi Camera stream
+
+1. Add `v4l2` module to kernel. Add `bcm2835-v4l2` to `/etc/modules-load.d/modules.conf`
+
+2. Install stuff
+
+~~~
+sudo apt-get install gstreamer1.0-tools gstream1.0-plugins-base gstreamer1.0-plugins-good gstream1.0-plugins-bad
+~~~
+
+3. Create Systemd service at `/etc/systemd/system/raspicam.service`
+
+
