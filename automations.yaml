@@ -162,17 +162,17 @@
         - thu
   action:
   - service: light.turn_on
-    data: 
+    data_template: 
       entity_id: light.living_room_lamp
       brightness: 125
-      rgb_color: >
+      color_name: >
         {% set drive_time = state('sensor.waze_home_to_collins') %}
         {% if 0 <= drive_time <= 50 %}
-        [0, 255, 0]
+        "green"
         {% elif 50 < drive_time <= 60 %}
-        [255, 165, 0]
+        "orange"
         {% elif drive_time > 60 %}
-        [255, 0, 0]
+        "red"
         {% else %}
-        [212, 235, 255] # in case the drive time isn't inside any of these if statements
+        "white" # in case the drive time isn't inside any of these if statements
         {% endif %}

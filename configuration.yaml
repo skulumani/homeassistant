@@ -132,16 +132,24 @@ sun:
 #   scan_interval:
 #     minutes: 120
 
+# ffmpeg:
+#   ffmpeg_bin: /usr/bin/ffmpeg
+
 camera:
-  - platform: rpi_camera
-    name: rpi_camera
-    image_width: 640
-    image_height: 480
-    image_quality: 7
-    horizontal_flip: 1
-    vertical_flip: 1
-    image_rotation: 0
-    file_path: /home/homeassistant/image.jpg
+  - platform: ffmpeg
+    name: raspicam
+    input: /dev/video0
+
+# camera:
+#   - platform: rpi_camera
+#     name: rpi_camera
+#     image_width: 640
+#     image_height: 480
+#     image_quality: 7
+#     horizontal_flip: 1
+#     vertical_flip: 1
+#     image_rotation: 0
+#     file_path: /home/homeassistant/image.jpg
 
 # android_ip_webcam:
 #   - host: 10.0.0.4

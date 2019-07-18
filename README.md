@@ -139,9 +139,17 @@ python location.py
 2. Install stuff
 
 ~~~
-sudo apt-get install gstreamer1.0-tools gstream1.0-plugins-base gstreamer1.0-plugins-good gstream1.0-plugins-bad
+sudo apt-get install gstreamer1.0-tools gstream1.0-plugins-base gstreamer1.0-plugins-good gstream1.0-plugins-bad ffmpeg
 ~~~
 
 3. Create Systemd service at `/etc/systemd/system/raspicam.service`
+
+4. Restart raspi
+
+~~~
+sudo systemctl daemon-reload
+sudo systemctl enable raspicam.service
+sudo systemctl start raspicam.service
+~~~
 
 
