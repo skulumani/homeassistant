@@ -152,4 +152,9 @@ sudo systemctl enable raspicam.service
 sudo systemctl start raspicam.service
 ~~~
 
+Capture image using ffmpeg
+
+~~~
+ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpeg
+~~~
 
