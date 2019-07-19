@@ -176,3 +176,14 @@
         {% else %}
         "white" # in case the drive time isn't inside any of these if statements
         {% endif %}
+- id: "Update homeassistant notify to Signal"
+  alias: Update notification
+  trigger:
+  - platform: state
+    entity_id: updater.updater
+  action:
+  - service: notify.signal_notify
+    data_template:
+      message: "Home Assistant {{ states('updater.updater') }} is now available."
+
+
