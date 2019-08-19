@@ -164,6 +164,9 @@ camera:
 #       - overlay
 #       - video_recording
 
+shell_command:
+  renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
