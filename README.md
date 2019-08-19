@@ -1,5 +1,9 @@
 ## Installation
 
+~~~
+sudo apt-get install cerbot ssl-cert-check
+~~~
+
 ## Autostart
 
 ~~~

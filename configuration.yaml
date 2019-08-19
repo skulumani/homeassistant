@@ -30,14 +30,15 @@ frontend:
 default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: https://wolverines.duckdns.org:8123
-#   ssl_certificate: /ssl/fullchain.pem
-#   ssl_key: /ssl/privkey.pem
+http:
+  base_url: wolverines.duckdns.org
+  ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
 
-# duckdns:
-#   domain: !secret duckdns_domain
-#   access_token: !secret duckdns_token
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
 # {
 #   "lets_encrypt": {
 #     "accept_terms": true,
