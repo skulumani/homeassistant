@@ -162,3 +162,4 @@ Capture image using ffmpeg
 ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpeg
 ~~~
 
+* [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
