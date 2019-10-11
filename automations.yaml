@@ -148,6 +148,7 @@
         message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - Travel time is {{ states('sensor.waze_home_to_collins') }}"
       service: notify.signal_notify
 - id: change_light_commute_time
+  alias: "Commute - change light color"
   trigger:
     platform: time_pattern
     minutes: '/5' 

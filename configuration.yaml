@@ -71,10 +71,10 @@ upnp:
 tts:
   - platform: google_translate
 
-no_ip:
-  domain: !secret noip_domain
-  username: !secret noip_username
-  password: !secret noip_password
+# no_ip:
+#   domain: !secret noip_domain
+#   username: !secret noip_username
+#   password: !secret noip_password
 
 matrix:
   homeserver: https://matrix.org
