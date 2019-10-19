@@ -136,10 +136,10 @@ sun:
 # ffmpeg:
 #   ffmpeg_bin: /usr/bin/ffmpeg
 
-camera:
-  - platform: ffmpeg
-    name: raspicam
-    input: /dev/video0
+# camera:
+#   - platform: ffmpeg
+#     name: raspicam
+#     input: /dev/video0
 
 # camera:
 #   - platform: rpi_camera
