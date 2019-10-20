@@ -1,6 +1,8 @@
 """
 Signal Messenger for notify component.
 Place this in `homeassistant/components/notify/signalmessenger.py` 
+
+Example : https://community.home-assistant.io/t/use-signal-messenger-for-notifications/80214/10
 """
 
 from os import path
@@ -97,11 +99,12 @@ class SignalNotificationService(BaseNotificationService):
             data = kwargs.get('data',None)
             if data and data.get('attachments',False):
                 attachments = kwargs['data']['attachments']
-                mainargs.append('-a')
-                if isinstance(attachments,str):
-                    mainargs.append(attachments)
-                else:
-                    mainargs.extend(attachments)
+                # mainargs.append('-a')
+                # if isinstance(attachments,str):
+                #     mainargs.append(attachments)
+                # else:
+                #     mainargs.extend(attachments)
+            self.signal_send.sendMessage(message, [attachments], [self.recp_nr])
 
         self.signal_send.sendMessage(message, [], [self.recp_nr])
         ret = 0
