@@ -162,4 +162,12 @@ Capture image using ffmpeg
 ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpeg
 ~~~
 
+## MotionEye docker
+
+~~~
+docker run --name="motioneye" -p8765:8765 -p 8081:8081 --hostname="motioneye" -v /etc/localtime:/etc/localtime:ro -v /etc/motioneye:/etc/motioneye -v /media/usb/motioneye:/var/lib/motioneye --restart="always" --detach=true --device=/dev/video0 ccrisan/motioneye:master-armhf
+~~~
+
+# References
+
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
