@@ -105,8 +105,9 @@ class SignalNotificationService(BaseNotificationService):
                 # else:
                 #     mainargs.extend(attachments)
             self.signal_send.sendMessage(message, [attachments], [self.recp_nr])
+        else:
+            self.signal_send.sendMessage(message, [], [self.recp_nr])
 
-        self.signal_send.sendMessage(message, [], [self.recp_nr])
         ret = 0
         # _LOGGER.error(message)
         # Raise an Exception if something goes wrong
