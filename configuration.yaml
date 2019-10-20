@@ -15,6 +15,7 @@ homeassistant:
   whitelist_external_dirs:
     - /tmp
     - /home/homeassistant
+    - /media/usb
 
 # logger:
 #   default: debug
