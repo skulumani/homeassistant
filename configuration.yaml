@@ -136,6 +136,10 @@ sun:
 # ffmpeg:
 #   ffmpeg_bin: /usr/bin/ffmpeg
 
+camera:
+  - platform: mjpeg
+    mjpeg_url: http://localhost:8081
+
 # camera:
 #   - platform: ffmpeg
 #     name: raspicam
