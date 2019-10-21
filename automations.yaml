@@ -202,5 +202,13 @@
   - service: notify.signal_notify
     data_template:
       message: "Warning - SSL certificate expires in 21 days and has not been automatically renewed"
+- alias: Motion detected
+  trigger: 
+    platform: webhook
+    webhook_id: motion_detected
+  action:
+    service: notify.signal_notify
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Motion detected'
 
 

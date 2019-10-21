@@ -95,20 +95,22 @@ class SignalNotificationService(BaseNotificationService):
 
         # Add any "data":{"attachments":<value>} values as attachments to send.
         # Supports list to send multiple attachments at once.
+        has_attachments = False;
         if kwargs is not None:
             data = kwargs.get('data',None)
             if data and data.get('attachments',False):
                 attachments = kwargs['data']['attachments']
-                # mainargs.append('-a')
-                # if isinstance(attachments,str):
-                #     mainargs.append(attachments)
-                # else:
-                #     mainargs.extend(attachments)
+                has_attachments = True
+
+        if has_attachments:
             self.signal_send.sendMessage(message, [attachments], [self.recp_nr])
         else:
             self.signal_send.sendMessage(message, [], [self.recp_nr])
 
         ret = 0
+        if ret != 0:
+            raise Exception("Signal Error %d: '%s'" % (ret, err))
+
         # _LOGGER.error(message)
         # Raise an Exception if something goes wrong
         # p = subprocess.Popen(mainargs, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -119,7 +121,5 @@ class SignalNotificationService(BaseNotificationService):
         # ret = p.returncode
         
 
-        if ret != 0:
-            raise Exception("Signal Error %d: '%s'" % (ret, err))
 
 
