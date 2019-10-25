@@ -208,7 +208,10 @@
     webhook_id: motion_detected
   action:
     service: notify.signal_notify
-    data:
-      message: 'Motion detected - {{ trigger.query }}'
+    data_template:
+      message: >
+        Motion detected {{ trigger.query['file'] }}
+      data:
+        attachments: '/media/usb/motioneye/Camera1/{{ trigger.query['file'] }}.jpg'
 
 
