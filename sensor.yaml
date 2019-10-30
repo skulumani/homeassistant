@@ -62,7 +62,7 @@
           astronomical_twilight
         {% elif state_attr('sun.sun', 'elevation') < -6 %}
           nautical_twilight
-        {% elif state_attr('sun.sun', 'elevation') < 0 %}
+        {% elif state_attr('sun.sun', 'elevation') < 3 %}
           civil_twilight
         {% else %}
           day
