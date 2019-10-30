@@ -211,6 +211,7 @@
     data_template:
       message: "Motion detected {{ trigger.query['file'] }}"
       data: 
-        attachments: "/media/usb/motioneye/Camera1/image.jpg"
+        attachments: "/media/usb/motioneye/Camera1/movie.mp4"
+        # attachments: "/media/usb/motioneye/Camera1/image.jpg"
 
 
