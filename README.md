@@ -1,7 +1,8 @@
 ## Installation
 
 ~~~
-sudo apt-get install cerbot ssl-cert-check
+sudo apt-get install cerbot ssl-cert-check libxslt1.1 
+sudo apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
 ~~~
 
 ## Autostart
@@ -167,6 +168,8 @@ ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpeg
 ~~~
 docker run --name="motioneye" -p8765:8765 -p 8081:8081 --hostname="motioneye" -v /etc/localtime:/etc/localtime:ro -v /etc/motioneye:/etc/motioneye -v /media/usb/motioneye:/var/lib/motioneye --restart="always" --detach=true --device=/dev/video0 ccrisan/motioneye:master-armhf
 ~~~
+
+Motion notification: `sleep 30s && curl -d "" https://wolverines.duckdns.org:8123/api/webhook/motion_detected?file=%Y%m%dT%H%M%S`
 
 # References
 

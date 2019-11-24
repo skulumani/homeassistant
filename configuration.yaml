@@ -1,16 +1,10 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Home
-  # Location required to calculate the time the sun rises and sets
   latitude: 38.96874
   longitude: -77.03393
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 78
-  # metric for Metric, imperial for Imperial
   unit_system: Metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/New_York
-  # Customization file
   customize: !include customize.yaml
   whitelist_external_dirs:
     - /tmp
@@ -20,9 +14,6 @@ homeassistant:
 # logger:
 #   default: debug
 
-zone: !include zone.yaml
-
-person: !include person.yaml
 
 frontend:
   themes: !include themes.yaml
@@ -32,6 +23,8 @@ default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
   base_url: wolverines.duckdns.org
   ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
   ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
@@ -61,8 +54,6 @@ device_tracker: !include device_tracker.yaml
 # Bayesian Sensors for Home detection for each person
 binary_sensor: !include binary_sensor.yaml
 
-# darksky
-sensor: !include sensor.yaml
 
 upnp:
   sensors: false
@@ -113,9 +104,9 @@ notify:
   #   signal_cli_path: /usr/local/bin
   #   signal_conf_path: /home/homeassistant/.local/share/signal-cli
 
-hello_state:
+# hello_state:
 
-hello_service:
+# hello_service:
 
 # speedtest
 speedtestdotnet:
@@ -141,37 +132,13 @@ camera:
   - platform: mjpeg
     mjpeg_url: http://localhost:8081
 
-# camera:
-#   - platform: ffmpeg
-#     name: raspicam
-#     input: /dev/video0
-
-# camera:
-#   - platform: rpi_camera
-#     name: rpi_camera
-#     image_width: 640
-#     image_height: 480
-#     image_quality: 7
-#     horizontal_flip: 1
-#     vertical_flip: 1
-#     image_rotation: 0
-#     file_path: /home/homeassistant/image.jpg
-
-# android_ip_webcam:
-#   - host: 10.0.0.4
-#     port: 8080
-#     sensors:
-#       - battery_temp
-#       - battery_voltage
-#       - light
-#       - motion
-#     switches:
-#       - overlay
-#       - video_recording
-
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
+# INCLUDES
+sensor: !include sensor.yaml
+zone: !include zone.yaml
+person: !include person.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
