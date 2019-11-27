@@ -92,4 +92,26 @@
   unit_of_measurement: days
   scan_interval: 10800
   command: "ssl-cert-check -b -c /etc/letsencrypt/live/wolverines.duckdns.org/cert.pem | awk '{ print $NF }'"
+- platform: template
+  sensors:
+    plug_amps:
+      friendly_name_template: "{{ states.switch.plug.name}} Current"
+      value_template: '{{ states.switch.plug.attributes["current_a"] | float }}'
+      unit_of_measurement: 'A'
+    plug_watts:
+      friendly_name_template: "{{ states.switch.plug.name}} Current Consumption"
+      value_template: '{{ states.switch.plug.attributes["current_power_w"] | float }}'
+      unit_of_measurement: 'W'
+    plug_total_kwh:
+      friendly_name_template: "{{ states.switch.plug.name}} Total Consumption"
+      value_template: '{{ states.switch.plug.attributes["total_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
+    plug_volts:
+      friendly_name_template: "{{ states.switch.plug.name}} Voltage"
+      value_template: '{{ states.switch.plug.attributes["voltage"] | float }}'
+      unit_of_measurement: 'V'
+    plug_today_kwh:
+      friendly_name_template: "{{ states.switch.plug.name}} Today's Consumption"
+      value_template: '{{ states.switch.plug.attributes["today_energy_kwh"] | float }}'
+      unit_of_measurement: 'kWh'
 

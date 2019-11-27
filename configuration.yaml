@@ -135,6 +135,9 @@ camera:
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
+tplink:
+  discovery: true
+
 # INCLUDES
 sensor: !include sensor.yaml
 zone: !include zone.yaml
