@@ -144,9 +144,9 @@
   action:
     - service: homeassistant.update_entity
       entity_id: sensor.waze_home_to_collins
-    - data_template:
-        message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - Travel time is {{ states('sensor.waze_home_to_collins') }}"
-      service: notify.signal_notify
+    # - data_template:
+    #     message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - Travel time is {{ states('sensor.waze_home_to_collins') }}"
+    #   service: notify.signal_notify
 - id: change_light_commute_time
   alias: "Commute - change light color"
   trigger:
@@ -213,5 +213,18 @@
       data: 
         attachments: "/media/usb/motioneye/Camera1/movie.mp4"
         # attachments: "/media/usb/motioneye/Camera1/image.jpg"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'device_tracker.shankar_pixel'
+        state: 'Away'
+        for:
+          minutes: 10
+      - condition: state
+        entity_id: 'device_tracker.christine_s9'
+        state: 'Away'
+        for:
+          minutes: 10
 
 
