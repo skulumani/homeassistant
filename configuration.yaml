@@ -17,32 +17,33 @@ homeassistant:
 
 frontend:
   themes: !include themes.yaml
+  # themes: !include_dir_merge_named themes
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   ip_ban_enabled: true
-#   login_attempts_threshold: 3
-#   base_url: wolverines.duckdns.org
-#   ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
-#   ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+  base_url: wolverines.duckdns.org
+  ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
 
 duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
 
-# {
-#   "lets_encrypt": {
-#     "accept_terms": true,
-#     "certfile": "fullchain.pem",
-#     "keyfile": "privkey.pem"
-#   },
-#   "token": !secret duckdns_token,
-#   "domains": [!secret duckdns_domain],
-#   "seconds": 300
-# }
+{
+  "lets_encrypt": {
+    "accept_terms": true,
+    "certfile": "fullchain.pem",
+    "keyfile": "privkey.pem"
+  },
+  "token": !secret duckdns_token,
+  "domains": [!secret duckdns_domain],
+  "seconds": 300
+}
 
 # Discover some devices automatically
 discovery:
@@ -137,6 +138,10 @@ shell_command:
 
 tplink:
   discovery: true
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
 
 # INCLUDES
 sensor: !include sensor.yaml
