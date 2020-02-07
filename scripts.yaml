@@ -4,7 +4,7 @@ camera_motion:
     - service: notify.signal_notify
       data:
         message: 'Motion detected'
-        # data:
-        #   attachments: '/media/usb/motioneye/Camera1/20191020122544.mp4'
+        data:
+          attachments: '/media/usb/motioneye/Camera1/movie.mp4'
 
 

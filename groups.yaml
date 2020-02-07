@@ -11,3 +11,10 @@ living_room_lights:
   entities:
     - light.living_room_lamp
     - light.entry_lamp
+
+bedroom_lights:
+  name: 'Bedroom Lights'
+  entities:
+    - light.bedroom_lamp
+    - light.bedroom_ceiling_1
+    - light.bedroom_ceiling_2
