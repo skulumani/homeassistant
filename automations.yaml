@@ -212,6 +212,7 @@
     data_template:
       message: "Warning - SSL certificate expires in 21 days and has not been automatically renewed"
 - alias: Motion detected
+  initial_state: true
   trigger: 
     platform: webhook
     webhook_id: motion_detected
