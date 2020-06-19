@@ -1,30 +1,17 @@
 - id: '1558230448181'
   alias: Lights on at Sunset
   trigger:
-  # - platform: sun
-  #   event: sunset
-  #   offset: "-00:45:00"
-  # - platform: numeric_state
-  #   entity_id: sun.sun
-  #   value_template: '{{ state.attributes.elevation }}'
-  #   below: 6
   - platform: template
-    value_template: "{{ states.sensor.period_of_day.state != 'day' }}"
+    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
   condition: []
-    # - condition: state
-    #   entity_id: group.family
-    #   state: 'home'
-    # - condition: time
-    #   after: '14:00'
-    #   before: '23:00'
   action:
   - data:
+      brightness_pct: 50
       entity_id:
-        - light.living_room_lamp
-        - light.entry_lamp
-        - light.bedroom_lamp
+      - light.living_room_lamp
+      - light.entry_lamp
+      - light.bedroom_lamp
       transition: 300
-      brightness_pct: 25
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
@@ -34,14 +21,14 @@
   trigger:
   - at: 05:00
     platform: time
-  condition: 
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
   action:
   - data:
       entity_id: light.living_room_lamp
@@ -50,7 +37,8 @@
     service: light.turn_on
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the morning.'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the
+        morning.'
 - id: '1560716243441'
   alias: Lights off after sunrise
   trigger:
@@ -91,102 +79,88 @@
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
     service: notify.signal_notify
-# - alias: Set theme at startup
-#   trigger:
-#     platform: homeassistant
-#     event: start
-#   action:
-#     service: frontend.set_theme
-#     data:
-#       name: Dark - Blue
 - alias: Rainy Day
   trigger:
-    - platform: state
-      entity_id: sensor.dark_sky_precip
-      to: 'rain'
+  - platform: state
+    entity_id: sensor.dark_sky_precip
+    to: rain
   condition:
-    - condition: state
-      entity_id: group.family
-      state: 'home'
-    - condition: time
-      after: '14:00'
-      before: '23:00'
+  - condition: state
+    entity_id: group.family
+    state: home
+  - condition: time
+    after: '14:00'
+    before: '23:00'
   action:
   - service: light.turn_on
-    entity_id: 
-      - light.living_room_lamp
-      - light.entry_lamp
-      - light.bedroom_lamp
+    entity_id:
+    - light.living_room_lamp
+    - light.entry_lamp
+    - light.bedroom_lamp
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights on'
-- alias: 'Rain is over'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights
+        on'
+- alias: Rain is over
   trigger:
-    - platform: state
-      entity_id: sensor.precip_intensity
-      to: 'None'
+  - platform: state
+    entity_id: sensor.precip_intensity
+    to: None
   condition:
-    - condition: sun
-      after: 'sunset'
-      after_offset: '-01:00:00'
+  - condition: sun
+    after: sunset
+    after_offset: -01:00:00
   action:
   - service: light.turn_off
     entity_id: all
   - service: notify.signal_notify
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights off'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights
+        off'
 - id: update_morning_commute_sensor
-  alias: "Commute - Update morning commute sensor"
+  alias: Commute - Update morning commute sensor
   initial_state: 'on'
   trigger:
-    - platform: time_pattern
-      minutes: '/5'
+  - platform: time_pattern
+    minutes: /5
   condition:
-    - condition: time
-      after: '05:00:00'
-      before: '6:00:00'
-    - condition: time
-      weekday:
-        - tue
-        - wed
-        - thu
+  - condition: time
+    after: 05:00:00
+    before: '6:00:00'
+  - condition: time
+    weekday:
+    - tue
+    - wed
+    - thu
   action:
-    - service: homeassistant.update_entity
-      entity_id: sensor.waze_home_to_collins
-    # - data_template:
-    #     message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - Travel time is {{ states('sensor.waze_home_to_collins') }}"
-    #   service: notify.signal_notify
+  - service: homeassistant.update_entity
+    entity_id: sensor.waze_home_to_collins
 - id: change_light_commute_time
-  alias: "Commute - change light color"
+  alias: Commute - change light color
   trigger:
     platform: time_pattern
-    minutes: '/5' 
+    minutes: /5
   condition:
-    - condition: time
-      after: '05:00:00'
-      before: '06:00:00'
-    - condition: time
-      weekday:
-        - tue
-        - wed
-        - thu
+  - condition: time
+    after: 05:00:00
+    before: 06:00:00
+  - condition: time
+    weekday:
+    - tue
+    - wed
+    - thu
   action:
   - service: light.turn_on
-    data_template: 
+    data_template:
       entity_id: light.living_room_lamp
       brightness: 125
-      color_name: >
-        {% set drive_time = state('sensor.waze_home_to_collins') %}
-        {% if 0 <= drive_time <= 50 %}
-        "green"
-        {% elif 50 < drive_time <= 60 %}
-        "orange"
-        {% elif drive_time > 60 %}
-        "red"
-        {% else %}
-        "white" # in case the drive time isn't inside any of these if statements
-        {% endif %}
-- id: "Update homeassistant notify to Signal"
+      color_name: '{% set drive_time = state(''sensor.waze_home_to_collins'') %} {%
+        if 0 <= drive_time <= 50 %} "green" {% elif 50 < drive_time <= 60 %} "orange"
+        {% elif drive_time > 60 %} "red" {% else %} "white" # in case the drive time
+        isn''t inside any of these if statements {% endif %}
+
+        '
+- id: Update homeassistant notify to Signal
   alias: Update notification
   trigger:
   - platform: state
@@ -194,15 +168,15 @@
   action:
   - service: notify.signal_notify
     data_template:
-      message: "Home Assistant {{ states('updater.updater') }} is now available."
-- alias: 'Auto Renew SSL Cert'
+      message: Home Assistant {{ states('updater.updater') }} is now available.
+- alias: Auto Renew SSL Cert
   trigger:
   - platform: numeric_state
     entity_id: sensor.ssl_cert_expiry
     below: 29
   action:
   - service: shell_command.renew_ssl
-- alias: 'SSL expiry notification'
+- alias: SSL expiry notification
   trigger:
   - platform: numeric_state
     entity_id: sensor.ssl_cert_expiry
@@ -210,31 +184,29 @@
   action:
   - service: notify.signal_notify
     data_template:
-      message: "Warning - SSL certificate expires in 21 days and has not been automatically renewed"
+      message: Warning - SSL certificate expires in 21 days and has not been automatically
+        renewed
 - alias: Motion detected
   initial_state: true
-  trigger: 
+  trigger:
     platform: webhook
     webhook_id: motion_detected
   action:
     service: notify.signal_notify
     data_template:
-      message: "Motion detected {{ trigger.query['file'] }}"
-      data: 
-        attachments: "/media/usb/motioneye/Camera1/movie.mp4"
-        # attachments: "/media/usb/motioneye/Camera1/image.jpg"
+      message: Motion detected {{ trigger.query['file'] }}
+      data:
+        attachments: /media/usb/motioneye/Camera1/movie.mp4
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: 'device_tracker.shankar_pixel'
-        state: 'Away'
-        for:
-          minutes: 10
-      - condition: state
-        entity_id: 'device_tracker.christine_s9'
-        state: 'Away'
-        for:
-          minutes: 10
-
-
+    - condition: state
+      entity_id: device_tracker.shankar_pixel
+      state: Away
+      for:
+        minutes: 10
+    - condition: state
+      entity_id: device_tracker.christine_s9
+      state: Away
+      for:
+        minutes: 10
