@@ -181,7 +181,12 @@ docker-compose -f docker/homeassistant-compose.yml up -d
 docker-compose -f docker/homeassistant-compose.yml restart
 ~~~
 
+## Signal
+
+~~~
+curl -X POST -H "Content-Type: application/json" 'http://<ip>:<port>/v1/register/<number>'
 # References
 
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
 * [TLS GUIDE](https://community.home-assistant.io/t/installing-tls-ssl-using-lets-encrypt/196975)
+* [SIgnal Homeassistant](https://github.com/bbernhard/signal-cli-rest-api/blob/master/doc/HOMEASSISTANT.md)
