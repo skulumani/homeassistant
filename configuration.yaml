@@ -10,10 +10,6 @@ homeassistant:
     - /tmp
     - /media/usb
 
-# logger:
-#   default: debug
-
-
 frontend:
   # themes: !include themes.yaml
   # themes: !include_dir_merge_named themes
@@ -47,17 +43,11 @@ duckdns:
 # Discover some devices automatically
 discovery:
 
-# google_location:
 
-device_tracker: !include device_tracker.yaml
+# device_tracker: !include device_tracker.yaml
 
 # Bayesian Sensors for Home detection for each person
 binary_sensor: !include binary_sensor.yaml
-
-
-upnp:
-  sensors: false
-  port_mapping: false
 
 # Text to speech
 tts:
@@ -91,12 +81,12 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
-  - name: signal_notify
-    platform: signalmessenger
-    sender_nr: !secret signal_sender_number
-    recp_nr: !secret signal_receiver_number
-    signal_cli_path: /usr/local/bin
-    signal_conf_path: /home/homeassistant/.local/share/signal-cli
+  # - name: signal_notify
+  #   platform: signalmessenger
+  #   sender_nr: !secret signal_sender_number
+  #   recp_nr: !secret signal_receiver_number
+  #   signal_cli_path: /usr/local/bin
+  #   signal_conf_path: /home/homeassistant/.local/share/signal-cli
   # - name: signal_group_notify
   #   platform: signalmessenger
   #   sender_nr: !secret signal_sender_number
@@ -135,9 +125,6 @@ camera:
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
-tplink:
-  discovery: true
-
 weather:
   - platform: darksky
     api_key: !secret darksky_api
@@ -145,7 +132,10 @@ weather:
 # INCLUDES
 sensor: !include sensor.yaml
 zone: !include zone.yaml
-person: !include person.yaml
+# person: !include person.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+
+# DEPRECATED SHIT
+# google_location:
