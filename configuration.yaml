@@ -6,9 +6,8 @@ homeassistant:
   unit_system: Metric
   time_zone: America/New_York
   customize: !include customize.yaml
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /tmp
-    - /home/homeassistant
     - /media/usb
 
 # logger:
@@ -16,7 +15,7 @@ homeassistant:
 
 
 frontend:
-  themes: !include themes.yaml
+  # themes: !include themes.yaml
   # themes: !include_dir_merge_named themes
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
@@ -80,7 +79,7 @@ matrix:
     - word: testword
       name: testword
 
-signalmessenger:
+# signalmessenger:
 
 notify:
   - name: matrix_notify

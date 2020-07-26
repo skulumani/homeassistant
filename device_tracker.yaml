@@ -1,8 +1,8 @@
 # Device tracking
-- platform: google_location
-  username: !secret google_username
-  password: !secret google_password
-  max_gps_accuracy: 100
-  credentials_file: '/home/homeassistant/.homeassistant/location_sharing.cookies'
+# - platform: google_location
+#   username: !secret google_username
+#   password: !secret google_password
+#   max_gps_accuracy: 100
+#   credentials_file: '/home/homeassistant/.homeassistant/location_sharing.cookies'
 - platform: xfinity
   host: 10.0.0.1

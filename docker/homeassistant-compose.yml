@@ -5,6 +5,8 @@ services:
     image: homeassistant/home-assistant:stable
     volumes:
       - /home/pi/homeassistant:/config
+      - /tmp:/tmp
+      - /media/usb:/media/usb
     environment:
       - TZ=America/New_York
     restart: always
