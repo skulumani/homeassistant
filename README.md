@@ -171,6 +171,16 @@ docker run --name="motioneye" -p8765:8765 -p 8081:8081 --hostname="motioneye" -v
 
 Motion notification: `sleep 30s && curl -d "" https://wolverines.duckdns.org:8123/api/webhook/motion_detected?file=%Y%m%dT%H%M%S`
 
+## [HomeAssistant Docker](https://www.home-assistant.io/docs/installation/docker/)
+
+~~~
+docker-compose -f docker/homeassistant-compose.yml up -d
+~~~
+
+~~~
+docker-compose -f docker/homeassistant-compose.yml restart
+~~~
+
 # References
 
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
