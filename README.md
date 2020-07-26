@@ -184,3 +184,4 @@ docker-compose -f docker/homeassistant-compose.yml restart
 # References
 
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
+* [TLS GUIDE](https://community.home-assistant.io/t/installing-tls-ssl-using-lets-encrypt/196975)
