@@ -44,7 +44,7 @@ duckdns:
 discovery:
 
 
-# device_tracker: !include device_tracker.yaml
+device_tracker: !include device_tracker.yaml
 
 # Bayesian Sensors for Home detection for each person
 binary_sensor: !include binary_sensor.yaml
