@@ -1,5 +1,5 @@
 # Source: https://community.home-assistant.io/t/clear-theme-dark/100960
-clear_theme_dark:
+dark:
   # Background image
   lovelace-background: 'center / cover no-repeat url("/local/night.jpg") fixed'
 
