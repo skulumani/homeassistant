@@ -1,0 +1,108 @@
+One Dark Theme:
+
+  # Colors
+  black: "#21252b" #"#1E2127"
+  bright-black: "#282c34"
+  red: "#E06C75"
+  green: "#98C379"
+  yellow: "#D19A66"
+  blue: "#61AFEF"
+  magenta: "#C678DD"
+  cyan: "#56B6C2"
+  white: "#ABB2BF"
+  bright-white: "#FFFFFF"
+  grey: "#5C6370"
+
+  background: var(--black)
+  text: var(--white)
+
+  # Material Colors
+  google-red-500: var(--red)
+  google-blue-500: var(--blue)
+  google-green-500: var(--green)
+  google-yellow-500: var(--yellow)
+  paper-green-400: var(--green)
+  paper-blue-400: var(--blue)
+  paper-orange-400: var(--yellow)
+
+  # Header
+  app-header-background-color: var(--black)
+  app-header-text-color: var(--white)
+
+  # Main Interface Colors
+  primary-color: var(--blue)
+  light-primary-color: var(--primary-color)
+
+  primary-background-color: var(--background)
+  secondary-background-color: var(--primary-background-color)
+
+  divider-color: var(--black)
+  accent-color: var(--yellow)
+  error-color: var(--red)
+
+  # Text
+  primary-text-color: var(--text)
+  secondary-text-color: var(--text)
+  text-primary-color: var(--bright-white)
+  disabled-text-color: var(--grey)
+
+  # Sidebar Menu
+  sidebar-icon-color: var(--app-header-text-color)
+  sidebar-text-color: var(--text)
+  sidebar-background-color: var(--background)
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: var(--primary-color)
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color))
+
+  # States and Badges
+  state-icon-color: var(--primary-color)
+  state-icon-active-color: var(--primary-color)
+  state-icon-unavailable-color: var(--disabled-text-color)
+
+  # Sliders
+  paper-slider-knob-color: var(--primary-color)
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: var(--paper-slider-knob-color)
+  paper-slider-secondary-color: var(--light-primary-color)
+
+  # Labels
+  label-badge-background-color: var(--background)
+  label-badge-text-color: var(--text)
+  label-badge-red: var(--red)
+  label-badge-green: var(--green)
+  label-badge-blue: var(--blue)
+  label-badge-yellow: var(--yellow)
+  label-badge-gray: var(--white)
+
+  # Cards
+  ha-card-border-radius: "8px"
+  ha-card-box-shadow: 1px 1px 5px 0px rgb(12, 12, 14)
+  paper-card-background-color: var(--bright-black)
+  paper-listbox-background-color: var(--bright-black)
+
+  # Fix for selection cards in automation ui (not complete)
+  card-background-color: var(--primary-background-color)
+  light-accent-color: var(--primary-color)
+  light-theme-background-color: var(--background)
+  light-theme-text-color: var(--primary-text-color)
+
+  # Switches
+  switch-checked-button-color: var(--primary-color)
+  switch-checked-track-color: "#404D64"
+  switch-unchecked-button-color: "#636466"
+  switch-unchecked-track-color: "#636466"
+  # Toggles
+  paper-toggle-button-checked-button-color: var(--switch-checked-button-color)
+  paper-toggle-button-checked-bar-color: var(--switch-checked-track-color)
+  paper-toggle-button-unchecked-button-color: var(--switch-unchecked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--switch-unchecked-track-color)
+  # Table
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  data-table-background-color: var(--primary-background-color)
+
+  # HACS
+  hacs-status-installed: var(--green)
+  hacs-status-not-loaded: var(--red)
+  hacs-status-pending-update: var(--yellow)
