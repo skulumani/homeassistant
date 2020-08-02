@@ -10,21 +10,22 @@ homeassistant:
     - /tmp
     - /media/usb
 
+
+frontend:
+  # themes: !include_dir_merge_named ./themes
+  themes: !include ./themes/one_dark_theme.yml
+
+
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-frontend:
-    themes: !include_dir_merge_named themes
-  # themes: !include themes.yaml
-
-
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
- http:
-   ip_ban_enabled: true
-   login_attempts_threshold: 3
-   base_url: wolverines.duckdns.org
-   ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
-   ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
+  http:
+    ip_ban_enabled: true
+    login_attempts_threshold: 3
+    base_url: wolverines.duckdns.org
+    ssl_certificate: /etc/letsencrypt/live/wolverines.duckdns.org/fullchain.pem
+    ssl_key: /etc/letsencrypt/live/wolverines.duckdns.org/privkey.pem
 
 duckdns:
   domain: !secret duckdns_domain
