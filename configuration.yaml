@@ -13,6 +13,9 @@ homeassistant:
 
 lovelace:
   mode: yaml
+  resources:
+    - url: https://cdn.jsdelivr.net/gh/bramkragten/weather-card/dist/weather-card.min.js
+      type: module
 
 frontend:
   # themes: !include_dir_merge_named ./themes
@@ -126,6 +129,12 @@ sun:
 camera:
   - platform: mjpeg
     mjpeg_url: http://localhost:8081
+  - platform: generic
+    still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/usfcx/current.png
+    name: Radar DC Current
+  - platform: generic
+    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=40&type=TR0&mapx=400&mapy=240&brand=wui&delay=15&frame=0&scale=1&transx=-856&transy=-296&severe=1&smooth=0&centerx=-456&centery=-56&station=IAD&rainsnow=1&lightning=0&noclutter=0&showlabels=1&showstorms=0&rand=26609628
+    name: Radar DC Animated
 
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01

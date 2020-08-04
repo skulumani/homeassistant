@@ -32,9 +32,22 @@ views:
       - entity: camera.mjpeg_camera
         type: picture-entity
   - title: Weather
+    icon: mdi:flower
     cards:
       - type: weather-forecast
         entity: weather.openweathermap
       - type: weather-forecast
         entity: weather.kcgs_hourly
+      - type: picture-entity
+        entity: camera.radar_dc_current
+      - type: picture-entity
+        entity: camera.radar_dc_animated
+      # - type: custom:weather-card
+      #   entity: weather.openweathermap
+      #   name: Optional name
+      #   current: true
+      #   details: true
+      #   forecast: true
+      #   hourly_forecast: true
+      #   number_of_forecasts: 5
 
