@@ -1,8 +1,8 @@
 homeassistant:
   name: Home
-  latitude: 38.96874
-  longitude: -77.03393
-  elevation: 78
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
   unit_system: Metric
   time_zone: America/New_York
   customize: !include customize.yaml
@@ -10,6 +10,9 @@ homeassistant:
     - /tmp
     - /media/usb
 
+
+lovelace:
+  mode: yaml
 
 frontend:
   # themes: !include_dir_merge_named ./themes
@@ -128,8 +131,16 @@ shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
 weather:
-  - platform: darksky
-    api_key: !secret darksky_api
+  - platform: openweathermap
+    api_key: !secret openweathermap_api
+  # - platform: nws
+  #   api_key: !secret nws_api
+  #   longitude: !secret home_longitude
+  #   latitude: !secret home_latitude
+  #   mode: hourly
+  #   station: !secret nws_station
+  #   name: Weather
+    
 
 # INCLUDES
 sensor: !include sensor.yaml

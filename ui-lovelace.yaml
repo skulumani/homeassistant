@@ -1,0 +1,40 @@
+title: Home
+views:
+  - title: Main
+    badges:
+      - entity: binary_sensor.updater
+      - entity: person.shankar_kulumani
+      - entity: sensor.solar_angle
+      - entity: sensor.ambient_light
+      - entity: sensor.period_of_day
+      - entity: sensor.waze_home_to_collins
+      - entity: sensor.memory_use_percent
+      - entity: sensor.ssl_cert_expiry
+      - entity: sensor.processor_use
+      - entity: sensor.network_in_eth0
+      - entity: sensor.speedtest_ping
+      - entity: sensor.speedtest_download
+      - entity: sensor.speedtest_upload
+      - entity: sensor.network_out_eth0
+      - entity: sun.sun
+    cards:
+      - entity: media_player.50_tcl_roku_tv
+        type: media-control
+      - entities:
+        - light.living_room_lamp
+        - light.entry_lamp
+        - light.bedroom_lamp
+        - light.bedroom_ceiling
+        - light.bedroom_ceiling_2
+        show_header_toggle: true
+        title: Lights
+        type: entities
+      - entity: camera.mjpeg_camera
+        type: picture-entity
+  - title: Weather
+    cards:
+      - type: weather-forecast
+        entity: weather.openweathermap
+      - type: weather-forecast
+        entity: weather.kcgs_hourly
+

@@ -1,35 +1,4 @@
 # Sensors
-- platform: darksky
-  api_key: !secret darksky_api
-  longitude: -77.033961
-  latitude: 38.968746
-  monitored_conditions:
-    - temperature
-    - apparent_temperature
-    - nearest_storm_distance
-    - nearest_storm_bearing
-    - wind_speed
-    - wind_gust
-    - wind_bearing
-    - cloud_cover
-    - precip_probability
-    - precip_type
-    - precip_intensity
-    - icon
-  scan_interval:
-    minutes: 5
-  # forecast: days into future 0-7 days
-  #   - 0
-  # hourly_forecast: # hours into future 0 - 48
-  #   - 0
-  #   - 6
-  #   - 12
-  #   - 18
-  #   - 24
-  #   - 30
-  #   - 36
-  #   - 42
-  #   - 48
 - platform: systemmonitor
   resources:
     # - type: disk_use_percent
