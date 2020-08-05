@@ -51,12 +51,31 @@ views:
       - type: 'custom:weather-card-chart'
         title: Weather
         weather: weather.openweathermap
-      # - type: custom:weather-card
-      #   entity: weather.openweathermap
-      #   name: Optional name
-      #   current: true
-      #   details: true
-      #   forecast: true
-      #   hourly_forecast: true
-      #   number_of_forecasts: 5
+      - type: markdown
+        content: > 
+          ## {{ states.calendar.f1_all.attributes.message }}
+            
+          {{ ((as_timestamp(states.calendar.f1_all.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+
+          Start local: {{ states.calendar.f1_all.attributes.start_time}} 
+
+          Start UTC: {{ as_timestamp(states.calendar.f1_all.attributes.start_time)|timestamp_utc}} 
+
+          ## {{ states.calendar.f1_qualifying.attributes.message }}
+          
+          {{ ((as_timestamp(states.calendar.f1_qualifying.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+          
+          Start local: {{ states.calendar.f1_qualifying.attributes.start_time }}
+
+          Start UTC: {{ as_timestamp(states.calendar.f1_qualifying.attributes.start_time)|timestamp_utc }}
+
+          ## {{ states.calendar.f1_race.attributes.message }}
+          
+          {{ ((as_timestamp(states.calendar.f1_race.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+
+          Start local: {{ states.calendar.f1_race.attributes.start_time }}
+
+          Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
+
+
 

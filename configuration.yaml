@@ -154,6 +154,11 @@ weather:
   #   station: !secret nws_station
   #   name: Weather
     
+# google calendar
+google:
+  client_id: !secret google_calendar_clientid
+  client_secret: !secret google_calendar_clientsecret
+  track_new_calendar: true
 
 # INCLUDES
 sensor: !include sensor.yaml
