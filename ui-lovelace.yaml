@@ -87,8 +87,16 @@ views:
       - type: picture
         image: /local/f1.jpg
         tap_action:
-          action: navigate
-          navigation_path: /lovelace/home
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.roku_espn_tap_action
+        # tap_action:
+          # action: call-service
+          # service: media_player.select_source
+          # service_data:
+          #   entity_id: media_player.50_tcl_roku_tv
+          #   source: "ESPN"
 
 
 

@@ -6,5 +6,29 @@ camera_motion:
         message: 'Motion detected'
         data:
           attachments: '/media/usb/motioneye/Camera1/movie.mp4'
+roku_espn_tap_action:
+  alias: Roku ESPN F1 sequence
+  sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.50_tcl_roku_tv
+        source: "ESPN"
+    - delay: 
+        seconds: 10
+    - service: remote.send_command
+      data:
+        entity_id: remote.50_tcl_roku_tv
+        command:
+          - down
+          - down
+          - down
+          - right
+          - right
+          - right
+          - right
+          - right
+          - right
+          - right
+          - select
 
 
