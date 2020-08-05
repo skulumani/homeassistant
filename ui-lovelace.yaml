@@ -1,6 +1,12 @@
 title: Home
+custom_header:
+  compact_mode: true
+  button_text:
+    # options: '{{dayNameShort}} {{year4d}}-{{monthNumLZ}}-{{dayNumLZ}}<br>{{ hours24LZ }}:{{ minutesLZ }}'
+    options: '{{dayNameShort}} {{monthNameShort}} {{dayNum}}<br>{{hours24LZ}}:{{minutesLZ}}'
 views:
   - title: Main
+    icon: mdi:home-assistant
     badges:
       - entity: binary_sensor.updater
       - entity: person.shankar_kulumani

@@ -18,6 +18,8 @@ lovelace:
       type: module
     - url: /local/weather-card-chart.js
       type: module
+    - url: /local/custom-header.js?v=0.0.1
+      type: module
 
 frontend:
   # themes: !include_dir_merge_named ./themes
