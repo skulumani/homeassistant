@@ -37,11 +37,14 @@ views:
       - type: weather-forecast
         entity: weather.openweathermap
       - type: weather-forecast
-        entity: weather.kcgs_hourly
+        entity: weather.kcgs_daynight
       - type: picture-entity
         entity: camera.radar_dc_current
       - type: picture-entity
         entity: camera.radar_dc_animated
+      - type: 'custom:weather-card-chart'
+        title: Weather
+        weather: weather.openweathermap
       # - type: custom:weather-card
       #   entity: weather.openweathermap
       #   name: Optional name
