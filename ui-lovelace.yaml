@@ -4,6 +4,11 @@ custom_header:
   button_text:
     # options: '{{dayNameShort}} {{year4d}}-{{monthNumLZ}}-{{dayNumLZ}}<br>{{ hours24LZ }}:{{ minutesLZ }}'
     options: '{{dayNameShort}} {{monthNameShort}} {{dayNum}}<br>{{hours24LZ}}:{{minutesLZ}}'
+swipe_nav:
+  wrap: true
+  animate: flip
+  skip_tabs:
+  swipe_amount: 15
 views:
   - title: Main
     icon: mdi:home-assistant
@@ -51,6 +56,9 @@ views:
       - type: 'custom:weather-card-chart'
         title: Weather
         weather: weather.openweathermap
+  - title: F1
+    icon: mdi:car-sports
+    cards:
       - type: markdown
         content: > 
           ## {{ states.calendar.f1_all.attributes.message }}
@@ -76,6 +84,11 @@ views:
           Start local: {{ states.calendar.f1_race.attributes.start_time }}
 
           Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
+      - type: picture
+        image: /local/f1.jpg
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/home
 
 
 
