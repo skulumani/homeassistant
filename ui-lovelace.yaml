@@ -12,22 +12,6 @@ swipe_nav:
 views:
   - title: Main
     icon: mdi:home-assistant
-    badges:
-      - entity: binary_sensor.updater
-      - entity: person.shankar_kulumani
-      - entity: sensor.solar_angle
-      - entity: sensor.ambient_light
-      - entity: sensor.period_of_day
-      - entity: sensor.waze_home_to_collins
-      - entity: sensor.memory_use_percent
-      - entity: sensor.ssl_cert_expiry
-      - entity: sensor.processor_use
-      - entity: sensor.network_in_eth0
-      - entity: sensor.speedtest_ping
-      - entity: sensor.speedtest_download
-      - entity: sensor.speedtest_upload
-      - entity: sensor.network_out_eth0
-      - entity: sun.sun
     cards:
       - entity: media_player.50_tcl_roku_tv
         type: media-control
@@ -43,60 +27,69 @@ views:
       - entity: camera.mjpeg_camera
         type: picture-entity
   - title: Weather
-    icon: mdi:flower
+    icon: mdi:weather-sunny
     cards:
-      - type: weather-forecast
-        entity: weather.openweathermap
-      - type: weather-forecast
-        entity: weather.kcgs_daynight
-      - type: picture-entity
-        entity: camera.radar_dc_current
-      - type: picture-entity
-        entity: camera.radar_dc_animated
-      - type: 'custom:weather-card-chart'
-        title: Weather
-        weather: weather.openweathermap
+      - type: vertical-stack
+        cards:
+        - type: 'custom:weather-card-chart'
+          title: Weather
+          weather: weather.openweathermap
+        - type: horizontal-stack
+          cards:
+          - type: picture-entity
+            entity: camera.radar_dc_current
+          - type: picture-entity
+            entity: camera.radar_dc_animated
   - title: F1
     icon: mdi:car-sports
     cards:
-      - type: markdown
-        content: > 
-          ## {{ states.calendar.f1_all.attributes.message }}
+      - type: vertical-stack
+        cards:
+        - type: markdown
+          content: > 
+            ## {{ states.calendar.f1_all.attributes.message }}
+              
+            {{ ((as_timestamp(states.calendar.f1_all.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+
+            Start local: {{ states.calendar.f1_all.attributes.start_time}} 
+
+            Start UTC: {{ as_timestamp(states.calendar.f1_all.attributes.start_time)|timestamp_utc}} 
+
+            ## {{ states.calendar.f1_qualifying.attributes.message }}
             
-          {{ ((as_timestamp(states.calendar.f1_all.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+            {{ ((as_timestamp(states.calendar.f1_qualifying.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
+            
+            Start local: {{ states.calendar.f1_qualifying.attributes.start_time }}
 
-          Start local: {{ states.calendar.f1_all.attributes.start_time}} 
+            Start UTC: {{ as_timestamp(states.calendar.f1_qualifying.attributes.start_time)|timestamp_utc }}
 
-          Start UTC: {{ as_timestamp(states.calendar.f1_all.attributes.start_time)|timestamp_utc}} 
+            ## {{ states.calendar.f1_race.attributes.message }}
+            
+            {{ ((as_timestamp(states.calendar.f1_race.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
 
-          ## {{ states.calendar.f1_qualifying.attributes.message }}
-          
-          {{ ((as_timestamp(states.calendar.f1_qualifying.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
-          
-          Start local: {{ states.calendar.f1_qualifying.attributes.start_time }}
+            Start local: {{ states.calendar.f1_race.attributes.start_time }}
 
-          Start UTC: {{ as_timestamp(states.calendar.f1_qualifying.attributes.start_time)|timestamp_utc }}
-
-          ## {{ states.calendar.f1_race.attributes.message }}
-          
-          {{ ((as_timestamp(states.calendar.f1_race.attributes.start_time) - as_timestamp(now()))/3600) | round(2) }} hours to go
-
-          Start local: {{ states.calendar.f1_race.attributes.start_time }}
-
-          Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
-      - type: picture
-        image: /local/f1.jpg
-        tap_action:
-          action: call-service
-          service: script.turn_on
-          service_data:
-            entity_id: script.roku_espn_tap_action
-        # tap_action:
-          # action: call-service
-          # service: media_player.select_source
-          # service_data:
-          #   entity_id: media_player.50_tcl_roku_tv
-          #   source: "ESPN"
+            Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
+        - type: picture
+          image: /local/f1.jpg
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.roku_espn_tap_action
+          # tap_action:
+            # action: call-service
+            # service: media_player.select_source
+            # service_data:
+            #   entity_id: media_player.50_tcl_roku_tv
+            #   source: "ESPN"
+  - title: Commute
+    icon: mdi:briefcase
+    cards:
+      - type: sensor
+        entity: sensor.waze_home_to_collins
+        name: Collins Commute
+        graph: line
 
 
 
