@@ -18,3 +18,9 @@ bedroom_lights:
     - light.bedroom_lamp
     - light.bedroom_ceiling_1
     - light.bedroom_ceiling_2
+
+bedroom_ceiling:
+  name: 'Bedroom Ceiling'
+  entities:
+    - light.bedroom_ceiling_1
+    - light.bedroom_ceiling_2

@@ -15,27 +15,35 @@ views:
     cards:
       - entity: media_player.50_tcl_roku_tv
         type: media-control
-      - entities:
-        - light.living_room_lamp
-        - light.entry_lamp
-        - light.bedroom_lamp
-        - light.bedroom_ceiling
-        - light.bedroom_ceiling_2
-        show_header_toggle: true
-        title: Lights
-        type: entities
-      - entity: camera.mjpeg_camera
-        type: picture-entity
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+            - type: light
+              entity: light.entry_lamp
+              name: Entry Lamp
+            - type: light
+              entity: light.living_room_lamp
+              name: Living Room Lamp
+        - type: horizontal-stack
+          cards:
+            - type: light
+              entity: light.bedroom_lamp
+              name: Bedroom Lamp
+            - type: light
+              entity: light.bedroom_ceiling
+              name: Bedroom Ceiling
+            - type: light
+              entity: light.bedroom_ceiling_2
+              name: Bedroom Ceiling 2
   - title: Weather
     icon: mdi:weather-sunny
     cards:
+      - type: 'custom:weather-card-chart'
+        title: Weather
+        weather: weather.openweathermap
       - type: vertical-stack
         cards:
-        - type: 'custom:weather-card-chart'
-          title: Weather
-          weather: weather.openweathermap
-        - type: horizontal-stack
-          cards:
           - type: picture-entity
             entity: camera.radar_dc_current
           - type: picture-entity
@@ -45,6 +53,19 @@ views:
     cards:
       - type: vertical-stack
         cards:
+        - type: picture
+          image: /local/f1.jpg
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.roku_espn_tap_action
+          # tap_action:
+            # action: call-service
+            # service: media_player.select_source
+            # service_data:
+            #   entity_id: media_player.50_tcl_roku_tv
+            #   source: "ESPN"
         - type: markdown
           content: > 
             ## {{ states.calendar.f1_all.attributes.message }}
@@ -70,19 +91,11 @@ views:
             Start local: {{ states.calendar.f1_race.attributes.start_time }}
 
             Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
-        - type: picture
-          image: /local/f1.jpg
-          tap_action:
-            action: call-service
-            service: script.turn_on
-            service_data:
-              entity_id: script.roku_espn_tap_action
-          # tap_action:
-            # action: call-service
-            # service: media_player.select_source
-            # service_data:
-            #   entity_id: media_player.50_tcl_roku_tv
-            #   source: "ESPN"
+  - title: Cameras
+    icon: mdi:cctv
+    cards:
+      - entity: camera.mjpeg_camera
+        type: picture-entity
   - title: Commute
     icon: mdi:briefcase
     cards:
