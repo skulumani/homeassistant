@@ -86,6 +86,12 @@ notify:
     consumer_secret: !secret twitter_consumer_secret
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
+  - name: signal
+    platform: signal_messenger
+    url: "http://localhost:8080"
+    number: !secret signal_rpi_number
+    recipients: 
+      - !secret signal_rpi_recipient
   # - name: signal_notify
   #   platform: signalmessenger
   #   sender_nr: !secret signal_sender_number
