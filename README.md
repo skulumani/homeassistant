@@ -200,6 +200,12 @@ docker-compose -f docker/homeassistant-compose.yml restart
 curl -X POST -H "Content-Type: application/json" 'http://<ip>:<port>/v1/register/<number>'
 ~~~
 
+Verify
+
+~~~
+curl -X POST -H "Content-Type: application/json" 'http://<ip>:<port>/v1/register/<number>/verify/<verification code>'
+~~~
+
 # References
 
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)
