@@ -20,22 +20,19 @@ views:
         - type: horizontal-stack
           cards:
             - type: light
-              entity: light.entry_lamp
-              name: Entry Lamp
+              entity: light.sconce_1
+              name: Sconce 1
             - type: light
-              entity: light.living_room_lamp
-              name: Living Room Lamp
+              entity: light.sconce_2
+              name: Scone 2
+        - type: light
+          entity: light.dining_room_lamp
+          name: Dining Room Lamp
         - type: horizontal-stack
           cards:
             - type: light
               entity: light.bedroom_lamp
               name: Bedroom Lamp
-            - type: light
-              entity: light.bedroom_ceiling
-              name: Bedroom Ceiling
-            - type: light
-              entity: light.bedroom_ceiling_2
-              name: Bedroom Ceiling 2
   - title: Weather
     icon: mdi:weather-sunny
     cards:
