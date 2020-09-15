@@ -3,24 +3,15 @@ family:
   entities:
     - device_tracker.christine_s9
     - device_tracker.shankar_pixel
-    - device_tracker.google_maps_107286426735337214006 # christine
-    - device_tracker.google_maps_100911281029769970893 # shankar
 
 living_room_lights:
   name: 'Living Room Lights'
   entities:
-    - light.living_room_lamp
-    - light.entry_lamp
+    - light.sconce_1
+    - light.sconce_2
 
 bedroom_lights:
   name: 'Bedroom Lights'
   entities:
     - light.bedroom_lamp
-    - light.bedroom_ceiling_1
-    - light.bedroom_ceiling_2
 
-bedroom_ceiling:
-  name: 'Bedroom Ceiling'
-  entities:
-    - light.bedroom_ceiling_1
-    - light.bedroom_ceiling_2
