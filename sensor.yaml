@@ -75,5 +75,3 @@
   unit_of_measurement: hours
 - platform: version
   name: HA Version
-  image: docker
-  source: docker
