@@ -70,4 +70,10 @@
 #     f1_event_message:
 #       friendly_name: "Next F1 Session"
 #       value_template: "{{ states.calendar.f1_all.attributes.message }}"
-
+- platform: uptime
+  name: HA Uptime
+  unit_of_measurement: hours
+- platform: version
+  name: HA Version
+  image: docker
+  source: docker
