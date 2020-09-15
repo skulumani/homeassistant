@@ -8,14 +8,15 @@
   - data:
       brightness_pct: 50
       entity_id:
-      - light.living_room_lamp
-      - light.entry_lamp
+      - light.sconce_1
+      - light.sconce_2
       - light.bedroom_lamp
       transition: 300
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
-    service: notify.signal_notify
+    service: notify.signal
+  mode: single
 - id: '1560716169783'
   alias: Lights on weekday morning
   trigger:
@@ -31,14 +32,15 @@
     - fri
   action:
   - data:
-      entity_id: light.living_room_lamp
+      brightness_pct: 50
+      entity_id: light.sconce_1
       transition: 300
-      brightness_pct: 30
     service: light.turn_on
-  - service: notify.signal_notify
-    data:
+  - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the
         morning.'
+    service: notify.signal_notify
+  mode: single
 - id: '1560716243441'
   alias: Lights off after sunrise
   trigger:
@@ -53,7 +55,8 @@
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights off at sunrise'
-    service: notify.signal_notify
+    service: notify.signal
+  mode: single
 - id: Matrix Bot
   alias: Reaction to !testword
   trigger:
@@ -78,7 +81,8 @@
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
-    service: notify.signal_notify
+    service: notify.signal
+  mode: single
 - alias: Rainy Day
   trigger:
   - platform: state
