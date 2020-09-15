@@ -13,6 +13,40 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
+      - type: glance
+        entities:
+          - sensor.ha_uptime
+          - sensor.ha_version
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            entities:
+              - sensor.processor_use
+            font_size: 75
+            icon: 'mdi:chip'
+            name: CPU
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            entities:
+              - sensor.memory_use_percent
+            font_size: 75
+            name: Memory
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            entities:
+              - sensor.disk_use_percent
+            font_size: 75
+            name: Memory
+            show:
+              fill: false
       - entity: media_player.50_tcl_roku_tv
         type: media-control
       - type: vertical-stack

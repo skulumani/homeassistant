@@ -1,14 +1,14 @@
 # Sensors
 - platform: systemmonitor
   resources:
-    # - type: disk_use_percent
-    #   arg: /home
+    - type: disk_use_percent
+      arg: /media/data
     - type: memory_use_percent
     - type: processor_use
     - type: network_in
-      arg: eth0
+      arg: wlan0
     - type: network_out
-      arg: eth0
+      arg: wlan0
 - platform: template
   sensors:
     solar_angle:
