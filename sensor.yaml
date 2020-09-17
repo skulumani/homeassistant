@@ -75,3 +75,7 @@
   unit_of_measurement: hours
 - platform: version
   name: HA Version
+
+
+# front camera sensors
+

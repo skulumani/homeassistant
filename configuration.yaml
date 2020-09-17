@@ -56,6 +56,9 @@ device_tracker: !include device_tracker.yaml
 # Bayesian Sensors for Home detection for each person
 binary_sensor: !include binary_sensor.yaml
 
+# define switches
+switch: !include switch.yaml
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -132,8 +135,21 @@ sun:
 #   ffmpeg_bin: /usr/bin/ffmpeg
 
 camera:
-  - platform: mjpeg
-    mjpeg_url: http://localhost:8081
+  # - platform: mjpeg
+  #   mjpeg_url: http://localhost:8081
+  # - platform: generic
+  #   name: front
+  #   still_image_url: !secret front_image_url
+  #   stream_source: !secret front_source_low_url
+  - platform: reolink_dev
+    host: !secret front_ip
+    username: !secret front_username
+    password: !secret front_password
+    name: front
+    stream: main # or sub
+    protocol: rtmp # or rtsp
+    channel: 0
+    scan_interval: 5
   - platform: generic
     still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/usfcx/current.png
     name: Radar DC Current

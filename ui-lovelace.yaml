@@ -125,8 +125,17 @@ views:
   - title: Cameras
     icon: mdi:cctv
     cards:
-      - entity: camera.mjpeg_camera
-        type: picture-entity
+      - type: picture-glance
+        title: front
+        camera_image: camera.front
+        entities: 
+          - switch.camera_front_email
+          - binary_sensor.motion_front
+      # - type: picture-entity
+      #   camera_image: camera.front
+      #   camera_view: live
+      #   entity: camera.front
+      #   title: Front
   - title: Commute
     icon: mdi:briefcase
     cards:
