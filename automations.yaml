@@ -17,6 +17,22 @@
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
     service: notify.signal
   mode: single
+- alias: Front door on at sunset
+  trigger:
+  - platform: template
+    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
+  condition: []
+  action:
+  - data:
+      brightness_pct: 50
+      entity_id:
+      - light.front_door
+      transition: 300
+    service: light.turn_on
+  - data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} front door  on at sunset'
+    service: notify.signal
+  mode: single
 - id: '1560716169783'
   alias: Lights on weekday morning
   trigger:
@@ -33,7 +49,10 @@
   action:
   - data:
       brightness_pct: 50
-      entity_id: light.sconce_1
+      entity_id: 
+        - light.sconce_1
+        - light.sconce_2
+        - light.dining_room_lamp
       transition: 300
     service: light.turn_on
   - data:

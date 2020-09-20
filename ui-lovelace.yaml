@@ -67,6 +67,9 @@ views:
             - type: light
               entity: light.bedroom_lamp
               name: Bedroom Lamp
+        - type: light
+          entity: light.front_door
+          name: Front Door
   - title: Weather
     icon: mdi:weather-sunny
     cards:
