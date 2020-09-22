@@ -1,9 +1,11 @@
-- id: '1558230448181'
+- id: lights_on_sunset
   alias: Lights on at Sunset
   trigger:
   - platform: template
-    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
-  condition: []
+    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight'' }}'
+  condition:
+  - condition: time
+    before: '23:59:00'
   action:
   - data:
       brightness_pct: 50
@@ -11,61 +13,38 @@
       - light.sconce_1
       - light.sconce_2
       - light.bedroom_lamp
+      - light.front_door
       transition: 300
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
     service: notify.signal
   mode: single
-- alias: Front door on at sunset
+- id: lights_on_morning
+  alias: Lights on morning
   trigger:
   - platform: template
-    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
-  condition: []
-  action:
-  - data:
-      brightness_pct: 50
-      entity_id:
-      - light.front_door
-      transition: 300
-    service: light.turn_on
-  - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} front door  on at sunset'
-    service: notify.signal
-  mode: single
-- id: '1560716169783'
-  alias: Lights on weekday morning
-  trigger:
-  - at: 05:00
-    platform: time
+    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight'' }}'
   condition:
   - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
+    before: '09:00:00'
   action:
   - data:
       brightness_pct: 50
       entity_id: 
         - light.sconce_1
         - light.sconce_2
-        - light.dining_room_lamp
       transition: 300
     service: light.turn_on
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Living room on in the
-        morning.'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning.'
     service: notify.signal_notify
   mode: single
-- id: '1560716243441'
+- id: lights_off_sunrise
   alias: Lights off after sunrise
   trigger:
-  - event: sunrise
-    offset: 0:30
-    platform: sun
+  - platform: template
+    value_template: '{{ states.sensor.period_of_day.state == ''day'' }}'
   condition: []
   action:
   - data:
@@ -76,18 +55,7 @@
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
     service: notify.signal
   mode: single
-- id: Matrix Bot
-  alias: Reaction to !testword
-  trigger:
-    platform: event
-    event_type: matrix_command
-    event_data:
-      command: testword
-  action:
-    service: notify.matrix_notify
-    data:
-      message: You wrote !testword
-- id: '1560740677249'
+- id: lights_off_2300
   alias: Lights off at 2300
   trigger:
   - at: '23:00'
@@ -95,51 +63,17 @@
   condition: []
   action:
   - data:
-      entity_id: all
+      entity_id:
+      - light.sconce_1
+      - light.sconce_2
+      - light.dining_room_lamp
+      - light.bedroom_lamp
       transition: 300
     service: light.turn_off
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off at 2300'
     service: notify.signal
   mode: single
-- alias: Rainy Day
-  trigger:
-  - platform: state
-    entity_id: sensor.dark_sky_precip
-    to: rain
-  condition:
-  - condition: state
-    entity_id: group.family
-    state: home
-  - condition: time
-    after: '14:00'
-    before: '23:00'
-  action:
-  - service: light.turn_on
-    entity_id:
-    - light.living_room_lamp
-    - light.entry_lamp
-    - light.bedroom_lamp
-  - service: notify.signal_notify
-    data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights
-        on'
-- alias: Rain is over
-  trigger:
-  - platform: state
-    entity_id: sensor.precip_intensity
-    to: None
-  condition:
-  - condition: sun
-    after: sunset
-    after_offset: -01:00:00
-  action:
-  - service: light.turn_off
-    entity_id: all
-  - service: notify.signal_notify
-    data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Rain stopped. Lights
-        off'
 - id: update_morning_commute_sensor
   alias: Commute - Update morning commute sensor
   initial_state: 'on'
@@ -158,78 +92,12 @@
   action:
   - service: homeassistant.update_entity
     entity_id: sensor.waze_home_to_collins
-- id: change_light_commute_time
-  alias: Commute - change light color
-  trigger:
-    platform: time_pattern
-    minutes: /5
-  condition:
-  - condition: time
-    after: 05:00:00
-    before: 06:00:00
-  - condition: time
-    weekday:
-    - tue
-    - wed
-    - thu
-  action:
-  - service: light.turn_on
-    data_template:
-      entity_id: light.living_room_lamp
-      brightness: 125
-      color_name: '{% set drive_time = state(''sensor.waze_home_to_collins'') %} {%
-        if 0 <= drive_time <= 50 %} "green" {% elif 50 < drive_time <= 60 %} "orange"
-        {% elif drive_time > 60 %} "red" {% else %} "white" # in case the drive time
-        isn''t inside any of these if statements {% endif %}
-
-        '
-- id: Update homeassistant notify to Signal
-  alias: Update notification
-  trigger:
-  - platform: state
-    entity_id: updater.updater
-  action:
-  - service: notify.signal_notify
-    data_template:
-      message: Home Assistant {{ states('updater.updater') }} is now available.
-- alias: Auto Renew SSL Cert
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.ssl_cert_expiry
-    below: 29
-  action:
-  - service: shell_command.renew_ssl
-- alias: SSL expiry notification
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.ssl_cert_expiry
-    below: 21
-  action:
-  - service: notify.signal_notify
-    data_template:
-      message: Warning - SSL certificate expires in 21 days and has not been automatically
-        renewed
-- alias: Motion detected
-  initial_state: true
-  trigger:
-    platform: webhook
-    webhook_id: motion_detected
-  action:
-    service: notify.signal_notify
-    data_template:
-      message: Motion detected {{ trigger.query['file'] }}
-      data:
-        attachments: /media/usb/motioneye/Camera1/movie.mp4
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: device_tracker.shankar_pixel
-      state: Away
-      for:
-        minutes: 10
-    - condition: state
-      entity_id: device_tracker.christine_s9
-      state: Away
-      for:
-        minutes: 10
+# - id: homeassistant_update_notification
+#   alias: Update notification
+#   trigger:
+#   - platform: state
+#     entity_id: updater.updater
+#   action:
+#   - service: notify.signal
+#     data_template:
+#       message: Home Assistant {{ states('updater.updater') }} is now available.
