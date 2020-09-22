@@ -16,7 +16,7 @@ lovelace:
   resources:
     - url: https://cdn.jsdelivr.net/gh/bramkragten/weather-card/dist/weather-card.min.js
       type: module
-    - url: /local/weather-card-chart.js?v=0.0.1
+    - url: /local/weather-card-chart.js?v=0.0.2
       type: module
     - url: /local/custom-header.js?v=0.0.1
       type: module
@@ -62,6 +62,17 @@ switch: !include switch.yaml
 # Text to speech
 tts:
   - platform: google_translate
+
+# Alarm
+alarm_control_panel:
+  - platform: manual
+    name: "HA Alarm"
+    code: "1234"
+    code_arm_required: true
+    delay_time: 10
+    arming_time: 30
+    trigger_time: 30
+    disarm_after_trigger: false
 
 # no_ip:
 #   domain: !secret noip_domain
