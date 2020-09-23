@@ -1,5 +1,26 @@
-- id: lights_on_sunset
-  alias: Lights on at Sunset
+- id: lights_on_evening_civil_twilight
+  alias: Lights on at evening civil twilight
+  trigger:
+  - platform: template
+    value_template: '{{ states.sensor.period_of_day.state == ''civil_twilight'' }}'
+  condition:
+  - condition: time
+    before: '23:59:00'
+  action:
+  - data:
+      brightness_pct: 25
+      entity_id:
+      - group.living_room_lights
+      - group.upstairs_lights
+      - group.exterior_lights
+      transition: 300
+    service: light.turn_on
+  - data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil twilight'
+    service: notify.signal
+  mode: single
+- id: lights_on_evening_nautical_twilight
+  alias: Lights on at evening nautical twilight
   trigger:
   - platform: template
     value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight'' }}'
@@ -10,17 +31,16 @@
   - data:
       brightness_pct: 50
       entity_id:
-      - light.sconce_1
-      - light.sconce_2
-      - light.bedroom_lamp
-      - light.front_door
+      - group.living_room_lights
+      - group.upstairs_lights
+      - group.exterior_lights
       transition: 300
     service: light.turn_on
   - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at sunset'
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical twilight'
     service: notify.signal
   mode: single
-- id: lights_on_morning
+- id: lights_on_morning_nautical_twilight
   alias: Lights on morning
   trigger:
   - platform: template
@@ -32,12 +52,11 @@
   - data:
       brightness_pct: 50
       entity_id: 
-        - light.sconce_1
-        - light.sconce_2
+        - group.living_room_lights
       transition: 300
     service: light.turn_on
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning.'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning nautical twilight.'
     service: notify.signal_notify
   mode: single
 - id: lights_off_sunrise
@@ -64,14 +83,12 @@
   action:
   - data:
       entity_id:
-      - light.sconce_1
-      - light.sconce_2
-      - light.dining_room_lamp
-      - light.bedroom_lamp
+      - group.downstairs_lights
+      - group.upstairs_lights
       transition: 300
     service: light.turn_off
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights turned off at 2300'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and upstairs turned off at 2300'
     service: notify.signal
   mode: single
 - id: update_morning_commute_sensor
