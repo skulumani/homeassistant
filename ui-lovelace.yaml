@@ -22,7 +22,7 @@ views:
           - arm_night
       - type: vertical-stack
         cards:
-          - type: horizontal-stack
+          - type: vertical-stack
             cards:
               - type: thermostat
                 entity: climate.downstairs
@@ -30,32 +30,6 @@ views:
               - type: thermostat
                 entity: climate.upstairs
                 name: Upstairs
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                align_icon: left
-                align_state: center
-                entities:
-                  - sensor.downstairs_temperature
-                  - sensor.upstairs_temperature
-                font_size: 75
-                name: Temperature
-                show:
-                  fill: true
-                hours_to_show: 168
-                points_per_hour: 0.25
-              - type: 'custom:mini-graph-card'
-                align_icon: left
-                align_state: center
-                entities:
-                  - sensor.downstairs_humidity
-                  - sensor.upstairs_humidity
-                font_size: 75
-                name: Humidity
-                show:
-                  fill: true
-                hours_to_show: 168
-                points_per_hour: 0.25
 
       - entity: media_player.50_tcl_roku_tv
         type: media-control
@@ -77,6 +51,20 @@ views:
             entity: camera.radar_dc_current
           - type: picture-entity
             entity: camera.radar_dc_animated
+      - type: 'custom:mini-graph-card'
+        name: Temperature
+        entities:
+          - sensor.downstairs_temperature
+          - sensor.upstairs_temperature
+          - sensor.openweathermap_temperature
+        hours_to_show: 168
+        points_per_hour: 0.25
+      - type: 'custom:mini-graph-card'
+        name: Humidity
+        entities:
+          - sensor.downstairs_humidity
+          - sensor.upstairs_humidity
+          - sensor.openweathermap_humidity
   - title: F1
     icon: mdi:car-sports
     cards:
