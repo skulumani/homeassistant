@@ -1,29 +1,13 @@
-- id: '1600647483276'
-  name: Dinner
+- id: 'lower_living_room_lights'
+  name: Living Room Dim
   entities:
-    light.dining_room_lamp:
-      effect_list:
-      - effect_colorloop
-      - effect_pulse
-      - effect_stop
-      friendly_name: Dining Room Lamp
-      max_mireds: 400
-      min_mireds: 111
-      state: 'off'
-      supported_features: 55
-    light.sconce_1:
-      brightness: 128
-      effect_list:
-      - effect_pulse
-      - effect_stop
-      friendly_name: Sconce 1
-      state: 'on'
-      supported_features: 37
-    light.sconce_2:
-      brightness: 128
-      effect_list:
-      - effect_pulse
-      - effect_stop
-      friendly_name: Sconce 2
-      state: 'on'
-      supported_features: 37
+    group.living_room_lights:
+      state: on
+      brightness_pct: 10
+
+- id: 'rase_living_room_lights'
+  name: Living Room Bright
+  entities:
+    group.living_room_lights:
+      state: on
+      brightness_pct: 50

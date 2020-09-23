@@ -109,6 +109,33 @@
   action:
   - service: homeassistant.update_entity
     entity_id: sensor.waze_home_to_collins
+- id: lower_living_room_media_playing
+  alias: Lower living room playing tv
+  trigger:
+  - platform: state
+    entity_id: media_player.50_tcl_roku_tv
+    to: 'playing'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.lower_living_room_lights
+  condition:
+  - condition: template
+    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
+- id: raise_living_room_media_playing
+  alias: Raise living room paused tv
+  trigger:
+  - platform: state
+    entity_id: media_player.50_tcl_roku_tv
+    to: 'off'
+  - platform: state
+    entity_id: media_player.50_tcl_roku_tv
+    to: 'paused'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.raise_living_room_lights
+  condition:
+  - condition: template
+    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
 # - id: homeassistant_update_notification
 #   alias: Update notification
 #   trigger:

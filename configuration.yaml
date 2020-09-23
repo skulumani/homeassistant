@@ -200,6 +200,7 @@ zone: !include zone.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+scene: !include scenes.yaml
 
 # DEPRECATED SHIT
 # google_location:
