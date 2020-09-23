@@ -20,6 +20,43 @@ views:
           - arm_home
           - arm_away
           - arm_night
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: thermostat
+                entity: climate.downstairs
+                name: Downstairs
+              - type: thermostat
+                entity: climate.upstairs
+                name: Upstairs
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                align_icon: left
+                align_state: center
+                entities:
+                  - sensor.downstairs_temperature
+                  - sensor.upstairs_temperature
+                font_size: 75
+                name: Temperature
+                show:
+                  fill: true
+                hours_to_show: 168
+                points_per_hour: 0.25
+              - type: 'custom:mini-graph-card'
+                align_icon: left
+                align_state: center
+                entities:
+                  - sensor.downstairs_humidity
+                  - sensor.upstairs_humidity
+                font_size: 75
+                name: Humidity
+                show:
+                  fill: true
+                hours_to_show: 168
+                points_per_hour: 0.25
+
       - entity: media_player.50_tcl_roku_tv
         type: media-control
       - type: vertical-stack

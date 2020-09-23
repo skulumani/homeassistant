@@ -79,6 +79,9 @@ alarm_control_panel:
 #   username: !secret noip_username
 #   password: !secret noip_password
 
+ecobee:
+  api_key: !secret ecobee_api_key
+
 matrix:
   homeserver: https://matrix.org
   username: !secret matrix_username
@@ -108,6 +111,8 @@ notify:
     number: !secret signal_rpi_number
     recipients: 
       - !secret signal_rpi_recipient
+  - name: ecobee_notify
+    platform: ecobee
   # - name: signal_notify
   #   platform: signalmessenger
   #   sender_nr: !secret signal_sender_number
