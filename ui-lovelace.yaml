@@ -59,27 +59,12 @@ views:
 
       - entity: media_player.50_tcl_roku_tv
         type: media-control
-      - type: vertical-stack
-        cards:
-        - type: horizontal-stack
-          cards:
-            - type: light
-              entity: light.sconce_1
-              name: Sconce 1
-            - type: light
-              entity: light.sconce_2
-              name: Scone 2
-        - type: light
-          entity: light.dining_room_lamp
-          name: Dining Room Lamp
-        - type: horizontal-stack
-          cards:
-            - type: light
-              entity: light.bedroom_lamp
-              name: Bedroom Lamp
-        - type: light
-          entity: light.front_door
-          name: Front Door
+      - type: entities
+        entities:
+          - entity: light.living_room_lights
+          - entity: light.exterior_lights
+          - entity: light.upstairs_lights
+          - entity: light.downstairs_lights
   - title: Weather
     icon: mdi:weather-sunny
     cards:
