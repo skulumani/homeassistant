@@ -10,9 +10,9 @@
   - data:
       brightness_pct: 25
       entity_id:
-      - group.living_room_lights
-      - group.upstairs_lights
-      - group.exterior_lights
+      - light.living_room_lights
+      - light.upstairs_lights
+      - light.exterior_lights
       transition: 300
     service: light.turn_on
   - data:
@@ -31,9 +31,9 @@
   - data:
       brightness_pct: 50
       entity_id:
-      - group.living_room_lights
-      - group.upstairs_lights
-      - group.exterior_lights
+      - light.living_room_lights
+      - light.upstairs_lights
+      - light.exterior_lights
       transition: 300
     service: light.turn_on
   - data:
@@ -52,7 +52,7 @@
   - data:
       brightness_pct: 50
       entity_id: 
-        - group.living_room_lights
+        - light.living_room_lights
       transition: 300
     service: light.turn_on
   - data:

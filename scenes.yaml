@@ -1,13 +1,13 @@
 - id: 'lower_living_room_lights'
   name: Living Room Dim
   entities:
-    group.living_room_lights:
+    light.living_room_lights:
       state: on
       brightness_pct: 10
 
 - id: 'rase_living_room_lights'
   name: Living Room Bright
   entities:
-    group.living_room_lights:
+    light.living_room_lights:
       state: on
       brightness_pct: 50

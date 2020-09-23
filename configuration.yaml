@@ -193,6 +193,31 @@ google:
   client_secret: !secret google_calendar_clientsecret
   track_new_calendar: true
 
+light:
+  - platform: group
+    name: Living Room Lights
+    entities:
+      - light.sconce_1
+      - light.sconce_2
+  - platform: group
+    name: Bedroom Lights
+    entities:
+      - light.bedroom_lamp
+  - platform: group
+    name: Downstairs Lights
+    entities:
+      - light.sconce_1
+      - light.sconce_2
+      - light.dining_room_lamp
+  - platform: group
+    name: Upstairs Lights
+    entities:
+      - light.bedroom_lamp
+  - platform: group
+    name: Exterior Lights
+    entities:
+      - light.front_door
+
 # INCLUDES
 sensor: !include sensor.yaml
 zone: !include zone.yaml
