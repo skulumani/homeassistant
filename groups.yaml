@@ -15,3 +15,19 @@ bedroom_lights:
   entities:
     - light.bedroom_lamp
 
+downstairs_lights:
+  name: 'Downstairs Lights'
+  entities:
+    - light.sconce_1
+    - light.sconce_2
+    - light.dining_room_lamp
+
+upstairs_lights:
+  name: 'Upstairs Lights'
+  entities:
+    - light.bedroom_lamp
+
+exterior_lights:
+  name: 'Exterior Lights'
+  entities:
+    - light.front_door
