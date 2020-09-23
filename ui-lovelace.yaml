@@ -56,15 +56,17 @@ views:
         entities:
           - sensor.downstairs_temperature
           - sensor.upstairs_temperature
-          - sensor.openweathermap_temperature
-        hours_to_show: 168
-        points_per_hour: 0.25
+          - sensor.ecobee_outside_temperature
+        hours_to_show: 48
+        points_per_hour: 10
       - type: 'custom:mini-graph-card'
         name: Humidity
         entities:
           - sensor.downstairs_humidity
           - sensor.upstairs_humidity
-          - sensor.openweathermap_humidity
+          - sensor.ecobee_outside_humidity
+        hours_to_show: 48
+        points_per_hour: 10
   - title: F1
     icon: mdi:car-sports
     cards:
