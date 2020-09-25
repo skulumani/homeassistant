@@ -8,7 +8,8 @@ services:
       - "8765:8765"
     volumes:
       - etc_motioneye:/home/pi/motioneye
-      - var_lib_motioneye:/home/pi/motioneye/lib/motioneye
+      - var_lib_motioneye:/media/usb/motioneye
+    restart: always
 
 volumes:
   etc_motioneye:
