@@ -89,6 +89,11 @@
   unit_of_measurement: hours
 - platform: version
   name: HA Version
+- platform: dnsip # own ip of home
+- platform: dnsip
+  hostname: wolverines.duckdns.org
+  name: DuckDNS Home
+  resolver: 8.8.8.8
 
 
 # front camera sensors
