@@ -5,7 +5,7 @@
   probability_threshold: 0.8
   device_class: 'presence'
   observations:
-    - entity_id: 'device_tracker.christine_s9'
+    - entity_id: 'device_tracker.galaxy_s9'
       prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'
@@ -21,11 +21,17 @@
   probability_threshold: 0.8
   device_class: 'presence'
   observations:
-    - entity_id: 'device_tracker.shankar_pixel'
+    - entity_id: 'device_tracker.pixel_2'
       prob_given_true: 0.9
       prob_given_false: 0.2
       platform: 'state'
       to_state: 'home'
+    - entity_id: 'device_tracker.shankars_air'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+
     # - entity_id: 'device_tracker.google_maps_100911281029769970893'
     #   prob_given_true: 0.7
     #   prob_given_false: 0.2
