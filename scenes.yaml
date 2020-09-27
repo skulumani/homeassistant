@@ -5,7 +5,7 @@
       state: on
       brightness_pct: 25
 
-- id: 'rase_living_room_lights'
+- id: 'raise_living_room_lights'
   name: Living Room Bright
   entities:
     light.living_room_lights:
