@@ -13,13 +13,19 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - entity: alarm_control_panel.ha_alarm
-        type: alarm-panel
-        name: Alarm
-        states: 
-          - arm_home
-          - arm_away
-          - arm_night
+      - type: entities
+        entities:
+          - entity: light.living_room_lights
+          - entity: light.exterior_lights
+          - entity: light.upstairs_lights
+          - entity: light.downstairs_lights
+      # - entity: alarm_control_panel.ha_alarm
+      #   type: alarm-panel
+      #   name: Alarm
+      #   states: 
+      #     - arm_home
+      #     - arm_away
+      #     - arm_night
       - type: vertical-stack
         cards:
           - type: vertical-stack
@@ -33,12 +39,6 @@ views:
 
       - entity: media_player.50_tcl_roku_tv
         type: media-control
-      - type: entities
-        entities:
-          - entity: light.living_room_lights
-          - entity: light.exterior_lights
-          - entity: light.upstairs_lights
-          - entity: light.downstairs_lights
   - title: Weather
     icon: mdi:weather-sunny
     cards:
@@ -168,6 +168,14 @@ views:
             name: Memory
             show:
               fill: false
+      - type: entities
+        title: Status
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+          - sensor.speedtest_ping
+          - sensor.duckdns_home
+          - sensor.myip
 
 
 
