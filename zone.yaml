@@ -1,7 +1,7 @@
 # Zones for home assistant
 - name: Home
-  latitude: 38.96874
-  longitude: -77.03393
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
   radius: 100
   icon: mdi:home
 - name: Collins
