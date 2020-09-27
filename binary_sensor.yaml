@@ -31,11 +31,11 @@
       prob_given_false: 0.1
       platform: 'state'
       to_state: 'home'
-    # - entity_id: 'device_tracker.40:4E:36:8B:10:D4'
-    #   prob_given_true: 0.9
-    #   prob_given_false: 0.1
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.40_4e_36_8b_10_d4'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
 
     # - entity_id: 'device_tracker.google_maps_100911281029769970893'
     #   prob_given_true: 0.7
