@@ -166,6 +166,15 @@ camera:
     protocol: rtmp # or rtsp
     channel: 0
     scan_interval: 5
+  - platform: reolink_dev
+    host: !secret back_ip
+    username: !secret back_username
+    password: !secret back_password
+    name: back
+    stream: main # or sub
+    protocol: rtmp # or rtsp
+    channel: 0
+    scan_interval: 5
   - platform: generic
     still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/usfcx/current.png
     name: Radar DC Current

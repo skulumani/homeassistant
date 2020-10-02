@@ -119,6 +119,12 @@ views:
         entities: 
           - switch.camera_front_email
           - binary_sensor.motion_front
+      - type: picture-glance
+        title: back
+        camera_image: camera.back
+        entities: 
+          - switch.camera_back_email
+          - binary_sensor.motion_back
       # - type: picture-entity
       #   camera_image: camera.front
       #   camera_view: live
