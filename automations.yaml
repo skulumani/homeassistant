@@ -12,7 +12,7 @@
       entity_id:
       - light.living_room_lights
       - light.upstairs_lights
-      - light.exterior_lights
+      # - light.exterior_lights
       transition: 10
     service: light.turn_on
   - data:
@@ -33,7 +33,7 @@
       entity_id:
       - light.living_room_lights
       - light.upstairs_lights
-      - light.exterior_lights
+      # - light.exterior_lights
       transition: 10
     service: light.turn_on
   - data:
