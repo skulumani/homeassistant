@@ -8,7 +8,8 @@ services:
       - "8765:8765"
     volumes:
       - /home/pi/motioneye:/etc/motioneye
-      - /media/usb/motioneye:/var/lib/motioneye
+      - /media/usb/motioneye:/var/lib/motioneye_usb
+      - /media/data/motioneye:/var/lib/motioneye_data
     restart: always
     environment:
       - TZ=America/New_York
