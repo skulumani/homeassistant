@@ -142,10 +142,6 @@
     - platform: numeric_state
       entity_id: sensor.pixel_2_battery_level
       above: 80
-  condition:
-    - condition: state
-      entity_id: 'binary_sensor.pixel_2_is_charging'
-      state: 'on'
   action:
     - service: tts.google_translate_say
       entity_id: 'media_player.bedroom_speaker'
@@ -159,10 +155,6 @@
     - platform: numeric_state
       entity_id: sensor.pixel_2_battery_level
       below: 50
-  condition:
-    - condition: state
-      entity_id: 'binary_sensor.pixel_2_is_charging'
-      state: 'on'
   action:
     - service: tts.google_translate_say
       entity_id: 'media_player.bedroom_speaker'
