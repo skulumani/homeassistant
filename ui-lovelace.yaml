@@ -42,13 +42,11 @@ views:
             title: front
             camera_image: camera.front
             entities: 
-              - switch.camera_front_email
               - binary_sensor.motion_front
           - type: picture-glance
             title: back
             camera_image: camera.back
             entities: 
-              - switch.camera_back_email
               - binary_sensor.motion_back
 
       - entity: media_player.50_tcl_roku_tv
@@ -124,26 +122,6 @@ views:
             Start local: {{ states.calendar.f1_race.attributes.start_time }}
 
             Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
-  - title: Cameras
-    icon: mdi:cctv
-    cards:
-      - type: picture-glance
-        title: front
-        camera_image: camera.front
-        entities: 
-          - switch.camera_front_email
-          - binary_sensor.motion_front
-      - type: picture-glance
-        title: back
-        camera_image: camera.back
-        entities: 
-          - switch.camera_back_email
-          - binary_sensor.motion_back
-      # - type: picture-entity
-      #   camera_image: camera.front
-      #   camera_view: live
-      #   entity: camera.front
-      #   title: Front
   - title: Commute
     icon: mdi:briefcase
     cards:

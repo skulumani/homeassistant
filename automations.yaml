@@ -12,18 +12,19 @@
       entity_id:
       - light.living_room_lights
       - light.upstairs_lights
-      # - light.exterior_lights
       transition: 10
     service: light.turn_on
   - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil twilight'
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
+        twilight'
     service: notify.signal
   mode: single
 - id: lights_on_evening_nautical_twilight
   alias: Lights on at evening nautical twilight
   trigger:
   - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight'' }}'
+    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight''
+      }}'
   condition:
   - condition: time
     after: '16:00:00'
@@ -33,30 +34,32 @@
       entity_id:
       - light.living_room_lights
       - light.upstairs_lights
-      # - light.exterior_lights
       transition: 10
     service: light.turn_on
   - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical twilight'
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
+        twilight'
     service: notify.signal
   mode: single
 - id: lights_on_morning_nautical_twilight
   alias: Lights on morning
   trigger:
   - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight'' }}'
+    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight''
+      }}'
   condition:
   - condition: time
-    before: '09:00:00'
+    before: 09:00:00
   action:
   - data:
       brightness_pct: 50
-      entity_id: 
-        - light.living_room_lights
+      entity_id:
+      - light.living_room_lights
       transition: 10
     service: light.turn_on
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning nautical twilight.'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
+        nautical twilight.'
     service: notify.signal
   mode: single
 - id: lights_off_sunrise
@@ -88,7 +91,8 @@
       transition: 10
     service: light.turn_off
   - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and upstairs turned off at 2300'
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
+        upstairs turned off at 2300'
     service: notify.signal
   mode: single
 - id: update_morning_commute_sensor
@@ -114,7 +118,7 @@
   trigger:
   - platform: state
     entity_id: media_player.50_tcl_roku_tv
-    to: 'playing'
+    to: playing
   action:
   - service: scene.turn_on
     entity_id: scene.lower_living_room_lights
@@ -129,7 +133,7 @@
     to: 'off'
   - platform: state
     entity_id: media_player.50_tcl_roku_tv
-    to: 'paused'
+    to: paused
   action:
   - service: scene.turn_on
     entity_id: scene.raise_living_room_lights
@@ -139,35 +143,72 @@
 - id: stop_pixel_charging
   alias: Stop Pixel 2 Charging
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.pixel_2_battery_level
-      above: 80
+  - platform: numeric_state
+    entity_id: sensor.pixel_2_battery_level
+    above: 80
   action:
-    - service: tts.google_translate_say
-      entity_id: 'media_player.bedroom_speaker'
-      data:
-        message: "Pixel 2 has finished charging to {{states('sensor.pixel_2_battery_level')}} percent"
-    - service: switch.turn_off
-      entity_id: switch.plug
+  - service: tts.google_translate_say
+    entity_id: media_player.bedroom_speaker
+    data:
+      message: Pixel 2 has finished charging to {{states('sensor.pixel_2_battery_level')}}
+        percent
+  - service: switch.turn_off
+    entity_id: switch.plug
 - id: start_pixel_charging
   alias: Start Pixel 2 Charging
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.pixel_2_battery_level
-      below: 50
+  - platform: numeric_state
+    entity_id: sensor.pixel_2_battery_level
+    below: 50
   action:
-    - service: tts.google_translate_say
-      entity_id: 'media_player.bedroom_speaker'
+  - service: tts.google_translate_say
+    entity_id: media_player.bedroom_speaker
+    data:
+      message: Pixel 2 has can now be charged from {{states('sensor.pixel_2_battery_level')}}
+        percent
+  - service: switch.turn_on
+    entity_id: switch.plug
+- id: front_camera_motion_signal
+  alias: Send front video to signal group
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_front
+    to: 'on'
+  action:
+  - service: camera.record
+    entity_id: camera.front
+    data:
+      entity_id: camera.front
+      filename: '/media/usb/snapshot_front.mp4'
+      duration: 20
+      lookback: 10
+  - delay: 20
+  - service: notify.signal_group
+    data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Front Camera Motion'
       data:
-        message: "Pixel 2 has can now be charged from {{states('sensor.pixel_2_battery_level')}} percent"
-    - service: switch.turn_on
-      entity_id: switch.plug
-# - id: homeassistant_update_notification
-#   alias: Update notification
-#   trigger:
-#   - platform: state
-#     entity_id: updater.updater
-#   action:
-#   - service: notify.signal
-#     data_template:
-#       message: Home Assistant {{ states('updater.updater') }} is now available.
+        attachments:
+          - '/media/usb/snapshot_front.mp4'
+  mode: single
+- id: back_camera_motion_signal
+  alias: Send back video to signal group
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.motion_back
+    to: 'on'
+  action:
+  - service: camera.record
+    entity_id: camera.back
+    data:
+      entity_id: camera.back
+      filename: '/media/usb/snapshot_back.mp4'
+      duration: 20
+      lookback: 10
+  - delay: 20
+  - service: notify.signal_group
+    data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Back Camera Motion'
+      data:
+        attachments:
+          - '/media/usb/snapshot_back.mp4'
+  mode: single
