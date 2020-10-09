@@ -26,7 +26,7 @@ views:
       #     - arm_home
       #     - arm_away
       #     - arm_night
-      - type: vertical-stack
+      - type: horizontal-stack
         cards:
           - type: vertical-stack
             cards:
@@ -48,7 +48,6 @@ views:
             camera_image: camera.back
             entities: 
               - binary_sensor.motion_back
-
       - entity: media_player.50_tcl_roku_tv
         type: media-control
   - title: Weather
