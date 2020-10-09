@@ -36,6 +36,20 @@ views:
               - type: thermostat
                 entity: climate.upstairs
                 name: Upstairs
+      - type: horizontal-stack
+        cards:
+          - type: picture-glance
+            title: front
+            camera_image: camera.front
+            entities: 
+              - switch.camera_front_email
+              - binary_sensor.motion_front
+          - type: picture-glance
+            title: back
+            camera_image: camera.back
+            entities: 
+              - switch.camera_back_email
+              - binary_sensor.motion_back
 
       - entity: media_player.50_tcl_roku_tv
         type: media-control
@@ -171,7 +185,7 @@ views:
             entities:
               - sensor.disk_use_percent
             font_size: 75
-            name: Memory
+            name: Data 
             show:
               fill: false
       - type: glance
