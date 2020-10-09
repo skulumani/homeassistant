@@ -21,7 +21,7 @@ HQDIR="/media/data/video/high/" #Trailing '/' is necessary here
 LQDIR="/media/data/video/low/"
 
 ## Record Time per File ##
-LQLENGTH="10" # (Runtime expressed in seconds)
+LQLENGTH="3600" # (Runtime expressed in seconds)
 
 ## Record Settings ##
 #
