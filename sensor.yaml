@@ -2,7 +2,7 @@
 - platform: systemmonitor
   resources:
     - type: disk_use_percent
-      arg: /media/data # /media/data
+      arg: /media/data/video # /media/data
     - type: memory_use_percent
     - type: processor_use
     - type: network_in

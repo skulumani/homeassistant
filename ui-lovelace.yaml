@@ -28,14 +28,12 @@ views:
       #     - arm_night
       - type: horizontal-stack
         cards:
-          - type: vertical-stack
-            cards:
-              - type: thermostat
-                entity: climate.downstairs
-                name: Downstairs
-              - type: thermostat
-                entity: climate.upstairs
-                name: Upstairs
+          - type: thermostat
+            entity: climate.downstairs
+            name: Downstairs
+          - type: thermostat
+            entity: climate.upstairs
+            name: Upstairs
       - type: horizontal-stack
         cards:
           - type: picture-glance
