@@ -24,6 +24,8 @@ lovelace:
       type: module
     - url: /local/mini-graph-card-bundle.js?v=0.9.4
       type: module
+    - url: /local/battery-state-card.js?v=0.0.1
+      type: module
 
 frontend:
   # themes: !include_dir_merge_named ./themes

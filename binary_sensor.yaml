@@ -66,3 +66,33 @@
       value_template: "{{ is_state('camera.back', 'motion') }}"
       delay_off:
         seconds: 120
+- platform: ping
+  name: Router Ping
+  host: 192.168.88.1
+  count: 2
+  scan_interval: 120
+- platform: ping
+  name: Upstairs WAP Ping
+  host: 192.168.88.6
+  count: 2
+  scan_interval: 120
+- platform: ping
+  name: Downstairs WAP Ping
+  host: 192.168.88.5
+  count: 2
+  scan_interval: 120
+- platform: ping
+  name: Switch Ping
+  host: 192.168.88.4
+  count: 2
+  scan_interval: 120
+- platform: ping
+  name: Front Camera Ping
+  host: 192.168.88.15
+  count: 2
+  scan_interval: 120
+- platform: ping
+  name: Back Camera Ping
+  host: 192.168.88.16
+  count: 2
+  scan_interval: 120

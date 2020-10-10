@@ -163,24 +163,16 @@ views:
             name: Data 
             show:
               fill: false
-      - type: glance
+      - type: 'custom:battery-state-card'
+        title: false
+        sort_by_level: asc
         entities:
-          - sensor.pixel_2_battery_level
-          - sensor.pixel_2_battery_state
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
-            entities:
-              - sensor.pixel_2_battery_level
-            font_size: 75
-            icon: 'mdi:battery'
-            name: Battery
-            show:
-              fill: false
-            hours_to_show: 48
-            points_per_hour: 10
+          - entity: sensor.pixel_2_battery_level
+            name: 'Pixel 2'
+          - entity: sensor.sm_g960u1_battery_level
+            name: 'S9'
+          - entity: sensor.nexus_7_battery_level
+            name: 'Nexus 7'
       - type: entities
         title: Status
         entities:
@@ -189,6 +181,34 @@ views:
           - sensor.speedtest_ping
           - sensor.duckdns_home
           - sensor.myip
-
+      - type: glance
+        title: false
+        show_state: false
+        show_header_toggle: false
+        entities:
+          - entity: zone.home
+            icon: 'mdi:home-assistant'
+            name: HA
+            tap_action:
+              action: call-service
+              service: homeassistant.restart
+          - entity: zone.home
+            icon: 'mdi:cogs'
+            name: Automation
+            tap_action:
+              action: call-service
+              service: automation.reload
+          - entity: zone.home
+            icon: 'mdi:script-text'
+            name: Script
+            tap_action:
+              action: call-service
+              service: script.reload
+          - entity: zone.home
+            icon: 'mdi:group'
+            name: Groups
+            tap_action:
+              action: call-service
+              service: group.reload
 
 
