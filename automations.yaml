@@ -182,7 +182,7 @@
       filename: '/media/usb/snapshot_front.mp4'
       duration: 20
       lookback: 10
-  - delay: 20
+  - delay: 30
   - service: notify.signal_group
     data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Front Camera Motion'
@@ -204,7 +204,7 @@
       filename: '/media/usb/snapshot_back.mp4'
       duration: 20
       lookback: 10
-  - delay: 20
+  - delay: 30
   - service: notify.signal_group
     data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Back Camera Motion'
