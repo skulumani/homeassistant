@@ -212,3 +212,27 @@
         attachments:
           - '/media/usb/snapshot_back.mp4'
   mode: single
+- id: bedroom_light_on_morning
+  alias: Bedroom on in morning
+  trigger:
+  - platform: time
+    at: "06:30:00"
+  condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+  - data:
+      brightness_pct: 30
+      entity_id:
+      - light.upstairs_lights
+      transition: 600
+    service: light.turn_on
+  - data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
+    service: notify.signal
+  mode: single
