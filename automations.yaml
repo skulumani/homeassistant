@@ -218,13 +218,9 @@
   - platform: time
     at: "06:30:00"
   condition:
-  - condition: time
-    weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+  - condition: state
+    entity_id: 'binary_sensor.workday_sensor'
+    state: 'on'
   action:
   - data:
       brightness_pct: 30
