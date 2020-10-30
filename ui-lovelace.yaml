@@ -13,28 +13,23 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - type: entities
-        entities:
-          - entity: light.living_room_lights
-          - entity: light.exterior_lights
-          - entity: light.upstairs_lights
-          - entity: light.downstairs_lights
-      # - entity: alarm_control_panel.ha_alarm
-      #   type: alarm-panel
-      #   name: Alarm
-      #   states: 
-      #     - arm_home
-      #     - arm_away
-      #     - arm_night
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
-          - type: thermostat
-            entity: climate.downstairs
-            name: Downstairs
-          - type: thermostat
-            entity: climate.upstairs
-            name: Upstairs
-      - type: horizontal-stack
+          - type: horizontal-stack
+            cards:
+              - type: thermostat
+                entity: climate.downstairs
+                name: Downstairs
+              - type: thermostat
+                entity: climate.upstairs
+                name: Upstairs
+          - type: entities
+            entities:
+              - entity: light.living_room_lights
+              - entity: light.exterior_lights
+              - entity: light.upstairs_lights
+              - entity: light.downstairs_lights
+      - type: vertical-stack
         cards:
           - type: picture-glance
             title: front
@@ -46,8 +41,6 @@ views:
             camera_image: camera.back
             entities: 
               - binary_sensor.motion_back
-      - entity: media_player.50_tcl_roku_tv
-        type: media-control
   - title: Weather
     icon: mdi:weather-sunny
     cards:
