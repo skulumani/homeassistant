@@ -56,19 +56,33 @@ views:
       - type: 'custom:mini-graph-card'
         name: Temperature
         entities:
-          - sensor.downstairs_temperature
-          - sensor.upstairs_temperature
-          - sensor.ecobee_outside_temperature
+          - entity: sensor.downstairs_temperature
+            name: Downstairs
+            show_state: false
+          - entity: sensor.upstairs_temperature
+            name: Upstairs
+            show_state: false
+          - entity: sensor.ecobee_outside_temperature
+            name: Outside
+            show_state: false
         hours_to_show: 48
-        points_per_hour: 10
+        points_per_hour: 6
+        line_width: 2
       - type: 'custom:mini-graph-card'
         name: Humidity
         entities:
-          - sensor.downstairs_humidity
-          - sensor.upstairs_humidity
-          - sensor.ecobee_outside_humidity
+          - entity: sensor.downstairs_humidity
+            name: Downstairs
+            show_state: false
+          - entity: sensor.upstairs_humidity
+            name: Upstairs
+            show_state: false
+          - entity: sensor.ecobee_outside_humidity
+            name: Outside
+            show_state: false
         hours_to_show: 48
-        points_per_hour: 10
+        points_per_hour: 6
+        line_width: 2
   - title: F1
     icon: mdi:car-sports
     cards:
@@ -122,86 +136,113 @@ views:
   - title: System
     icon: mdi:cog
     cards:
-      - type: glance
-        entities:
-          - sensor.ha_uptime
-          - sensor.ha_version
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
+          - type: glance
             entities:
-              - sensor.processor_use
-            font_size: 75
-            icon: 'mdi:chip'
-            name: CPU
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
+              - sensor.ha_uptime
+              - sensor.ha_version
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                align_icon: left
+                align_state: center
+                entities:
+                  - sensor.processor_use
+                font_size: 75
+                icon: 'mdi:chip'
+                name: CPU
+                show:
+                  fill: false
+              - type: 'custom:mini-graph-card'
+                align_icon: left
+                align_state: center
+                entities:
+                  - sensor.memory_use_percent
+                font_size: 75
+                name: Memory
+                show:
+                  fill: false
+              - type: 'custom:mini-graph-card'
+                align_icon: left
+                align_state: center
+                entities:
+                  - sensor.disk_use_percent
+                font_size: 75
+                name: Data 
+                show:
+                  fill: false
+          - type: glance
+            title: false
+            show_state: false
+            show_header_toggle: false
             entities:
-              - sensor.memory_use_percent
-            font_size: 75
-            name: Memory
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
+              - entity: zone.home
+                icon: 'mdi:home-assistant'
+                name: HA
+                tap_action:
+                  action: call-service
+                  service: homeassistant.restart
+              - entity: zone.home
+                icon: 'mdi:cogs'
+                name: Automation
+                tap_action:
+                  action: call-service
+                  service: automation.reload
+              - entity: zone.home
+                icon: 'mdi:script-text'
+                name: Script
+                tap_action:
+                  action: call-service
+                  service: script.reload
+              - entity: zone.home
+                icon: 'mdi:group'
+                name: Groups
+                tap_action:
+                  action: call-service
+                  service: group.reload
+      - type: vertical-stack
+        cards:
+          - type: 'custom:battery-state-card'
+            title: false
+            sort_by_level: asc
             entities:
-              - sensor.disk_use_percent
-            font_size: 75
-            name: Data 
-            show:
-              fill: false
-      - type: 'custom:battery-state-card'
-        title: false
-        sort_by_level: asc
-        entities:
-          - entity: sensor.pixel_2_battery_level
-            name: 'Pixel 2'
-          - entity: sensor.sm_g960u1_battery_level
-            name: 'S9'
-          - entity: sensor.nexus_7_battery_level
-            name: 'Nexus 7'
-      - type: entities
-        title: Status
-        entities:
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
-          - sensor.speedtest_ping
-          - sensor.duckdns_home
-          - sensor.myip
-      - type: glance
-        title: false
-        show_state: false
-        show_header_toggle: false
-        entities:
-          - entity: zone.home
-            icon: 'mdi:home-assistant'
-            name: HA
-            tap_action:
-              action: call-service
-              service: homeassistant.restart
-          - entity: zone.home
-            icon: 'mdi:cogs'
-            name: Automation
-            tap_action:
-              action: call-service
-              service: automation.reload
-          - entity: zone.home
-            icon: 'mdi:script-text'
-            name: Script
-            tap_action:
-              action: call-service
-              service: script.reload
-          - entity: zone.home
-            icon: 'mdi:group'
-            name: Groups
-            tap_action:
-              action: call-service
-              service: group.reload
+              - entity: sensor.pixel_2_battery_level
+                name: 'Pixel 2'
+              - entity: sensor.sm_g960u1_battery_level
+                name: 'S9'
+              - entity: sensor.nexus_7_battery_level
+                name: 'Nexus 7'
+          - type: entities
+            title: Status
+            entities:
+              - sensor.speedtest_download
+              - sensor.speedtest_upload
+              - sensor.speedtest_ping
+              - sensor.duckdns_home
+              - sensor.myip
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Router Packets
+                icon: mdi:server
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_router_packets_s_received
+                    name: Received
+                  - entity: sensor.mikrotik_router_packets_s_sent
+                    name: Sent
+              - type: 'custom:mini-graph-card'
+                name: Router KiB
+                icon: mdi:server
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_router_kib_s_sent
+                    name: Sent
+                  - entity: sensor.mikrotik_router_kib_s_received
+                    name: Received
+          
 
 
