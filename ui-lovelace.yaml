@@ -15,6 +15,8 @@ views:
     cards:
       - type: vertical-stack
         cards:
+          - type: weather-forecast
+            entity: weather.openweathermap
           - type: horizontal-stack
             cards:
               - type: thermostat
@@ -44,15 +46,17 @@ views:
   - title: Weather
     icon: mdi:weather-sunny
     cards:
-      - type: 'custom:weather-card-chart'
-        title: Weather
-        weather: weather.openweathermap
       - type: vertical-stack
         cards:
-          - type: picture-entity
-            entity: camera.radar_dc_current
-          - type: picture-entity
-            entity: camera.radar_dc_animated
+          - type: 'custom:weather-card-chart'
+            title: Weather
+            weather: weather.openweathermap
+          - type: vertical-stack
+            cards:
+              - type: picture-entity
+                entity: camera.radar_dc_current
+              - type: picture-entity
+                entity: camera.radar_dc_animated
       - type: 'custom:mini-graph-card'
         name: Temperature
         entities:
