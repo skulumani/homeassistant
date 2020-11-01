@@ -15,8 +15,6 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: weather-forecast
-            entity: weather.openweathermap
           - type: horizontal-stack
             cards:
               - type: thermostat
@@ -48,6 +46,8 @@ views:
     cards:
       - type: vertical-stack
         cards:
+          - type: weather-forecast
+            entity: weather.openweathermap
           - type: 'custom:weather-card-chart'
             title: Weather
             weather: weather.openweathermap
@@ -221,6 +221,10 @@ views:
                 tap_action:
                   action: call-service
                   service: group.reload
+          - type: glance
+            entities:
+              - binary_sensor.shankar_presence
+              - binary_sensor.christine_presence
       - type: vertical-stack
         cards:
           - type: 'custom:battery-state-card'
