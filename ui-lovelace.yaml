@@ -146,6 +146,22 @@ views:
             entities:
               - sensor.ha_uptime
               - sensor.ha_version
+          - type: glance
+            show_icon: false
+            columns: 3
+            entities:
+              - entity: sensor.count_binary_sensors
+                name: Binary Sensors
+              - entity: sensor.count_sensors
+                name: Sensors
+              - entity: sensor.count_switches
+                name: Switches
+              - entity: sensor.count_device_trackers
+                name: Device Trackers
+              - entity: sensor.count_automations
+                name: Automations
+              - entity: sensor.count_scripts
+                name: Scripts
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -225,6 +241,28 @@ views:
               - sensor.speedtest_ping
               - sensor.duckdns_home
               - sensor.myip
+          - type: glance
+            columns: 3
+            show_icon: true
+            entities:
+              - entity: binary_sensor.front_camera_ping
+                name: Front Cam
+                icon: 'mdi:cctv'
+              - entity: binary_sensor.back_camera_ping
+                name: Back Cam
+                icon: 'mdi:cctv'
+              - entity: binary_sensor.router_ping
+                name: Router
+                icon: 'mdi:router-network'
+              - entity: binary_sensor.upstairs_wap_ping
+                name: Upstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: binary_sensor.downstairs_wap_ping
+                name: Downstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: binary_sensor.switch_ping
+                name: Switch
+                icon: 'mdi:switch'
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
