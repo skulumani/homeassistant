@@ -232,3 +232,30 @@
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
     service: notify.signal
   mode: single
+- id: hvac_away_mode
+  alias: HVAC Away Mode when not home
+  trigger:
+    - platform: state
+      entity_id: 
+        - binary_sensor.shankar_presence
+        - binary_sensor.christine_presence
+      to: 'off'
+      for: '00:30:00'
+  condition: 
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.shankar_presence
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.christine_presence
+        state: 'off'
+  action:
+    - service: notify.signal
+      data:
+        message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode for HVAC'
+    # - service: climate.set_preset_mode
+    #   entity_id: all
+    #   preset_mode: 'away'
+
+
