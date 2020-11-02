@@ -1,6 +1,12 @@
 family:
   name: Family
   entities:
-    - device_tracker.christine_s9
-    - device_tracker.shankar_pixel
+    - device_tracker.galaxy_s9
+    - device_tracker.pixel_2
+    - device_tracker.pixel_2_router
+thermostats:
+  name: Thermostats
+  entities:
+    - climate.downstairs
+    - climate.upstairs
 
