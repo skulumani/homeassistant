@@ -149,7 +149,7 @@ speedtestdotnet:
   manual: false
 
 sun:
-  elevation: 87
+  elevation: !secret home_elevation
 
 # fastdotcom:
 #   scan_interval:
@@ -241,14 +241,13 @@ mikrotik:
     port: 8728
     arp_ping: false
     force_dhcp: false
-    detection_time: 180 # seconds before device is marked away
+    detection_time: 30 # seconds before device is marked away
     username: !secret mikrotik_username
     password: !secret mikrotik_password
 
 # INCLUDES
 sensor: !include sensor.yaml
 zone: !include zone.yaml
-# person: !include person.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

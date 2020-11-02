@@ -216,14 +216,14 @@
   alias: Bedroom on in morning
   trigger:
   - platform: time
-    at: "06:30:00"
+    at: "06:20:00"
   condition:
   - condition: state
     entity_id: 'binary_sensor.workday_sensor'
     state: 'on'
   action:
   - data:
-      brightness_pct: 30
+      brightness_pct: 25
       entity_id:
       - light.upstairs_lights
       transition: 600
@@ -255,7 +255,7 @@
       data:
         message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode for HVAC'
     # - service: climate.set_preset_mode
-    #   entity_id: all
-    #   preset_mode: 'away'
+    #   entity_id: group.thermostats
+    #   preset_mode: 'Away'
 
 

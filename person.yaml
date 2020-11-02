@@ -1,10 +1,14 @@
 # Persons for homeassistant
 - name: Shankar
   id: shankar
+  user_id: 5e295d4241bc4f71b482499af778fdc8
   device_trackers:
     - device_tracker.pixel_2
-  user_id: 9721532dd0ad4a258afcd2dbf583b11b
+    - device_tracker.shankars_air
+    - device_tracker.pixel_2_router
+    - device_tracker.pop_os
 - name: Christine
   id: christine
+  user_id: aa64faec81d8489e852f5ab35eb111e0
   device_trackers:
-  user_id: c22cd803e4104d889b5da36a260defcf
+    - device_tracker.galaxy_s9

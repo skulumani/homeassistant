@@ -135,5 +135,6 @@
     count_input_datetimes:
       entity_id: sensor.date
       value_template: "{{ states.input_datetime | list | length }}"
+- platform: moon
 
 

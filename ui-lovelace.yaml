@@ -57,36 +57,42 @@ views:
                 entity: camera.radar_dc_current
               - type: picture-entity
                 entity: camera.radar_dc_animated
-      - type: 'custom:mini-graph-card'
-        name: Temperature
-        entities:
-          - entity: sensor.downstairs_temperature
-            name: Downstairs
-            show_state: false
-          - entity: sensor.upstairs_temperature
-            name: Upstairs
-            show_state: false
-          - entity: sensor.ecobee_outside_temperature
-            name: Outside
-            show_state: false
-        hours_to_show: 48
-        points_per_hour: 6
-        line_width: 2
-      - type: 'custom:mini-graph-card'
-        name: Humidity
-        entities:
-          - entity: sensor.downstairs_humidity
-            name: Downstairs
-            show_state: false
-          - entity: sensor.upstairs_humidity
-            name: Upstairs
-            show_state: false
-          - entity: sensor.ecobee_outside_humidity
-            name: Outside
-            show_state: false
-        hours_to_show: 48
-        points_per_hour: 6
-        line_width: 2
+      - type: vertical-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: Temperature
+            entities:
+              - entity: sensor.downstairs_temperature
+                name: Downstairs
+                show_state: false
+              - entity: sensor.upstairs_temperature
+                name: Upstairs
+                show_state: false
+              - entity: sensor.ecobee_outside_temperature
+                name: Outside
+                show_state: false
+            hours_to_show: 48
+            points_per_hour: 6
+            line_width: 2
+          - type: 'custom:mini-graph-card'
+            name: Humidity
+            entities:
+              - entity: sensor.downstairs_humidity
+                name: Downstairs
+                show_state: false
+              - entity: sensor.upstairs_humidity
+                name: Upstairs
+                show_state: false
+              - entity: sensor.ecobee_outside_humidity
+                name: Outside
+                show_state: false
+            hours_to_show: 48
+            points_per_hour: 6
+            line_width: 2
+          - type: glance
+            entities:
+              - sensor.moon
+              - sun.sun
   - title: F1
     icon: mdi:car-sports
     cards:
