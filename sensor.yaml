@@ -29,6 +29,102 @@
       friendly_name: "Ecobee Pressure"
       unit_of_measurement: "mb"
       value_template: "{{ '%4g'|format(state_attr('weather.downstairs', 'pressure')) }}"
+    ecobee_downstairs_target_temperature:
+      friendly_name: "Downstairs Target"
+      unit_of_measurement: '°C'
+      value_template: "{{ '%.1f'|format(state_attr('climate.downstairs', 'temperature')) }}"
+    ecobee_downstairs_current_temperature:
+      friendly_name: "Downstairs Temperature"
+      unit_of_measurement: '°C'
+      value_template: "{{  '%.1f'|format(state_attr('climate.downstairs', 'current_temperature')) }}"
+    ecobee_downstairs_current_humidity:
+      friendly_name: "Downstairs Humidity"
+      unit_of_measurement: '%'
+      value_template: "{{ '%2g' | format(state_attr('climate.downstairs', 'current_humidity')) }}"
+    ecobee_downstairs_state:
+      friendly_name: "Downstairs State"
+      unit_of_measurement: ''
+      value_template: "{{ state_attr('climate.downstairs', 'hvac_action') }}"
+    ecobee_downstairs_heating:
+      friendly_name: "Downstairs Heating"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.downstairs', 'hvac_action') == 'heating' %}
+          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+    ecobee_downstairs_cooling:
+      friendly_name: "Downstairs Cooling"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.downstairs', 'hvac_action') == 'cooling' %}
+          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+    ecobee_downstairs_equipment_running:
+      friendly_name: "Downstairs Equipment Running"
+      unit_of_measurement: ''
+      value_template: "{{ state_attr('climate.downstairs', 'equipment_running') }}"
+    ecobee_downstairs_fan:
+      friendly_name: "Downstairs Fan"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.downstairs', 'fan') == 'on' %}
+          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+    
+    ecobee_upstairs_target_temperature:
+      friendly_name: "Upstairs Target"
+      unit_of_measurement: '°C'
+      value_template: "{{ '%.1f'|format(state_attr('climate.upstairs', 'temperature')) }}"
+    ecobee_upstairs_current_temperature:
+      friendly_name: "Upstairs Temperature"
+      unit_of_measurement: '°C'
+      value_template: "{{  '%.1f'|format(state_attr('climate.upstairs', 'current_temperature')) }}"
+    ecobee_upstairs_current_humidity:
+      friendly_name: "Upstairs Humidity"
+      unit_of_measurement: '%'
+      value_template: "{{ '%2g' | format(state_attr('climate.upstairs', 'current_humidity')) }}"
+    ecobee_upstairs_state:
+      friendly_name: "Upstairs State"
+      unit_of_measurement: ''
+      value_template: "{{ state_attr('climate.upstairs', 'hvac_action') }}"
+    ecobee_upstairs_equipment_running:
+      friendly_name: "Upstairs Equipment Running"
+      unit_of_measurement: ''
+      value_template: "{{ state_attr('climate.upstairs', 'equipment_running') }}"
+    ecobee_upstairs_heating:
+      friendly_name: "Upstairs Heating"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.upstairs', 'hvac_action') == 'heating' %}
+          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+    ecobee_upstairs_cooling:
+      friendly_name: "Upstairs Cooling"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.upstairs', 'hvac_action') == 'cooling' %}
+          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+    ecobee_upstairs_fan:
+      friendly_name: "Upstairs Fan"
+      unit_of_measurement: '°C'
+      value_template: >
+        {% if state_attr('climate.upstairs', 'fan') == 'on' %}
+          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
+        {% else %}
+
+        {% endif %}
+
 - platform: template
   sensors:
     ambient_light:
