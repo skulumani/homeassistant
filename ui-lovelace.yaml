@@ -190,7 +190,7 @@ views:
                 align_icon: left
                 align_state: center
                 entities:
-                  - sensor.processor_use
+                  - sensor.processor_use_percent
                 font_size: 75
                 icon: 'mdi:chip'
                 name: CPU
@@ -209,7 +209,7 @@ views:
                 align_icon: left
                 align_state: center
                 entities:
-                  - sensor.disk_use_percent_media
+                  - sensor.disk_use_percent_config
                 font_size: 75
                 name: Data 
                 show:
