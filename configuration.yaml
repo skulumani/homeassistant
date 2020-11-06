@@ -8,7 +8,7 @@ homeassistant:
   customize: !include customize.yaml
   allowlist_external_dirs:
     - /tmp
-    - /media/usb
+    - /config
 
 
 lovelace:

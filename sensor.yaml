@@ -2,7 +2,7 @@
 - platform: systemmonitor
   resources:
     - type: disk_use_percent
-      arg: /
+      arg: /config
     - type: memory_use_percent
     - type: processor_use
     - type: network_in
@@ -43,39 +43,13 @@
       value_template: "{{ '%2g' | format(state_attr('climate.downstairs', 'current_humidity')) }}"
     ecobee_downstairs_state:
       friendly_name: "Downstairs State"
-      unit_of_measurement: ''
       value_template: "{{ state_attr('climate.downstairs', 'hvac_action') }}"
-    ecobee_downstairs_heating:
-      friendly_name: "Downstairs Heating"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.downstairs', 'hvac_action') == 'heating' %}
-          'on'
-        {% else %}
-          'off'
-        {% endif %}
-    ecobee_downstairs_cooling:
-      friendly_name: "Downstairs Cooling"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.downstairs', 'hvac_action') == 'cooling' %}
-          'on'
-        {% else %}
-          'off'
-        {% endif %}
     ecobee_downstairs_equipment_running:
       friendly_name: "Downstairs Equipment Running"
-      unit_of_measurement: ''
       value_template: "{{ state_attr('climate.downstairs', 'equipment_running') }}"
     ecobee_downstairs_fan:
       friendly_name: "Downstairs Fan"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.downstairs', 'fan') == 'on' %}
-          'on'
-        {% else %}
-          'off'
-        {% endif %}
+      value_template: "{{ state_attr('climate.downstairs', 'fan') }} "
     
     ecobee_upstairs_target_temperature:
       friendly_name: "Upstairs Target"
@@ -91,39 +65,13 @@
       value_template: "{{ '%2g' | format(state_attr('climate.upstairs', 'current_humidity')) }}"
     ecobee_upstairs_state:
       friendly_name: "Upstairs State"
-      unit_of_measurement: ''
       value_template: "{{ state_attr('climate.upstairs', 'hvac_action') }}"
     ecobee_upstairs_equipment_running:
       friendly_name: "Upstairs Equipment Running"
-      unit_of_measurement: ''
       value_template: "{{ state_attr('climate.upstairs', 'equipment_running') }}"
-    ecobee_upstairs_heating:
-      friendly_name: "Upstairs Heating"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.upstairs', 'hvac_action') == 'heating' %}
-          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
-        {% else %}
-
-        {% endif %}
-    ecobee_upstairs_cooling:
-      friendly_name: "Upstairs Cooling"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.upstairs', 'hvac_action') == 'cooling' %}
-          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
-        {% else %}
-
-        {% endif %}
     ecobee_upstairs_fan:
       friendly_name: "Upstairs Fan"
-      unit_of_measurement: '°C'
-      value_template: >
-        {% if state_attr('climate.upstairs', 'fan') == 'on' %}
-          {{ '%.1f' | format(state_attr('climate.upstairs', 'current_temperature')) }}
-        {% else %}
-
-        {% endif %}
+      value_template: "{{ state_attr('climate.upstairs', 'fan') }}"
 
 - platform: template
   sensors:
@@ -131,6 +79,7 @@
       friendly_name: 'Ambient Light'
       unit_of_measurement: 'N'
       value_template: "{{ '%.2f'|format(  state_attr('sun.sun', 'elevation') * (1 - states('sensor.dark_sky_cloud_coverage') | float/100)  ) }}"
+
 - platform: template
   sensors:
     period_of_day:
@@ -167,11 +116,11 @@
   destination: zone.Collins
   region: 'US'
   name: "waze_home_to_collins"
-- platform: command_line
-  name: SSL Cert expiry
-  unit_of_measurement: days
-  scan_interval: 10800
-  command: "ssl-cert-check -b -c /etc/letsencrypt/live/wolverines.duckdns.org/cert.pem | awk '{ print $NF }'"
+# - platform: command_line
+#   name: SSL Cert expiry
+#   unit_of_measurement: days
+#   scan_interval: 10800
+#   command: "ssl-cert-check -b -c /etc/letsencrypt/live/wolverines.duckdns.org/cert.pem | awk '{ print $NF }'"
 - platform: worldclock
   time_zone: UTC
   name: UTC
@@ -192,45 +141,33 @@
   resolver: 8.8.8.8
 
 
-# front camera sensors
 - platform: template
   sensors: 
     count_automations: 
-      entity_id: sensor.date
       value_template: "{{ states.automation | list | length }}"
     count_scripts:
-      entity_id: sensor.date
       value_template: "{{ states.script | list | length }}"
     count_device_trackers:
-      entity_id: sensor.date
       value_template: "{{ states.device_tracker | list | length }}"
     count_binary_sensors: 
-      entity_id: sensor.date
       value_template: "{{states.binary_sensor | list | length}}"
     count_sensors:
-      entity_id: sensor.date
       value_template: "{{ states.sensor | list | length}}"
     count_switches:
-      entity_id: sensor.date
       value_template: "{{ states.switch | list | length }}"
     count_zones:
-      entity_id: sensor.date
       value_template: "{{ states.zone | list | length}}"
     count_input_booleans:
-      entity_id: sensor.date
       value_template: "{{ states.input_boolean | list | length}}"
     count_input_numbers:
-      entity_id: sensor.date
       value_template: "{{ states.input_number | list | length }}"
     count_input_texts:
-      entity_id: sensor.date
       value_template: "{{ states.input_text | list | length }}"
     count_input_selects:
-      entity_id: sensor.date
       value_template: "{{ states.input_select | list | length }}"
     count_input_datetimes:
-      entity_id: sensor.date
       value_template: "{{ states.input_datetime | list | length }}"
+
 - platform: moon
 
 

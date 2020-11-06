@@ -99,8 +99,7 @@ views:
             entities:
               - sensor.ecobee_downstairs_target_temperature
               - sensor.ecobee_downstairs_current_temperature
-              - sensor.ecobee_downstairs_heating
-              - sensor.ecobee_downstairs_cooling
+              - sensor.ecobee_downstairs_state
               - sensor.ecobee_downstairs_fan
           - type: history-graph
             title: "Upstairs"
@@ -108,8 +107,7 @@ views:
             entities:
               - sensor.ecobee_upstairs_target_temperature
               - sensor.ecobee_upstairs_current_temperature
-              - sensor.ecobee_upstairs_heating
-              - sensor.ecobee_upstairs_cooling
+              - sensor.ecobee_upstairs_state
               - sensor.ecobee_upstairs_fan
   - title: F1
     icon: mdi:car-sports
