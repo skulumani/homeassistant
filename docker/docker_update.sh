@@ -14,4 +14,6 @@ docker-compose -f homeassistant-compose.yml up -d
 docker-compose -f signal-compose.yml up -d
 
 ## prune
-docker image prune -a
+docker image prune -fa
+docker system prune -fa
+docker volumen prune -f
