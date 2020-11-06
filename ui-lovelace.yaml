@@ -15,22 +15,37 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: horizontal-stack
-            cards:
-              - type: thermostat
-                entity: climate.downstairs
-                name: Downstairs
-              - type: thermostat
-                entity: climate.upstairs
-                name: Upstairs
-          - type: entities
+          - type: glance
+            columns: 4
             entities:
-              - entity: light.living_room_lights
-              - entity: light.exterior_lights
               - entity: light.upstairs_lights
+                name: Upstairs
               - entity: light.downstairs_lights
+                name: Downstairs
+              - entity: light.living_room_lights
+                name: Living Room
+              - entity: light.sconce_1
+                name: Sconce 1
+              - entity: light.sconce_2
+                name: Sconce 2
+              - entity: light.dining_room_lamp
+                name: Dining Room
+              - entity: light.bedroom_lamp
+                name: Bedroom
           - type: 'custom:simple-thermostat'
             entity: climate.downstairs
+            step_size: 0.1
+            decimals: 1
+            step_layout: row
+            fallback: ' '
+            control:
+              _names: true
+              _headings: false
+              hvac: 
+                heat_cool: false
+              preset: true
+          - type: 'custom:simple-thermostat'
+            entity: climate.upstairs
             step_size: 0.1
             decimals: 1
             step_layout: row
