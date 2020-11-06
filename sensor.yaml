@@ -2,7 +2,7 @@
 - platform: systemmonitor
   resources:
     - type: disk_use_percent
-      arg: /media
+      arg: /
     - type: memory_use_percent
     - type: processor_use
     - type: network_in
@@ -50,18 +50,18 @@
       unit_of_measurement: '°C'
       value_template: >
         {% if state_attr('climate.downstairs', 'hvac_action') == 'heating' %}
-          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+          'on'
         {% else %}
-
+          'off'
         {% endif %}
     ecobee_downstairs_cooling:
       friendly_name: "Downstairs Cooling"
       unit_of_measurement: '°C'
       value_template: >
         {% if state_attr('climate.downstairs', 'hvac_action') == 'cooling' %}
-          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+          'on'
         {% else %}
-
+          'off'
         {% endif %}
     ecobee_downstairs_equipment_running:
       friendly_name: "Downstairs Equipment Running"
@@ -72,9 +72,9 @@
       unit_of_measurement: '°C'
       value_template: >
         {% if state_attr('climate.downstairs', 'fan') == 'on' %}
-          {{ '%.1f' | format(state_attr('climate.downstairs', 'current_temperature')) }}
+          'on'
         {% else %}
-
+          'off'
         {% endif %}
     
     ecobee_upstairs_target_temperature:
