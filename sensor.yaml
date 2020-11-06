@@ -170,4 +170,12 @@
 
 - platform: moon
 
-
+- platform: template
+  sensors: 
+    mikrotik_router_kb_s_sent:
+      unit_of_measurement: 'kB/s'
+      value_template: "{{ states('sensor.mikrotik_router_kib_s_sent') | float / 8 }} "
+    mikrotik_router_kb_s_received:
+      unit_of_measurement: 'kB/s'
+      value_template: "{{ states('sensor.mikrotik_router_kib_s_received') | float / 8 }}"
+     

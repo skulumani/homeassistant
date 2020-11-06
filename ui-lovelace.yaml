@@ -29,6 +29,18 @@ views:
               - entity: light.exterior_lights
               - entity: light.upstairs_lights
               - entity: light.downstairs_lights
+          - type: 'custom:simple-thermostat'
+            entity: climate.downstairs
+            step_size: 0.1
+            decimals: 1
+            step_layout: row
+            fallback: ' '
+            control:
+              _names: true
+              _headings: false
+              hvac: 
+                heat_cool: false
+              preset: true
       - type: vertical-stack
         cards:
           - type: picture-glance
@@ -307,9 +319,9 @@ views:
                 hours_to_show: 12
                 points_per_hour: 10
                 entities:
-                  - entity: sensor.mikrotik_router_kib_s_sent
+                  - entity: sensor.mikrotik_router_kb_s_sent
                     name: Sent
-                  - entity: sensor.mikrotik_router_kib_s_received
+                  - entity: sensor.mikrotik_router_kb_s_received
                     name: Received
           
 

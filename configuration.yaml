@@ -24,6 +24,8 @@ lovelace:
       type: module
     - url: /local/battery-state-card.js?v=0.0.1
       type: module
+    - url: /local/simple-thermostat.js?v=1
+      type: module
     # - url: /local/custom-header.js?v=0.0.1
     #   type: module
 
