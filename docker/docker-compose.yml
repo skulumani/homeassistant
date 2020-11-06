@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    # devices:
+      # - /dev/ttyUSB0:/dev/ttyUSB0
+    volumes:
+      - /home/pi/homeassistant:/config
+      - /tmp:/tmp
+      # - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8123:8123"
+    # privileged: true
+    environment:
+      - TZ=America/New_York
+    restart: always
+    network_mode: host
+
+  signal-cli-rest-api:
+    container_name: signalcli
+    image: bbernhard/signal-cli-rest-api:latest
+    ports:
+      - "8080:8080" # map docker port 8080 to host port 8080.
+    network_mode: "host"
+    restart: always
+    volumes:
+      - "/home/pi/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
