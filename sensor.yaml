@@ -20,7 +20,7 @@
     ecobee_outside_temperature:
       friendly_name: "Ecobee Outside"
       unit_of_measurement: '°C'
-      value_template: "{{ '%.1f'|format(state_attr('weather.downstairs', 'temperature')) }}"
+      value_template: "{{ '%.2f'|format(state_attr('weather.downstairs', 'temperature')) }}"
     ecobee_outside_humidity:
       friendly_name: "Ecobee Humidity"
       unit_of_measurement: '%'
@@ -32,11 +32,11 @@
     ecobee_downstairs_target_temperature:
       friendly_name: "Downstairs Target"
       unit_of_measurement: '°C'
-      value_template: "{{ '%.1f'|format(state_attr('climate.downstairs', 'temperature')) }}"
+      value_template: "{{ '%.2f'|format(state_attr('climate.downstairs', 'temperature')) }}"
     ecobee_downstairs_current_temperature:
       friendly_name: "Downstairs Temperature"
       unit_of_measurement: '°C'
-      value_template: "{{  '%.1f'|format(state_attr('climate.downstairs', 'current_temperature')) }}"
+      value_template: "{{  '%.2f'|format(state_attr('climate.downstairs', 'current_temperature')) }}"
     ecobee_downstairs_current_humidity:
       friendly_name: "Downstairs Humidity"
       unit_of_measurement: '%'
@@ -54,11 +54,11 @@
     ecobee_upstairs_target_temperature:
       friendly_name: "Upstairs Target"
       unit_of_measurement: '°C'
-      value_template: "{{ '%.1f'|format(state_attr('climate.upstairs', 'temperature')) }}"
+      value_template: "{{ '%.2f'|format(state_attr('climate.upstairs', 'temperature')) }}"
     ecobee_upstairs_current_temperature:
       friendly_name: "Upstairs Temperature"
       unit_of_measurement: '°C'
-      value_template: "{{  '%.1f'|format(state_attr('climate.upstairs', 'current_temperature')) }}"
+      value_template: "{{  '%.2f'|format(state_attr('climate.upstairs', 'current_temperature')) }}"
     ecobee_upstairs_current_humidity:
       friendly_name: "Upstairs Humidity"
       unit_of_measurement: '%'
