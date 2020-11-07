@@ -1,14 +1,14 @@
 title: Home
-custom_header:
-  compact_mode: true
-  button_text:
-    # options: '{{dayNameShort}} {{year4d}}-{{monthNumLZ}}-{{dayNumLZ}}<br>{{ hours24LZ }}:{{ minutesLZ }}'
-    options: '{{dayNameShort}} {{monthNameShort}} {{dayNum}}<br>{{hours24LZ}}:{{minutesLZ}}'
-swipe_nav:
-  wrap: true
-  animate: flip
-  skip_tabs:
-  swipe_amount: 15
+# custom_header:
+#   compact_mode: true
+#   button_text:
+#     # options: '{{dayNameShort}} {{year4d}}-{{monthNumLZ}}-{{dayNumLZ}}<br>{{ hours24LZ }}:{{ minutesLZ }}'
+#     options: '{{dayNameShort}} {{monthNameShort}} {{dayNum}}<br>{{hours24LZ}}:{{minutesLZ}}'
+# swipe_nav:
+#   wrap: true
+#   animate: flip
+#   skip_tabs:
+#   swipe_amount: 15
 views:
   - title: Main
     icon: mdi:home-assistant
