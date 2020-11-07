@@ -13,37 +13,33 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - type: glance
-        columns: 4
-        entities:
-          - entity: light.upstairs_lights
-            name: Upstairs
-            tap_action:
-              action: toggle
-          - entity: light.downstairs_lights
-            name: Downstairs
-            tap_action:
-              action: toggle
-          - entity: light.living_room_lights
-            name: Living Room
-            tap_action:
-              action: toggle
-          - entity: light.sconce_1
-            name: Sconce 1
-            tap_action:
-              action: toggle
-          - entity: light.sconce_2
-            name: Sconce 2
-            tap_action:
-              action: toggle
-          - entity: light.dining_room_lamp
-            name: Dining Room
-            tap_action:
-              action: toggle
-          - entity: light.bedroom_lamp
-            name: Bedroom
-            tap_action:
-              action: toggle
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.upstairs_lights
+                name: Upstairs
+              - type: light
+                entity: light.downstairs_lights
+                name: Downstairs
+              - type: light
+                entity: light.living_room_lights
+                name: Living Room
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.sconce_1
+                name: Sconce 1
+              - type: light
+                entity: light.sconce_2
+                name: Sconce 2
+              - type: light
+                entity: light.dining_room_lamp
+                name: Dining Room
+              - type: light
+                entity: light.bedroom_lamp
+                name: Bedroom
       - type: 'custom:simple-thermostat'
         entity: climate.downstairs
         step_size: 0.1
