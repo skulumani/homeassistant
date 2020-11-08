@@ -228,14 +228,11 @@ light:
       - light.sconce_1
       - light.sconce_2
       - light.dining_room_lamp
+      - light.lamp
   - platform: group
     name: Upstairs Lights
     entities:
       - light.bedroom_lamp
-  - platform: group
-    name: Exterior Lights
-    entities:
-      - light.front_door
 
 mikrotik:
   - name: Mikrotik
