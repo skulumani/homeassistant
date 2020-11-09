@@ -309,22 +309,22 @@ views:
             columns: 3
             show_icon: true
             entities:
-              - entity: binary_sensor.front_camera_ping
+              - entity: device_tracker.front_cam
                 name: Front Cam
                 icon: 'mdi:cctv'
-              - entity: binary_sensor.back_camera_ping
+              - entity: device_tracker.back_cam
                 name: Back Cam
                 icon: 'mdi:cctv'
-              - entity: binary_sensor.router_ping
-                name: Router
+              - entity: device_tracker.modem
+                name: Modem
                 icon: 'mdi:router-network'
-              - entity: binary_sensor.upstairs_wap_ping
+              - entity: device_tracker.upstairs_wap
                 name: Upstairs WAP
                 icon: 'mdi:router-wireless'
-              - entity: binary_sensor.downstairs_wap_ping
+              - entity: device_tracker.downstairs_wap
                 name: Downstairs WAP
                 icon: 'mdi:router-wireless'
-              - entity: binary_sensor.switch_ping
+              - entity: device_tracker.netgear_switch
                 name: Switch
                 icon: 'mdi:switch'
           - type: horizontal-stack
