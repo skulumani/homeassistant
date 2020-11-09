@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Αδυναμία σύνδεσης στον Mikrotik.",
+            "connection_timeout": "Διακοπή σύνδεσης με Mikrotik.",
+            "name_exists": "Το όνομα υπάρχει ήδη.",
+            "ssl_handshake_failure": "Αποτυχίας χειραψίας SSL",
+            "wrong_login": "Το όνομα χρήστη και ο κωδικός πρόσβασης δεν είναι έγκυρα."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Εξυπηρετητής",
+                    "name": "Όνομα ολοκλήρωσης",
+                    "password": "Κωδικός πρόσβασης",
+                    "port": "Θύρα",
+                    "ssl": "Χρήση SSL",
+                    "username": "Όνομα χρήστη"
+                },
+                "description": "Ολοκλήρωση εγκατάστασης Mikrotik Router.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Διάστημα σάρωσης (απαιτείται επανεκκίνηση του HA)",
+                    "track_iface_clients": "Προβολή IP και MAC πελάτη στη διεπαφή",
+                    "track_network_hosts": "Ανίχνευση των συσκευών δικτύου",
+                    "track_network_hosts_timeout": "Εξωχρονισμός ανίχνευσης συσκευών διαδικτύου (δευτερόλεπτα)",
+                    "unit_of_measurement": "Μονάδα μέτρησης"
+                }
+            }
+        }
+    }
+}

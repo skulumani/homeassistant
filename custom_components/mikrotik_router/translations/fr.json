@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Impossible de se connecter à Mikrotik.",
+            "connection_timeout": "Expiration de connexion Mikrotik.",
+            "name_exists": "Le nom existe déjà.",
+            "ssl_handshake_failure": "Échec de poignée de main SSL",
+            "wrong_login": "Identifiant ou mot de passe invalide."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Mot de passe",
+                    "name": "Nom de l'intégration",
+                    "password": "Mot de passe",
+                    "port": "Port",
+                    "ssl": "Utiliser SSL",
+                    "username": "Identifiant"
+                },
+                "description": "Configurer l'intégration de routeur Mikrotik.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Intervalle d'analyse (nécessite le redémarrage HA)",
+                    "track_iface_clients": "Afficher l'IP et le MAC du client sur les interfaces",
+                    "track_network_hosts": "Suivre les appareils du réseau",
+                    "track_network_hosts_timeout": "Suivre l'expiration des appareils du réseau (secondes)",
+                    "unit_of_measurement": "Unité de mesure"
+                }
+            }
+        }
+    }
+}

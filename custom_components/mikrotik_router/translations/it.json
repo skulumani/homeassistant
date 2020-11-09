@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Impossibile connettersi a Mikrotik.",
+            "connection_timeout": "Timeout connessione Mikrotik.",
+            "name_exists": "Nome già esistente.",
+            "ssl_handshake_failure": "Errore SSL handshake",
+            "wrong_login": "Nome utente o password non validi."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Host",
+                    "name": "Nome integrazione",
+                    "password": "Password",
+                    "port": "Porta",
+                    "ssl": "Usa SSL",
+                    "username": "Nome utente"
+                },
+                "description": "Imposta integrazione Router Mikrotik",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Intervallo scansione (richiede riavvio HA)",
+                    "track_iface_clients": "Mostra client MAC e IP sulle interfacce",
+                    "track_network_hosts": "Traccia dispositivi di rete",
+                    "track_network_hosts_timeout": "Traccia timeout dei dispositivi di rete (secondi)",
+                    "unit_of_measurement": "Unità di misura"
+                }
+            }
+        }
+    }
+}

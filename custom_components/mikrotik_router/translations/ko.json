@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Mikrotik에 연결할 수 없습니다.",
+            "connection_timeout": "Mikrotik 연결 시간이 초과되었습니다.",
+            "name_exists": "존재하는 이름입니다.",
+            "ssl_handshake_failure": "SSL 핸드셰이크 실패",
+            "wrong_login": "사용자 이름 또는 비밀번호가 유효하지 않습니다."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "호스트",
+                    "name": "통합 이름",
+                    "password": "비밀번호",
+                    "port": "포트",
+                    "ssl": "SSL 사용",
+                    "username": "사용자 이름"
+                },
+                "description": "Mikrotik 라우터 통합을 설정합니다.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "스캔 간격(HA 재시작 필요)",
+                    "track_iface_clients": "인터페이스에 클라이언트 MAC 및 IP 표시",
+                    "track_network_hosts": "네트워크 기기 추적",
+                    "track_network_hosts_timeout": "네트워크 기기 시간 초과 추적(초)",
+                    "unit_of_measurement": "측정 단위"
+                }
+            }
+        }
+    }
+}

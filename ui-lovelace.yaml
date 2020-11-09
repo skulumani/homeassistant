@@ -14,6 +14,7 @@ views:
     icon: mdi:home-assistant
     cards:
       - type: vertical-stack
+        title: Lights
         cards:
           - type: horizontal-stack
             cards:
@@ -40,31 +41,35 @@ views:
               - type: light
                 entity: light.bedroom_lamp
                 name: Bedroom
-      - type: 'custom:simple-thermostat'
-        entity: climate.downstairs
-        step_size: 0.1
-        decimals: 1
-        step_layout: row
-        fallback: ' '
-        control:
-          _names: true
-          _headings: false
-          hvac: 
-            heat_cool: false
-          preset: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.upstairs
-        step_size: 0.1
-        decimals: 1
-        step_layout: row
-        fallback: ' '
-        control:
-          _names: true
-          _headings: false
-          hvac: 
-            heat_cool: false
-          preset: true
       - type: vertical-stack
+        title: Thermostats
+        cards:
+          - type: 'custom:simple-thermostat'
+            entity: climate.downstairs
+            step_size: 0.1
+            decimals: 1
+            step_layout: row
+            fallback: ' '
+            control:
+              _names: true
+              _headings: false
+              hvac: 
+                heat_cool: false
+              preset: true
+          - type: 'custom:simple-thermostat'
+            entity: climate.upstairs
+            step_size: 0.1
+            decimals: 1
+            step_layout: row
+            fallback: ' '
+            control:
+              _names: true
+              _headings: false
+              hvac: 
+                heat_cool: false
+              preset: true
+      - type: vertical-stack
+        title: Cameras
         cards:
           - type: picture-glance
             title: front
@@ -198,6 +203,25 @@ views:
     icon: mdi:cog
     cards:
       - type: vertical-stack
+        title: People
+        cards:
+          - type: glance
+            entities:
+              - binary_sensor.shankar_presence
+              - binary_sensor.christine_presence
+          - type: 'custom:battery-state-card'
+            title: false
+            sort_by_level: asc
+            entities:
+              - entity: sensor.pixel_2_battery_level
+                name: 'Pixel 2'
+              - entity: sensor.sm_g960u1_battery_level
+                name: 'S9'
+              - entity: sensor.nexus_7_battery_level
+                name: 'Nexus 7'
+
+      - type: vertical-stack
+        title: Home Assistant
         cards:
           - type: glance
             entities:
@@ -278,30 +302,9 @@ views:
                 tap_action:
                   action: call-service
                   service: group.reload
-          - type: glance
-            entities:
-              - binary_sensor.shankar_presence
-              - binary_sensor.christine_presence
       - type: vertical-stack
+        title: Network
         cards:
-          - type: 'custom:battery-state-card'
-            title: false
-            sort_by_level: asc
-            entities:
-              - entity: sensor.pixel_2_battery_level
-                name: 'Pixel 2'
-              - entity: sensor.sm_g960u1_battery_level
-                name: 'S9'
-              - entity: sensor.nexus_7_battery_level
-                name: 'Nexus 7'
-          - type: entities
-            title: Status
-            entities:
-              - sensor.speedtest_download
-              - sensor.speedtest_upload
-              - sensor.speedtest_ping
-              - sensor.duckdns_home
-              - sensor.myip
           - type: glance
             columns: 3
             show_icon: true
@@ -327,25 +330,41 @@ views:
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
-                name: Router Packets
+                name: CPU
                 icon: mdi:server
                 hours_to_show: 12
                 points_per_hour: 10
                 entities:
-                  - entity: sensor.mikrotik_router_packets_s_received
-                    name: Received
-                  - entity: sensor.mikrotik_router_packets_s_sent
-                    name: Sent
+                  - entity: sensor.mikrotik_cpu_load
               - type: 'custom:mini-graph-card'
-                name: Router KiB
+                name: Memory
+                icon: mdi:memory
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_memory_usage
+              - type: 'custom:mini-graph-card'
+                name: HDD
+                icon: mdi:harddisk
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_hdd_usage
+              - type: 'custom:mini-graph-card'
+                name: Router KB/s
                 icon: mdi:server
                 hours_to_show: 12
                 points_per_hour: 10
                 entities:
-                  - entity: sensor.mikrotik_router_kb_s_sent
+                  - entity: sensor.mikrotik_ether1_tx
                     name: Sent
-                  - entity: sensor.mikrotik_router_kb_s_received
+                  - entity: sensor.mikrotik_ether1_rx
                     name: Received
-          
-
-
+          - type: entities
+            title: Status
+            entities:
+              - sensor.speedtest_download
+              - sensor.speedtest_upload
+              - sensor.speedtest_ping
+              - sensor.duckdns_home
+              - sensor.myip

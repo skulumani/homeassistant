@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Mikrotikに接続できません。",
+            "connection_timeout": "Mikrotik接続がタイムアウトしました。",
+            "name_exists": "名前は既に存在します。",
+            "ssl_handshake_failure": "SSLハンドシェイクに失敗しました",
+            "wrong_login": "ユーザ名またはパスワードが無効です。"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "ホスト",
+                    "name": "統合名",
+                    "password": "パスワード",
+                    "port": "ポート",
+                    "ssl": "SSLを使用します",
+                    "username": "ユーザ名"
+                },
+                "description": "Mikrotikルータ統合をセットアップします。",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "スキャン間隔（HAの再起動が必要）",
+                    "track_iface_clients": "クライアントのMACとインターフェイスのIPを表示します",
+                    "track_network_hosts": "ネットワーク デバイスをトラッキングします",
+                    "track_network_hosts_timeout": "ネットワーク デバイスのタイムアウト（秒）をトラッキングします",
+                    "unit_of_measurement": "測定単位"
+                }
+            }
+        }
+    }
+}

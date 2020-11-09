@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Nem lehet csatlakozni a Mikrotikhez.",
+            "connection_timeout": "Mikrotik kapcsolat időtúllépés.",
+            "name_exists": "A név már létezik",
+            "ssl_handshake_failure": "SSL-kézfogás sikertelen",
+            "wrong_login": "Érvénytelen felhasználónév vagy jelszó."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Hoszt",
+                    "name": "Integráció neve",
+                    "password": "Jelszó",
+                    "port": "Port",
+                    "ssl": "SSL használata",
+                    "username": "Felhasználónév"
+                },
+                "description": "Állítsd be a Mikrotik Router integrációt.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Felderítési időköz (HA újraindítása szükséges)",
+                    "track_iface_clients": "Ügyfél MAC- és IP-címének mutatása az interfészeken",
+                    "track_network_hosts": "Hálózati eszközök követése",
+                    "track_network_hosts_timeout": "Hálózati eszközök követésének időtúllépése (másodperc)",
+                    "unit_of_measurement": "Mértékegység"
+                }
+            }
+        }
+    }
+}

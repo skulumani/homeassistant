@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "无法连接到 Mikrotik。",
+            "connection_timeout": "Mikrotik 连接超时。",
+            "name_exists": "名称已存在。",
+            "ssl_handshake_failure": "SSL 交握失败",
+            "wrong_login": "无效的用户名或密码。"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "主机",
+                    "name": "集成名称",
+                    "password": "密码",
+                    "port": "端口",
+                    "ssl": "使用 SSL",
+                    "username": "用户名"
+                },
+                "description": "设置 Mikrotik 路由器集成。",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "扫描间隔（需要重新启动 HA）",
+                    "track_iface_clients": "显示接口上的客户端 MAC 和 IP",
+                    "track_network_hosts": "跟踪网络设备",
+                    "track_network_hosts_timeout": "跟踪网络设备超时（秒）",
+                    "unit_of_measurement": "测量单位"
+                }
+            }
+        }
+    }
+}

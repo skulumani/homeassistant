@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Nelze se připojit k Mikrotiku.",
+            "connection_timeout": "Časový limit připojení vypršel.",
+            "name_exists": "Název již existuje.",
+            "ssl_handshake_failure": "Selhání handshake SSL",
+            "wrong_login": "Neplatné uživatelské jméno nebo heslo."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Zařízení",
+                    "name": "Název integrace",
+                    "password": "Heslo",
+                    "port": "Port",
+                    "ssl": "Použití SSL",
+                    "username": "Uživatel"
+                },
+                "description": "Nastavte integraci Mikrotik Router.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Interval skenování (vyžaduje restartování HA)",
+                    "track_iface_clients": "Zobrazit klientské MAC a IP na rozhraních",
+                    "track_network_hosts": "Sledování síťových zařízení",
+                    "track_network_hosts_timeout": "Časový limit sledování síťových zařízení (v sekundách)",
+                    "unit_of_measurement": "Jednotka měření"
+                }
+            }
+        }
+    }
+}

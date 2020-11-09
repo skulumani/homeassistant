@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Mikrotik'e bağlanılamıyor.",
+            "connection_timeout": "Mikrotik bağlantısı zaman aşımı.",
+            "name_exists": "Bu ad zaten var.",
+            "ssl_handshake_failure": "SSL uyuşma hatası",
+            "wrong_login": "Geçersiz kullanıcı adı veya şifresi."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Sunucu",
+                    "name": "Entegrasyon adı",
+                    "password": "Şifre",
+                    "port": "Port",
+                    "ssl": "SSL kullan",
+                    "username": "Kullanıcı adı"
+                },
+                "description": "Mikrotik yönlendirici entegrasyonunu kur",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Aralığı tara (HA yeniden başlatma gerektirir)",
+                    "track_iface_clients": "Müşteri MAC'ini ve IP'sini arayüzlerde göster",
+                    "track_network_hosts": "Ağ cihazlarını izle",
+                    "track_network_hosts_timeout": "Ağ cihazı izleme zaman aşımı (saniyeler)",
+                    "unit_of_measurement": "Ölçü birimi"
+                }
+            }
+        }
+    }
+}

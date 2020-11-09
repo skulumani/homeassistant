@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Não é possível ligar à Mikrotik.",
+            "connection_timeout": "Tempo limite da ligação à Mikrotik.",
+            "name_exists": "O nome já existe.",
+            "ssl_handshake_failure": "Falha no reconhecimento SSL",
+            "wrong_login": "Nome de utilizador ou palavra-passe inválidos."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Anfitrião",
+                    "name": "Nome da integração",
+                    "password": "Palavra-passe",
+                    "port": "Porta",
+                    "ssl": "Usar SSL",
+                    "username": "Nome de utilizador"
+                },
+                "description": "Configurar a integração do Mikrotik Router.",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Intervalo de verificação (requer reinicialização de HA)",
+                    "track_iface_clients": "Mostrar MAC e IP do cliente nas interfaces",
+                    "track_network_hosts": "Rastrear dispositivos de rede",
+                    "track_network_hosts_timeout": "Rastrear o tempo limite dos dispositivos de rede (segundos)",
+                    "unit_of_measurement": "Unidade de medida"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "لا يمكن الاتصال بـ (Mikrotik).",
+            "connection_timeout": "مهلة اتصال (Mikrotik).",
+            "name_exists": "الاسم موجود بالفعل.",
+            "ssl_handshake_failure": "فشل تأكيد الاتصال (SSL)",
+            "wrong_login": "خطأ في اسم المستخدم أو كلمة مرور."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "المُضيف",
+                    "name": "اسم الدّمج",
+                    "password": "كلمة المرور",
+                    "port": "منفذ",
+                    "ssl": "استعمل طبقة الوصلات الآمنة (SSL)",
+                    "username": "اسم المستخدم"
+                },
+                "description": "إعداد دمج موجِّه (Mikrotik).",
+                "title": "Mikrotik Router"
+            }
+        },
+        "title": "Mikrotik Router"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "الفاصل الزمني للمسح الضوئي (يتطلب إعادة تشغيل HA)",
+                    "track_iface_clients": "إظهار  عنوان التحكّم في الوسائط (MAC)  و بروتوكول الإنترنت (IP) للعميل على الواجهات",
+                    "track_network_hosts": "تتبّع أجهزة الشبكة",
+                    "track_network_hosts_timeout": "مهلة تتبّع أجهزة الشبكة (بالثواني)",
+                    "unit_of_measurement": "وحدة قياس"
+                }
+            }
+        }
+    }
+}

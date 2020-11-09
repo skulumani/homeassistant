@@ -1,0 +1,39 @@
+{
+    "config": {
+        "error": {
+            "cannot_connect": "Нет связи с Mikrotik.",
+            "connection_timeout": "Таймаут подключения к Mikrotik.",
+            "name_exists": "Имя уже используется.",
+            "ssl_handshake_failure": "Ошибка SSL-соединения",
+            "wrong_login": "Неверные имя пользователя или пароль."
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "host": "Хост",
+                    "name": "Название интеграции",
+                    "password": "Пароль",
+                    "port": "Порт",
+                    "ssl": "Использовать SSL",
+                    "username": "Имя пользователя"
+                },
+                "description": "Настройка интеграции роутера Mikrotik.",
+                "title": "Роутер Mikrotik"
+            }
+        },
+        "title": "Роутер Mikrotik"
+    },
+    "options": {
+        "step": {
+            "device_tracker": {
+                "data": {
+                    "scan_interval": "Период сканирования (требуется перезагрузка HA)",
+                    "track_iface_clients": "Показывать в интерфейсе MAC и IP клиентов",
+                    "track_network_hosts": "Отслеживание сетевых устройств",
+                    "track_network_hosts_timeout": "Таймаут отслеживания сетевых устройств (секунд)",
+                    "unit_of_measurement": "Единицы измерения"
+                }
+            }
+        }
+    }
+}
