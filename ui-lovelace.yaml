@@ -88,9 +88,6 @@ views:
         cards:
           - type: weather-forecast
             entity: weather.openweathermap
-          - type: 'custom:weather-card-chart'
-            title: Weather
-            weather: weather.openweathermap
           - type: vertical-stack
             cards:
               - type: picture-entity
@@ -133,6 +130,7 @@ views:
             entities:
               - sensor.moon
               - sun.sun
+              - sensor.openskyflights
           - type: history-graph
             title: "Downstairs"
             hours_to_show: 12
