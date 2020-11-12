@@ -46,6 +46,10 @@ frontend:
 
 default_config:
 
+recorder:
+  auto_purge: true
+  purge_keep_days: 3
+
 duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
