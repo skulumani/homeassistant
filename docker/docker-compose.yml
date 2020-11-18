@@ -7,7 +7,7 @@ services:
     # devices:
       # - /dev/ttyUSB0:/dev/ttyUSB0
     volumes:
-      - /home/pi/homeassistant:/config
+      - /home/shankar/homeassistant:/config
       - /tmp:/tmp
       # - /etc/localtime:/etc/localtime:ro
     ports:
@@ -26,4 +26,4 @@ services:
     network_mode: "host"
     restart: always
     volumes:
-      - "/home/pi/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
+      - "/home/shankar/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
