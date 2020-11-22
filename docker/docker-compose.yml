@@ -27,3 +27,17 @@ services:
     restart: always
     volumes:
       - "/home/shankar/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
+
+  # glances:
+  #   container_name: glances
+  #   image: nicolargo/glances:latest-alpine
+  #   restart: always
+  #   pid: host
+  #   network_mode: host
+  #   ports:
+  #     - "61208:61208"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     - "GLANCES_OPT=-w"
+
