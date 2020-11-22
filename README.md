@@ -197,13 +197,13 @@ docker-compose -f docker/homeassistant-compose.yml restart
 ## Signal
 
 ~~~
-curl -X POST -H "Content-Type: application/json" 'http://<ip>:<port>/v1/register/<number>'
+curl -X POST -H "Content-Type: application/json" 'http://127.0.0.1:8080/v1/register/<number>'
 ~~~
 
 Verify
 
 ~~~
-curl -X POST -H "Content-Type: application/json" 'http://<ip>:<port>/v1/register/<number>/verify/<verification code>'
+curl -X POST -H "Content-Type: application/json" 'http://127.0.0.1:8080/v1/register/<number>/verify/<verification code>'
 ~~~
 
 # References

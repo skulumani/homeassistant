@@ -16,8 +16,8 @@ CAM_PASSWORD="dgdiPUdFwqkqBwRFSq"
 FRONT_IP="192.168.88.15"
 BACK_IP="192.168.88.16"
 ## Network and Local Storage Locations  ##
-HQDIR="/media/data/video/high/" #Trailing '/' is necessary here
-LQDIR="/media/data/video/low/"
+HQDIR="/media/shankar/usbdrive/video/high/" #Trailing '/' is necessary here
+LQDIR="/media/shankar/usbdrive/video/low/"
 
 ## Record Time per File ##
 HQLENGTH="900" # (Runtime expressed in seconds)
@@ -30,5 +30,5 @@ HQLENGTH="900" # (Runtime expressed in seconds)
 # -an     // Disable audio recording
 # -t      // Stop writing the output after its duration reaches duration
 #
-ffmpeg -v 0 -rtsp_transport tcp -i "rtsp://${CAM_USERNAME}:${CAM_PASSWORD}@${FRONT_IP}:554/h264Preview_01_main" -vcodec copy -acodec copy -t ${HQLENGTH} ${HQDIR}${FRONT_CAM}.mkv &
-ffmpeg -v 0 -rtsp_transport tcp -i "rtsp://${CAM_USERNAME}:${CAM_PASSWORD}@${BACK_IP}:554/h264Preview_01_main" -vcodec copy -acodec copy -t ${HQLENGTH} ${HQDIR}${BACK_CAM}.mkv &
+ffmpeg -v 0 -rtsp_transport tcp -i "rtsp://${CAM_USERNAME}:${CAM_PASSWORD}@${FRONT_IP}:554/h264Preview_01_main" -vcodec copy -acodec copy -t ${HQLENGTH} ${HQDIR}${FRONT_CAM}.mp4 &
+ffmpeg -v 0 -rtsp_transport tcp -i "rtsp://${CAM_USERNAME}:${CAM_PASSWORD}@${BACK_IP}:554/h264Preview_01_main" -vcodec copy -acodec copy -t ${HQLENGTH} ${HQDIR}${BACK_CAM}.mp4 &

@@ -213,7 +213,7 @@ views:
             entities:
               - entity: sensor.pixel_2_battery_level
                 name: 'Pixel 2'
-              - entity: sensor.sm_g960u1_battery_level
+              - entity: sensor.galaxy_s9_battery_level
                 name: 'S9'
               - entity: sensor.nexus_7_battery_level
                 name: 'Nexus 7'
