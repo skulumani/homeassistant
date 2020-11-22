@@ -9,6 +9,10 @@
       arg: eth0
     - type: network_out
       arg: eth0
+    - type: processor_temperature
+    - type: load_15m
+    - type: load_5m
+    - type: load_1m
 - platform: template
   sensors:
     solar_angle:
