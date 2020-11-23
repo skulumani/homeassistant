@@ -238,15 +238,15 @@ light:
     entities:
       - light.bedroom_lamp
 
-mikrotik:
-  - name: Mikrotik
-    host:  !secret mikrotik_host
-    port: 8728
-    arp_ping: false
-    force_dhcp: false
-    detection_time: 30 # seconds before device is marked away
-    username: !secret mikrotik_username
-    password: !secret mikrotik_password
+# mikrotik:
+#   - name: Mikrotik
+#     host:  !secret mikrotik_host
+#     port: 8728
+#     arp_ping: false
+#     force_dhcp: false
+#     detection_time: 30 # seconds before device is marked away
+#     username: !secret mikrotik_username
+#     password: !secret mikrotik_password
 
 # INCLUDES
 sensor: !include sensor.yaml
