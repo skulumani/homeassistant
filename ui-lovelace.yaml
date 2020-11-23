@@ -241,7 +241,9 @@ views:
                 name: Automations
               - entity: sensor.count_scripts
                 name: Scripts
-          - type: horizontal-stack
+          - type: grid
+            title: Ubuntu-Server
+            square: false
             cards:
               - type: 'custom:mini-graph-card'
                 align_icon: left
@@ -271,6 +273,9 @@ views:
                 name: Data 
                 show:
                   fill: false
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - sensor.processor_temperature
           - type: glance
             title: false
             show_state: false
@@ -325,7 +330,8 @@ views:
               - entity: device_tracker.netgear_switch
                 name: Switch
                 icon: 'mdi:switch'
-          - type: horizontal-stack
+          - type: grid
+            title: Router
             cards:
               - type: 'custom:mini-graph-card'
                 name: CPU
@@ -358,11 +364,26 @@ views:
                     name: Sent
                   - entity: sensor.mikrotik_ether1_rx
                     name: Received
+          - type: grid
+            cards:
+              - type: 'custom:mini-graph-card'
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - sensor.speedtest_download
+              - type: 'custom:mini-graph-card'
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - sensor.speedtest_upload
+              - type: 'custom:mini-graph-card'
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - sensor.speedtest_ping
           - type: entities
             title: Status
             entities:
-              - sensor.speedtest_download
-              - sensor.speedtest_upload
-              - sensor.speedtest_ping
               - sensor.duckdns_home
               - sensor.myip
+
