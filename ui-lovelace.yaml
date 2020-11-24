@@ -13,34 +13,30 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - type: vertical-stack
+      - type: grid
         title: Lights
         cards:
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.upstairs_lights
-                name: Upstairs
-              - type: light
-                entity: light.downstairs_lights
-                name: Downstairs
-              - type: light
-                entity: light.living_room_lights
-                name: Living Room
-          - type: horizontal-stack
-            cards:
-              - type: light
-                entity: light.sconce_1
-                name: Sconce 1
-              - type: light
-                entity: light.sconce_2
-                name: Sconce 2
-              - type: light
-                entity: light.dining_room_lamp
-                name: Dining Room
-              - type: light
-                entity: light.bedroom_lamp
-                name: Bedroom
+          - type: light
+            entity: light.upstairs_lights
+            name: Upstairs
+          - type: light
+            entity: light.downstairs_lights
+            name: Downstairs
+          - type: light
+            entity: light.living_room_lights
+            name: Living Room
+          - type: light
+            entity: light.sconce_1
+            name: Sconce 1
+          - type: light
+            entity: light.sconce_2
+            name: Sconce 2
+          - type: light
+            entity: light.dining_room_lamp
+            name: Dining Room
+          - type: light
+            entity: light.bedroom_lamp
+            name: Bedroom
       - type: vertical-stack
         title: Thermostats
         cards:
@@ -88,12 +84,10 @@ views:
         cards:
           - type: weather-forecast
             entity: weather.openweathermap
-          - type: vertical-stack
-            cards:
-              - type: picture-entity
-                entity: camera.radar_dc_current
-              - type: picture-entity
-                entity: camera.radar_dc_animated
+          - type: picture-entity
+            entity: camera.radar_dc_current
+          - type: picture-entity
+            entity: camera.radar_dc_animated
       - type: vertical-stack
         cards:
           - type: 'custom:mini-graph-card'
@@ -108,8 +102,8 @@ views:
               - entity: sensor.ecobee_outside_temperature
                 name: Outside
                 show_state: false
-            hours_to_show: 48
-            points_per_hour: 6
+            hours_to_show: 24
+            points_per_hour: 10
             line_width: 2
           - type: 'custom:mini-graph-card'
             name: Humidity
@@ -123,8 +117,8 @@ views:
               - entity: sensor.ecobee_outside_humidity
                 name: Outside
                 show_state: false
-            hours_to_show: 48
-            points_per_hour: 6
+            hours_to_show: 24
+            points_per_hour: 10
             line_width: 2
           - type: glance
             entities:
@@ -132,11 +126,13 @@ views:
               - sun.sun
               - sensor.openskyflights
           - type: history-graph
-            title: "Downstairs"
-            hours_to_show: 12
+            title: "Downstairs Temperature"
+            hours_to_show: 24
             entities:
-              - sensor.ecobee_downstairs_target_temperature
-              - sensor.ecobee_downstairs_current_temperature
+              - entity: sensor.ecobee_downstairs_target_temperature
+                name: Target
+              - entity: sensor.ecobee_downstairs_current_temperature
+                name: Actual
               - sensor.ecobee_downstairs_state
               - sensor.ecobee_downstairs_fan
           - type: history-graph
