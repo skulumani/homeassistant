@@ -125,24 +125,34 @@ views:
               - sensor.moon
               - sun.sun
               - sensor.openskyflights
+          # - type: history-graph
+          #   title: "Downstairs Temperature"
+          #   hours_to_show: 24
+          #   entities:
+          #     - entity: sensor.ecobee_downstairs_target_temperature
+          #       name: Target
+          #     - entity: sensor.ecobee_downstairs_current_temperature
+          #       name: Actual
+          #     - sensor.ecobee_downstairs_state
+          #     - sensor.ecobee_downstairs_fan
+          # - type: history-graph
+          #   title: "Upstairs"
+          #   hours_to_show: 12
+          #   entities:
+          #     - sensor.ecobee_upstairs_target_temperature
+          #     - sensor.ecobee_upstairs_current_temperature
+          #     - sensor.ecobee_upstairs_state
+          #     - sensor.ecobee_upstairs_fan
           - type: history-graph
-            title: "Downstairs Temperature"
+            title: "Downstairs"
             hours_to_show: 24
             entities:
-              - entity: sensor.ecobee_downstairs_target_temperature
-                name: Target
-              - entity: sensor.ecobee_downstairs_current_temperature
-                name: Actual
-              - sensor.ecobee_downstairs_state
-              - sensor.ecobee_downstairs_fan
-          - type: history-graph
+              - climate.downstairs
+          - type:  history-graph
             title: "Upstairs"
-            hours_to_show: 12
+            hours_to_show: 24
             entities:
-              - sensor.ecobee_upstairs_target_temperature
-              - sensor.ecobee_upstairs_current_temperature
-              - sensor.ecobee_upstairs_state
-              - sensor.ecobee_upstairs_fan
+              - climate.upstairs
   - title: F1
     icon: mdi:car-sports
     cards:
