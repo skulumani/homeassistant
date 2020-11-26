@@ -7,7 +7,7 @@ services:
     # devices:
       # - /dev/ttyUSB0:/dev/ttyUSB0
     volumes:
-      - /home/shankar/homeassistant:/config
+      - /home/shankar/Documents/homeassistant:/config
       - /tmp:/tmp
       - /var/run/docker.sock:/var/run/docker.sock
       - /media/shankar/usbdrive/video:/media/camera
@@ -28,7 +28,7 @@ services:
     network_mode: "host"
     restart: always
     volumes:
-      - "/home/shankar/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
+      - "/home/shankar/Documents/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
   
   omada-controller:
     container_name: omada-controller

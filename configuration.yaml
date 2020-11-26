@@ -64,8 +64,6 @@ device_tracker: !include device_tracker.yaml
 # Bayesian Sensors for Home detection for each person
 binary_sensor: !include binary_sensor.yaml
 
-# define switches
-switch: !include switch.yaml
 
 # Text to speech
 tts:
@@ -216,6 +214,9 @@ google:
   client_secret: !secret google_calendar_clientsecret
   track_new_calendar: false
 
+circadian_lighting:
+
+
 light:
   - platform: group
     name: Living Room Lights
@@ -255,6 +256,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+switch: !include switch.yaml
 
 # DEPRECATED SHIT
 # google_location:
