@@ -14,6 +14,7 @@ views:
     icon: mdi:home-assistant
     cards:
       - type: grid
+        square: false
         title: Lights
         cards:
           - type: light
@@ -250,10 +251,13 @@ views:
           - type: grid
             title: Ubuntu-Server
             square: false
+            columns: 2
             cards:
               - type: 'custom:mini-graph-card'
                 align_icon: left
                 align_state: center
+                hours_to_show: 12
+                points_per_hour: 10
                 entities:
                   - sensor.processor_use_percent
                 font_size: 75
@@ -264,6 +268,8 @@ views:
               - type: 'custom:mini-graph-card'
                 align_icon: left
                 align_state: center
+                hours_to_show: 12
+                points_per_hour: 10
                 entities:
                   - sensor.memory_use_percent
                 font_size: 75
@@ -273,6 +279,8 @@ views:
               - type: 'custom:mini-graph-card'
                 align_icon: left
                 align_state: center
+                hours_to_show: 12
+                points_per_hour: 10
                 entities:
                   - sensor.disk_use_percent_config
                 font_size: 75
@@ -280,9 +288,16 @@ views:
                 show:
                   fill: false
               - type: 'custom:mini-graph-card'
+                hours_to_show: 12
+                points_per_hour: 10
                 entities:
                   - sensor.processor_temperature
+                font_size: 75
+                name: Temp 
+                show:
+                  fill: false
           - type: glance
+            columns: 4
             title: false
             show_state: false
             show_header_toggle: false
@@ -311,6 +326,12 @@ views:
                 tap_action:
                   action: call-service
                   service: group.reload
+              - entity: zone.home
+                icon: 'mdi:play'
+                name: Start BOINC
+              - entity: zone.home
+                icon: 'mdi:pause'
+                name: 'Stop BOINC'
       - type: vertical-stack
         title: Network
         cards:
@@ -338,6 +359,8 @@ views:
                 icon: 'mdi:switch'
           - type: grid
             title: Router
+            columns: 2
+            square: false
             cards:
               - type: 'custom:mini-graph-card'
                 name: CPU
@@ -346,8 +369,14 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_cpu_load
+                font_size: 75
+                show:
+                  fill: false
               - type: 'custom:mini-graph-card'
                 name: Memory
+                font_size: 75
+                show:
+                  fill: false
                 icon: mdi:memory
                 hours_to_show: 12
                 points_per_hour: 10
@@ -355,6 +384,9 @@ views:
                   - entity: sensor.mikrotik_memory_usage
               - type: 'custom:mini-graph-card'
                 name: HDD
+                font_size: 75
+                show:
+                  fill: false
                 icon: mdi:harddisk
                 hours_to_show: 12
                 points_per_hour: 10
@@ -362,6 +394,9 @@ views:
                   - entity: sensor.mikrotik_hdd_usage
               - type: 'custom:mini-graph-card'
                 name: Router KB/s
+                font_size: 75
+                show:
+                  fill: false
                 icon: mdi:server
                 hours_to_show: 12
                 points_per_hour: 10
@@ -371,20 +406,27 @@ views:
                   - entity: sensor.mikrotik_ether1_rx
                     name: Received
           - type: grid
+            columns: 2
+            square: false
+            title: Internet
             cards:
               - type: 'custom:mini-graph-card'
+                name: ISP Speed
                 hours_to_show: 12
                 points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
                 entities:
                   - sensor.speedtest_download
-              - type: 'custom:mini-graph-card'
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
                   - sensor.speedtest_upload
               - type: 'custom:mini-graph-card'
+                name: Ping
                 hours_to_show: 12
                 points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
                 entities:
                   - sensor.speedtest_ping
           - type: entities
