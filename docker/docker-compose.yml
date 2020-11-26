@@ -29,7 +29,22 @@ services:
     restart: always
     volumes:
       - "/home/shankar/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
-
+  
+  omada-controller:
+    container_name: omada-controller
+    image: mbentley/omada-controller:latest
+    restart: always
+    network_mode: "host"
+    environment:
+      - TZ=America/New_York
+      - MANAGE_HTTP_PORT=8088
+      - MANAGE_HTTPS_PORT=8043
+      - PORTAL_HTTP_PORT=8088
+      - PORTAL_HTTPS_PORT=8843
+    volumes:
+      - omada-data:/opt/tplink/EAPController/data
+      - omada-work:/opt/tplink/EAPController/work
+      - omada-logs:/opt/tplink/EAPController/logs
   # glances:
   #   container_name: glances
   #   image: nicolargo/glances:latest-alpine
@@ -42,4 +57,10 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   environment:
   #     - "GLANCES_OPT=-w"
+volumes:
+  omada-data:
+
+  omada-work:
+
+  omada-logs:
 
