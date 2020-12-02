@@ -216,6 +216,12 @@ google:
 
 circadian_lighting:
 
+# monitor docker
+monitor_docker:
+  - name: Docker
+
+
+
 
 light:
   - platform: group

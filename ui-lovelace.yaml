@@ -332,6 +332,7 @@ views:
               - entity: zone.home
                 icon: 'mdi:pause'
                 name: 'Stop BOINC'
+
       - type: vertical-stack
         title: Network
         cards:
@@ -434,4 +435,148 @@ views:
             entities:
               - sensor.duckdns_home
               - sensor.myip
+  - title: Docker
+    icon: mdi:docker
+    cards:
+      - type: grid
+        title: Docker Status
+        columns: 1
+        square: false
+        cards:
+        - type: glance
+          entities:
+            - entity: sensor.docker_containers_running
+              name: Running
+            - entity: sensor.docker_containers_paused
+              name: Paused
+            - entity: sensor.docker_containers_stopped
+              name: Stopped
+            - entity: sensor.docker_homeassistant_status
+              name: HA
+            - entity:  sensor.docker_version
+              name: Ver
+        - type:  horizontal-stack
+          cards:
+            - type: 'custom:mini-graph-card'
+              name: Docker CPU
+              hours_to_show: 12
+              points_per_hour: 10
+              font_size: 75
+              show:
+                fill: false
+              entities:
+                - sensor.docker_cpu
+            - type: 'custom:mini-graph-card'
+              name: Docker Mem
+              hours_to_show: 12
+              points_per_hour: 10
+              font_size: 75
+              show:
+                fill: false
+              entities:
+                - sensor.docker_memory
+
+      - type: grid
+        columns: 1
+        square: false
+        title: HA Docker
+        cards: 
+          - type: entities
+            entities:
+              - entity: sensor.docker_homeassistant_state
+                name: State
+              - entity: sensor.docker_homeassistant_status
+                name: Status
+              # - sensor.docker_homeassistant_up_time
+              # - sensor.docker_homeassistant_cpu
+              # - sensor.docker_homeassistant_memory
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: HA CPU
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_homeassistant_cpu
+              - type: 'custom:mini-graph-card'
+                name: HA Mem
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_homeassistant_memory
+      - type: grid
+        columns: 1
+        square: false
+        title: Omada Docker
+        cards: 
+          - type: entities
+            entities:
+              - entity: sensor.docker_omada_controller_state
+                name: State
+              - entity: sensor.docker_omada_controller_status
+                name: Status
+              # - sensor.docker_homeassistant_up_time
+              # - sensor.docker_homeassistant_cpu
+              # - sensor.docker_homeassistant_memory
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Omada CPU
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_omada_controller_cpu
+              - type: 'custom:mini-graph-card'
+                name: Omada Mem
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_omada_controller_memory
+      - type: grid
+        columns: 1
+        square: false
+        title: Signal CLI Docker
+        cards: 
+          - type: entities
+            entities:
+              - entity: sensor.docker_signalcli_state
+                name: State
+              - entity: sensor.docker_signalcli_status
+                name: Status
+              # - sensor.docker_homeassistant_up_time
+              # - sensor.docker_homeassistant_cpu
+              # - sensor.docker_homeassistant_memory
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Signal CPU
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_signalcli_cpu
+              - type: 'custom:mini-graph-card'
+                name: Signal Mem
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_signalcli_memory
+
 
