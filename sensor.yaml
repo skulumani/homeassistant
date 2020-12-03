@@ -3,6 +3,8 @@
   resources:
     - type: disk_use_percent
       arg: /config
+    - type: disk_use_percent
+      arg: /media/camera
     - type: memory_use_percent
     - type: memory_use
     - type: memory_free
@@ -27,10 +29,24 @@
     - type: last_boot
 - platform: template
   sensors:
-    solar_angle:
-      friendly_name: "Sun Angle"
+    solar_elevation:
+      friendly_name: "Solar Elevation"
       unit_of_measurement: '°'
       value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'elevation')) }}"
+    solar_azimuth:
+      friendly_name: "Solar Azimuth"
+      unit_of_measurement: '°'
+      value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'azimuth')) }}"
+    sunrise:
+      friendly_name: "Sunrise"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_rising'), '')) | timestamp_local }}"
+    sunset:
+      friendly_name: "Sunset"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_setting'), '')) | timestamp_local }}"
+    noon:
+      friendly_name: "Noon"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_noon'), '')) | timestamp_local }}"
+
 - platform: template
   sensors:
     ecobee_outside_temperature:
@@ -183,6 +199,12 @@
       value_template: "{{ states.input_select | list | length }}"
     count_input_datetimes:
       value_template: "{{ states.input_datetime | list | length }}"
+
+- platform: template
+  sensors:
+    speedtest_last_run:
+      friendly_name: Last speedtest
+      value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
 
 - platform: moon
 - platform: opensky

@@ -85,10 +85,20 @@ views:
         cards:
           - type: weather-forecast
             entity: weather.openweathermap
-          - type: picture-entity
-            entity: camera.radar_dc_current
+          # - type: picture-entity
+          #   entity: camera.radar_dc_current
           - type: picture-entity
             entity: camera.radar_dc_animated
+          - type: glance
+            entities:
+              - sensor.moon
+              - sun.sun
+              - sensor.openskyflights
+          - type: entities
+            entities:
+              - sensor.sunrise
+              - sensor.noon
+              - sensor.sunset
       - type: vertical-stack
         cards:
           - type: 'custom:mini-graph-card'
@@ -96,54 +106,91 @@ views:
             entities:
               - entity: sensor.downstairs_temperature
                 name: Downstairs
-                show_state: false
+                show_state: true
+                state_adaptive_color: true
               - entity: sensor.upstairs_temperature
                 name: Upstairs
-                show_state: false
+                show_state: true
+                state_adaptive_color: true
               - entity: sensor.ecobee_outside_temperature
                 name: Outside
+                show_state: true
+                state_adaptive_color: true
+              - color: '#666666'
+                entity: sensor.solar_elevation
+                line_width: 1
+                show_fill: false
                 show_state: false
-            hours_to_show: 24
-            points_per_hour: 10
+                y_axis: secondary
+            hour24: true
+            hours_to_show: 168
+            points_per_hour: 12
             line_width: 2
+            lower_bound_secondary: 0
+            show:
+              extrema: true
+              graph: true
+              points: false
+              legend: true
+            animate: false
           - type: 'custom:mini-graph-card'
             name: Humidity
             entities:
               - entity: sensor.downstairs_humidity
                 name: Downstairs
-                show_state: false
+                show_state: true
+                state_adaptive_color: true
               - entity: sensor.upstairs_humidity
                 name: Upstairs
-                show_state: false
+                show_state: true
+                state_adaptive_color: true
               - entity: sensor.ecobee_outside_humidity
                 name: Outside
+                show_state: true
+                state_adaptive_color: true
+              - color: '#666666'
+                entity: sensor.solar_elevation
+                line_width: 1
+                show_fill: false
                 show_state: false
-            hours_to_show: 24
-            points_per_hour: 10
+                y_axis: secondary
+            hour24: true
+            hours_to_show: 168
+            points_per_hour: 12
             line_width: 2
-          - type: glance
+            lower_bound_secondary: 0
+            show:
+              extrema: true
+              graph: true
+              points: false
+              legend: true
+            animate: false
+          - type: 'custom:mini-graph-card'
+            name: Air Pressure
             entities:
-              - sensor.moon
-              - sun.sun
-              - sensor.openskyflights
-          # - type: history-graph
-          #   title: "Downstairs Temperature"
-          #   hours_to_show: 24
-          #   entities:
-          #     - entity: sensor.ecobee_downstairs_target_temperature
-          #       name: Target
-          #     - entity: sensor.ecobee_downstairs_current_temperature
-          #       name: Actual
-          #     - sensor.ecobee_downstairs_state
-          #     - sensor.ecobee_downstairs_fan
-          # - type: history-graph
-          #   title: "Upstairs"
-          #   hours_to_show: 12
-          #   entities:
-          #     - sensor.ecobee_upstairs_target_temperature
-          #     - sensor.ecobee_upstairs_current_temperature
-          #     - sensor.ecobee_upstairs_state
-          #     - sensor.ecobee_upstairs_fan
+              - entity: sensor.ecobee_outside_pressure
+                name: Pressure
+                show_state: true
+                state_adaptive_color: true
+              - color: '#666666'
+                entity: sensor.solar_elevation
+                line_width: 1
+                show_fill: false
+                show_state: false
+                y_axis: secondary
+            hour24: true
+            hours_to_show: 168
+            points_per_hour: 12
+            line_width: 2
+            lower_bound_secondary: 0
+            show:
+              extrema: true
+              graph: true
+              points: false
+              legend: false
+            animate: false
+      - type: vertical-stack
+        cards:
           - type: history-graph
             title: "Downstairs"
             hours_to_show: 24
@@ -248,54 +295,6 @@ views:
                 name: Automations
               - entity: sensor.count_scripts
                 name: Scripts
-          - type: grid
-            title: Ubuntu-Server
-            square: false
-            columns: 2
-            cards:
-              - type: 'custom:mini-graph-card'
-                align_icon: left
-                align_state: center
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - sensor.processor_use_percent
-                font_size: 75
-                icon: 'mdi:chip'
-                name: CPU
-                show:
-                  fill: false
-              - type: 'custom:mini-graph-card'
-                align_icon: left
-                align_state: center
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - sensor.memory_use_percent
-                font_size: 75
-                name: Memory
-                show:
-                  fill: false
-              - type: 'custom:mini-graph-card'
-                align_icon: left
-                align_state: center
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - sensor.disk_use_percent_config
-                font_size: 75
-                name: Data 
-                show:
-                  fill: false
-              - type: 'custom:mini-graph-card'
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - sensor.processor_temperature
-                font_size: 75
-                name: Temp 
-                show:
-                  fill: false
           - type: glance
             columns: 4
             title: false
@@ -333,111 +332,57 @@ views:
                 icon: 'mdi:pause'
                 name: 'Stop BOINC'
 
-      - type: vertical-stack
-        title: Network
-        cards:
-          - type: glance
-            columns: 3
-            show_icon: true
-            entities:
-              - entity: device_tracker.front_cam
-                name: Front Cam
-                icon: 'mdi:cctv'
-              - entity: device_tracker.back_cam
-                name: Back Cam
-                icon: 'mdi:cctv'
-              - entity: device_tracker.modem
-                name: Modem
-                icon: 'mdi:router-network'
-              - entity: device_tracker.upstairs_wap
-                name: Upstairs WAP
-                icon: 'mdi:router-wireless'
-              - entity: device_tracker.downstairs_wap
-                name: Downstairs WAP
-                icon: 'mdi:router-wireless'
-              - entity: device_tracker.netgear_switch
-                name: Switch
-                icon: 'mdi:switch'
-          - type: grid
-            title: Router
-            columns: 2
-            square: false
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: CPU
-                icon: mdi:server
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_cpu_load
-                font_size: 75
-                show:
-                  fill: false
-              - type: 'custom:mini-graph-card'
-                name: Memory
-                font_size: 75
-                show:
-                  fill: false
-                icon: mdi:memory
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_memory_usage
-              - type: 'custom:mini-graph-card'
-                name: HDD
-                font_size: 75
-                show:
-                  fill: false
-                icon: mdi:harddisk
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_hdd_usage
-              - type: 'custom:mini-graph-card'
-                name: Router KB/s
-                font_size: 75
-                show:
-                  fill: false
-                icon: mdi:server
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_ether1_tx
-                    name: Sent
-                  - entity: sensor.mikrotik_ether1_rx
-                    name: Received
-          - type: grid
-            columns: 2
-            square: false
-            title: Internet
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: ISP Speed
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.speedtest_download
-                  - sensor.speedtest_upload
-              - type: 'custom:mini-graph-card'
-                name: Ping
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.speedtest_ping
-          - type: entities
-            title: Status
-            entities:
-              - sensor.duckdns_home
-              - sensor.myip
   - title: Docker
     icon: mdi:docker
     cards:
+      - type: grid
+        title: Ubuntu-Server
+        square: false
+        columns: 2
+        cards:
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - sensor.processor_use_percent
+            font_size: 75
+            icon: 'mdi:chip'
+            name: CPU
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - sensor.memory_use_percent
+            font_size: 75
+            name: Memory
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            align_icon: left
+            align_state: center
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - sensor.disk_use_percent_config
+            font_size: 75
+            name: Data 
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - sensor.processor_temperature
+            font_size: 75
+            name: Temp 
+            show:
+              fill: false
       - type: grid
         title: Docker Status
         columns: 1
@@ -578,5 +523,170 @@ views:
                   fill: false
                 entities:
                   - sensor.docker_signalcli_memory
+  - title: Network
+    icon: mdi:server
+    cards: 
+      - type: vertical-stack
+        title: Network
+        cards:
+          - type: glance
+            columns: 3
+            show_icon: true
+            entities:
+              - entity: device_tracker.front_cam
+                name: Front Cam
+                icon: 'mdi:cctv'
+              - entity: device_tracker.back_cam
+                name: Back Cam
+                icon: 'mdi:cctv'
+              - entity: device_tracker.modem
+                name: Modem
+                icon: 'mdi:router-network'
+              - entity: device_tracker.upstairs_wap
+                name: Upstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: device_tracker.downstairs_wap
+                name: Downstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: device_tracker.netgear_switch
+                name: Switch
+                icon: 'mdi:switch'
+      - type: grid
+        title: Router
+        columns: 3
+        square: false
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: CPU
+            icon: mdi:server
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - entity: sensor.mikrotik_cpu_load
+            font_size: 75
+            show:
+              fill: false
+          - type: 'custom:mini-graph-card'
+            name: Memory
+            font_size: 75
+            show:
+              fill: false
+            icon: mdi:memory
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - entity: sensor.mikrotik_memory_usage
+          - type: 'custom:mini-graph-card'
+            name: HDD
+            font_size: 75
+            show:
+              fill: false
+            icon: mdi:harddisk
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - entity: sensor.mikrotik_hdd_usage
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: 'Network Download'
+            points_per_hour: 2
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:download'
+            show:
+              graph: bar
+              extrema: true
+            unit: 'KB/s'
+            entities:
+              - sensor.mikrotik_ether1_rx
+            color_thresholds:
+              - color: '#12f395'
+                value: 0
+              - color: '#7ff312'
+                value: 500
+              - color: '#dcf312'
+                value: 1000
+              - color: '#f3cd12'
+                value: 2000
+              - color: '#f31212'
+                value: 3000
+          - type: 'custom:mini-graph-card'
+            name: 'Network Upload'
+            points_per_hour: 2
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:upload'
+            line_color: '#80e6ff'
+            show:
+              graph: bar
+              extrema: true
+            unit: 'KB/s'
+            entities:
+              - sensor.mikrotik_ether1_tx
+            color_thresholds:
+              - color: '#12f395'
+                value: 0
+              - color: '#7ff312'
+                value: 100
+              - color: '#dcf312'
+                value: 200
+              - color: '#f3cd12'
+                value: 300
+              - color: '#f31212'
+                value: 400
+      - type: grid
+        columns: 3
+        square: false
+        title: Internet
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: 'Down'
+            points_per_hour: 2
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:download'
+            # line_color: '#80e6ff'
+            show:
+              graph: line
+              extrema: true
+            unit: 'Mbit/sec'
+            entities:
+              - sensor.speedtest_download
+          - type: 'custom:mini-graph-card'
+            name: 'Up'
+            points_per_hour: 2
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:upload'
+            # line_color: '#80e6ff'
+            show:
+              graph: line
+              extrema: true
+            unit: 'Mbit/sec'
+            entities:
+              - sensor.speedtest_upload
+          - type: 'custom:mini-graph-card'
+            name: 'Ping'
+            points_per_hour: 2
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            # line_color: '#80e6ff'
+            show:
+              graph: line
+              extrema: true
+            unit: 'ms'
+            entities:
+              - sensor.speedtest_ping
+      - type: entities
+        title: Status
+        entities:
+          - sensor.duckdns_home
+          - sensor.myip
 
 
