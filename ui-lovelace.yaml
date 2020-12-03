@@ -590,7 +590,7 @@ views:
         cards:
           - type: 'custom:mini-graph-card'
             name: 'Network Download'
-            points_per_hour: 2
+            points_per_hour: 10
             decimals: 1
             font_size: 75
             hours_to_show: 24
@@ -605,16 +605,16 @@ views:
               - color: '#12f395'
                 value: 0
               - color: '#7ff312'
-                value: 500
-              - color: '#dcf312'
                 value: 1000
+              - color: '#dcf312'
+                value: 5000
               - color: '#f3cd12'
-                value: 2000
+                value: 10000
               - color: '#f31212'
-                value: 3000
+                value: 20000
           - type: 'custom:mini-graph-card'
             name: 'Network Upload'
-            points_per_hour: 2
+            points_per_hour: 10
             decimals: 1
             font_size: 75
             hours_to_show: 24
@@ -630,13 +630,13 @@ views:
               - color: '#12f395'
                 value: 0
               - color: '#7ff312'
-                value: 100
-              - color: '#dcf312'
                 value: 200
+              - color: '#dcf312'
+                value: 500
               - color: '#f3cd12'
-                value: 300
+                value: 1000
               - color: '#f31212'
-                value: 400
+                value: 1500
       - type: grid
         columns: 3
         square: false
