@@ -223,7 +223,7 @@
     state: 'on'
   action:
   - data:
-      brightness_pct: 25
+      brightness_pct: 10
       entity_id:
       - light.upstairs_lights
       transition: 600
