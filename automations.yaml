@@ -179,16 +179,16 @@
     entity_id: camera.front
     data:
       entity_id: camera.front
-      filename: '/media/usb/snapshot_front.mp4'
-      duration: 10
+      filename: '/media/camera/snapshot_front.mp4'
+      duration: 20
       lookback: 5
-  - delay: '00:00:30'
+  - delay: '00:00:05'
   - service: notify.signal_group
     data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Front Camera Motion'
       data:
         attachments:
-          - '/media/usb/snapshot_front.mp4'
+          - '/media/camera/snapshot_front.mp4'
   mode: single
 - id: back_camera_motion_signal
   alias: Send back video to signal group
@@ -201,16 +201,16 @@
     entity_id: camera.back
     data:
       entity_id: camera.back
-      filename: '/media/usb/snapshot_back.mp4'
-      duration: 10
+      filename: '/media/camera/snapshot_back.mp4'
+      duration: 20
       lookback: 5
-  - delay: '00:00:30'
+  - delay: '00:00:05'
   - service: notify.signal_group
     data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Back Camera Motion'
       data:
         attachments:
-          - '/media/usb/snapshot_back.mp4'
+          - '/media/camera/snapshot_back.mp4'
   mode: single
 - id: bedroom_light_on_morning
   alias: Bedroom on in morning
