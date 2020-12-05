@@ -1,11 +1,35 @@
-camera_motion:
-  alias: Camera Motion Detection ON
+front_camera_signal_motion:
+  alias: Notify Signal Front Camera motion detection
   sequence:
-    - service: notify.signal_notify
+    - service: camera.record
+      entity_id: camera.front
       data:
-        message: 'Motion detected'
+        entity_id: camera.front
+        filename: '/media/camera/snapshot_front.mp4'
+        duration: 20
+        loopback: 5
+    - delay: '00:00:05'
+    - service: notify.signal
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Front Camera Motion'
         data:
-          attachments: '/media/usb/motioneye/Camera1/movie.mp4'
+          attachments: '/media/camera/snapshot_front.mp4'
+back_camera_signal_motion:
+  alias: Notify Signal Back Camera motion detection
+  sequence:
+    - service: camera.record
+      entity_id: camera.back
+      data:
+        entity_id: camera.back
+        filename: '/media/camera/snapshot_back.mp4'
+        duration: 20
+        loopback: 5
+    - delay: '00:00:05'
+    - service: notify.signal
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Back Camera Motion'
+        data:
+          attachments: '/media/camera/snapshot_back.mp4'
 roku_espn_tap_action:
   alias: Roku ESPN F1 sequence
   sequence:
@@ -31,4 +55,4 @@ roku_espn_tap_action:
           - right
           - select
 
-
+# Script record video and send over signal

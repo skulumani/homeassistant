@@ -61,7 +61,13 @@ views:
             title: front
             camera_image: camera.front
             entities: 
-              - binary_sensor.motion_front
+              - entity: binary_sensor.motion_front
+                tap_action: 
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.front_camera_signal_motion
+
           - type: picture-glance
             title: back
             camera_image: camera.back
