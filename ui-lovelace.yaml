@@ -13,20 +13,23 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - type: entities
-        square: false
+      - type: vertical-stack
         title: Lights
-        entities:
-          - entity: light.upstairs_lights
-            name: Upstairs
-          - entity: light.bedroom_lights
-            name: Bedroom
-          - entity: light.downstairs_lights
-            name: Downstairs
-          - entity: light.living_room_lights
-            name: Living Room
-          - entity: light.lamp
-            name: Lamp
+        cards:
+          - type: entities
+            square: false
+            show_header_toggle: false
+            entities:
+              - entity: light.upstairs_lights
+                name: Upstairs
+              - entity: light.bedroom_lights
+                name: Bedroom
+              - entity: light.downstairs_lights
+                name: Downstairs
+              - entity: light.living_room_lights
+                name: Living Room
+              - entity: light.lamp
+                name: Lamp
       - type: vertical-stack
         title: Thermostats
         cards:
