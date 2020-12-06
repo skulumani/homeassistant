@@ -1,9 +1,10 @@
 family:
   name: Family
   entities:
-    - device_tracker.galaxy_s9
-    - device_tracker.pixel_2
-    - device_tracker.pixel_2_router
+    - binary_sensor.christine_presence
+    - binary_sensor.shankar_presence 
+    # - person.shankar_kulumani
+    # - person.christine_kulumani
 thermostats:
   name: Thermostats
   entities:

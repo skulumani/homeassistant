@@ -257,8 +257,9 @@ views:
       - type: vertical-stack
         title: People
         cards:
-          - type: glance
+          - type: entities
             entities:
+              - group.family
               - binary_sensor.shankar_presence
               - binary_sensor.christine_presence
           - type: 'custom:battery-state-card'
@@ -325,12 +326,203 @@ views:
                 tap_action:
                   action: call-service
                   service: group.reload
-              - entity: zone.home
-                icon: 'mdi:play'
-                name: Start BOINC
-              - entity: zone.home
-                icon: 'mdi:pause'
-                name: 'Stop BOINC'
+      - type: vertical-stack
+        title: Router
+        cards:
+          - type: glance
+            columns: 3
+            show_icon: true
+            entities:
+              - entity: device_tracker.front_cam
+                name: Front Cam
+                icon: 'mdi:cctv'
+              - entity: device_tracker.back_cam
+                name: Back Cam
+                icon: 'mdi:cctv'
+              - entity: device_tracker.modem
+                name: Modem
+                icon: 'mdi:router-network'
+              - entity: device_tracker.upstairs_wap
+                name: Upstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: device_tracker.downstairs_wap
+                name: Downstairs WAP
+                icon: 'mdi:router-wireless'
+              - entity: device_tracker.netgear_switch
+                name: Switch
+                icon: 'mdi:switch'
+          - type: grid
+            columns: 3
+            square: false
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: CPU
+                icon: mdi:server
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_cpu_load
+                font_size: 75
+                show:
+                  fill: false
+              - type: 'custom:mini-graph-card'
+                name: Memory
+                font_size: 75
+                show:
+                  fill: false
+                icon: mdi:memory
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_memory_usage
+              - type: 'custom:mini-graph-card'
+                name: HDD
+                font_size: 75
+                show:
+                  fill: false
+                icon: mdi:harddisk
+                hours_to_show: 12
+                points_per_hour: 10
+                entities:
+                  - entity: sensor.mikrotik_hdd_usage
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: 'Network Download'
+                points_per_hour: 10
+                decimals: 1
+                font_size: 75
+                hours_to_show: 24
+                icon: 'mdi:download'
+                show:
+                  graph: bar
+                  extrema: true
+                unit: 'KB/s'
+                entities:
+                  - sensor.mikrotik_ether1_rx
+                color_thresholds:
+                  - color: '#12f395'
+                    value: 0
+                  - color: '#7ff312'
+                    value: 1000
+                  - color: '#dcf312'
+                    value: 5000
+                  - color: '#f3cd12'
+                    value: 10000
+                  - color: '#f31212'
+                    value: 20000
+              - type: 'custom:mini-graph-card'
+                name: 'Network Upload'
+                points_per_hour: 10
+                decimals: 1
+                font_size: 75
+                hours_to_show: 24
+                icon: 'mdi:upload'
+                line_color: '#80e6ff'
+                show:
+                  graph: bar
+                  extrema: true
+                unit: 'KB/s'
+                entities:
+                  - sensor.mikrotik_ether1_tx
+                color_thresholds:
+                  - color: '#12f395'
+                    value: 0
+                  - color: '#7ff312'
+                    value: 200
+                  - color: '#dcf312'
+                    value: 500
+                  - color: '#f3cd12'
+                    value: 1000
+                  - color: '#f31212'
+                    value: 1500
+      - type: vertical-stack
+        square: false
+        title: Internet
+        cards:
+          - type: entities
+            entities:
+              - sensor.duckdns_home
+              - sensor.myip
+          - type: horizontal-stack
+            cards: 
+              - type: 'custom:mini-graph-card'
+                name: 'Down'
+                points_per_hour: 6
+                decimals: 1
+                font_size: 75
+                hours_to_show: 24
+                icon: 'mdi:download'
+                # line_color: '#80e6ff'
+                show:
+                  graph: line
+                  extrema: true
+                  fill: off
+                unit: 'Mbit/sec'
+                entities:
+                  - sensor.speedtest_download
+                color_thresholds:
+                  - color: '#12f395'
+                    value: 270
+                  - color: '#7ff312'
+                    value: 260
+                  - color: '#dcf312'
+                    value: 250
+                  - color: '#f3cd12'
+                    value: 225
+                  - color: '#f31212'
+                    value: 200
+              - type: 'custom:mini-graph-card'
+                name: 'Up'
+                points_per_hour: 6
+                decimals: 1
+                font_size: 75
+                hours_to_show: 24
+                icon: 'mdi:upload'
+                # line_color: '#80e6ff'
+                show:
+                  graph: line
+                  extrema: true
+                  fill: false
+                unit: 'Mbit/sec'
+                entities:
+                  - sensor.speedtest_upload
+                color_thresholds:
+                  - color: '#12f395'
+                    value: 17
+                  - color: '#7ff312'
+                    value: 16
+                  - color: '#dcf312'
+                    value: 15
+                  - color: '#f3cd12'
+                    value: 14
+                  - color: '#f31212'
+                    value: 13 
+          - type: 'custom:mini-graph-card'
+            name: 'Ping'
+            points_per_hour: 6
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            # line_color: '#80e6ff'
+            show:
+              graph: line
+              extrema: true
+              fill: false
+            unit: 'ms'
+            entities:
+              - sensor.speedtest_ping
+            color_thresholds:
+              - color: '#f31212'
+                value: 27
+              - color: '#f3cd12'
+                value: 26
+              - color: '#dcf312'
+                value: 25
+              - color: '#7ff312'
+                value: 24
+              - color: '#12f395'
+                value: 23
 
   - title: Docker
     icon: mdi:docker
@@ -523,170 +715,35 @@ views:
                   fill: false
                 entities:
                   - sensor.docker_signalcli_memory
-  - title: Network
-    icon: mdi:server
-    cards: 
-      - type: vertical-stack
-        title: Network
-        cards:
-          - type: glance
-            columns: 3
-            show_icon: true
-            entities:
-              - entity: device_tracker.front_cam
-                name: Front Cam
-                icon: 'mdi:cctv'
-              - entity: device_tracker.back_cam
-                name: Back Cam
-                icon: 'mdi:cctv'
-              - entity: device_tracker.modem
-                name: Modem
-                icon: 'mdi:router-network'
-              - entity: device_tracker.upstairs_wap
-                name: Upstairs WAP
-                icon: 'mdi:router-wireless'
-              - entity: device_tracker.downstairs_wap
-                name: Downstairs WAP
-                icon: 'mdi:router-wireless'
-              - entity: device_tracker.netgear_switch
-                name: Switch
-                icon: 'mdi:switch'
       - type: grid
-        title: Router
-        columns: 3
+        columns: 1
         square: false
-        cards:
-          - type: 'custom:mini-graph-card'
-            name: CPU
-            icon: mdi:server
-            hours_to_show: 12
-            points_per_hour: 10
+        title: MariaDB
+        cards: 
+          - type: entities
             entities:
-              - entity: sensor.mikrotik_cpu_load
-            font_size: 75
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            name: Memory
-            font_size: 75
-            show:
-              fill: false
-            icon: mdi:memory
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - entity: sensor.mikrotik_memory_usage
-          - type: 'custom:mini-graph-card'
-            name: HDD
-            font_size: 75
-            show:
-              fill: false
-            icon: mdi:harddisk
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - entity: sensor.mikrotik_hdd_usage
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            name: 'Network Download'
-            points_per_hour: 10
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:download'
-            show:
-              graph: bar
-              extrema: true
-            unit: 'KB/s'
-            entities:
-              - sensor.mikrotik_ether1_rx
-            color_thresholds:
-              - color: '#12f395'
-                value: 0
-              - color: '#7ff312'
-                value: 1000
-              - color: '#dcf312'
-                value: 5000
-              - color: '#f3cd12'
-                value: 10000
-              - color: '#f31212'
-                value: 20000
-          - type: 'custom:mini-graph-card'
-            name: 'Network Upload'
-            points_per_hour: 10
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:upload'
-            line_color: '#80e6ff'
-            show:
-              graph: bar
-              extrema: true
-            unit: 'KB/s'
-            entities:
-              - sensor.mikrotik_ether1_tx
-            color_thresholds:
-              - color: '#12f395'
-                value: 0
-              - color: '#7ff312'
-                value: 200
-              - color: '#dcf312'
-                value: 500
-              - color: '#f3cd12'
-                value: 1000
-              - color: '#f31212'
-                value: 1500
-      - type: grid
-        columns: 3
-        square: false
-        title: Internet
-        cards:
-          - type: 'custom:mini-graph-card'
-            name: 'Down'
-            points_per_hour: 2
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:download'
-            # line_color: '#80e6ff'
-            show:
-              graph: line
-              extrema: true
-            unit: 'Mbit/sec'
-            entities:
-              - sensor.speedtest_download
-          - type: 'custom:mini-graph-card'
-            name: 'Up'
-            points_per_hour: 2
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:upload'
-            # line_color: '#80e6ff'
-            show:
-              graph: line
-              extrema: true
-            unit: 'Mbit/sec'
-            entities:
-              - sensor.speedtest_upload
-          - type: 'custom:mini-graph-card'
-            name: 'Ping'
-            points_per_hour: 2
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            # line_color: '#80e6ff'
-            show:
-              graph: line
-              extrema: true
-            unit: 'ms'
-            entities:
-              - sensor.speedtest_ping
-      - type: entities
-        title: Status
-        entities:
-          - sensor.duckdns_home
-          - sensor.myip
-
+              - entity: sensor.docker_mariadb_state
+                name: State
+              - entity: sensor.docker_mariadb_status
+                name: Status
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: CPU
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_mariadb_cpu
+              - type: 'custom:mini-graph-card'
+                name: Mem
+                hours_to_show: 12
+                points_per_hour: 10
+                font_size: 75
+                show:
+                  fill: false
+                entities:
+                  - sensor.docker_mariadb_memory
 

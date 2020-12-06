@@ -174,21 +174,16 @@
   - platform: state
     entity_id: binary_sensor.motion_front
     to: 'on'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.shankar_presence'
+      state: 'off'
+    - condition: state
+      entity_id: 'binary_sensor.christine_presence'
+      state: 'off'
   action:
-  - service: camera.record
-    entity_id: camera.front
-    data:
-      entity_id: camera.front
-      filename: '/media/camera/snapshot_front.mp4'
-      duration: 20
-      lookback: 5
-  - delay: '00:00:05'
-  - service: notify.signal_group
-    data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Front Camera Motion'
-      data:
-        attachments:
-          - '/media/camera/snapshot_front.mp4'
+    - service: script.turn_on
+      entity_id: script.front_camera_signal_motion
   mode: single
 - id: back_camera_motion_signal
   alias: Send back video to signal group
@@ -196,21 +191,16 @@
   - platform: state
     entity_id: binary_sensor.motion_back
     to: 'on'
+  condition:
+    - condition: state
+      entity_id: 'binary_sensor.shankar_presence'
+      state: 'off'
+    - condition: state
+      entity_id: 'binary_sensor.christine_presence'
+      state: 'off'
   action:
-  - service: camera.record
-    entity_id: camera.back
-    data:
-      entity_id: camera.back
-      filename: '/media/camera/snapshot_back.mp4'
-      duration: 20
-      lookback: 5
-  - delay: '00:00:05'
-  - service: notify.signal_group
-    data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Back Camera Motion'
-      data:
-        attachments:
-          - '/media/camera/snapshot_back.mp4'
+    - service: script.turn_on
+      entity_id: script.back_camera_signal_motion
   mode: single
 - id: bedroom_light_on_morning
   alias: Bedroom on in morning
