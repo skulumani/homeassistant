@@ -209,9 +209,9 @@ camera:
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
-weather:
-  - platform: openweathermap
-    api_key: !secret openweathermap_api
+# weather:
+#   - platform: openweathermap
+#     api_key: !secret openweathermap_api
   # - platform: nws
   #   api_key: !secret nws_api
   #   longitude: !secret home_longitude

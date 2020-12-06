@@ -72,7 +72,12 @@ views:
             title: back
             camera_image: camera.back
             entities: 
-              - binary_sensor.motion_back
+              - entity: binary_sensor.motion_back
+                tap_action: 
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.back_camera_signal_motion
   - title: Weather
     icon: mdi:weather-sunny
     cards:

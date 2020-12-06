@@ -209,10 +209,10 @@
 - platform: moon
 - platform: opensky
   radius: 10
-- platform: eventsensor
-  name: OpenSkyFlights
-  event: opensky_entry
-  state: callsign
+# - platform: eventsensor
+#   name: OpenSkyFlights
+#   event: opensky_entry
+#   state: callsign
 # - platform: template
 #   sensors: 
 #     mikrotik_router_kb_s_sent:

@@ -19,7 +19,7 @@ services:
       - TZ=America/New_York
     restart: always
     network_mode: host
-    user: "1000:1000"
+    # user: "1000:1000"
     depends_on:
       - signal-cli-rest-api
       - mariadb
@@ -37,7 +37,7 @@ services:
       MYSQL_PASSWORD: "2PtZXpJDDjSGsv"
       MYSQL_DATABASE: homeassistant
       MYSQL_USER: homeassistant
-    user: "1000:1000"
+    # user: "1000:1000"
     restart: always
 
   signal-cli-rest-api:
@@ -47,16 +47,17 @@ services:
       - "8080:8080" # map docker port 8080 to host port 8080.
     network_mode: "host"
     restart: always
-    user: "1000:1000"
+    # user: "1000:1000"
     volumes:
       - "/home/shankar/Documents/signal-cli-config:/home/.local/share/signal-cli" # map "signal-cli-config" folder 
+      - "/media/shankar/usbdrive/video:/media/camera"
   
   omada-controller:
     container_name: omada-controller
     image: mbentley/omada-controller:latest
     restart: always
     network_mode: "host"
-    user: "1000:1000"
+    # user: "1000:1000"
     environment:
       - TZ=America/New_York
       - MANAGE_HTTP_PORT=8088
