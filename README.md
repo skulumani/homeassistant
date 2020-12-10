@@ -206,6 +206,12 @@ Verify
 curl -X POST -H "Content-Type: application/json" 'http://127.0.0.1:8080/v1/register/<number>/verify/<verification code>'
 ~~~
 
+Receive
+
+~~~
+curl -X GET -H "Content-Type: application/json" 'http://127.0.0.1:8080/v1/receive/<number>'
+~~~
+
 # References
 
 * [SSL Certificate](https://www.home-assistant.io/docs/ecosystem/certificates/lets_encrypt/)

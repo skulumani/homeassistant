@@ -17,7 +17,7 @@
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
         twilight'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: lights_on_evening_nautical_twilight
   alias: Lights on at evening nautical twilight
@@ -39,7 +39,7 @@
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
         twilight'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: lights_on_morning_nautical_twilight
   alias: Lights on morning
@@ -75,7 +75,7 @@
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: lights_off_2300
   alias: Lights off at 2300
@@ -93,7 +93,7 @@
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
         upstairs turned off at 2300'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: update_morning_commute_sensor
   alias: Commute - Update morning commute sensor
@@ -174,16 +174,10 @@
   - platform: state
     entity_id: binary_sensor.motion_front
     to: 'on'
-  condition:
-    - condition: state
-      entity_id: 'binary_sensor.shankar_presence'
-      state: 'off'
-    - condition: state
-      entity_id: 'binary_sensor.christine_presence'
-      state: 'off'
+  condition: []
   action:
-    - service: script.turn_on
-      entity_id: script.front_camera_signal_motion
+  - service: script.turn_on
+    entity_id: script.front_camera_signal_motion
   mode: single
 - id: back_camera_motion_signal
   alias: Send back video to signal group
@@ -191,25 +185,19 @@
   - platform: state
     entity_id: binary_sensor.motion_back
     to: 'on'
-  condition:
-    - condition: state
-      entity_id: 'binary_sensor.shankar_presence'
-      state: 'off'
-    - condition: state
-      entity_id: 'binary_sensor.christine_presence'
-      state: 'off'
+  condition: []
   action:
-    - service: script.turn_on
-      entity_id: script.back_camera_signal_motion
+  - service: script.turn_on
+    entity_id: script.back_camera_signal_motion
   mode: single
 - id: bedroom_light_on_morning
   alias: Bedroom on in morning
   trigger:
   - platform: time
-    at: "06:20:00"
+    at: 06:20:00
   condition:
   - condition: state
-    entity_id: 'binary_sensor.workday_sensor'
+    entity_id: binary_sensor.workday_sensor
     state: 'on'
   action:
   - data:
@@ -220,32 +208,30 @@
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: hvac_away_mode
   alias: HVAC Away Mode when not home
   trigger:
-    - platform: state
-      entity_id: 
-        - binary_sensor.shankar_presence
-        - binary_sensor.christine_presence
-      to: 'off'
-      for: '00:30:00'
-  condition: 
-    condition: and
+  - platform: state
+    entity_id: binary_sensor.shankar_presence
+    to: 'off'
+    for: 00:30:00
+  - platform: state
+    entity_id: binary_sensor.christine_presence
+    to: 'off'
+  condition:
+  - condition: and
     conditions:
-      - condition: state
-        entity_id: binary_sensor.shankar_presence
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.christine_presence
-        state: 'off'
+    - condition: state
+      entity_id: binary_sensor.shankar_presence
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.christine_presence
+      state: 'off'
   action:
-    - service: notify.signal
-      data:
-        message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode for HVAC'
-    # - service: climate.set_preset_mode
-    #   entity_id: group.thermostats
-    #   preset_mode: 'Away'
-
-
+  - service: notify.signal_group
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
+        for HVAC'
+  mode: single
