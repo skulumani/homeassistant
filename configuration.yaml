@@ -234,7 +234,6 @@ monitor_docker:
 
 
 
-
 light:
   - platform: group
     name: Living Room Lights

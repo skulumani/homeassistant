@@ -209,6 +209,17 @@
 - platform: moon
 - platform: opensky
   radius: 10
+- platform: enphase_envoy
+  monitored_conditions:
+    - production
+    - daily_production
+    - seven_days_production
+    - lifetime_production
+    - consumption
+    - daily_consumption
+    - seven_days_consumption
+    - lifetime_consumption
+    - inverters
 # - platform: eventsensor
 #   name: OpenSkyFlights
 #   event: opensky_entry
