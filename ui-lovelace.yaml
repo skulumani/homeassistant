@@ -20,12 +20,14 @@ views:
             square: false
             show_header_toggle: false
             entities:
-              - entity: light.upstairs_lights
-                name: Upstairs
+              # - entity: light.upstairs_lights
+              #   name: Upstairs
               - entity: light.bedroom_lights
                 name: Bedroom
               - entity: light.downstairs_lights
                 name: Downstairs
+              - entity: light.dining_room_lamp
+                name: Dining Room
               - entity: light.living_room_lights
                 name: Living Room
               - entity: light.lamp
