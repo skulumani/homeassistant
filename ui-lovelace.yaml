@@ -449,6 +449,7 @@ views:
             entities:
               - sensor.duckdns_home
               - sensor.myip
+              - sensor.speedtest_last_run
           - type: horizontal-stack
             cards: 
               - type: 'custom:mini-graph-card'
