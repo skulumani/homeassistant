@@ -241,6 +241,11 @@ lifx:
     - broadcast: 192.168.200.53
     - broadcast: 192.168.200.54
 
+tplink:
+  switch:
+    - host: 192.168.200.60
+
+
 light:
   - platform: group
     name: Living Room Lights
