@@ -100,23 +100,23 @@ alarm_control_panel:
 ecobee:
   api_key: !secret ecobee_api_key
 
-matrix:
-  homeserver: https://matrix.org
-  username: !secret matrix_username
-  password: !secret matrix_password
-  rooms:
-    - "!RZInnssIgfBYMGRmtY:matrix.org"
-    - "!kgrzdnIkVTmRcWQVWK:matrix.org"
-  commands:
-    - word: testword
-      name: testword
+# matrix:
+#   homeserver: https://matrix.org
+#   username: !secret matrix_username
+#   password: !secret matrix_password
+#   rooms:
+#     - "!RZInnssIgfBYMGRmtY:matrix.org"
+#     - "!kgrzdnIkVTmRcWQVWK:matrix.org"
+#   commands:
+#     - word: testword
+#       name: testword
 
 # signalmessenger:
 
 notify:
-  - name: matrix_notify
-    platform: matrix
-    default_room: "!kgrzdnIkVTmRcWQVWK:matrix.org"
+  # - name: matrix_notify
+  #   platform: matrix
+  #   default_room: "!kgrzdnIkVTmRcWQVWK:matrix.org"
   - name: twitter_notify
     platform: twitter
     consumer_key: !secret twitter_consumer_key
@@ -233,6 +233,13 @@ monitor_docker:
   - name: Docker
 
 
+lifx:
+  light:
+    - broadcast: 192.168.200.50
+    - broadcast: 192.168.200.51
+    - broadcast: 192.168.200.52
+    - broadcast: 192.168.200.53
+    - broadcast: 192.168.200.54
 
 light:
   - platform: group
