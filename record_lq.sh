@@ -11,8 +11,8 @@ BACK_CAM="${STARTTIME}_BACK"
 CAM_USERNAME="stream"
 CAM_PASSWORD="dgdiPUdFwqkqBwRFSq"
 
-FRONT_IP="192.168.88.15"
-BACK_IP="192.168.88.16"
+FRONT_IP="192.168.200.15"
+BACK_IP="192.168.200.16"
 
 ## Network and Local Storage Locations  ##
 # Pay attending to when a trailing '/' is used and when it is not
