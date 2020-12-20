@@ -390,10 +390,13 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_hdd_usage
+      - type: vertical-stack
+        title: Interfaces
+        cards:
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
-                name: 'Network Download'
+                name: 'Ether1 Down'
                 points_per_hour: 10
                 decimals: 1
                 font_size: 75
@@ -417,7 +420,7 @@ views:
                   - color: '#f31212'
                     value: 20000
               - type: 'custom:mini-graph-card'
-                name: 'Network Upload'
+                name: 'Ether1 Up'
                 points_per_hour: 10
                 decimals: 1
                 font_size: 75
