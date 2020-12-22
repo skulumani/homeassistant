@@ -60,7 +60,7 @@
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
         nautical twilight.'
-    service: notify.signal
+    service: notify.signal_group
   mode: single
 - id: lights_off_sunrise
   alias: Lights off after sunrise
