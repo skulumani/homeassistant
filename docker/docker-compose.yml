@@ -23,6 +23,7 @@ services:
     depends_on:
       - signal-cli-rest-api
       - mariadb
+      - deconz
 
   mariadb:
     image: mariadb
@@ -91,12 +92,12 @@ services:
     network_mode: host
     environment:
       # You can access Deconz at this port
-      DECONZ_WEB_PORT: 8080
-      DECONZ_WS_PORT: 8088
+      DECONZ_WEB_PORT: 44449
+      DECONZ_WS_PORT: 44448
 
       # Set VNC_MODE to 0 to disable it completely
       DECONZ_VNC_MODE: 0
-      DECONZ_VNC_PORT: 5900
+      DECONZ_VNC_PORT: 44447
       DECONZ_VNC_PASSWORD: "password"
     volumes:
       - /etc/localtime:/etc/localtime:ro
