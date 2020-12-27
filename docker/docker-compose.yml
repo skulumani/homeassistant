@@ -83,28 +83,28 @@ services:
   #
 
 
-        # Deconz
-# deconz:
-#   container_name: deconz
-#   image: marthoc/deconz
-#   restart: unless-stopped
-#   network_mode: host
-#   environment:
-#     # You can access Deconz at this port
-#     DECONZ_WEB_PORT: 8080
-#     DECONZ_WS_PORT: 8088
+  # Deconz
+  deconz:
+    container_name: deconz
+    image: marthoc/deconz
+    restart: always
+    network_mode: host
+    environment:
+      # You can access Deconz at this port
+      DECONZ_WEB_PORT: 8080
+      DECONZ_WS_PORT: 8088
 
-#     # Set VNC_MODE to 0 to disable it completely
-#     DECONZ_VNC_MODE: 1
-#     DECONZ_VNC_PORT: 5900
-#     DECONZ_VNC_PASSWORD: "${VNC_PASSWORD}"
-#   volumes:
-#     - /etc/localtime:/etc/localtime:ro
-#     - /etc/timezone:/etc/timezone:ro
-#     # Replace <local path> with a path where all deconz config will be stored.
-#     - <local path>:/root/.local/share/dresden-elektronik/deCONZ
-#   devices:
-#     - "/dev/ttyUSB0:/dev/ttyUSB0"
+      # Set VNC_MODE to 0 to disable it completely
+      DECONZ_VNC_MODE: 0
+      DECONZ_VNC_PORT: 5900
+      DECONZ_VNC_PASSWORD: "password"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      # Replace <local path> with a path where all deconz config will be stored.
+      - /home/shankar/Documents/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
 
 volumes:
   omada-data:
