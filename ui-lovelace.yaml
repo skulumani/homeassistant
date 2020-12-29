@@ -88,7 +88,7 @@ views:
           - type: 'custom:mini-graph-card'
             entities:
               - entity: sensor.envoy_current_energy_production
-                name: Current Production
+                name: Power
                 show_state: true
               - entity: sensor.solar_elevation
                 line_width: 1
@@ -111,7 +111,7 @@ views:
           - type: 'custom:mini-graph-card'
             entities:
               - entity: sensor.energy_production
-                name: Energy Produced
+                name: Energy
                 show_state: true
             hour24: true
             hours_to_show: 48
