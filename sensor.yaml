@@ -216,11 +216,13 @@
     - daily_production
     - seven_days_production
     - lifetime_production
-    - consumption
-    - daily_consumption
-    - seven_days_consumption
-    - lifetime_consumption
-    - inverters
+- platform:  integration
+  source: sensor.envoy_current_energy_production
+  name: energy_production
+  unit_time: h # kilowatt hour
+  method: trapezoidal
+  unit_prefix: k
+  round: 3
 # - platform: eventsensor
 #   name: OpenSkyFlights
 #   event: opensky_entry
