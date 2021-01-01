@@ -267,6 +267,12 @@ light:
     entities:
       - light.bedroom_lamp
       - light.lamp
+  - platform: wiz_light
+    name: porch
+    host: 192.168.200.45
+  - platform: wiz_light
+    name: hallway
+    host: 192.168.200.46
 
 # mikrotik:
 #   - name: Mikrotik

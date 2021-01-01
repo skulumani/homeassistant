@@ -32,6 +32,10 @@ views:
                 name: Living Room
               - entity: light.lamp
                 name: Lamp
+              - entity: light.hallway
+                name: Hallway
+              - entity: light.porch
+                name: Porch
       - type: vertical-stack
         title: Thermostats
         cards:
@@ -113,23 +117,23 @@ views:
               graph: true
               points: false
               legend: false
-          - type: 'custom:mini-graph-card'
-            entities:
-              - entity: sensor.energy_production
-                name: Energy
-                show_state: true
-            hour24: true
-            hours_to_show: 48
-            point_per_hour: 15
-            line_width: 2
-            lower_bound_secondary: 0
-            group_by: hour
-            show:
-              extrema: true
-              average: true
-              graph: bar
-              points: true
-              legend: true
+          # - type: 'custom:mini-graph-card'
+          #   entities:
+          #     - entity: sensor.energy_production
+          #       name: Energy
+          #       show_state: true
+          #   hour24: true
+          #   hours_to_show: 48
+          #   point_per_hour: 15
+          #   line_width: 2
+          #   lower_bound_secondary: 0
+          #   group_by: hour
+          #   show:
+          #     extrema: true
+          #     average: true
+          #     graph: bar
+          #     points: true
+          #     legend: true
   - title: Weather
     icon: mdi:weather-sunny
     cards:
