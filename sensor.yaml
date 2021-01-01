@@ -236,4 +236,29 @@
 #       unit_of_measurement: 'kB/s'
 #       value_template: "{{ states('sensor.mikrotik_router_kib_s_received') | float / 8 }}"
 
+# Template sensors for solar energy production in kWh
+- platform: template
+  sensors:
+    solar_energy_hourly_kwh:
+      friendly_name: Hourly Solar Energy
+      unit_of_measurement: kWh
+      value_template: "{{ states('sensor.solar_energy_hourly') | float / 1000 }}"
+    solar_energy_daily_kwh:
+      friendly_name: Daily Solar Energy
+      unit_of_measurement: kWh
+      value_template: "{{ states('sensor.solar_energy_daily') | float / 1000 }}"
+    solar_energy_weekly_kwh:
+      friendly_name: Weekly Solar Energy
+      unit_of_measurement: kWh
+      value_template: "{{ states('sensor.solar_energy_weekly') | float / 1000 }}"
+    solar_energy_monthly_kwh:
+      friendly_name: Monthly Solar Energy
+      unit_of_measurement: kWh
+      value_template: "{{ states('sensor.solar_energy_monthly') | float / 1000 }}"
+    solar_energy_yearly_kwh:
+      friendly_name: Yearly Solar Energy
+      unit_of_measurement: kWh
+      value_template: "{{ states('sensor.solar_energy_yearly') | float / 1000 }}"
+
+
      

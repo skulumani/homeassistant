@@ -101,16 +101,12 @@ views:
                 show_state: false
                 y_axis: secondary
                 color: '#666666'
-              # - entity: sensor.envoy_current_energy_production
-              #   name: Min
-              #   aggregate_func: min
-
             hour24: true
             hours_to_show: 48
-            point_per_hour: 12
+            points_per_hour: 15
             line_width: 2
             lower_bound_secondary: 0
-            group_by: hour
+            # group_by: hour
             show:
               extrema: true
               average: true
@@ -119,8 +115,8 @@ views:
               legend: false
           # - type: 'custom:mini-graph-card'
           #   entities:
-          #     - entity: sensor.energy_production
-          #       name: Energy
+          #     - entity: sensor.solar_energy_hourly
+          #       name: Hourly Energy
           #       show_state: true
           #   hour24: true
           #   hours_to_show: 48

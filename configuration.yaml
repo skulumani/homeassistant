@@ -245,6 +245,23 @@ tplink:
   switch:
     - host: 192.168.200.60
 
+utility_meter:
+  solar_energy_hourly:
+    source: sensor.envoy_current_energy_production
+    cycle: hourly
+  solar_energy_daily:
+    source: sensor.envoy_current_energy_production
+    cycle: daily
+  solar_energy_weekly:
+    source: sensor.envoy_current_energy_production
+    cycle: weekly
+  solar_energy_monthly:
+    source: sensor.envoy_current_energy_production
+    cycle: monthly
+  solar_energy_yearly:
+    source: sensor.envoy_current_energy_production
+    cycle: yearly
+
 
 light:
   - platform: group
