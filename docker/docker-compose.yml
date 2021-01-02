@@ -96,7 +96,7 @@ services:
       DECONZ_WS_PORT: 44448
 
       # Set VNC_MODE to 0 to disable it completely
-      DECONZ_VNC_MODE: 0
+      DECONZ_VNC_MODE: 1
       DECONZ_VNC_PORT: 44447
       DECONZ_VNC_PASSWORD: "password"
     volumes:
