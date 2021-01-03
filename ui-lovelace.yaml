@@ -91,7 +91,7 @@ views:
         cards:
           - type: 'custom:mini-graph-card'
             entities:
-              - entity: sensor.envoy_current_power
+              - entity: sensor.envoy_current_energy_production
                 name: Power
                 show_state: true
               - entity: sensor.solar_elevation
@@ -137,7 +137,7 @@ views:
         cards:
           - type: 'custom:mini-graph-card'
             entities:
-              - entity: sensor.envoy_current_power
+              - entity: sensor.envoy_current_energy_production
                 name: Power
                 show_state: true
               - entity: sensor.solar_elevation
@@ -162,12 +162,12 @@ views:
           - type: entities
             entities:
               - sensor.envoy_daily_energy
-              - sensor.solar_energy_daily
+              - sensor.solar_daily_energy
               - sensor.envoy_weekly_energy
-              - sensor.solar_energy_weekly
+              - sensor.solar_weekly_energy
               - sensor.envoy_lifetime_energy
-              - sensor.solar_energy_monthly
-              - sensor.solar_energy_yearly
+              - sensor.solar_monthly_energy
+              - sensor.solar_yearly_energy
   - title: Weather
     icon: mdi:weather-sunny
     cards:
@@ -822,175 +822,91 @@ views:
             name: Temp 
             show:
               fill: false
-      - type: grid
-        title: Docker Status
-        columns: 1
-        square: false
-        cards:
-        - type: glance
-          entities:
-            - entity: sensor.docker_containers_running
-              name: Running
-            - entity: sensor.docker_containers_paused
-              name: Paused
-            - entity: sensor.docker_containers_stopped
-              name: Stopped
-            - entity: sensor.docker_homeassistant_status
-              name: HA
-            - entity:  sensor.docker_version
-              name: Ver
-        - type:  horizontal-stack
-          cards:
-            - type: 'custom:mini-graph-card'
-              name: Docker CPU
-              hours_to_show: 12
-              points_per_hour: 10
-              font_size: 75
-              show:
-                fill: false
-              entities:
-                - sensor.docker_cpu
-            - type: 'custom:mini-graph-card'
-              name: Docker Mem
-              hours_to_show: 12
-              points_per_hour: 10
-              font_size: 75
-              show:
-                fill: false
-              entities:
-                - sensor.docker_memory
+      - type: entities
+        entities:
+          - entity: sensor.docker_containers_running
+            name: Running
+          - entity: sensor.docker_containers_paused
+            name: Paused
+          - entity: sensor.docker_containers_stopped
+            name: Stopped
+          - entity: sensor.docker_homeassistant_status
+            name: HA
+          - entity:  sensor.docker_version
+            name: Ver
+            
+          - type: divider
+          - entity: sensor.docker_homeassistant_state
+            name: Homeassistant
+          - entity: sensor.docker_homeassistant_status
+            name: Uptime
 
-      - type: grid
-        columns: 1
-        square: false
-        title: HA Docker
-        cards: 
-          - type: entities
-            entities:
-              - entity: sensor.docker_homeassistant_state
-                name: State
-              - entity: sensor.docker_homeassistant_status
-                name: Status
-              # - sensor.docker_homeassistant_up_time
-              # - sensor.docker_homeassistant_cpu
-              # - sensor.docker_homeassistant_memory
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: HA CPU
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_homeassistant_cpu
-              - type: 'custom:mini-graph-card'
-                name: HA Mem
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_homeassistant_memory
-      - type: grid
-        columns: 1
-        square: false
-        title: Omada Docker
-        cards: 
-          - type: entities
-            entities:
-              - entity: sensor.docker_omada_controller_state
-                name: State
-              - entity: sensor.docker_omada_controller_status
-                name: Status
-              # - sensor.docker_homeassistant_up_time
-              # - sensor.docker_homeassistant_cpu
-              # - sensor.docker_homeassistant_memory
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: Omada CPU
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_omada_controller_cpu
-              - type: 'custom:mini-graph-card'
-                name: Omada Mem
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_omada_controller_memory
-      - type: grid
-        columns: 1
-        square: false
-        title: Signal CLI Docker
-        cards: 
-          - type: entities
-            entities:
-              - entity: sensor.docker_signalcli_state
-                name: State
-              - entity: sensor.docker_signalcli_status
-                name: Status
-              # - sensor.docker_homeassistant_up_time
-              # - sensor.docker_homeassistant_cpu
-              # - sensor.docker_homeassistant_memory
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: Signal CPU
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_signalcli_cpu
-              - type: 'custom:mini-graph-card'
-                name: Signal Mem
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_signalcli_memory
-      - type: grid
-        columns: 1
-        square: false
-        title: MariaDB
-        cards: 
-          - type: entities
-            entities:
-              - entity: sensor.docker_mariadb_state
-                name: State
-              - entity: sensor.docker_mariadb_status
-                name: Status
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: CPU
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_mariadb_cpu
-              - type: 'custom:mini-graph-card'
-                name: Mem
-                hours_to_show: 12
-                points_per_hour: 10
-                font_size: 75
-                show:
-                  fill: false
-                entities:
-                  - sensor.docker_mariadb_memory
+          - type: divider
+          - entity: sensor.docker_omada_controller_state
+            name: Omada
+          - entity: sensor.docker_omada_controller_status
+            name: Uptime
+          
+          - type: divider
+          - entity: sensor.docker_signalcli_state
+            name: Signal
+          - entity: sensor.docker_signalcli_status
+            name: Uptime
 
+          - type: divider
+          - entity: sensor.docker_mariadb_state
+            name: MariaDB 
+          - entity: sensor.docker_mariadb_status
+            name: Uptime
+
+          - type: divider
+          - entity: sensor.docker_deconz_state
+            name: Deconz 
+          - entity: sensor.docker_deconz_status
+            name: Uptime
+      - type: 'custom:mini-graph-card'
+        name: CPU
+        hours_to_show: 12
+        points_per_hour: 10
+        # font_size: 20
+        line_width: 1
+        show:
+          fill: false
+          state: true
+          labels: true
+        entities:
+          - entity: sensor.docker_cpu
+            name: Docker
+          - entity: sensor.docker_homeassistant_cpu
+            name: HA
+          - entity: sensor.docker_omada_controller_cpu
+            name: Omada
+          - entity: sensor.docker_signalcli_cpu
+            name: Signal
+          - entity: sensor.docker_mariadb_cpu
+            name: MariaDB
+          - entity: sensor.docker_deconz_cpu
+            name: Deconz
+      - type: 'custom:mini-graph-card'
+        name: Mem
+        hours_to_show: 12
+        points_per_hour: 10
+        # font_size: 20
+        line_width: 1
+        show:
+          fill: false
+          state: true
+          labels: true
+        entities:
+          - entity: sensor.docker_memory
+            name: Docker
+          - entity: sensor.docker_homeassistant_memory
+            name: HA
+          - entity: sensor.docker_omada_controller_memory
+            name: Omada
+          - entity: sensor.docker_signalcli_memory
+            name: Signal
+          - entity: sensor.docker_mariadb_memory
+            name: MariaDB
+          - entity: sensor.docker_deconz_memory
+            name: Deconz

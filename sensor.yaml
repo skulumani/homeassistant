@@ -209,15 +209,12 @@
 - platform: moon
 - platform: opensky
   radius: 10
-# - platform: enphase_envoy
-#   ip_address: !secret envoy_ip
-#   monitored_conditions:
-#     - production
-#     - daily_production
-#     - seven_days_production
-#     - lifetime_production
+- platform: enphase_envoy
+  ip_address: !secret envoy_ip
+  monitored_conditions:
+    - production
 - platform:  integration
-  source: sensor.envoy_current_power
+  source: sensor.envoy_current_energy_production
   name: solar_energy
   unit_time: h # kilowatt hour
   unit: "kWh"
@@ -242,12 +239,6 @@
   value_template: '{{ value_json.wattHoursSevenDays / 1000 }}'
   method: GET
   unit_of_measurement: "kWh"
-- platform: rest
-  name: envoy_current_power
-  resource: !secret envoy_rest_url
-  value_template: '{{ value_json.wattsNow / 1000 }}'
-  method: GET
-  unit_of_measurement: "W"
 # - platform: eventsensor
 #   name: OpenSkyFlights
 #   event: opensky_entry

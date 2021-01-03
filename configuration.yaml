@@ -246,19 +246,19 @@ tplink:
     - host: 192.168.200.60
 
 utility_meter:
-  solar_energy_hourly:
+  solar_hourly_energy:
     source: sensor.solar_energy
     cycle: hourly
-  solar_energy_daily:
+  solar_daily_energy:
     source: sensor.solar_energy
     cycle: daily
-  solar_energy_weekly:
+  solar_weekly_energy:
     source: sensor.solar_energy
     cycle: weekly
-  solar_energy_monthly:
+  solar_monthly_energy:
     source: sensor.solar_energy
     cycle: monthly
-  solar_energy_yearly:
+  solar_yearly_energy:
     source: sensor.solar_energy
     cycle: yearly
 
