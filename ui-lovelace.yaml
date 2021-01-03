@@ -91,7 +91,7 @@ views:
         cards:
           - type: 'custom:mini-graph-card'
             entities:
-              - entity: sensor.envoy_current_energy_production
+              - entity: sensor.envoy_current_power
                 name: Power
                 show_state: true
               - entity: sensor.solar_elevation
@@ -130,6 +130,44 @@ views:
           #     graph: bar
           #     points: true
           #     legend: true
+  - title: Solar
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            entities:
+              - entity: sensor.envoy_current_power
+                name: Power
+                show_state: true
+              - entity: sensor.solar_elevation
+                name: Elevation
+                line_width: 1
+                show_fill: false
+                show_state: false
+                y_axis: secondary
+                color: '#666666'
+            hour24: true
+            hours_to_show: 48
+            points_per_hour: 15
+            line_width: 2
+            lower_bound_secondary: 0
+            # group_by: hour
+            show:
+              extrema: true
+              average: true
+              graph: true
+              points: false
+              legend: false
+          - type: entities
+            entities:
+              - sensor.envoy_daily_energy
+              - sensor.solar_energy_daily
+              - sensor.envoy_weekly_energy
+              - sensor.solar_energy_weekly
+              - sensor.envoy_lifetime_energy
+              - sensor.solar_energy_monthly
+              - sensor.solar_energy_yearly
   - title: Weather
     icon: mdi:weather-sunny
     cards:

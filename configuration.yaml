@@ -247,19 +247,19 @@ tplink:
 
 utility_meter:
   solar_energy_hourly:
-    source: sensor.envoy_current_energy_production
+    source: sensor.solar_energy
     cycle: hourly
   solar_energy_daily:
-    source: sensor.envoy_current_energy_production
+    source: sensor.solar_energy
     cycle: daily
   solar_energy_weekly:
-    source: sensor.envoy_current_energy_production
+    source: sensor.solar_energy
     cycle: weekly
   solar_energy_monthly:
-    source: sensor.envoy_current_energy_production
+    source: sensor.solar_energy
     cycle: monthly
   solar_energy_yearly:
-    source: sensor.envoy_current_energy_production
+    source: sensor.solar_energy
     cycle: yearly
 
 
@@ -279,6 +279,11 @@ light:
       - light.sconce_1
       - light.sconce_2
       - light.dining_room_lamp
+      - light.hallway
+  - platform: group
+    name: Exterior
+    entities:
+      - light.porch
   - platform: group
     name: Upstairs Lights
     entities:

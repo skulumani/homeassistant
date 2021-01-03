@@ -209,20 +209,45 @@
 - platform: moon
 - platform: opensky
   radius: 10
-- platform: enphase_envoy
-  ip_address: 192.168.200.30
-  monitored_conditions:
-    - production
-    - daily_production
-    - seven_days_production
-    - lifetime_production
+# - platform: enphase_envoy
+#   ip_address: !secret envoy_ip
+#   monitored_conditions:
+#     - production
+#     - daily_production
+#     - seven_days_production
+#     - lifetime_production
 - platform:  integration
-  source: sensor.envoy_current_energy_production
-  name: energy_production
+  source: sensor.envoy_current_power
+  name: solar_energy
   unit_time: h # kilowatt hour
+  unit: "kWh"
   method: trapezoidal
   unit_prefix: k
   round: 3
+- platform: rest
+  name: envoy_lifetime_energy
+  resource: !secret envoy_rest_url
+  value_template: '{{ value_json.wattHoursLifetime / 1000 }}'
+  method: GET
+  unit_of_measurement: "kWh"
+- platform: rest
+  name: envoy_daily_energy
+  resource: !secret envoy_rest_url
+  value_template: '{{ value_json.wattHoursToday / 1000 }}'
+  method: GET
+  unit_of_measurement: "kWh"
+- platform: rest
+  name: envoy_weekly_energy
+  resource: !secret envoy_rest_url
+  value_template: '{{ value_json.wattHoursSevenDays / 1000 }}'
+  method: GET
+  unit_of_measurement: "kWh"
+- platform: rest
+  name: envoy_current_power
+  resource: !secret envoy_rest_url
+  value_template: '{{ value_json.wattsNow / 1000 }}'
+  method: GET
+  unit_of_measurement: "W"
 # - platform: eventsensor
 #   name: OpenSkyFlights
 #   event: opensky_entry
@@ -236,29 +261,6 @@
 #       unit_of_measurement: 'kB/s'
 #       value_template: "{{ states('sensor.mikrotik_router_kib_s_received') | float / 8 }}"
 
-# Template sensors for solar energy production in kWh
-- platform: template
-  sensors:
-    solar_energy_hourly_kwh:
-      friendly_name: Hourly Solar Energy
-      unit_of_measurement: kWh
-      value_template: "{{ states('sensor.solar_energy_hourly') | float / 1000 }}"
-    solar_energy_daily_kwh:
-      friendly_name: Daily Solar Energy
-      unit_of_measurement: kWh
-      value_template: "{{ states('sensor.solar_energy_daily') | float / 1000 }}"
-    solar_energy_weekly_kwh:
-      friendly_name: Weekly Solar Energy
-      unit_of_measurement: kWh
-      value_template: "{{ states('sensor.solar_energy_weekly') | float / 1000 }}"
-    solar_energy_monthly_kwh:
-      friendly_name: Monthly Solar Energy
-      unit_of_measurement: kWh
-      value_template: "{{ states('sensor.solar_energy_monthly') | float / 1000 }}"
-    solar_energy_yearly_kwh:
-      friendly_name: Yearly Solar Energy
-      unit_of_measurement: kWh
-      value_template: "{{ states('sensor.solar_energy_yearly') | float / 1000 }}"
 
 
      

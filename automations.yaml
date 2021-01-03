@@ -11,7 +11,7 @@
       brightness_pct: 25
       entity_id:
       - light.living_room_lights
-      - light.upstairs_lights
+      - light.exterior
       transition: 10
     service: light.turn_on
   - data:
@@ -33,7 +33,7 @@
       brightness_pct: 50
       entity_id:
       - light.living_room_lights
-      - light.upstairs_lights
+      - light.exterior
       transition: 10
     service: light.turn_on
   - data:
@@ -55,6 +55,7 @@
       brightness_pct: 50
       entity_id:
       - light.living_room_lights
+      - light.hallway
       transition: 10
     service: light.turn_on
   - data:
