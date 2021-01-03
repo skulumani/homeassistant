@@ -236,3 +236,17 @@
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
         for HVAC'
   mode: single
+- id: doorbell_single_click
+  alias: doorbell_single_click
+  initial_state: true
+  trigger:
+    platform: event
+    event_type: "deconz_event"
+    event_data:
+      id: "mini_switch"
+      event: 1002
+  action: 
+    - service: script.flash_light
+      data:
+        light: living_room_lights
+        count: 4

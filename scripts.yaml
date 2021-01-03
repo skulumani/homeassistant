@@ -54,5 +54,25 @@ roku_espn_tap_action:
           - right
           - right
           - select
+flash_light:
+  mode: restart
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: "light.{{ light }}"
+    - repeat:
+        count: "{{ count|int * 2 - 1 }}"
+        sequence:
+          - delay: 
+              milliseconds: 750
+          - service: light.toggle
+            data:
+              entity_id: "light.{{ light }}"
+# flash_hallway_light:
+#   sequence:
+#     - service: script.flash_light
+#       data:
+#         light: hallway
+#         count: 3
 
 # Script record video and send over signal
