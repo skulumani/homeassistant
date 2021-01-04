@@ -10,4 +10,9 @@ thermostats:
   entities:
     - climate.downstairs
     - climate.upstairs
+google_home:
+  name: Google Home Devices
+  entities:
+    - media_player.bedroom_speaker
+    - media_player.living_room_speaker
 

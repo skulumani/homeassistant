@@ -289,6 +289,11 @@ light:
     entities:
       - light.bedroom_lamp
       - light.lamp
+  - platform: group
+    name: Notification Lights
+    entities:
+      - light.downstairs_lights
+      - light.upstairs_lights
   - platform: wiz_light
     name: porch
     host: 192.168.200.45

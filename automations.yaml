@@ -246,7 +246,15 @@
       id: "mini_switch"
       event: 1002
   action: 
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Check the front door"
     - service: script.flash_light
       data:
-        light: living_room_lights
+        light: notification_lights
         count: 4
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Check the front door"
