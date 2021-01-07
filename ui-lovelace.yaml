@@ -168,6 +168,8 @@ views:
                 points_per_hour: 1
                 group_by: date
                 show:
+                  extrema: true
+                  average: true
                   graph: bar
               - type: 'custom:mini-graph-card'
                 entities:
@@ -179,6 +181,8 @@ views:
                 points_per_hour: 1
                 group_by: date
                 show: 
+                  extrema: true
+                  average: true
                   graph: bar
               - type: 'custom:mini-graph-card'
                 entities:
@@ -190,6 +194,8 @@ views:
                 points_per_hour: 1
                 group_by: date
                 show: 
+                  extrema: true
+                  average: true
                   graph: bar
 
   - title: Weather
