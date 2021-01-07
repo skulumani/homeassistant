@@ -87,49 +87,32 @@ views:
                   service: script.turn_on
                   service_data:
                     entity_id: script.back_camera_signal_motion
-      - type: vertical-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - entity: sensor.envoy_current_energy_production
-                name: Power
-                show_state: true
-              - entity: sensor.solar_elevation
-                name: Elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-                color: '#666666'
-            hour24: true
-            hours_to_show: 48
-            points_per_hour: 15
-            line_width: 2
-            lower_bound_secondary: 0
-            # group_by: hour
-            show:
-              extrema: true
-              average: true
-              graph: true
-              points: false
-              legend: false
-          # - type: 'custom:mini-graph-card'
-          #   entities:
-          #     - entity: sensor.solar_energy_hourly
-          #       name: Hourly Energy
-          #       show_state: true
-          #   hour24: true
-          #   hours_to_show: 48
-          #   point_per_hour: 15
-          #   line_width: 2
-          #   lower_bound_secondary: 0
-          #   group_by: hour
-          #   show:
-          #     extrema: true
-          #     average: true
-          #     graph: bar
-          #     points: true
-          #     legend: true
+      # - type: vertical-stack
+      #   cards:
+      #     - type: 'custom:mini-graph-card'
+      #       entities:
+      #         - entity: sensor.envoy_current_energy_production
+      #           name: Power
+      #           show_state: true
+      #         - entity: sensor.solar_elevation
+      #           name: Elevation
+      #           line_width: 1
+      #           show_fill: false
+      #           show_state: false
+      #           y_axis: secondary
+      #           color: '#666666'
+      #       hour24: true
+      #       hours_to_show: 48
+      #       points_per_hour: 15
+      #       line_width: 2
+      #       lower_bound_secondary: 0
+      #       # group_by: hour
+      #       show:
+      #         extrema: true
+      #         average: true
+      #         graph: true
+      #         points: false
+      #         legend: false
   - title: Solar
     panel: true
     cards:
