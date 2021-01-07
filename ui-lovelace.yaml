@@ -135,39 +135,44 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - entity: sensor.envoy_current_energy_production
-                name: Power
-                show_state: true
-              - entity: sensor.solar_elevation
-                name: Elevation
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.envoy_current_energy_production
+                    name: Power
+                    show_state: true
+                  - entity: sensor.solar_elevation
+                    name: Elevation
+                    line_width: 1
+                    show_fill: false
+                    show_state: false
+                    y_axis: secondary
+                    color: '#666666'
+                hour24: true
+                hours_to_show: 48
+                points_per_hour: 15
                 line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-                color: '#666666'
-            hour24: true
-            hours_to_show: 48
-            points_per_hour: 15
-            line_width: 1
-            lower_bound_secondary: 0
-            # group_by: hour
-            show:
-              extrema: true
-              average: true
-              graph: true
-              points: false
-              legend: false
-          - type: entities
-            entities:
-              - sensor.envoy_daily_energy
-              - sensor.solar_daily_energy
-              - sensor.envoy_weekly_energy
-              - sensor.solar_weekly_energy
-              - sensor.envoy_lifetime_energy
-              - sensor.solar_monthly_energy
-              - sensor.solar_yearly_energy
+                lower_bound_secondary: 0
+                # group_by: hour
+                show:
+                  extrema: true
+                  average: true
+                  graph: true
+                  points: false
+                  legend: false
+              - type: entities
+                entities:
+                  # - sensor.envoy_daily_energy
+                  # - sensor.solar_daily_energy
+                  - entity: sensor.envoy_lifetime_energy
+                    name: Lifetime energy
+                  - entity: sensor.envoy_weekly_energy
+                    name: Last week energy
+                  - entity: sensor.solar_weekly_energy
+                    name: Current week 
+                  # - sensor.solar_monthly_energy
+                  # - sensor.solar_yearly_energy
           - type: horizontal-stack
             cards: 
               - type: 'custom:mini-graph-card'
@@ -188,6 +193,17 @@ views:
                 aggregate_func: max
                 hours24: true
                 hours_to_show: 672
+                points_per_hour: 1
+                group_by: date
+                show: 
+                  graph: bar
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.solar_monthly_energy
+                    name: Monthly Energy
+                aggregate_func: max
+                hours24: true
+                hours_to_show: 8760
                 points_per_hour: 1
                 group_by: date
                 show: 
