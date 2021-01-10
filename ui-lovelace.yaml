@@ -213,6 +213,7 @@ views:
             entities:
               - sensor.moon
               - sun.sun
+              - sensor.period_of_day
               - sensor.openskyflights
           - type: entities
             entities:

@@ -1,3 +1,4 @@
+# Lights
 - id: lights_on_evening_civil_twilight
   alias: Lights on at evening civil twilight
   trigger:
@@ -8,11 +9,11 @@
     after: '16:00:00'
   action:
   - data:
-      brightness_pct: 25
+      brightness_pct: 30
       entity_id:
       - light.living_room_lights
       - light.exterior
-      transition: 10
+      transition: 60
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
@@ -34,7 +35,7 @@
       entity_id:
       - light.living_room_lights
       - light.exterior
-      transition: 10
+      transition: 60
     service: light.turn_on
   - data:
       message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
@@ -52,11 +53,11 @@
     before: 09:00:00
   action:
   - data:
-      brightness_pct: 50
+      brightness_pct: 30
       entity_id:
       - light.living_room_lights
       - light.hallway
-      transition: 10
+      transition: 60
     service: light.turn_on
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
@@ -72,7 +73,7 @@
   action:
   - data:
       entity_id: all
-      transition: 10
+      transition: 60
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
@@ -89,13 +90,36 @@
       entity_id:
       - light.downstairs_lights
       - light.upstairs_lights
-      transition: 10
+      transition: 60
     service: light.turn_off
   - data:
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
         upstairs turned off at 2300'
     service: notify.signal_group
   mode: single
+
+- id: bedroom_light_on_morning
+  alias: Bedroom on in morning
+  trigger:
+  - platform: time
+    at: 06:20:00
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  action:
+  - data:
+      brightness_pct: 20
+      entity_id:
+      - light.upstairs_lights
+      transition: 600
+    service: light.turn_on
+  - data:
+      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
+    service: notify.signal_group
+  mode: single
+
+# Commute/Work
 - id: update_morning_commute_sensor
   alias: Commute - Update morning commute sensor
   initial_state: 'on'
@@ -114,33 +138,8 @@
   action:
   - service: homeassistant.update_entity
     entity_id: sensor.waze_home_to_collins
-- id: lower_living_room_media_playing
-  alias: Lower living room playing tv
-  trigger:
-  - platform: state
-    entity_id: media_player.50_tcl_roku_tv
-    to: playing
-  action:
-  - service: scene.turn_on
-    entity_id: scene.lower_living_room_lights
-  condition:
-  - condition: template
-    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
-- id: raise_living_room_media_playing
-  alias: Raise living room paused tv
-  trigger:
-  - platform: state
-    entity_id: media_player.50_tcl_roku_tv
-    to: 'off'
-  - platform: state
-    entity_id: media_player.50_tcl_roku_tv
-    to: paused
-  action:
-  - service: scene.turn_on
-    entity_id: scene.raise_living_room_lights
-  condition:
-  - condition: template
-    value_template: '{{ states.sensor.period_of_day.state != ''day'' }}'
+
+# Phone charging
 - id: stop_pixel_charging
   alias: Stop Pixel 2 Charging
   trigger:
@@ -169,6 +168,8 @@
         percent
   - service: switch.turn_on
     entity_id: switch.plug
+
+# Motion cameras
 - id: front_camera_motion_signal
   alias: Send front video to signal group
   trigger:
@@ -191,26 +192,7 @@
   - service: script.turn_on
     entity_id: script.back_camera_signal_motion
   mode: single
-- id: bedroom_light_on_morning
-  alias: Bedroom on in morning
-  trigger:
-  - platform: time
-    at: 06:20:00
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday_sensor
-    state: 'on'
-  action:
-  - data:
-      brightness_pct: 10
-      entity_id:
-      - light.upstairs_lights
-      transition: 600
-    service: light.turn_on
-  - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
-    service: notify.signal_group
-  mode: single
+
 - id: hvac_away_mode
   alias: HVAC Away Mode when not home
   trigger:
@@ -236,6 +218,8 @@
       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
         for HVAC'
   mode: single
+
+# Home sensors/switches
 - id: doorbell_single_click
   alias: doorbell_single_click
   initial_state: true
