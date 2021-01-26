@@ -86,11 +86,16 @@ alarm_control_panel:
   - platform: manual
     name: "HA Alarm"
     code: "1234"
-    code_arm_required: true
-    delay_time: 10
-    arming_time: 30
-    trigger_time: 30
-    disarm_after_trigger: false
+    code_arm_required: false # no code to arm
+    disarm_after_trigger: false # arm again after trigger
+    arming_time: 30 # time between arming and armed (leave house)
+    delay_time: 10 # time to disarm after trigger (arriving home)
+    trigger_time: 600 # time the alarm is triggered for
+    disarmed:
+      trigger_time: 0 # alarm can't be triggered when disarmed
+    armed_home:
+      arming_time: 0 # no delay arming > armed
+      delay_time: # no time between pending > triggered
 
 # no_ip:
 #   domain: !secret noip_domain
