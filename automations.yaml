@@ -235,12 +235,20 @@
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:
-        message: "Check the front door"
-    - service: script.flash_light
-      data:
-        light: notification_lights
-        count: 4
+        message: "Doorbell"
+    - delay: 1
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:
-        message: "Check the front door"
+        message: "Doorbell"
+    - delay: 1
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Doorbell"
+    - delay: 1
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Doorbell"
+
