@@ -84,7 +84,7 @@ tts:
 # Alarm
 alarm_control_panel:
   - platform: manual
-    name: "HA Alarm"
+    name: "Alarm"
     code: "1234"
     code_arm_required: false # no code to arm
     disarm_after_trigger: false # arm again after trigger
@@ -95,7 +95,7 @@ alarm_control_panel:
       trigger_time: 0 # alarm can't be triggered when disarmed
     armed_home:
       arming_time: 0 # no delay arming > armed
-      delay_time: # no time between pending > triggered
+      delay_time: 0 # no time between pending > triggered
 
 # no_ip:
 #   domain: !secret noip_domain

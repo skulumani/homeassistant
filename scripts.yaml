@@ -68,6 +68,27 @@ flash_light:
           - service: light.toggle
             data:
               entity_id: "light.{{ light }}"
+sound_alarm:
+  mode: restart
+  sequence:
+    - alias: "Repeat alarm"
+      repeat:
+        while:
+          - condition: state
+            entity_id: alarm_control_panel.alarm
+            state: "triggered"
+          - condition: template
+            value_template: "{{ repeat.index < 100 }}"
+        sequence:
+          - service: tts.google_translate_say
+            entity_id: group.google_home
+            data:
+              message: "Intruder Alert!"
+          - delay:
+              milliseconds: 750
+
+
+
 # flash_hallway_light:
 #   sequence:
 #     - service: script.flash_light
