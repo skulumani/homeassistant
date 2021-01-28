@@ -54,6 +54,7 @@ roku_espn_tap_action:
           - right
           - right
           - select
+
 flash_light:
   mode: restart
   sequence:
@@ -68,9 +69,14 @@ flash_light:
           - service: light.toggle
             data:
               entity_id: "light.{{ light }}"
+
 sound_alarm:
   mode: restart
   sequence:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: group.google_home
+        volume_level: 1.0
     - alias: "Repeat alarm"
       repeat:
         while:
@@ -80,14 +86,42 @@ sound_alarm:
           - condition: template
             value_template: "{{ repeat.index < 100 }}"
         sequence:
+          # raise volume to max
           - service: tts.google_translate_say
             entity_id: group.google_home
             data:
               message: "Intruder Alert!"
           - delay:
-              milliseconds: 750
+              milliseconds: 3000
+    - service: media_player.volume_set
+      data_template: 
+        entity_id: group.google_home
+        volume_level: 0.3
 
-
+sound_doorbell:
+  mode: restart
+  sequence:
+    - service: media_player.volume_set
+      data_template: 
+        entity_id: group.google_home
+        volume_level: 1.0
+    - alias: "Repeat doorbell"
+      repeat:
+        while:
+          - condition: template
+            value_template: "{{ repeat.index < 4 }}"
+        sequence:
+          # raise volume to max
+          - service: tts.google_translate_say
+            entity_id: group.google_home
+            data:
+              message: "Doorbell"
+          - delay:
+              milliseconds: 1000
+    - service: media_player.volume_set
+      data_template: 
+        entity_id: group.google_home
+        volume_level: 0.3
 
 # flash_hallway_light:
 #   sequence:

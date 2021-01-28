@@ -232,25 +232,7 @@
       id: "mini_switch"
       event: 1002
   action: 
-    - service: tts.google_translate_say
-      entity_id: group.google_home
-      data:
-        message: "Doorbell"
-    - delay: 1
-    - service: tts.google_translate_say
-      entity_id: group.google_home
-      data:
-        message: "Doorbell"
-    - delay: 1
-    - service: tts.google_translate_say
-      entity_id: group.google_home
-      data:
-        message: "Doorbell"
-    - delay: 1
-    - service: tts.google_translate_say
-      entity_id: group.google_home
-      data:
-        message: "Doorbell"
+    - service: script.sound_doorbell
 
 # ALARM
 
