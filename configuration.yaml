@@ -88,14 +88,17 @@ alarm_control_panel:
     code: "1234"
     code_arm_required: false # no code to arm
     disarm_after_trigger: false # arm again after trigger
-    arming_time: 30 # time between arming and armed (leave house)
-    delay_time: 10 # time to disarm after trigger (arriving home)
+    arming_time: 120 # time between arming and armed (leave house)
+    delay_time: 30  # time to disarm after trigger (arriving home)
     trigger_time: 600 # time the alarm is triggered for
     disarmed:
       trigger_time: 0 # alarm can't be triggered when disarmed
-    armed_home:
+    armed_home: # delays for armed_home state
       arming_time: 0 # no delay arming > armed
       delay_time: 0 # no time between pending > triggered
+timer:
+  alarm_pending:
+    duration: "00:00:05"
 
 # no_ip:
 #   domain: !secret noip_domain

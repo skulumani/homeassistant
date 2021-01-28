@@ -260,16 +260,47 @@
     service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.alarm
 
+# TODO - Add automation to send video when alarm is pending
+
+- alias: "Alarm - Pending Reminder"
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      from: "armed_away" # no delay for armed_home
+      to: "pending"
+  action:
+    - delay: 00:00:05
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Alarm initiated"
+    - service: timer.start
+      entity_id: timer.alarm_pending
+- alias: "Alarm - Pending Repeat"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.alarm_pending
+  condition:
+    condition: state
+    entity_id: alarm_control_panel.alarm
+    state: pending
+  action:
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Disarm the alarm now!"
+    - service: timer.start
+      entity_id: timer.alarm_pending
+
+
 - alias: "Alarm - Triggered"
   trigger:
     - platform: state
       entity_id: alarm_control_panel.alarm
       to: "triggered"
   action: 
-    - service: tts.google_translate_say
-      entity_id: group.google_home
-      data:
-        message: "Alarm Starting"
     - service: script.sound_alarm
 
 
@@ -284,4 +315,6 @@
       entity_id: group.google_home
       data:
         message: "Disarmed"
+    - service: timer.cancel
+      entity_id: timer.alarm_pending
 
