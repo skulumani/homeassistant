@@ -173,6 +173,7 @@
 
 # Motion cameras
 - id: front_camera_motion_signal
+  initial_state: false
   alias: Send front video to signal group
   trigger:
   - platform: state
@@ -183,7 +184,9 @@
   - service: script.turn_on
     entity_id: script.front_camera_signal_motion
   mode: single
+
 - id: back_camera_motion_signal
+  initial_state: true
   alias: Send back video to signal group
   trigger:
   - platform: state
