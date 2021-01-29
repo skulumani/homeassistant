@@ -186,7 +186,7 @@
   mode: single
 
 - id: back_camera_motion_signal
-  initial_state: true
+  initial_state: false
   alias: Send back video to signal group
   trigger:
   - platform: state
