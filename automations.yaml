@@ -279,6 +279,7 @@
         message: "Alarm initiated"
     - service: timer.start
       entity_id: timer.alarm_pending
+
 - alias: "Alarm - Pending Repeat"
   trigger:
     - platform: event
@@ -304,6 +305,9 @@
       entity_id: alarm_control_panel.alarm
       to: "triggered"
   action: 
+    - service: notify.signal_group
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm Triggered!!'
     - service: script.sound_alarm
 
 
@@ -320,4 +324,43 @@
         message: "Disarmed"
     - service: timer.cancel
       entity_id: timer.alarm_pending
+
+- alias: "Disarm alarm when presence is detected"
+  trigger: # either person is home
+    - platform: state
+      entity_id: 
+        - binary_sensor.shankar_presence
+        - binary_sensor.christine_presence
+      to: "home"
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: "armed_away"
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+    - delay: "00:00:10"
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: "Disarmed"
+
+- alias: "Arm the alarm when no one is home"
+  trigger:
+    - platform: state
+      entity_id: 
+        - binary_sensor.shankar_presence
+        - binary_sensor.christine_presence
+      to: "away"
+      for: "00:05:00"
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: "disarmed"
+  action:
+    - service: alarm_control_panel.alarm_arm_away
+      entity_id: alarm_control_panel.alarm
+    - service: notify.signal_group
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode.'
 
