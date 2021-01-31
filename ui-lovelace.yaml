@@ -886,3 +886,29 @@ views:
             name: MariaDB
           - entity: sensor.docker_deconz_memory
             name: Deconz
+  - panel: false
+    title: Sensors
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: binary_sensor.attic
+          - entity: binary_sensor.laundry
+          - entity: binary_sensor.water_heater
+        show_header_toggle: true
+        title: Water Sensors
+      - type: entities
+        entities:
+          - entity: binary_sensor.basement_door
+          - entity: binary_sensor.front_door
+          - entity: binary_sensor.back_door
+        title: Door Sensor
+      - type: entities
+        entities:
+          - entity: sensor.attic_battery_level
+          - entity: sensor.water_2_battery_level
+          - entity: sensor.water_heater_battery_level
+          - entity: sensor.basement_door_battery_level
+          - entity: sensor.front_door_battery_level
+          - entity: sensor.back_door_battery_level
+        title: Sensor Battery

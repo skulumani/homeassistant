@@ -15,30 +15,23 @@ homeassistant:
 lovelace:
   mode: yaml
   resources:
-    # - url: https://cdn.jsdelivr.net/gh/bramkragten/weather-card/dist/weather-card.min.js
-    #   type: module
     - url: /hacsfiles/weather-card/weather-card.js
       type: module
-    # - url: /local/weather-card-chart.js?v=0.0.2
-    #   type: module
-    # - url: /local/swipe-navigation.js?v=0.0.1
-    #   type: module
-    # - url: /local/mini-graph-card-bundle.js?v=0.9.4
-    #   type: module
     - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
       type: module
-    # - url: /local/battery-state-card.js?v=0.0.1
-    #   type: module
     - url: /hacsfiles/battery-state-card/battery-state-card.js
       type: module
-
-    # - url: /local/simple-thermostat.js?v=1
-    #   type: module
     - url: /hacsfiles/simple-thermostat/simple-thermostat.js
       type: module
+  dashboards:
+    tablet-yaml:
+      mode: yaml
+      filename: tablet-lovelace.yaml
+      title: Tablet
+      icon: mdi:tablet
+      show_in_sidebar: true
+      require_admin: false
 
-    # - url: /local/custom-header.js?v=0.0.1
-    #   type: module
 
 frontend:
   # themes: !include_dir_merge_named ./themes
