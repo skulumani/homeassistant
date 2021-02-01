@@ -242,13 +242,7 @@
 - alias: "Alarm - Trigger when sensors go off"
   trigger: 
     - platform: state
-      entity_id: binary_sensor.front_door
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.back_door
-      to: "on"
-    - platform: state
-      entity_id: binary_sensor.basement_door
+      entity_id: group.alarm_sensors
       to: "on"
   condition:
     condition: or
@@ -328,9 +322,7 @@
 - alias: "Disarm alarm when presence is detected"
   trigger: # either person is home
     - platform: state
-      entity_id: 
-        - binary_sensor.shankar_presence
-        - binary_sensor.christine_presence
+      entity_id: group.family_presence
       to: "home"
   condition:
     - condition: state
@@ -339,7 +331,7 @@
   action:
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
-    - delay: "00:00:10"
+    - delay: "00:00:05"
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:
@@ -348,9 +340,7 @@
 - alias: "Arm the alarm when no one is home"
   trigger:
     - platform: state
-      entity_id: 
-        - binary_sensor.shankar_presence
-        - binary_sensor.christine_presence
+      entity_id: group.family_presence
       to: "away"
       for: "00:05:00"
   condition:

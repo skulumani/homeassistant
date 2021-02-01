@@ -1,10 +1,8 @@
-family:
+family_presence:
   name: Family
   entities:
     - binary_sensor.christine_presence
     - binary_sensor.shankar_presence 
-    # - person.shankar_kulumani
-    # - person.christine_kulumani
 thermostats:
   name: Thermostats
   entities:
@@ -15,4 +13,17 @@ google_home:
   entities:
     - media_player.bedroom_speaker
     - media_player.living_room_speaker
+alarm_sensors:
+  name: Alarm Sensors
+  entities:
+    - binary_sensor.front_door
+    - binary_sensor.back_door
+    - binary_sensor.basement_door
+    - binary_sensor.window
+water_sensors:
+  name: Water Sensors
+  entities:
+    - binary_sensor.attice
+    - binary_sensor.water_heater
+    - binary_sensor.laundry
 

@@ -207,8 +207,8 @@
       value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
 
 - platform: moon
-- platform: opensky
-  radius: 10
+# - platform: opensky
+#   radius: 10
 - platform: enphase_envoy
   ip_address: !secret envoy_ip
   monitored_conditions:

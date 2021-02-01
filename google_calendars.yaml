@@ -4,7 +4,7 @@
   - device_id: winchester_underwood_cooperative
     ignore_availability: true
     name: Winchester Underwood Cooperative
-    track: true
+    track: false
 
 - cal_id: lopezmchristine@gmail.com
   entities:
@@ -18,7 +18,7 @@
   - device_id: shankar_kulumani_rockwellcollins_com
     ignore_availability: true
     name: shankar.kulumani@rockwellcollins.com
-    track: true
+    track: false
 
 - cal_id: bc98gp6dunb42120prhq0jrvouqcll4i@import.calendar.google.com
   entities:
