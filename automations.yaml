@@ -237,6 +237,22 @@
   action: 
     - service: script.sound_doorbell
 
+# WATER LEAK ALARM
+- alias: "Water leak detected"
+  trigger:
+    - platform: state
+      entity_id: group.water_sensors
+      to: "on"
+  action:
+    - service: notify.signal_group
+      data:
+        message: >-
+          {% for entity in trigger.to_state.attributes.entity_id %}
+          {% if states(entity) == 'on' %}
+            " {{now().strftime('%Y-%m-%dT%H:%M:%S%z')}} Water leak detected!! - {{ state_attr(entity, 'friendly_name') }}"
+          {% endif %}
+          {% endfor %}
+
 # ALARM
 
 - alias: "Alarm - Trigger when sensors go off"
