@@ -370,3 +370,34 @@
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode.'
 
+- alias: "Arm alarm at night and home"
+  trigger:
+  - at: '23:00'
+    platform: time
+  condition:
+    - condition: state
+      entity_id: group.family_presence
+      state: "home"
+  action:
+    - service: alarm_control_panel.alarm_arm_home
+      entity_id: alarm_control_panel.alarm
+    - service: notify.signal_group
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in home mode.'
+
+- alias: "Disarm alarm when home in morning"
+  trigger:
+    - platform: time
+      at: '06:00'
+  condition:
+    - condition: state
+      entity_id: group.family_presence
+      state: "home"
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      entity_id: alarm_control_panel.alarm
+    - service: notify.signal_group
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed.'
+
+
