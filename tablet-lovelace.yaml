@@ -13,6 +13,30 @@ views:
                   - arm_home
                   - arm_away
                 entity: alarm_control_panel.alarm
+              - type: entities
+                square: false
+                show_header_toggle: false
+                entities:
+                  # - entity: light.upstairs_lights
+                  #   name: Upstairs
+                  - entity: light.bedroom_lights
+                    name: Bedroom
+                  - entity: light.downstairs_lights
+                    name: Downstairs
+                  - entity: light.dining_room_lamp
+                    name: Dining Room
+                  - entity: light.living_room_lights
+                    name: Living Room
+                  - entity: light.lamp
+                    name: Lamp
+                  - entity: light.hallway
+                    name: Hallway
+                  - entity: light.porch
+                    name: Porch
+          - type: vertical-stack
+            cards:
+              - type: weather-forecast
+                entity: weather.openweathermap
               - type: horizontal-stack
                 cards:
                   - type: picture-glance
@@ -36,30 +60,30 @@ views:
                           service: script.turn_on
                           service_data:
                             entity_id: script.back_camera_signal_motion
-          - type: vertical-stack
-            cards:
-              - type: weather-forecast
-                entity: weather.openweathermap
-              - type: entities
-                square: false
-                show_header_toggle: false
+              - type: 'custom:mini-graph-card'
                 entities:
-                  # - entity: light.upstairs_lights
-                  #   name: Upstairs
-                  - entity: light.bedroom_lights
-                    name: Bedroom
-                  - entity: light.downstairs_lights
-                    name: Downstairs
-                  - entity: light.dining_room_lamp
-                    name: Dining Room
-                  - entity: light.living_room_lights
-                    name: Living Room
-                  - entity: light.lamp
-                    name: Lamp
-                  - entity: light.hallway
-                    name: Hallway
-                  - entity: light.porch
-                    name: Porch
+                  - entity: sensor.envoy_current_energy_production
+                    name: Power
+                    show_state: true
+                  - entity: sensor.solar_elevation
+                    name: Elevation
+                    line_width: 1
+                    show_fill: false
+                    show_state: false
+                    y_axis: secondary
+                    color: '#666666'
+                hour24: true
+                hours_to_show: 48
+                points_per_hour: 15
+                line_width: 1
+                lower_bound_secondary: 0
+                # group_by: hour
+                show:
+                  extrema: true
+                  average: true
+                  graph: true
+                  points: false
+                  legend: false
   - title: Cameras
     panel: true
     cards:

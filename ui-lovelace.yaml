@@ -13,6 +13,12 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
+      - type: alarm-panel
+        states:
+          - arm_home
+          - arm_away
+        entity: alarm_control_panel.alarm
+
       - type: vertical-stack
         title: Lights
         cards:
