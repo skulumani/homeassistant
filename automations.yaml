@@ -172,31 +172,31 @@
     entity_id: switch.plug
 
 # Motion cameras
-- id: front_camera_motion_signal
-  initial_state: false
-  alias: Send front video to signal group
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.motion_front
-    to: 'on'
-  condition: []
-  action:
-  - service: script.turn_on
-    entity_id: script.front_camera_signal_motion
-  mode: single
+# - id: front_camera_motion_signal
+#   initial_state: false
+#   alias: Send front video to signal group
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.motion_front
+#     to: 'on'
+#   condition: []
+#   action:
+#   - service: script.turn_on
+#     entity_id: script.front_camera_signal_motion
+#   mode: single
 
-- id: back_camera_motion_signal
-  initial_state: false
-  alias: Send back video to signal group
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.motion_back
-    to: 'on'
-  condition: []
-  action:
-  - service: script.turn_on
-    entity_id: script.back_camera_signal_motion
-  mode: single
+# - id: back_camera_motion_signal
+#   initial_state: false
+#   alias: Send back video to signal group
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.motion_back
+#     to: 'on'
+#   condition: []
+#   action:
+#   - service: script.turn_on
+#     entity_id: script.back_camera_signal_motion
+#   mode: single
 
 - id: hvac_away_mode
   alias: HVAC Away Mode when not home
