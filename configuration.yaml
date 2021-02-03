@@ -78,7 +78,7 @@ tts:
 alarm_control_panel:
   - platform: manual
     name: "Alarm"
-    code: "1234"
+    code: ""
     code_arm_required: false # no code to arm
     disarm_after_trigger: false # arm again after trigger
     arming_time: 120 # time between arming and armed (leave house)
