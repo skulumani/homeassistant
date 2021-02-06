@@ -84,9 +84,9 @@ sound_alarm:
     - alias: "Repeat alarm"
       repeat:
         while:
-          # - condition: state
-          #   entity_id: alarm_control_panel.alarm
-          #   state: "triggered"
+          - condition: state
+            entity_id: alarm_control_panel.alarm
+            state: "triggered"
           - condition: template
             value_template: "{{ repeat.index < 100 }}"
         sequence:

@@ -244,12 +244,21 @@
       entity_id: group.water_sensors
       to: "on"
   action:
-    - service: notify.signal_group
+    - service: notify.signal_alarm_group
       data:
         message: >-
           {% for entity in trigger.to_state.attributes.entity_id %}
           {% if states(entity) == 'on' %}
             " {{now().strftime('%Y-%m-%dT%H:%M:%S%z')}} Water leak detected!! - {{ state_attr(entity, 'friendly_name') }}"
+          {% endif %}
+          {% endfor %}
+    - service: tts.google_translate_say
+      entity_id: group.google_home
+      data:
+        message: >-
+          {% for entity in trigger.to_state.attributes.entity_id %}
+          {% if states(entity) == 'on' %}
+            "Water leak in {{ state_attr(entity, 'friendly_name') }}"
           {% endif %}
           {% endfor %}
 
@@ -298,7 +307,7 @@
   condition:
     condition: state
     entity_id: alarm_control_panel.alarm
-    state: pending
+    state: "pending"
   action:
     - service: tts.google_translate_say
       entity_id: group.google_home
@@ -314,7 +323,7 @@
       entity_id: alarm_control_panel.alarm
       to: "triggered"
   action: 
-    - service: notify.signal_group
+    - service: notify.signal_alarm_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm Triggered!!'
     - service: script.sound_alarm
@@ -347,10 +356,13 @@
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
     - delay: "00:00:05"
+    - service: notify.signal_alarm_group
+      data:
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed due to presence.'
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:
-        message: "Disarmed"
+        message: "Disarmed due to presence"
 
 - alias: "Arm the alarm when no one is home"
   trigger:
@@ -365,38 +377,48 @@
   action:
     - service: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_group
+    - service: notify.signal_alarm_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode.'
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode due to lack of presence.'
 
 - alias: "Arm alarm at night and home"
   trigger:
   - at: '23:00'
     platform: time
   condition:
-    - condition: state
-      entity_id: group.family_presence
-      state: "home"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family_presence
+        state: "home"
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: "disarmed"
   action:
     - service: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_group
+    - service: notify.signal_alarm_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in home mode.'
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in home mode at night and home.'
 
 - alias: "Disarm alarm when home in morning"
   trigger:
     - platform: time
       at: '06:00'
   condition:
-    - condition: state
-      entity_id: group.family_presence
-      state: "home"
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.family_presence
+        state: "home"
+      - condition: state
+        entity_id: alarm_control_panel.alarm
+        state: "armed_home"
   action:
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_group
+    - service: notify.signal_alarm_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed.'
+        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed in morning.'
 
 
