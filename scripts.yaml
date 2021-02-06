@@ -76,6 +76,7 @@ flash_light:
 sound_alarm:
   mode: single
   sequence:
+    # raise volume to max
     - service: media_player.volume_set
       data_template:
         entity_id: group.google_home
@@ -83,13 +84,12 @@ sound_alarm:
     - alias: "Repeat alarm"
       repeat:
         while:
-          - condition: state
-            entity_id: alarm_control_panel.alarm
-            state: "triggered"
+          # - condition: state
+          #   entity_id: alarm_control_panel.alarm
+          #   state: "triggered"
           - condition: template
             value_template: "{{ repeat.index < 100 }}"
         sequence:
-          # raise volume to max
           - service: tts.google_translate_say
             entity_id: group.google_home
             data:
@@ -114,7 +114,6 @@ sound_doorbell:
           - condition: template
             value_template: "{{ repeat.index < 4 }}"
         sequence:
-          # raise volume to max
           - service: tts.google_translate_say
             entity_id: group.google_home
             data:
