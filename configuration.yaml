@@ -82,8 +82,11 @@ alarm_control_panel:
     code_arm_required: false # no code to arm
     disarm_after_trigger: false # arm again after trigger
     arming_time: 120 # time between arming and armed (leave house)
-    delay_time: 120  # time to disarm after trigger (arriving home)
+    delay_time: 30  # time to disarm after trigger (arriving home)
     trigger_time: 600 # time the alarm is triggered for
+    armed_away:
+      arming_time: 120
+      delay_time: 30
     disarmed:
       trigger_time: 0 # alarm can't be triggered when disarmed
     armed_home: # delays for armed_home state
@@ -92,7 +95,7 @@ alarm_control_panel:
 
 timer:
   alarm_pending:
-    duration: "00:00:10"
+    duration: "00:00:05"
 
 # no_ip:
 #   domain: !secret noip_domain
@@ -137,6 +140,12 @@ notify:
     number: !secret signal_rpi_number
     recipients:
       - !secret signal_rpi_group
+  - name: signal_alarm_group
+    platform: signal_messenger
+    url: "http://localhost:8088"
+    number: !secret signal_rpi_number
+    recipients:
+      - !secret signal_alarm_group
   - name: ecobee_notify
     platform: ecobee
   # - name: signal_notify

@@ -270,8 +270,8 @@
         entity_id: alarm_control_panel.alarm
         state: armed_away
   action:
-    service: alarm_control_panel.alarm_trigger
-    entity_id: alarm_control_panel.alarm
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.alarm
 
 # TODO - Add automation to send video when alarm is pending
 
@@ -282,7 +282,6 @@
       from: "armed_away" # no delay for armed_home
       to: "pending"
   action:
-    - delay: 00:00:05
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:

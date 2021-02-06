@@ -23,7 +23,7 @@ alarm_sensors:
 water_sensors:
   name: Water Sensors
   entities:
-    - binary_sensor.attice
+    - binary_sensor.attic
     - binary_sensor.water_heater
     - binary_sensor.laundry
 
