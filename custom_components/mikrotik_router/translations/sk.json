@@ -1,38 +1,55 @@
 {
     "config": {
-        "error": {
-            "cannot_connect": "Nedá sa pripojiť k Mikrotiku.",
-            "connection_timeout": "Časový limit pripojenia vypršal.",
-            "name_exists": "Názov už existuje.",
-            "ssl_handshake_failure": "Zlyhanie nadviazania spojenia SSL.",
-            "wrong_login": "Nesprávne užívateľské meno alebo heslo."
-        },
+        "title": "Mikrotik Router",
         "step": {
             "user": {
-                "data": {
-                    "host": "Zariadenie",
-                    "name": "Názov integrácie",
-                    "password": "Heslo",
-                    "port": "Port",
-                    "ssl": "Použiť SSL",
-                    "username": "Užívateľ"
-                },
+                "title": "Mikrotik Router",
                 "description": "Nastaviť integráciu Mikrotik Router.",
-                "title": "Mikrotik Router"
+                "data": {
+                    "name": "Názov integrácie",
+                    "host": "Zariadenie",
+                    "port": "Port",
+                    "username": "Užívateľ",
+                    "password": "Heslo",
+                    "ssl": "Použiť SSL"
+                }
             }
         },
-        "title": "Mikrotik Router"
+        "error": {
+            "name_exists": "Názov už existuje.",
+            "cannot_connect": "Nedá sa pripojiť k Mikrotiku.",
+            "ssl_handshake_failure": "Zlyhanie nadviazania spojenia SSL.",
+            "connection_timeout": "Časový limit pripojenia vypršal.",
+            "wrong_login": "Nesprávne užívateľské meno alebo heslo."
+        }
     },
     "options": {
         "step": {
-            "device_tracker": {
+            "basic_options": {
                 "data": {
                     "scan_interval": "Interval skenovania (vyžaduje sa reštart HA)",
                     "track_iface_clients": "Zobraziť klientske MAC a IP na rozhraniach",
+                    "unit_of_measurement": "Merná jednotka",
+                    "track_network_hosts_timeout": "Časový limit sledovania sieťových zariadení (sekundy)"
+                },
+                "title": "Základné možnosti"
+            },
+            "sensor_select": {
+                "data": {
                     "track_network_hosts": "Sledovanie sieťových zariadení",
-                    "track_network_hosts_timeout": "Časový limit sledovania sieťových zariadení (sekundy)",
-                    "unit_of_measurement": "Merná jednotka"
-                }
+                    "sensor_port_tracker": "Senzory sledovania portov",
+                    "sensor_port_traffic": "Senzory prenosu v porte",
+                    "sensor_client_traffic": "Senzory prenosu klientov",
+                    "sensor_simple_queues": "Jednoduché prepínače radov",
+                    "sensor_nat": "Prepínače NAT",
+                    "sensor_scripts": "Prepínače skriptov",
+                    "sensor_environment": "Snímače prostredia",
+                    "sensor_pppusers": "PPP users",
+                    "sensor_kidcontrol": "Kid control",
+                    "sensor_mangle": "Mangle switches",
+                    "sensor_ppp": "PPP users"
+                },
+                "title": "Vybrať senzory"
             }
         }
     }

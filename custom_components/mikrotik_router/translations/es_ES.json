@@ -1,38 +1,55 @@
 {
     "config": {
-        "error": {
-            "cannot_connect": "No puede conectarse a Mikrotik.",
-            "connection_timeout": "Tiempo de espera de la conexión a Mikrotik.",
-            "name_exists": "El nombre ya existe.",
-            "ssl_handshake_failure": "Fallo del \"handshake\" SSL",
-            "wrong_login": "Nombre de usuario o contraseña no válida"
-        },
+        "title": "Mikrotik Router",
         "step": {
             "user": {
-                "data": {
-                    "host": "Proveedor",
-                    "name": "Nombre de la integración",
-                    "password": "Contraseña",
-                    "port": "Puerto",
-                    "ssl": "Utilizar SSL",
-                    "username": "Nombre de usuario"
-                },
+                "title": "Mikrotik Router",
                 "description": "Configura la integración del Mikrotik Router.",
-                "title": "Mikrotik Router"
+                "data": {
+                    "name": "Nombre de la integración",
+                    "host": "Proveedor",
+                    "port": "Puerto",
+                    "username": "Nombre de usuario",
+                    "password": "Contraseña",
+                    "ssl": "Utilizar SSL"
+                }
             }
         },
-        "title": "Mikrotik Router"
+        "error": {
+            "name_exists": "El nombre ya existe.",
+            "cannot_connect": "No puede conectarse a Mikrotik.",
+            "ssl_handshake_failure": "Fallo del \"handshake\" SSL",
+            "connection_timeout": "Tiempo de espera de la conexión a Mikrotik.",
+            "wrong_login": "Nombre de usuario o contraseña no válida"
+        }
     },
     "options": {
         "step": {
-            "device_tracker": {
+            "basic_options": {
                 "data": {
                     "scan_interval": "Escanear intervalo (requiere reinicio de HA)",
                     "track_iface_clients": "Mostrar MAC e IP de cliente en las interfaces",
+                    "unit_of_measurement": "Unidad de medida",
+                    "track_network_hosts_timeout": "Rastrear el tiempo de espera de los dispositivos de red (segundos)"
+                },
+                "title": "Opciones básicas"
+            },
+            "sensor_select": {
+                "data": {
                     "track_network_hosts": "Rastrear dispositivos de red",
-                    "track_network_hosts_timeout": "Rastrear el tiempo de espera de los dispositivos de red (segundos)",
-                    "unit_of_measurement": "Unidad de medida"
-                }
+                    "sensor_port_tracker": "Sensores de seguimiento portuario",
+                    "sensor_port_traffic": "Sensores de tráfico portuario",
+                    "sensor_client_traffic": "Sensores de tráfico de clientes",
+                    "sensor_simple_queues": "Interruptores de cola sencillos",
+                    "sensor_nat": "Interruptores NAT",
+                    "sensor_scripts": "Interruptores de script",
+                    "sensor_environment": "Sensores de variable de entorno",
+                    "sensor_pppusers": "PPP users",
+                    "sensor_kidcontrol": "Kid control",
+                    "sensor_mangle": "Mangle switches",
+                    "sensor_ppp": "PPP users"
+                },
+                "title": "Seleccionar sensores"
             }
         }
     }

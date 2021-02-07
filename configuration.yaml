@@ -140,12 +140,6 @@ notify:
     number: !secret signal_rpi_number
     recipients:
       - !secret signal_rpi_group
-  - name: signal_alarm_group
-    platform: signal_messenger
-    url: "http://localhost:8088"
-    number: !secret signal_rpi_number
-    recipients:
-      - !secret signal_alarm_group
   - name: ecobee_notify
     platform: ecobee
   # - name: signal_notify

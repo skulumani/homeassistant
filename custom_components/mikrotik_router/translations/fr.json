@@ -1,38 +1,55 @@
 {
     "config": {
-        "error": {
-            "cannot_connect": "Impossible de se connecter à Mikrotik.",
-            "connection_timeout": "Expiration de connexion Mikrotik.",
-            "name_exists": "Le nom existe déjà.",
-            "ssl_handshake_failure": "Échec de poignée de main SSL",
-            "wrong_login": "Identifiant ou mot de passe invalide."
-        },
+        "title": "Mikrotik Router",
         "step": {
             "user": {
-                "data": {
-                    "host": "Mot de passe",
-                    "name": "Nom de l'intégration",
-                    "password": "Mot de passe",
-                    "port": "Port",
-                    "ssl": "Utiliser SSL",
-                    "username": "Identifiant"
-                },
+                "title": "Mikrotik Router",
                 "description": "Configurer l'intégration de routeur Mikrotik.",
-                "title": "Mikrotik Router"
+                "data": {
+                    "name": "Nom de l'intégration",
+                    "host": "Mot de passe",
+                    "port": "Port",
+                    "username": "Identifiant",
+                    "password": "Mot de passe",
+                    "ssl": "Utiliser SSL"
+                }
             }
         },
-        "title": "Mikrotik Router"
+        "error": {
+            "name_exists": "Le nom existe déjà.",
+            "cannot_connect": "Impossible de se connecter à Mikrotik.",
+            "ssl_handshake_failure": "Échec de poignée de main SSL",
+            "connection_timeout": "Expiration de connexion Mikrotik.",
+            "wrong_login": "Identifiant ou mot de passe invalide."
+        }
     },
     "options": {
         "step": {
-            "device_tracker": {
+            "basic_options": {
                 "data": {
                     "scan_interval": "Intervalle d'analyse (nécessite le redémarrage HA)",
                     "track_iface_clients": "Afficher l'IP et le MAC du client sur les interfaces",
+                    "unit_of_measurement": "Unité de mesure",
+                    "track_network_hosts_timeout": "Suivre l'expiration des appareils du réseau (secondes)"
+                },
+                "title": "Options de base"
+            },
+            "sensor_select": {
+                "data": {
                     "track_network_hosts": "Suivre les appareils du réseau",
-                    "track_network_hosts_timeout": "Suivre l'expiration des appareils du réseau (secondes)",
-                    "unit_of_measurement": "Unité de mesure"
-                }
+                    "sensor_port_tracker": "Capteurs de suivi de ports",
+                    "sensor_port_traffic": "Capteurs de trafic portuaire",
+                    "sensor_client_traffic": "Capteurs de trafic de clients",
+                    "sensor_simple_queues": "Commutateurs de files d'attente simples",
+                    "sensor_nat": "Commutateurs NAT",
+                    "sensor_scripts": "Commutation de scripts",
+                    "sensor_environment": "Capteurs de variables d'environnement",
+                    "sensor_pppusers": "PPP users",
+                    "sensor_kidcontrol": "Kid control",
+                    "sensor_mangle": "Mangle switches",
+                    "sensor_ppp": "PPP users"
+                },
+                "title": "Sélectionner les capteurs"
             }
         }
     }

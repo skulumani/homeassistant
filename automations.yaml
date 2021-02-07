@@ -244,7 +244,7 @@
       entity_id: group.water_sensors
       to: "on"
   action:
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: >-
           {% for entity in trigger.to_state.attributes.entity_id %}
@@ -323,7 +323,7 @@
       entity_id: alarm_control_panel.alarm
       to: "triggered"
   action: 
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm Triggered!!'
     - service: script.sound_alarm
@@ -347,7 +347,7 @@
   trigger: # either person is home
     - platform: state
       entity_id: group.family_presence
-      to: "home"
+      to: "on"
   condition:
     - condition: state
       entity_id: alarm_control_panel.alarm
@@ -356,7 +356,7 @@
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
     - delay: "00:00:05"
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed due to presence.'
     - service: tts.google_translate_say
@@ -368,7 +368,7 @@
   trigger:
     - platform: state
       entity_id: group.family_presence
-      to: "away"
+      to: "off"
       for: "00:05:00"
   condition:
     - condition: state
@@ -377,7 +377,7 @@
   action:
     - service: alarm_control_panel.alarm_arm_away
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode due to lack of presence.'
 
@@ -390,14 +390,14 @@
     conditions:
       - condition: state
         entity_id: group.family_presence
-        state: "home"
+        state: "on"
       - condition: state
         entity_id: alarm_control_panel.alarm
         state: "disarmed"
   action:
     - service: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in home mode at night and home.'
 
@@ -410,14 +410,14 @@
     conditions:
       - condition: state
         entity_id: group.family_presence
-        state: "home"
+        state: "on"
       - condition: state
         entity_id: alarm_control_panel.alarm
         state: "armed_home"
   action:
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
-    - service: notify.signal_alarm_group
+    - service: notify.signal_group
       data:
         message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed in morning.'
 

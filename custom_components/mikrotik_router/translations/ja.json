@@ -1,38 +1,55 @@
 {
     "config": {
-        "error": {
-            "cannot_connect": "Mikrotikに接続できません。",
-            "connection_timeout": "Mikrotik接続がタイムアウトしました。",
-            "name_exists": "名前は既に存在します。",
-            "ssl_handshake_failure": "SSLハンドシェイクに失敗しました",
-            "wrong_login": "ユーザ名またはパスワードが無効です。"
-        },
+        "title": "Mikrotik Router",
         "step": {
             "user": {
-                "data": {
-                    "host": "ホスト",
-                    "name": "統合名",
-                    "password": "パスワード",
-                    "port": "ポート",
-                    "ssl": "SSLを使用します",
-                    "username": "ユーザ名"
-                },
+                "title": "Mikrotik Router",
                 "description": "Mikrotikルータ統合をセットアップします。",
-                "title": "Mikrotik Router"
+                "data": {
+                    "name": "統合名",
+                    "host": "ホスト",
+                    "port": "ポート",
+                    "username": "ユーザ名",
+                    "password": "パスワード",
+                    "ssl": "SSLを使用します"
+                }
             }
         },
-        "title": "Mikrotik Router"
+        "error": {
+            "name_exists": "名前は既に存在します。",
+            "cannot_connect": "Mikrotikに接続できません。",
+            "ssl_handshake_failure": "SSLハンドシェイクに失敗しました",
+            "connection_timeout": "Mikrotik接続がタイムアウトしました。",
+            "wrong_login": "ユーザ名またはパスワードが無効です。"
+        }
     },
     "options": {
         "step": {
-            "device_tracker": {
+            "basic_options": {
                 "data": {
                     "scan_interval": "スキャン間隔（HAの再起動が必要）",
                     "track_iface_clients": "クライアントのMACとインターフェイスのIPを表示します",
+                    "unit_of_measurement": "測定単位",
+                    "track_network_hosts_timeout": "ネットワーク デバイスのタイムアウト（秒）をトラッキングします"
+                },
+                "title": "基本オプション"
+            },
+            "sensor_select": {
+                "data": {
                     "track_network_hosts": "ネットワーク デバイスをトラッキングします",
-                    "track_network_hosts_timeout": "ネットワーク デバイスのタイムアウト（秒）をトラッキングします",
-                    "unit_of_measurement": "測定単位"
-                }
+                    "sensor_port_tracker": "ポートトラッカーセンサー",
+                    "sensor_port_traffic": "ポートトラフィックセンサー",
+                    "sensor_client_traffic": "クライアントトラフィックセンサー",
+                    "sensor_simple_queues": "単純キュースイッチ",
+                    "sensor_nat": "NAT スイッチ",
+                    "sensor_scripts": "スクリプトスイッチ",
+                    "sensor_environment": "環境変数センサー",
+                    "sensor_pppusers": "PPP users",
+                    "sensor_kidcontrol": "Kid control",
+                    "sensor_mangle": "Mangle switches",
+                    "sensor_ppp": "PPP users"
+                },
+                "title": "センサーを選択"
             }
         }
     }
