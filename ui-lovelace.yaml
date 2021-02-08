@@ -77,22 +77,14 @@ views:
             camera_image: camera.front
             entities: 
               - entity: binary_sensor.motion_front
-                tap_action: 
-                  action: call-service
-                  service: script.turn_on
-                  service_data:
-                    entity_id: script.front_camera_signal_motion
+              - entity: switch.front_ir_lights
 
           - type: picture-glance
             title: back
             camera_image: camera.back
             entities: 
-              - entity: binary_sensor.motion_back
-                tap_action: 
-                  action: call-service
-                  service: script.turn_on
-                  service_data:
-                    entity_id: script.back_camera_signal_motion
+              - entity: binary_sensor.back_motion
+              - entity: switch.back_ir_lights
   - title: Solar
     panel: true
     cards:

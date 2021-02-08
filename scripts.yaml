@@ -15,6 +15,7 @@ front_camera_signal_motion:
         data:
           attachments: 
             - '/media/camera/snapshot_front.mp4'
+
 back_camera_signal_motion:
   mode: single
   alias: Notify Signal Back Camera motion detection
@@ -32,6 +33,7 @@ back_camera_signal_motion:
         data:
           attachments: 
             - '/media/camera/snapshot_back.mp4'
+
 roku_espn_tap_action:
   mode: single
   alias: Roku ESPN F1 sequence

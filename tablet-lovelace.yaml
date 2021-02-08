@@ -39,27 +39,27 @@ views:
                 entity: weather.openweathermap
               - type: horizontal-stack
                 cards:
-                  - type: picture-glance
-                    title: front
-                    camera_image: camera.front
-                    entities: 
-                      - entity: binary_sensor.motion_front
-                        tap_action: 
-                          action: call-service
-                          service: script.turn_on
-                          service_data:
-                            entity_id: script.front_camera_signal_motion
+                  # - type: picture-glance
+                  #   title: front
+                  #   camera_image: camera.front
+                  #   entities: 
+                  #     - entity: binary_sensor.motion_front
+                  #       tap_action: 
+                  #         action: call-service
+                  #         service: script.turn_on
+                  #         service_data:
+                  #           entity_id: script.front_camera_signal_motion
+                    - type: picture-glance
+                      title: front
+                      camera_image: camera.front
+                      entities:
+                        - entity: binary_sensor.front_motion
 
-                  - type: picture-glance
-                    title: back
-                    camera_image: camera.back
-                    entities: 
-                      - entity: binary_sensor.motion_back
-                        tap_action: 
-                          action: call-service
-                          service: script.turn_on
-                          service_data:
-                            entity_id: script.back_camera_signal_motion
+                    - type: picture-glance
+                      title: back
+                      camera_image: camera.back
+                      entities: 
+                        - entity: binary_sensor.back_motion
               - type: 'custom:mini-graph-card'
                 entities:
                   - entity: sensor.envoy_current_energy_production
@@ -94,21 +94,11 @@ views:
             camera_image: camera.front
             entities: 
               - entity: binary_sensor.motion_front
-                tap_action: 
-                  action: call-service
-                  service: script.turn_on
-                  service_data:
-                    entity_id: script.front_camera_signal_motion
 
           - type: picture-glance
             title: back
             camera_image: camera.back
             entities: 
-              - entity: binary_sensor.motion_back
-                tap_action: 
-                  action: call-service
-                  service: script.turn_on
-                  service_data:
-                    entity_id: script.back_camera_signal_motion
+              - entity: binary_sensor.back_motion
 
 
