@@ -10,7 +10,7 @@
     #   prob_given_false: 0.5
     #   platform: 'state'
     #   to_state: 'home'
-    - entity_id: 'device_tracker.galaxy_s9_router'
+    - entity_id: 'device_tracker.galaxy_s20_router'
       prob_given_true: 0.9
       prob_given_false: 0.1
       platform: 'state'

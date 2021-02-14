@@ -2,13 +2,13 @@
 version: "3.5"
 services:
   motioneye:
-    image: ccrisan/motioneye:master-armhf  # Change to ccrisan/motioneye:master-armhf for ARM chips (Pi etc.)
+    image: ccrisan/motioneye:master-amd64  # Change to ccrisan/motioneye:master-armhf for ARM chips (Pi etc.)
     ports:
       - "8081:8081"
       - "8765:8765"
     volumes:
-      - /home/pi/motioneye:/etc/motioneye
-      - /media/data/motioneye:/var/lib/motioneye
+      - /home/shankar/Documents/motioneye_config:/etc/motioneye
+      - /media/shankar/usbdrive/motioneye:/var/lib/motioneye
     restart: always
     environment:
       - TZ=America/New_York
