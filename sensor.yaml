@@ -121,9 +121,9 @@
           night
         {% elif state_attr('sun.sun', 'elevation') < -12 %}
           astronomical_twilight
-        {% elif state_attr('sun.sun', 'elevation') < -6 %}
+        {% elif state_attr('sun.sun', 'elevation') < -4 %} # really 6
           nautical_twilight
-        {% elif state_attr('sun.sun', 'elevation') < 3 %}
+        {% elif state_attr('sun.sun', 'elevation') < 2.5 %} # really 0
           civil_twilight
         {% else %}
           day
