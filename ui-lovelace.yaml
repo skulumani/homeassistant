@@ -13,15 +13,14 @@ views:
   - title: Main
     icon: mdi:home-assistant
     cards:
-      - type: alarm-panel
-        states:
-          - arm_home
-          - arm_away
-        entity: alarm_control_panel.alarm
 
       - type: vertical-stack
-        title: Lights
         cards:
+          - type: alarm-panel
+            states:
+              - arm_home
+              - arm_away
+            entity: alarm_control_panel.alarm
           - type: entities
             square: false
             show_header_toggle: false
@@ -336,9 +335,6 @@ views:
               - entity: sensor.nexus_7_battery_level
                 name: 'Nexus 7'
 
-      - type: vertical-stack
-        title: Home Assistant
-        cards:
           - type: glance
             entities:
               - sensor.ha_uptime
@@ -448,9 +444,6 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_hdd_usage
-      - type: vertical-stack
-        title: Interfaces
-        cards:
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -491,57 +484,6 @@ views:
                 unit: 'KB/s'
                 entities:
                   - sensor.mikrotik_ether1_tx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 200
-                  - color: '#dcf312'
-                    value: 500
-                  - color: '#f3cd12'
-                    value: 1000
-                  - color: '#f31212'
-                    value: 1500
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: 'Ether5 Down'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:download'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_ether5_rx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 1000
-                  - color: '#dcf312'
-                    value: 5000
-                  - color: '#f3cd12'
-                    value: 10000
-                  - color: '#f31212'
-                    value: 20000
-              - type: 'custom:mini-graph-card'
-                name: 'Ether5 Up'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:upload'
-                line_color: '#80e6ff'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_ether5_tx
                 color_thresholds:
                   - color: '#12f395'
                     value: 0
@@ -671,7 +613,7 @@ views:
                 points_per_hour: 6
                 decimals: 1
                 font_size: 75
-                hours_to_show: 24
+                hours_to_show: 168
                 icon: 'mdi:download'
                 # line_color: '#80e6ff'
                 show:
@@ -697,7 +639,7 @@ views:
                 points_per_hour: 6
                 decimals: 1
                 font_size: 75
-                hours_to_show: 24
+                hours_to_show: 168
                 icon: 'mdi:upload'
                 # line_color: '#80e6ff'
                 show:
@@ -723,7 +665,7 @@ views:
             points_per_hour: 6
             decimals: 1
             font_size: 75
-            hours_to_show: 24
+            hours_to_show: 168
             # line_color: '#80e6ff'
             show:
               graph: line
