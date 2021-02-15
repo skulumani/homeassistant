@@ -398,9 +398,6 @@ views:
               - entity: device_tracker.back_cam
                 name: Back Cam
                 icon: 'mdi:cctv'
-              - entity: device_tracker.modem
-                name: Modem
-                icon: 'mdi:router-network'
               - entity: device_tracker.upstairs_wap
                 name: Upstairs WAP
                 icon: 'mdi:router-wireless'
