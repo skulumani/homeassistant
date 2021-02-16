@@ -125,6 +125,18 @@ views:
                     name: Last week energy
                   - entity: sensor.solar_weekly_energy
                     name: Current week 
+                  - entity: sensor.moon
+                    name: Moon Phase
+                  - entity: sensor.period_of_day
+                    name: Period of Day
+                  - entity: sensor.solar_elevation
+                    name: Solar Elevation
+                  - entity: sensor.sunrise
+                    name: Sunrise
+                  - entity: sensor.noon
+                    name: Noon
+                  - entity: sensor.sunset
+                    name: Sunset
                   # - sensor.solar_monthly_energy
                   # - sensor.solar_yearly_energy
           - type: 'custom:mini-graph-card'
@@ -157,6 +169,7 @@ views:
               - sensor.moon
               - sun.sun
               - sensor.period_of_day
+              - sensor.solar_elevation
           - type: entities
             entities:
               - sensor.sunrise

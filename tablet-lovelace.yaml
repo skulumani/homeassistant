@@ -4,62 +4,56 @@ views:
     icon: 'mdi:home'
     badges: []
     cards:
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
-          - type: vertical-stack
+          - type: horizontal-stack
             cards:
-              - type: alarm-panel
-                states:
-                  - arm_home
-                  - arm_away
-                entity: alarm_control_panel.alarm
-              - type: entities
-                square: false
-                show_header_toggle: false
-                entities:
-                  # - entity: light.upstairs_lights
-                  #   name: Upstairs
-                  - entity: light.bedroom_lights
-                    name: Bedroom
-                  - entity: light.downstairs_lights
-                    name: Downstairs
-                  - entity: light.dining_room_lamp
-                    name: Dining Room
-                  - entity: light.living_room_lights
-                    name: Living Room
-                  - entity: light.lamp
-                    name: Lamp
-                  - entity: light.hallway
-                    name: Hallway
-                  - entity: light.porch
-                    name: Porch
-          - type: vertical-stack
-            cards:
-              - type: weather-forecast
-                entity: weather.openweathermap
-              - type: horizontal-stack
+              - type: vertical-stack
                 cards:
-                  # - type: picture-glance
-                  #   title: front
-                  #   camera_image: camera.front
-                  #   entities: 
-                  #     - entity: binary_sensor.motion_front
-                  #       tap_action: 
-                  #         action: call-service
-                  #         service: script.turn_on
-                  #         service_data:
-                  #           entity_id: script.front_camera_signal_motion
-                    - type: picture-glance
-                      title: front
-                      camera_image: camera.front
-                      entities:
-                        - entity: binary_sensor.front_motion
+                  - type: alarm-panel
+                    states:
+                      - arm_home
+                      - arm_away
+                    entity: alarm_control_panel.alarm
+                  - type: glance
+                    square: false
+                    show_header_toggle: false
+                    entities:
+                      # - entity: light.upstairs_lights
+                      #   name: Upstairs
+                      - entity: light.bedroom_lights
+                        name: Bedroom
+                      - entity: light.downstairs_lights
+                        name: Downstairs
+                      - entity: light.dining_room_lamp
+                        name: Dining Room
+                      - entity: light.living_room_lights
+                        name: Living Room
+                      - entity: light.lamp
+                        name: Lamp
+                      - entity: light.hallway
+                        name: Hallway
+                      - entity: light.porch
+                        name: Porch
+              - type: vertical-stack
+                cards:
+                  - type: weather-forecast
+                    entity: weather.openweathermap
+                  - type: horizontal-stack
+                    cards:
+                        - type: picture-glance
+                          title: front
+                          camera_image: camera.front
+                          entities:
+                            - entity: binary_sensor.front_motion
 
-                    - type: picture-glance
-                      title: back
-                      camera_image: camera.back
-                      entities: 
-                        - entity: binary_sensor.back_motion
+                        - type: picture-glance
+                          title: back
+                          camera_image: camera.back
+                          entities: 
+                            - entity: binary_sensor.back_motion
+          - type: horizontal-stack
+            cards:
               - type: 'custom:mini-graph-card'
                 entities:
                   - entity: sensor.envoy_current_energy_production
@@ -84,6 +78,19 @@ views:
                   graph: true
                   points: false
                   legend: false
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.envoy_daily_energy
+                    name: Daily Energy
+                aggregate_func: max
+                hour24: true
+                hours_to_show: 720
+                points_per_hour: 1
+                group_by: date
+                show:
+                  extrema: true
+                  average: true
+                  graph: bar
   - title: Cameras
     panel: true
     cards:
