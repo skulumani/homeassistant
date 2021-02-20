@@ -15,26 +15,28 @@ views:
                       - arm_home
                       - arm_away
                     entity: alarm_control_panel.alarm
-                  - type: glance
+                  - type: grid
                     square: false
-                    show_header_toggle: false
-                    entities:
-                      # - entity: light.upstairs_lights
-                      #   name: Upstairs
-                      - entity: light.bedroom_lights
+                    cards:
+                      # - type: light
+                      #   entity: light.upstairs_lights
+                      - type: light
+                        entity: light.bedroom_lights
                         name: Bedroom
-                      - entity: light.downstairs_lights
-                        name: Downstairs
-                      - entity: light.dining_room_lamp
-                        name: Dining Room
-                      - entity: light.living_room_lights
-                        name: Living Room
-                      - entity: light.lamp
-                        name: Lamp
-                      - entity: light.hallway
-                        name: Hallway
-                      - entity: light.porch
-                        name: Porch
+                      # - type: light
+                      #   entity: light.downstairs_lights
+                      - type: light
+                        entity: light.dining_room_lamp
+                        name: Dining
+                      - type: light
+                        entity: light.living_room_lights
+                        name: Living
+                      - type: light
+                        entity: light.lamp
+                      - type: light
+                        entity: light.hallway
+                      - type: light
+                        entity: light.porch
               - type: vertical-stack
                 cards:
                   - type: weather-forecast

@@ -21,28 +21,29 @@ views:
               - arm_home
               - arm_away
             entity: alarm_control_panel.alarm
-          - type: entities
+          - type: grid
             square: false
-            show_header_toggle: false
-            entities:
-              # - entity: light.upstairs_lights
-              #   name: Upstairs
-              - entity: light.bedroom_lights
+            cards:
+              # - type: light
+              #   entity: light.upstairs_lights
+              - type: light
+                entity: light.bedroom_lights
                 name: Bedroom
-              - entity: light.downstairs_lights
-                name: Downstairs
-              - entity: light.dining_room_lamp
-                name: Dining Room
-              - entity: light.living_room_lights
-                name: Living Room
-              - entity: light.lamp
-                name: Lamp
-              - entity: light.hallway
-                name: Hallway
-              - entity: light.porch
-                name: Porch
+              # - type: light
+              #   entity: light.downstairs_lights
+              - type: light
+                entity: light.dining_room_lamp
+                name: Dining
+              - type: light
+                entity: light.living_room_lights
+                name: Living
+              - type: light
+                entity: light.lamp
+              - type: light
+                entity: light.hallway
+              - type: light
+                entity: light.porch
       - type: vertical-stack
-        title: Thermostats
         cards:
           - type: 'custom:simple-thermostat'
             entity: climate.downstairs
@@ -69,7 +70,6 @@ views:
                 heat_cool: false
               preset: true
       - type: vertical-stack
-        title: Cameras
         cards:
           - type: picture-glance
             title: front
@@ -85,73 +85,69 @@ views:
               - entity: binary_sensor.back_motion
               - entity: switch.back_ir_lights
   - title: Solar
-    panel: true
+    panel: false
     cards:
-      - type: vertical-stack
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                entities:
-                  - entity: sensor.envoy_current_energy_production
-                    name: Power
-                    show_state: true
-                  - entity: sensor.solar_elevation
-                    name: Elevation
-                    line_width: 1
-                    show_fill: false
-                    show_state: false
-                    y_axis: secondary
-                    color: '#666666'
-                hour24: true
-                hours_to_show: 48
-                points_per_hour: 15
-                line_width: 1
-                lower_bound_secondary: 0
-                # group_by: hour
-                show:
-                  extrema: true
-                  average: true
-                  graph: true
-                  points: false
-                  legend: false
-              - type: entities
-                entities:
-                  # - sensor.envoy_daily_energy
-                  # - sensor.solar_daily_energy
-                  - entity: sensor.envoy_lifetime_energy
-                    name: Lifetime energy
-                  - entity: sensor.envoy_weekly_energy
-                    name: Last week energy
-                  - entity: sensor.solar_weekly_energy
-                    name: Current week 
-                  - entity: sensor.moon
-                    name: Moon Phase
-                  - entity: sensor.period_of_day
-                    name: Period of Day
-                  - entity: sensor.solar_elevation
-                    name: Solar Elevation
-                  - entity: sensor.sunrise
-                    name: Sunrise
-                  - entity: sensor.noon
-                    name: Noon
-                  - entity: sensor.sunset
-                    name: Sunset
-                  # - sensor.solar_monthly_energy
-                  # - sensor.solar_yearly_energy
-          - type: 'custom:mini-graph-card'
-            entities:
-              - entity: sensor.envoy_daily_energy
-                name: Daily Energy
-            aggregate_func: max
-            hour24: true
-            hours_to_show: 720
-            points_per_hour: 1
-            group_by: date
-            show:
-              extrema: true
-              average: true
-              graph: bar
+      - type: 'custom:mini-graph-card'
+        entities:
+          - entity: sensor.envoy_current_energy_production
+            name: Power
+            show_state: true
+          - entity: sensor.solar_elevation
+            name: Elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+            color: '#666666'
+        hour24: true
+        hours_to_show: 48
+        points_per_hour: 15
+        line_width: 1
+        lower_bound_secondary: 0
+        # group_by: hour
+        show:
+          extrema: true
+          average: true
+          graph: true
+          points: false
+          legend: false
+      - type: entities
+        entities:
+          # - sensor.envoy_daily_energy
+          # - sensor.solar_daily_energy
+          - entity: sensor.envoy_lifetime_energy
+            name: Lifetime energy
+          - entity: sensor.envoy_weekly_energy
+            name: Last week energy
+          - entity: sensor.solar_weekly_energy
+            name: Current week 
+          - entity: sensor.moon
+            name: Moon Phase
+          - entity: sensor.period_of_day
+            name: Period of Day
+          - entity: sensor.solar_elevation
+            name: Solar Elevation
+          - entity: sensor.sunrise
+            name: Sunrise
+          - entity: sensor.noon
+            name: Noon
+          - entity: sensor.sunset
+            name: Sunset
+          # - sensor.solar_monthly_energy
+          # - sensor.solar_yearly_energy
+      - type: 'custom:mini-graph-card'
+        entities:
+          - entity: sensor.envoy_daily_energy
+            name: Daily Energy
+        aggregate_func: max
+        hour24: true
+        hours_to_show: 720
+        points_per_hour: 1
+        group_by: date
+        show:
+          extrema: true
+          average: true
+          graph: bar
 
   - title: Weather
     icon: mdi:weather-sunny
