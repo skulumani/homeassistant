@@ -43,6 +43,10 @@ views:
                 entity: light.hallway
               - type: light
                 entity: light.porch
+              - type: button
+                entity: switch.downstairs_plug
+              - type: button
+                entity: switch.upstairs_plug
       - type: vertical-stack
         cards:
           - type: 'custom:simple-thermostat'
