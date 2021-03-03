@@ -779,9 +779,9 @@ views:
             name: Uptime
 
           - type: divider
-          - entity: sensor.docker_mariadb_state
+          - entity: sensor.docker_mariadb_homeassistant_state
             name: MariaDB 
-          - entity: sensor.docker_mariadb_status
+          - entity: sensor.docker_mariadb_homeassistant_status
             name: Uptime
 
           - type: divider
@@ -808,7 +808,7 @@ views:
             name: Omada
           - entity: sensor.docker_signalcli_cpu
             name: Signal
-          - entity: sensor.docker_mariadb_cpu
+          - entity: sensor.docker_mariadb_homeassistant_cpu
             name: MariaDB
           - entity: sensor.docker_deconz_cpu
             name: Deconz
@@ -831,7 +831,7 @@ views:
             name: Omada
           - entity: sensor.docker_signalcli_memory
             name: Signal
-          - entity: sensor.docker_mariadb_memory
+          - entity: sensor.docker_mariadb_homeassistant_memory
             name: MariaDB
           - entity: sensor.docker_deconz_memory
             name: Deconz
