@@ -22,15 +22,14 @@ services:
     # user: "1000:1000"
     depends_on:
       - signal-cli-rest-api
-      - mariadb
+      - mariadb_homeassistant
       - deconz
 
-  mariadb:
+  mariadb_homeassistant:
     image: mariadb
-    container_name: mariadb
+    container_name: mariadb_homeassistant
     ports:
-      - 3306:3306
-      - 3307:3307
+      - 3310:3306
     volumes:
       - /home/shankar/Documents/homeassistant_db:/var/lib/mysql
     environment:
