@@ -106,6 +106,17 @@ services:
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
 
+  mosquitto:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    # volumes: 
+    # - mosquitto.conf:/mosquitto/config/mosquitto.conf
+    
+
 volumes:
   omada-data:
 
