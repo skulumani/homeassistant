@@ -1,5 +1,0 @@
-# DockerFile for homeassistant with Signal CLI
-
-# start from Homeassistant
-# Add pydbus
-# Consider dbus inside docker
