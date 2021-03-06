@@ -75,19 +75,14 @@ views:
               preset: true
       - type: vertical-stack
         cards:
-          - type: picture-glance
+          - type: picture-entity
             title: front
-            camera_image: camera.front
-            entities: 
-              - entity: binary_sensor.motion_front
-              - entity: switch.front_ir_lights
+            entity: camera.front_2
 
-          - type: picture-glance
+          - type: picture-entity
             title: back
-            camera_image: camera.back
-            entities: 
-              - entity: binary_sensor.back_motion
-              - entity: switch.back_ir_lights
+            entity: camera.back_2
+
   - title: Solar
     panel: false
     cards:

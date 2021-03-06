@@ -54,6 +54,12 @@ recorder:
   auto_purge: true
   purge_keep_days: 30
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
+  include:
+    domains:
+      - sensor
+
+mqtt:
+  broker: mosquitto
 
 duckdns:
   domain: !secret duckdns_domain

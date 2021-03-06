@@ -43,17 +43,13 @@ views:
                     entity: weather.openweathermap
                   - type: horizontal-stack
                     cards:
-                        - type: picture-glance
-                          title: front
-                          camera_image: camera.front
-                          entities:
-                            - entity: binary_sensor.front_motion
+                      - type: picture-entity
+                        title: front
+                        entity: camera.front_2
 
-                        - type: picture-glance
-                          title: back
-                          camera_image: camera.back
-                          entities: 
-                            - entity: binary_sensor.back_motion
+                      - type: picture-entity
+                        title: back
+                        entity: camera.back_2
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -98,16 +94,12 @@ views:
     cards:
       - type: horizontal-stack
         cards:
-          - type: picture-glance
+          - type: picture-entity
             title: front
-            camera_image: camera.front
-            entities: 
-              - entity: binary_sensor.motion_front
+            entity: camera.front_2
 
-          - type: picture-glance
+          - type: picture-entity
             title: back
-            camera_image: camera.back
-            entities: 
-              - entity: binary_sensor.back_motion
+            entity: camera.back_2
 
 
