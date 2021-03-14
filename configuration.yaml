@@ -57,6 +57,8 @@ recorder:
   include:
     domains:
       - sensor
+      - binary_sensor
+      - climate
 
 mqtt:
   broker: mosquitto
