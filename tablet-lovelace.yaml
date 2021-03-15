@@ -45,11 +45,11 @@ views:
                     cards:
                       - type: picture-entity
                         title: front
-                        entity: camera.front_2
+                        entity: camera.front
 
                       - type: picture-entity
                         title: back
-                        entity: camera.back_2
+                        entity: camera.back
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -96,10 +96,10 @@ views:
         cards:
           - type: picture-entity
             title: front
-            entity: camera.front_2
+            entity: camera.front
 
           - type: picture-entity
             title: back
-            entity: camera.back_2
+            entity: camera.back
 
 

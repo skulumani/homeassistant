@@ -77,11 +77,11 @@ views:
         cards:
           - type: picture-entity
             title: front
-            entity: camera.front_2
+            entity: camera.front
 
           - type: picture-entity
             title: back
-            entity: camera.back_2
+            entity: camera.back
 
   - title: Solar
     panel: false
