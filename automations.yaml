@@ -16,10 +16,10 @@
       - light.hallway
       transition: 60
     service: light.turn_on
-  - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
-        twilight'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
+  #       twilight'
+  #   service: notify.signal_group
   mode: single
 - id: lights_on_evening_nautical_twilight
   alias: Lights on at evening nautical twilight
@@ -39,10 +39,10 @@
       - light.hallway
       transition: 60
     service: light.turn_on
-  - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
-        twilight'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
+  #       twilight'
+  #   service: notify.signal_group
   mode: single
 - id: lights_on_morning_nautical_twilight
   alias: Lights on morning
@@ -61,10 +61,10 @@
       - light.hallway
       transition: 60
     service: light.turn_on
-  - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
-        nautical twilight.'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
+  #       nautical twilight.'
+  #   service: notify.signal_group
   mode: single
 - id: lights_off_sunrise
   alias: Lights off after sunrise
@@ -77,9 +77,9 @@
       entity_id: all
       transition: 60
     service: light.turn_off
-  - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
+  #   service: notify.signal_group
   mode: single
 - id: lights_off_2300
   alias: Lights off at 2300
@@ -94,10 +94,10 @@
       - light.upstairs_lights
       transition: 60
     service: light.turn_off
-  - data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
-        upstairs turned off at 2300'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
+  #       upstairs turned off at 2300'
+  #   service: notify.signal_group
   mode: single
 
 - id: bedroom_light_on_morning
@@ -116,9 +116,9 @@
       - light.upstairs_lights
       transition: 600
     service: light.turn_on
-  - data:
-      message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
-    service: notify.signal_group
+  # - data:
+  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
+  #   service: notify.signal_group
   mode: single
 
 # Commute/Work
@@ -198,31 +198,31 @@
 #     entity_id: script.back_camera_signal_motion
 #   mode: single
 
-- id: hvac_away_mode
-  alias: HVAC Away Mode when not home
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.shankar_presence
-    to: 'off'
-    for: 00:30:00
-  - platform: state
-    entity_id: binary_sensor.christine_presence
-    to: 'off'
-  condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.shankar_presence
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.christine_presence
-      state: 'off'
-  action:
-  - service: notify.signal_group
-    data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
-        for HVAC'
-  mode: single
+# - id: hvac_away_mode
+#   alias: HVAC Away Mode when not home
+#   trigger:
+#   - platform: state
+#     entity_id: binary_sensor.shankar_presence
+#     to: 'off'
+#     for: 00:30:00
+#   - platform: state
+#     entity_id: binary_sensor.christine_presence
+#     to: 'off'
+#   condition:
+#   - condition: and
+#     conditions:
+#     - condition: state
+#       entity_id: binary_sensor.shankar_presence
+#       state: 'off'
+#     - condition: state
+#       entity_id: binary_sensor.christine_presence
+#       state: 'off'
+#   action:
+#   - service: notify.signal_group
+#     data:
+#       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
+#         for HVAC'
+#   mode: single
 
 # Home sensors/switches
 - id: doorbell_single_click

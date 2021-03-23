@@ -74,7 +74,8 @@ flash_light:
           - service: light.toggle
             data:
               entity_id: "light.{{ light }}"
-
+# ALARM ARMED_HOME
+# ALARM ARMED_AWAY
 sound_alarm:
   mode: single
   sequence:
@@ -82,7 +83,7 @@ sound_alarm:
     - service: media_player.volume_set
       data_template:
         entity_id: group.google_home
-        volume_level: 1.0
+        volume_level: 0.7
     - alias: "Repeat alarm"
       repeat:
         while:
@@ -92,10 +93,22 @@ sound_alarm:
           - condition: template
             value_template: "{{ repeat.index < 100 }}"
         sequence:
-          - service: tts.google_translate_say
-            entity_id: group.google_home
+          - service: media_player.play_media
             data:
-              message: "Intruder Alert!"
+              entity_id: group.google_home
+              media_content_id: 'http://192.168.88.12:8123/local/audio/alarm.mp3'
+              media_content_type: 'audio/mp3'
+          - delay:
+            milliseconds: 2000
+          - service: media_player.play_media
+            data:
+              entity_id: group.google_home
+              media_content_id: 'http://192.168.88.12:8123/local/audio/youtarenotauthorizedtoaccessthisfacility_clean.mp3'
+              media_content_type: 'audio/mp3'
+          # - service: tts.google_translate_say
+          #   entity_id: group.google_home
+          #   data:
+          #     message: "Intruder Alert!"
           - delay:
               milliseconds: 3000
     - service: media_player.volume_set
@@ -109,19 +122,18 @@ sound_doorbell:
     - service: media_player.volume_set
       data_template: 
         entity_id: group.google_home
-        volume_level: 1.0
-    - alias: "Repeat doorbell"
-      repeat:
-        while:
-          - condition: template
-            value_template: "{{ repeat.index < 4 }}"
-        sequence:
-          - service: tts.google_translate_say
-            entity_id: group.google_home
-            data:
-              message: "Doorbell"
-          - delay:
-              milliseconds: 1000
+        volume_level: 0.5
+    - service: media_player.play_media
+      data:
+        entity_id: group.google_home
+        media_content_id: 'http://192.168.88.12:8123/local/audio/voy_door_chime_2.mp3'
+        media_content_type: 'audio/mp3'
+    # - service: tts.google_translate_say
+    #   entity_id: group.google_home
+    #   data:
+    #     message: "Doorbell"
+    # - delay:
+    #     milliseconds: 1000
     - service: media_player.volume_set
       data_template: 
         entity_id: group.google_home
