@@ -99,7 +99,7 @@ sound_alarm:
               media_content_id: 'http://192.168.88.12:8123/local/audio/alarm.mp3'
               media_content_type: 'audio/mp3'
           - delay:
-            milliseconds: 2000
+              milliseconds: 2000
           - service: media_player.play_media
             data:
               entity_id: group.google_home
