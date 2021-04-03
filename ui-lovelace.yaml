@@ -328,20 +328,43 @@ views:
       - type: vertical-stack
         title: People
         cards:
-          - type: entities
-            entities:
-              - binary_sensor.shankar_presence
-              - binary_sensor.christine_presence
-          - type: 'custom:uptime-card'
-            entity: binary_sensor.shankar_presence
-            name: Shankar Presence
-            alias:
-              ok: Home
-              ko: Away
-            hours_to_show: 168
-            show:
-              footer: true
-            status_adaptive_color: true
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:uptime-card'
+                entity: binary_sensor.shankar_presence
+                name: Shankar Presence
+                alias:
+                  ok: Home
+                  ko: Away
+                bar:
+                  height: 10
+                  round: 1
+                  spacing: 4
+                  amount: 36
+                hours_to_show: 168
+                show:
+                  footer: false
+                  average: false
+                  header: true
+                status_adaptive_color: true
+              - type: 'custom:uptime-card'
+                entity: binary_sensor.christine_presence
+                name: Christine Presence
+                alias:
+                  ok: Home
+                  ko: Away
+                bar:
+                  height: 10
+                  round: 1
+                  spacing: 4
+                  amount: 36
+                hours_to_show: 168
+                show:
+                  footer: false
+                  average: false
+                  header: true
+                  timeline: true
+                status_adaptive_color: true
           - type: 'custom:battery-state-card'
             title: false
             sort_by_level: asc
@@ -353,10 +376,22 @@ views:
               - entity: sensor.nexus_7_battery_level
                 name: 'Nexus 7'
 
-          - type: glance
-            entities:
-              - sensor.ha_uptime
-              - sensor.ha_version
+          - type: 'custom:uptime-card'
+            entity: binary_sensor.updater
+            icon: 'mdi:raspberry-pi'
+            name: HA Update
+            alias:
+              ok: Update available !
+              ko: No update for now
+            bar:
+              height: 10
+              round: 1
+              spacing: 4
+              amount: 36
+            hours_to_show: 168
+            show:
+              footer: false
+            status_adaptive_color: true
           - type: glance
             show_icon: false
             columns: 3
@@ -373,58 +408,62 @@ views:
                 name: Automations
               - entity: sensor.count_scripts
                 name: Scripts
-          - type: glance
-            columns: 4
-            title: false
-            show_state: false
-            show_header_toggle: false
-            entities:
-              - entity: zone.home
-                icon: 'mdi:home-assistant'
-                name: HA
-                tap_action:
-                  action: call-service
-                  service: homeassistant.restart
-              - entity: zone.home
-                icon: 'mdi:cogs'
-                name: Automation
-                tap_action:
-                  action: call-service
-                  service: automation.reload
-              - entity: zone.home
-                icon: 'mdi:script-text'
-                name: Script
-                tap_action:
-                  action: call-service
-                  service: script.reload
-              - entity: zone.home
-                icon: 'mdi:group'
-                name: Groups
-                tap_action:
-                  action: call-service
-                  service: group.reload
       - type: vertical-stack
         title: Router
         cards:
-          - type: glance
-            columns: 3
-            show_icon: true
-            entities:
-              - entity: device_tracker.front_cam
+          - type: grid
+            columns: 2
+            square: false
+            cards:
+              - type: 'custom:uptime-card'
+                entity: device_tracker.front_cam
+                icon: 'mdi:cctv'
+                ok: home
+                ko: away
+                alias:
+                  ok: Home
+                  ko: Away
                 name: Front Cam
+                show:
+                  footer: false
+                  timeline: true
+              - type: 'custom:uptime-card'
+                entity: device_tracker.back_cam
                 icon: 'mdi:cctv'
-              - entity: device_tracker.back_cam
-                name: Back Cam
-                icon: 'mdi:cctv'
-              - entity: device_tracker.upstairs_wap
-                name: Upstairs WAP
+                ok: home
+                ko: away
+                alias:
+                  ok: Home
+                  ko: Away
+                name: Front Cam
+                show:
+                  footer: false
+                  timeline: true
+              - type: 'custom:uptime-card'
+                entity: device_tracker.downstairs_wap
                 icon: 'mdi:router-wireless'
-              - entity: device_tracker.downstairs_wap
+                ok: home
+                ko: away
+                alias:
+                  ok: Online
+                  ko: Offline
                 name: Downstairs WAP
+                show:
+                  footer: false
+                  timeline: true
+              - type: 'custom:uptime-card'
+                entity: device_tracker.upstairs_wap
                 icon: 'mdi:router-wireless'
-              - entity: device_tracker.netgear_switch
-                name: Switch
-                icon: 'mdi:switch'
+                ok: home
+                ko: away
+                alias:
+                  ok: Online
+                  ko: Offline
+                name: Upstairs WAP
+                show:
+                  footer: false
+                  timeline: true
+
           - type: grid
             columns: 3
             square: false

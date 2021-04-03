@@ -88,7 +88,7 @@
   scan_interval: 600
 - platform: ping
   name: Upstairs WAP Ping
-  host: 192.168.88.6
+  host: 192.168..6
   count: 2
   scan_interval: 600
 - platform: ping
@@ -103,12 +103,12 @@
   scan_interval: 600
 - platform: ping
   name: Front Camera Ping
-  host: 192.168.88.15
+  host: 192.168.200.15
   count: 2
   scan_interval: 600
 - platform: ping
   name: Back Camera Ping
-  host: 192.168.88.16
+  host: 192.168.200.16
   count: 2
   scan_interval: 600
 - platform: workday
