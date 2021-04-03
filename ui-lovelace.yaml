@@ -332,6 +332,16 @@ views:
             entities:
               - binary_sensor.shankar_presence
               - binary_sensor.christine_presence
+          - type: 'custom:uptime-card'
+            entity: binary_sensor.shankar_presence
+            name: Shankar Presence
+            alias:
+              ok: Home
+              ko: Away
+            hours_to_show: 168
+            show:
+              footer: true
+            status_adaptive_color: true
           - type: 'custom:battery-state-card'
             title: false
             sort_by_level: asc

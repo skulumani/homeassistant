@@ -75,6 +75,13 @@ PRESET_HUE_TAP_MAPPING = {
     17: "3_click",
     18: "4_click",
 }
+PRESET_HUE_BUTTON = "Hue Smart Button"
+PRESET_HUE_BUTTON_MAPPING = {
+    1000: "1_click",
+    1001: "1_hold",
+    1002: "1_click_up",
+    1003: "1_hold_up",
+}
 _rg_dict_extraction = re.compile(r"({[^{}]+})")
 
 
@@ -97,6 +104,10 @@ def parse_numbers(raw_item):
     if isinstance(raw_item, dict):
         return {parse_numbers(k): parse_numbers(v) for k, v in raw_item.items()}
 
+    if raw_item in ("true", "True", True):
+        return True
+    elif raw_item in ("false", "False", False):
+        return False
     try:
         return int(raw_item)
     except ValueError:
