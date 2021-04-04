@@ -103,14 +103,14 @@ sound_alarm:
           - service: media_player.play_media
             data:
               entity_id: group.google_home
-              media_content_id: 'http://192.168.88.12:8123/local/audio/youtarenotauthorizedtoaccessthisfacility_clean.mp3'
+              media_content_id: 'http://192.168.88.12:8123/local/audio/youarenotauthorisedtoaccessthisfacility_clean.mp3'
               media_content_type: 'audio/mp3'
+          - delay:
+              milliseconds: 4000
           # - service: tts.google_translate_say
           #   entity_id: group.google_home
           #   data:
           #     message: "Intruder Alert!"
-          - delay:
-              milliseconds: 3000
     - service: media_player.volume_set
       data_template: 
         entity_id: group.google_home
