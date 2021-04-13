@@ -98,6 +98,12 @@ views:
             show_state: false
             y_axis: secondary
             color: '#666666'
+          - entity: sensor.openweathermap_cloud_coverage
+            name: Cloud Cover
+            line_width: 1
+            show_fill: false
+            show_state: true
+            y_axis: secondary
         hour24: true
         hours_to_show: 48
         points_per_hour: 15
@@ -687,7 +693,7 @@ views:
                 points_per_hour: 6
                 decimals: 1
                 font_size: 75
-                hours_to_show: 168
+                hours_to_show: 24
                 icon: 'mdi:download'
                 # line_color: '#80e6ff'
                 show:
@@ -713,7 +719,7 @@ views:
                 points_per_hour: 6
                 decimals: 1
                 font_size: 75
-                hours_to_show: 168
+                hours_to_show: 24
                 icon: 'mdi:upload'
                 # line_color: '#80e6ff'
                 show:
@@ -739,7 +745,7 @@ views:
             points_per_hour: 6
             decimals: 1
             font_size: 75
-            hours_to_show: 168
+            hours_to_show: 24
             # line_color: '#80e6ff'
             show:
               graph: line
@@ -751,15 +757,15 @@ views:
               - sensor.cloudflare_ping
             color_thresholds:
               - color: '#f31212'
-                value: 8
-              - color: '#f3cd12'
                 value: 6
+              - color: '#f3cd12'
+                value: 5
               - color: '#dcf312'
-                value: 5 
+                value: 4 
               - color: '#7ff312'
-                value: 4
-              - color: '#12f395'
                 value: 3
+              - color: '#12f395'
+                value: 2
 
   - title: Docker
     icon: mdi:docker

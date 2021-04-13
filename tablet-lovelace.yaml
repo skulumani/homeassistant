@@ -64,6 +64,12 @@ views:
                     show_state: false
                     y_axis: secondary
                     color: '#666666'
+                  - entity: sensor.openweathermap_cloud_coverage
+                    name: Cloud Cover
+                    line_width: 1
+                    show_fill: false
+                    show_state: true
+                    y_axis: secondary
                 hour24: true
                 hours_to_show: 48
                 points_per_hour: 15
