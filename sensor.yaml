@@ -233,6 +233,36 @@
   ip_address: !secret envoy_ip
   monitored_conditions:
     - production
+    - inverters
+    - daily_production
+    - seven_days_production
+    - lifetime_production
+- platform: rest
+  name: solar_production
+  json_attributes:
+    - wattHoursToday
+    - wattHoursSevenDays
+    - wattHoursLifetime
+    - wattsNow
+  resource: !secret envoy_rest_url
+- platform: template
+  sensors:
+    solar_now_watts:
+      friendly_name: "Solar Current Production"
+      value_template: "{{ (states.sensor.solar_production.attributes['wattsNow'] | float) }}"
+      unit_of_measurement: "W"
+    solar_today_kwh:
+      friendly_name: "Solar Today"
+      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursToday'] | float / 1000) | round(3) }}"
+      unit_of_measurement: "kWh"
+    solar_week_kwh:
+      friendly_name: "Solar last 7 days"
+      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursSevenDays'] | float / 1000) | round(3) }}"
+      unit_of_measurement: "kWh"
+    solar_lifetime_mwh:
+      friendly_name: "Solar Lifetime"
+      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursLifetime'] | float / 1000) | round(3) }}"
+      unit_of_measurement: "MWh"
 - platform:  integration
   source: sensor.envoy_current_energy_production
   name: solar_energy
@@ -241,24 +271,6 @@
   method: trapezoidal
   unit_prefix: k
   round: 3
-- platform: rest
-  name: envoy_lifetime_energy
-  resource: !secret envoy_rest_url
-  value_template: '{{ value_json.wattHoursLifetime / 1000 }}'
-  method: GET
-  unit_of_measurement: "kWh"
-- platform: rest
-  name: envoy_daily_energy
-  resource: !secret envoy_rest_url
-  value_template: '{{ value_json.wattHoursToday / 1000 }}'
-  method: GET
-  unit_of_measurement: "kWh"
-- platform: rest
-  name: envoy_weekly_energy
-  resource: !secret envoy_rest_url
-  value_template: '{{ value_json.wattHoursSevenDays / 1000 }}'
-  method: GET
-  unit_of_measurement: "kWh"
 # - platform: eventsensor
 #   name: OpenSkyFlights
 #   event: opensky_entry
