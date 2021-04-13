@@ -29,6 +29,16 @@
     - type: last_boot
 - platform: template
   sensors:
+    google_ping:
+      friendly_name: "Google Ping"
+      unit_of_measurement: "ms"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.google', 'round_trip_time_avg')) }}"
+    cloudflare_ping:
+      friendly_name: "Cloudflare Ping"
+      unit_of_measurement: "ms"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.cloudflare', 'round_trip_time_avg')) }}"
+- platform: template
+  sensors:
     solar_elevation:
       friendly_name: "Solar Elevation"
       unit_of_measurement: '°'
@@ -64,7 +74,12 @@
     ecobee_downstairs_target_temperature:
       friendly_name: "Downstairs Target"
       unit_of_measurement: '°C'
-      value_template: "{{ '%.2f'|format(state_attr('climate.downstairs', 'temperature')) }}"
+      value_template: >
+        {% if state_attr('climate.downstairs', 'temperature') == None %}
+          "{{ '%.2f' | format(state_attr('climate.downstairs', 'current_temperature')) }}"
+        {% else %}
+          "{{ '%.2f'|format(state_attr('climate.downstairs', 'temperature')) }}"
+        {% endif %}
     ecobee_downstairs_current_temperature:
       friendly_name: "Downstairs Temperature"
       unit_of_measurement: '°C'
@@ -86,7 +101,12 @@
     ecobee_upstairs_target_temperature:
       friendly_name: "Upstairs Target"
       unit_of_measurement: '°C'
-      value_template: "{{ '%.2f'|format(state_attr('climate.upstairs', 'temperature')) }}"
+      value_template: >
+        {% if state_attr('climate.upstairs', 'temperature') == None %}
+          "{{ '%.2f' | format(state_attr('climate.upstairs', 'current_temperature')) }}"
+        {% else %}
+          "{{ '%.2f'|format(state_attr('climate.upstairs', 'temperature')) }}"
+        {% endif %}
     ecobee_upstairs_current_temperature:
       friendly_name: "Upstairs Temperature"
       unit_of_measurement: '°C'

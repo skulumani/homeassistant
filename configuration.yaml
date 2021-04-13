@@ -62,6 +62,25 @@ recorder:
       - binary_sensor
       - climate
 
+influxdb:
+  api_version: 2
+  ssl: false
+  host: localhost
+  port: 8086
+  token: vWgSt7DEiIXAbrQ1cfJQySwW3R4Tz-lB-NimiVJmb5mb6knTG-8zDjpqDeKFvCnWvo-JpuKAV9F7JPhO7R57jA==
+  organization: 22626ad21b1e49d5
+  bucket: homeassistant
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
+  include:
+    entities:
+      - sensor.envoy_current_energy_production
+  # exclude:
+  #   entity_globs: "*"
+
 mqtt:
   broker: mosquitto
 
@@ -172,9 +191,8 @@ notify:
 # speedtest
 speedtestdotnet:
   scan_interval:
-    hours: 24
+    hours: 1
   monitored_conditions:
-    - ping
     - download
     - upload
   manual: false

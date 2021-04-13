@@ -747,18 +747,19 @@ views:
               fill: false
             unit: 'ms'
             entities:
-              - sensor.speedtest_ping
+              - sensor.google_ping
+              - sensor.cloudflare_ping
             color_thresholds:
               - color: '#f31212'
-                value: 27
+                value: 8
               - color: '#f3cd12'
-                value: 26
+                value: 6
               - color: '#dcf312'
-                value: 25
+                value: 5 
               - color: '#7ff312'
-                value: 24
+                value: 4
               - color: '#12f395'
-                value: 23
+                value: 3
 
   - title: Docker
     icon: mdi:docker

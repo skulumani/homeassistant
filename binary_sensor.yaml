@@ -88,7 +88,7 @@
   scan_interval: 600
 - platform: ping
   name: Upstairs WAP Ping
-  host: 192.168..6
+  host: 192.168.88.6
   count: 2
   scan_interval: 600
 - platform: ping
@@ -111,6 +111,16 @@
   host: 192.168.200.16
   count: 2
   scan_interval: 600
+- platform: ping
+  name: Google
+  host: 8.8.8.8
+  count: 2
+  scan_interval: 60
+- platform: ping
+  name: Cloudflare
+  host: 1.1.1.1
+  count: 2
+  scan_interval: 60
 - platform: workday
   country: US
   workdays: [mon, tue, wed, thu, fri]
