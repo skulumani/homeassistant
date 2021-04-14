@@ -829,35 +829,6 @@ views:
           - entity:  sensor.docker_version
             name: Ver
             
-          - type: divider
-          - entity: sensor.docker_homeassistant_state
-            name: Homeassistant
-          - entity: sensor.docker_homeassistant_status
-            name: Uptime
-
-          - type: divider
-          - entity: sensor.docker_omada_controller_state
-            name: Omada
-          - entity: sensor.docker_omada_controller_status
-            name: Uptime
-          
-          - type: divider
-          - entity: sensor.docker_signalcli_state
-            name: Signal
-          - entity: sensor.docker_signalcli_status
-            name: Uptime
-
-          - type: divider
-          - entity: sensor.docker_mariadb_homeassistant_state
-            name: MariaDB 
-          - entity: sensor.docker_mariadb_homeassistant_status
-            name: Uptime
-
-          - type: divider
-          - entity: sensor.docker_deconz_state
-            name: Deconz 
-          - entity: sensor.docker_deconz_status
-            name: Uptime
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12

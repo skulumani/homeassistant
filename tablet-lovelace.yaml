@@ -31,8 +31,8 @@ views:
                       - type: light
                         entity: light.living_room_lights
                         name: Living
-                      - type: light
-                        entity: light.lamp
+                      - type: button
+                        entity: switch.downstairs_plug
                       - type: light
                         entity: light.hallway
                       - type: light

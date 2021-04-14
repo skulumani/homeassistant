@@ -77,9 +77,24 @@ influxdb:
   default_measurement: units
   include:
     domains:
-      - sensor
-      - binary_sensor
-      - climate
+      - light
+      - alarm_control_panel
+      - sun
+    entities:
+      - sensor.processor_use_percent
+      - sensor.memory_use_percent
+      - sensor.disk_use_percent_config
+      - sensor.processor_temperature
+      - sensor.google_ping
+      - sensor.cloudflare_ping
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
+    entity_globs:
+      - sensor.ecobee_*
+      - sensor.period_of_the_day
+      - sensor.solar_*
+      - sensor.envoy_*
+      - sensor.mikrotik_* 
   # exclude:
   #   entity_globs: "*"
 
@@ -193,7 +208,7 @@ notify:
 # speedtest
 speedtestdotnet:
   scan_interval:
-    hours: 1
+    minutes: 30
   monitored_conditions:
     - download
     - upload
