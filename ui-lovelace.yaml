@@ -140,7 +140,7 @@ views:
           # - sensor.solar_yearly_energy
       - type: 'custom:mini-graph-card'
         entities:
-          - entity: sensor.envoy_daily_energy
+          - entity: sensor.solar_daily_energy
             name: Daily Energy
         aggregate_func: max
         hour24: true
