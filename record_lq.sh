@@ -41,3 +41,6 @@ ffmpeg -i "rtmp://${CAM_USERNAME}:${CAM_PASSWORD}@${BACK_IP}/bcs/channel0_sub.bc
 
         # - path: rtmp://{FRIGATE_CAM_USERNAME}:{FRIGATE_CAM_PASSWORD}@{FRIGATE_FRONT_CAM_IP}/bcs/channel0_main.bcs?token=sdasdasd&channel=0&stream=0&user={FRIGATE_CAM_USERNAME}&password={FRIGATE_CAM_PASSWORD}
         # - path: rtmp://{FRIGATE_CAM_USERNAME}:{FRIGATE_CAM_PASSWORD}@{FRIGATE_FRONT_CAM_IP}/bcs/channel0_sub.bcs?token=sdasdasd&channel=0&stream=0&user={FRIGATE_CAM_USERNAME}&password={FRIGATE_CAM_PASSWORD}
+
+# ffmpeg -i "http://192.168.88.12:8081" -vcodec copy -acodec copy -t ${LQLENGTH} ${LQDIR}${FRONT_CAM}.mp4 &
+# ffmpeg -i "http://192.168.88.12:8083" -vcodec copy -acodec copy -t ${LQLENGTH} ${LQDIR}${BACK_CAM}.mp4 &
