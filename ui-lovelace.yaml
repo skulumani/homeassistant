@@ -687,33 +687,7 @@ views:
           - type: horizontal-stack
             cards: 
               - type: 'custom:mini-graph-card'
-                name: 'Down'
-                points_per_hour: 6
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:download'
-                # line_color: '#80e6ff'
-                show:
-                  graph: line
-                  extrema: true
-                  fill: off
-                unit: 'Mbit/sec'
-                entities:
-                  - sensor.speedtest_download
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 270
-                  - color: '#7ff312'
-                    value: 260
-                  - color: '#dcf312'
-                    value: 250
-                  - color: '#f3cd12'
-                    value: 225
-                  - color: '#f31212'
-                    value: 200
-              - type: 'custom:mini-graph-card'
-                name: 'Up'
+                name: 'Internet'
                 points_per_hour: 6
                 decimals: 1
                 font_size: 75
@@ -726,18 +700,19 @@ views:
                   fill: false
                 unit: 'Mbit/sec'
                 entities:
+                  - sensor.speedtest_download
                   - sensor.speedtest_upload
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 17
-                  - color: '#7ff312'
-                    value: 16
-                  - color: '#dcf312'
-                    value: 15
-                  - color: '#f3cd12'
-                    value: 14
-                  - color: '#f31212'
-                    value: 13 
+                # color_thresholds:
+                #   - color: '#12f395'
+                #     value: 17
+                #   - color: '#7ff312'
+                #     value: 16
+                #   - color: '#dcf312'
+                #     value: 15
+                #   - color: '#f3cd12'
+                #     value: 14
+                #   - color: '#f31212'
+                #     value: 13 
           - type: 'custom:mini-graph-card'
             name: 'Ping'
             points_per_hour: 6
@@ -753,17 +728,17 @@ views:
             entities:
               - sensor.google_ping
               - sensor.cloudflare_ping
-            color_thresholds:
-              - color: '#f31212'
-                value: 6
-              - color: '#f3cd12'
-                value: 5
-              - color: '#dcf312'
-                value: 4 
-              - color: '#7ff312'
-                value: 3
-              - color: '#12f395'
-                value: 2
+            # color_thresholds:
+            #   - color: '#f31212'
+            #     value: 6
+            #   - color: '#f3cd12'
+            #     value: 5
+            #   - color: '#dcf312'
+            #     value: 4 
+            #   - color: '#7ff312'
+            #     value: 3
+            #   - color: '#12f395'
+            #     value: 2
 
   - title: Docker
     icon: mdi:docker

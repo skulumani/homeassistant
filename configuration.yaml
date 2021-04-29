@@ -208,7 +208,7 @@ notify:
 # speedtest
 speedtestdotnet:
   scan_interval:
-    minutes: 30
+    minutes: 10
   monitored_conditions:
     - download
     - upload
