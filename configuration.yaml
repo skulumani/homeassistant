@@ -62,41 +62,60 @@ recorder:
       - binary_sensor
       - climate
 
-# influxdb:
-#   api_version: 2
-#   ssl: false
-#   host: localhost
-#   port: 8086
-#   token: vWgSt7DEiIXAbrQ1cfJQySwW3R4Tz-lB-NimiVJmb5mb6knTG-8zDjpqDeKFvCnWvo-JpuKAV9F7JPhO7R57jA==
-#   organization: 22626ad21b1e49d5
-#   bucket: homeassistant
-#   tags:
-#     source: HA
-#   tags_attributes:
-#     - friendly_name
-#   default_measurement: units
-#   include:
-#     domains:
-#       - light
-#       - alarm_control_panel
-#       - sun
-#     entities:
-#       - sensor.processor_use_percent
-#       - sensor.memory_use_percent
-#       - sensor.disk_use_percent_config
-#       - sensor.processor_temperature
-#       - sensor.google_ping
-#       - sensor.cloudflare_ping
-#       - sensor.speedtest_upload
-#       - sensor.speedtest_download
-#     entity_globs:
-#       - sensor.ecobee_*
-#       - sensor.period_of_the_day
-#       - sensor.solar_*
-#       - sensor.envoy_*
-#       - sensor.mikrotik_* 
-#   # exclude:
-#   #   entity_globs: "*"
+influxdb:
+  api_version: 2
+  ssl: false
+  host: localhost
+  port: 8086
+  token: 8ZgYwSmcMdNJv0PI_UaSOM9y-yKaJSbUGp-Qgknk_mytHZa52u4szeRxTBKrd9xP2QiiPSe2bZb2xH2ShDioGg==
+  organization: 9dc71f394ed54335
+  bucket: homeassistant
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
+  include:
+    domains:
+      - light
+      - alarm_control_panel
+      - sun
+    entities:
+      - sensor.processor_use_percent
+      - sensor.memory_use_percent
+      - sensor.disk_use_percent_config
+      - sensor.processor_temperature
+      - sensor.google_ping
+      - sensor.cloudflare_ping
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
+    entity_globs:
+      - sensor.ecobee_*
+      - sensor.period_of_the_day
+      - sensor.solar_*
+      - sensor.envoy_*
+      - sensor.mikrotik_* 
+  # exclude:
+  #   entity_globs: "*"
+
+influxdb:
+  api_version: 2
+  ssl: false
+  host: localhost
+  port: 8086
+  token: BeFgb61BV5RQ00imfXkU8gByv7Fm2qFzPNy_Ikhho-u9aHtoZ45sxU8Ir7C8ockI8YBuU62kgPjRhWbLB40t2g==
+  organization: 9dc71f394ed54335
+  bucket: utilities
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
+  include:
+    entities:
+      - sensor.solar_now_watts
+    entity_globs:
+      - sensor.envoy_122020046917_*
 
 mqtt:
   broker: mosquitto
