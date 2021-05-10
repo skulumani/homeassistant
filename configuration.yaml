@@ -62,41 +62,41 @@ recorder:
       - binary_sensor
       - climate
 
-influxdb:
-  api_version: 2
-  ssl: false
-  host: localhost
-  port: 8086
-  token: vWgSt7DEiIXAbrQ1cfJQySwW3R4Tz-lB-NimiVJmb5mb6knTG-8zDjpqDeKFvCnWvo-JpuKAV9F7JPhO7R57jA==
-  organization: 22626ad21b1e49d5
-  bucket: homeassistant
-  tags:
-    source: HA
-  tags_attributes:
-    - friendly_name
-  default_measurement: units
-  include:
-    domains:
-      - light
-      - alarm_control_panel
-      - sun
-    entities:
-      - sensor.processor_use_percent
-      - sensor.memory_use_percent
-      - sensor.disk_use_percent_config
-      - sensor.processor_temperature
-      - sensor.google_ping
-      - sensor.cloudflare_ping
-      - sensor.speedtest_upload
-      - sensor.speedtest_download
-    entity_globs:
-      - sensor.ecobee_*
-      - sensor.period_of_the_day
-      - sensor.solar_*
-      - sensor.envoy_*
-      - sensor.mikrotik_* 
-  # exclude:
-  #   entity_globs: "*"
+# influxdb:
+#   api_version: 2
+#   ssl: false
+#   host: localhost
+#   port: 8086
+#   token: vWgSt7DEiIXAbrQ1cfJQySwW3R4Tz-lB-NimiVJmb5mb6knTG-8zDjpqDeKFvCnWvo-JpuKAV9F7JPhO7R57jA==
+#   organization: 22626ad21b1e49d5
+#   bucket: homeassistant
+#   tags:
+#     source: HA
+#   tags_attributes:
+#     - friendly_name
+#   default_measurement: units
+#   include:
+#     domains:
+#       - light
+#       - alarm_control_panel
+#       - sun
+#     entities:
+#       - sensor.processor_use_percent
+#       - sensor.memory_use_percent
+#       - sensor.disk_use_percent_config
+#       - sensor.processor_temperature
+#       - sensor.google_ping
+#       - sensor.cloudflare_ping
+#       - sensor.speedtest_upload
+#       - sensor.speedtest_download
+#     entity_globs:
+#       - sensor.ecobee_*
+#       - sensor.period_of_the_day
+#       - sensor.solar_*
+#       - sensor.envoy_*
+#       - sensor.mikrotik_* 
+#   # exclude:
+#   #   entity_globs: "*"
 
 mqtt:
   broker: mosquitto
@@ -275,8 +275,6 @@ google:
   client_id: !secret google_calendar_clientid
   client_secret: !secret google_calendar_clientsecret
   track_new_calendar: false
-
-circadian_lighting:
 
 # monitor docker
 monitor_docker:

@@ -54,7 +54,7 @@ views:
             cards:
               - type: 'custom:mini-graph-card'
                 entities:
-                  - entity: sensor.envoy_current_energy_production
+                  - entity: sensor.solar_now_watts
                     name: Power
                     show_state: true
                   - entity: sensor.solar_elevation
@@ -88,7 +88,7 @@ views:
                     name: Daily Energy
                 aggregate_func: max
                 hour24: true
-                hours_to_show: 720
+                hours_to_show: 168
                 points_per_hour: 1
                 group_by: date
                 show:

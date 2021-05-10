@@ -229,14 +229,14 @@
 - platform: moon
 # - platform: opensky
 #   radius: 10
-- platform: enphase_envoy
-  ip_address: !secret envoy_ip
-  monitored_conditions:
-    - production
-    - inverters
-    - daily_production
-    - seven_days_production
-    - lifetime_production
+# - platform: enphase_envoy
+#   ip_address: !secret envoy_ip
+#   monitored_conditions:
+#     - production
+#     - inverters
+#     - daily_production
+#     - seven_days_production
+#     - lifetime_production
 - platform: rest
   name: solar_production
   json_attributes:
@@ -264,7 +264,8 @@
       value_template: "{{ (states.sensor.solar_production.attributes['wattHoursLifetime'] | float / 1000) | round(3) }}"
       unit_of_measurement: "MWh"
 - platform:  integration
-  source: sensor.envoy_current_energy_production
+  # source: sensor.envoy_current_energy_production
+  source: sensor.solar_now_watts
   name: solar_energy
   unit_time: h # kilowatt hour
   unit: "kWh"
