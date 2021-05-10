@@ -1,8 +1,8 @@
 # circadian lighting switch
-- platform: circadian_lighting
-  lights_brightness:
-    - light.living_room
-    - light.upstairs_lights
+# - platform: circadian_lighting
+#   lights_brightness:
+#     - light.living_room
+#     - light.upstairs_lights
 
 # Front camera switches
 # - platform: template

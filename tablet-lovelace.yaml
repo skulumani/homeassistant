@@ -84,7 +84,7 @@ views:
                   legend: false
               - type: 'custom:mini-graph-card'
                 entities:
-                  - entity: sensor.solar_daily_energy
+                  - entity: sensor.solar_today_kwh
                     name: Daily Energy
                 aggregate_func: max
                 hour24: true

@@ -119,8 +119,8 @@ views:
           legend: false
       - type: entities
         entities:
-          - entity: sensor.solar_weekly_energy
-            name: Current week 
+          # - entity: sensor.solar_weekly_energy
+          #   name: Current week 
           - entity: sensor.solar_week_kwh
             name: Last 7 days energy
           - entity: sensor.solar_lifetime_mwh
@@ -141,7 +141,8 @@ views:
           # - sensor.solar_yearly_energy
       - type: 'custom:mini-graph-card'
         entities:
-          - entity: sensor.solar_daily_energy
+          # - entity: sensor.solar_daily_energy
+          - entity: sensor.solar_today_kwh
             name: Daily Energy
         aggregate_func: max
         hour24: true

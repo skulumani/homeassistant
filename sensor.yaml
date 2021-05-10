@@ -237,31 +237,34 @@
 #     - daily_production
 #     - seven_days_production
 #     - lifetime_production
-- platform: rest
-  name: solar_production
-  json_attributes:
-    - wattHoursToday
-    - wattHoursSevenDays
-    - wattHoursLifetime
-    - wattsNow
-  resource: !secret envoy_rest_url
+# - platform: rest
+#   name: solar_production
+#   json_attributes:
+#     - wattHoursToday
+#     - wattHoursSevenDays
+#     - wattHoursLifetime
+#     - wattsNow
+#   resource: !secret envoy_rest_url
 - platform: template
   sensors:
     solar_now_watts:
       friendly_name: "Solar Current Production"
-      value_template: "{{ (states.sensor.solar_production.attributes['wattsNow'] | float) }}"
+      # value_template: "{{ (states.sensor.solar_production.attributes['wattsNow'] | float) }}"
+      value_template: "{{ states('sensor.envoy_122020046917_current_energy_production') | float }}"
       unit_of_measurement: "W"
     solar_today_kwh:
       friendly_name: "Solar Today"
-      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursToday'] | float / 1000) | round(3) }}"
+      # value_template: "{{ (states.sensor.solar_production.attributes['wattHoursToday'] | float / 1000) | round(3) }}"
+      value_template: "{{ (states('sensor.envoy_122020046917_today_s_energy_production') | float / 1000) | round(3) }}"
       unit_of_measurement: "kWh"
     solar_week_kwh:
       friendly_name: "Solar last 7 days"
-      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursSevenDays'] | float / 1000) | round(3) }}"
+      # value_template: "{{ (states.sensor.solar_production.attributes['wattHoursSevenDays'] | float / 1000) | round(3) }}"
+      value_template: "{{ (states('sensor.envoy_122020046917_last_seven_days_energy_production') | float / 1000) | round(3) }}"
       unit_of_measurement: "kWh"
     solar_lifetime_mwh:
       friendly_name: "Solar Lifetime"
-      value_template: "{{ (states.sensor.solar_production.attributes['wattHoursLifetime'] | float / 1000) | round(3) }}"
+      value_template: "{{ (states('sensor.envoy_122020046917_lifetime_energy_production') | float / 1000000) | round(3) }}"
       unit_of_measurement: "MWh"
 - platform:  integration
   # source: sensor.envoy_current_energy_production
