@@ -438,12 +438,24 @@ views:
 
             Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
   - title: Commute
+    panel: true
     icon: mdi:briefcase
     cards:
-      - type: sensor
-        entity: sensor.waze_home_to_collins
-        name: Collins Commute
-        graph: line
+      - type: 'custom:mini-graph-card'
+        name: Commute
+        icon: mdi:briefcase
+        hours_to_show: 12
+        points_per_hour: 10
+        entities:
+          - entity: sensor.waze_shankar_work
+            name: Shankar
+            show_state: true
+          - entity: sensor.waze_christine_work
+            name: Christine
+            show_state: true
+        font_size: 75
+        show:
+          fill: false
   - title: System
     icon: mdi:cog
     cards:

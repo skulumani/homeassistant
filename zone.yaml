@@ -8,7 +8,12 @@
   latitude: 38.990599
   longitude: -77.413826
   radius: 300
-  icon: mdi:briefcase
+  icon: mdi:quadcopter
+- name: Northrop
+  latitude: 39.012122
+  longitude: -77.431371
+  radius: 300
+  icon: mdi:satellite-variant
 - name: Pro Bono Center
   latitude: 38.901528
   longitude: -77.016012
