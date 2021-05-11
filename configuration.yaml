@@ -98,25 +98,6 @@ influxdb:
   # exclude:
   #   entity_globs: "*"
 
-influxdb:
-  api_version: 2
-  ssl: false
-  host: localhost
-  port: 8086
-  token: BeFgb61BV5RQ00imfXkU8gByv7Fm2qFzPNy_Ikhho-u9aHtoZ45sxU8Ir7C8ockI8YBuU62kgPjRhWbLB40t2g==
-  organization: 9dc71f394ed54335
-  bucket: utilities
-  tags:
-    source: HA
-  tags_attributes:
-    - friendly_name
-  default_measurement: units
-  include:
-    entities:
-      - sensor.solar_now_watts
-    entity_globs:
-      - sensor.envoy_122020046917_*
-
 mqtt:
   broker: mosquitto
 
