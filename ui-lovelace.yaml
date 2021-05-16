@@ -181,79 +181,75 @@ views:
                   graph: bar
   - title: Solar
     icon: 'mdi:solar-power'
-    panel: true
+    panel: false
     cards:
-      - type: grid
-        columns: 2
-        square: false
-        cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - entity: sensor.solar_now_watts
-              # - entity: sensor.envoy_122020046917_current_energy_production
-                name: Power
-                show_state: true
-              - entity: sensor.solar_elevation
-                name: Elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-                color: '#666666'
-              - entity: sensor.openweathermap_cloud_coverage
-                name: Cloud Cover
-                line_width: 1
-                show_fill: false
-                show_state: true
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 48
-            points_per_hour: 15
+      - type: 'custom:mini-graph-card'
+        entities:
+          - entity: sensor.solar_now_watts
+          # - entity: sensor.envoy_122020046917_current_energy_production
+            name: Power
+            show_state: true
+          - entity: sensor.solar_elevation
+            name: Elevation
             line_width: 1
-            lower_bound_secondary: 0
-            # group_by: hour
-            show:
-              extrema: true
-              average: true
-              graph: true
-              points: false
-              legend: false
-          - type: 'custom:mini-graph-card'
-            entities:
-              # - entity: sensor.solar_daily_energy
-              - entity: sensor.solar_today_kwh
-                name: Daily Energy
-            aggregate_func: max
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 1
-            group_by: date
-            show:
-              extrema: true
-              average: true
-              graph: bar
-          - type: entities
-            entities:
-              # - entity: sensor.solar_weekly_energy
-              #   name: Current week 
-              - entity: sensor.solar_week_kwh
-                name: Last 7 days energy
-              - entity: sensor.solar_lifetime_mwh
-                name: Lifetime energy
-              - entity: sensor.moon
-                name: Moon Phase
-              - entity: sensor.period_of_day
-                name: Period of Day
-              - entity: sensor.solar_elevation
-                name: Solar Elevation
-              - entity: sensor.sunrise
-                name: Sunrise
-              - entity: sensor.noon
-                name: Noon
-              - entity: sensor.sunset
-                name: Sunset
-              # - sensor.solar_monthly_energy
-              # - sensor.solar_yearly_energy
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+            color: '#666666'
+          - entity: sensor.openweathermap_cloud_coverage
+            name: Cloud Cover
+            line_width: 1
+            show_fill: false
+            show_state: true
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 48
+        points_per_hour: 15
+        line_width: 1
+        lower_bound_secondary: 0
+        # group_by: hour
+        show:
+          extrema: true
+          average: true
+          graph: true
+          points: false
+          legend: false
+      - type: 'custom:mini-graph-card'
+        entities:
+          # - entity: sensor.solar_daily_energy
+          - entity: sensor.solar_today_kwh
+            name: Daily Energy
+        aggregate_func: max
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 1
+        group_by: date
+        show:
+          extrema: true
+          average: true
+          graph: bar
+      - type: entities
+        entities:
+          # - entity: sensor.solar_weekly_energy
+          #   name: Current week 
+          - entity: sensor.solar_week_kwh
+            name: Last 7 days energy
+          - entity: sensor.solar_lifetime_mwh
+            name: Lifetime energy
+          - entity: sensor.moon
+            name: Moon Phase
+          - entity: sensor.period_of_day
+            name: Period of Day
+          - entity: sensor.solar_elevation
+            name: Solar Elevation
+          - entity: sensor.sunrise
+            name: Sunrise
+          - entity: sensor.noon
+            name: Noon
+          - entity: sensor.sunset
+            name: Sunset
+          # - sensor.solar_monthly_energy
+          # - sensor.solar_yearly_energy
 
   - title: Cameras
     icon: 'mdi:cctv'
@@ -907,9 +903,9 @@ views:
             hours_to_show: 12
             points_per_hour: 10
             entities:
-              - sensor.disk_use_percent_config
+              - sensor.disk_use_percent_media_camera
             font_size: 75
-            name: Data 
+            name: Disk Use - USB Video
             show:
               fill: false
           - type: 'custom:mini-graph-card'
@@ -921,18 +917,18 @@ views:
             name: Temp 
             show:
               fill: false
-      - type: entities
-        entities:
-          - entity: sensor.docker_containers_running
-            name: Running
-          - entity: sensor.docker_containers_paused
-            name: Paused
-          - entity: sensor.docker_containers_stopped
-            name: Stopped
-          - entity: sensor.docker_homeassistant_status
-            name: HA
-          - entity:  sensor.docker_version
-            name: Ver
+      # - type: entities
+      #   entities:
+      #     - entity: sensor.docker_containers_running
+      #       name: Running
+      #     - entity: sensor.docker_containers_paused
+      #       name: Paused
+      #     - entity: sensor.docker_containers_stopped
+      #       name: Stopped
+      #     - entity: sensor.docker_homeassistant_status
+      #       name: HA
+      #     - entity:  sensor.docker_version
+      #       name: Ver
             
       - type: 'custom:mini-graph-card'
         name: CPU
