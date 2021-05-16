@@ -648,159 +648,58 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_hdd_usage
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: 'Ether1 Down'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:download'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_ether1_rx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 1000
-                  - color: '#dcf312'
-                    value: 5000
-                  - color: '#f3cd12'
-                    value: 10000
-                  - color: '#f31212'
-                    value: 20000
-              - type: 'custom:mini-graph-card'
-                name: 'Ether1 Up'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:upload'
-                line_color: '#80e6ff'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_ether1_tx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 200
-                  - color: '#dcf312'
-                    value: 500
-                  - color: '#f3cd12'
-                    value: 1000
-                  - color: '#f31212'
-                    value: 1500
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: 'VLAN100 Down'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:download'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_vlan100_rx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 1000
-                  - color: '#dcf312'
-                    value: 5000
-                  - color: '#f3cd12'
-                    value: 10000
-                  - color: '#f31212'
-                    value: 20000
-              - type: 'custom:mini-graph-card'
-                name: 'VLAN100 Up'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:upload'
-                line_color: '#80e6ff'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_vlan100_tx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 200
-                  - color: '#dcf312'
-                    value: 500
-                  - color: '#f3cd12'
-                    value: 1000
-                  - color: '#f31212'
-                    value: 1500
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: 'VLAN200 Down'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:download'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_vlan200_rx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 1000
-                  - color: '#dcf312'
-                    value: 5000
-                  - color: '#f3cd12'
-                    value: 10000
-                  - color: '#f31212'
-                    value: 20000
-              - type: 'custom:mini-graph-card'
-                name: 'VLAN200 Up'
-                points_per_hour: 10
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:upload'
-                line_color: '#80e6ff'
-                show:
-                  graph: bar
-                  extrema: true
-                unit: 'KB/s'
-                entities:
-                  - sensor.mikrotik_vlan200_tx
-                color_thresholds:
-                  - color: '#12f395'
-                    value: 0
-                  - color: '#7ff312'
-                    value: 200
-                  - color: '#dcf312'
-                    value: 500
-                  - color: '#f3cd12'
-                    value: 1000
-                  - color: '#f31212'
-                    value: 1500
+          - type: 'custom:mini-graph-card'
+            name: 'Ether1 Down'
+            points_per_hour: 6
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:download'
+            show:
+              graph: line
+              extrema: false
+            unit: 'MB/s'
+            entities:
+              - entity: sensor.mikrotik_ether1_rx
+                name: Down
+              - entity: sensor.mikrotik_ether1_tx
+                name: Up
+                # color_thresholds:
+                #   - color: '#12f395'
+                #     value: 0
+                #   - color: '#7ff312'
+                #     value: 1000
+                #   - color: '#dcf312'
+                #     value: 5000
+                #   - color: '#f3cd12'
+                #     value: 10000
+                #   - color: '#f31212'
+                #     value: 20000
+              # - type: 'custom:mini-graph-card'
+              #   name: 'Ether1 Up'
+              #   points_per_hour: 10
+              #   decimals: 1
+              #   font_size: 75
+              #   hours_to_show: 24
+              #   icon: 'mdi:upload'
+              #   line_color: '#80e6ff'
+              #   show:
+              #     graph: line
+              #     extrema: true
+              #   unit: 'KB/s'
+              #   entities:
+              #     - sensor.mikrotik_ether1_tx
+              #   color_thresholds:
+              #     - color: '#12f395'
+              #       value: 0
+              #     - color: '#7ff312'
+              #       value: 200
+              #     - color: '#dcf312'
+              #       value: 500
+              #     - color: '#f3cd12'
+              #       value: 1000
+              #     - color: '#f31212'
+              #       value: 1500
       - type: vertical-stack
         square: false
         title: Internet
