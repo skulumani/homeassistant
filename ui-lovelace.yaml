@@ -250,6 +250,7 @@ views:
             name: Sunset
           # - sensor.solar_monthly_energy
           # - sensor.solar_yearly_energy
+      - type: 'custom:sun-card'
 
   - title: Cameras
     icon: 'mdi:cctv'

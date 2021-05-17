@@ -25,14 +25,16 @@ lovelace:
       type: module
     - url: /hacsfiles/uptime-card/uptime-card.js
       type: module
-  dashboards:
-    tablet-yaml:
-      mode: yaml
-      filename: tablet-lovelace.yaml
-      title: Tablet
-      icon: mdi:tablet
-      show_in_sidebar: true
-      require_admin: false
+    - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
+      type: module
+  # dashboards:
+  #   tablet-yaml:
+  #     mode: storage
+  #     filename: tablet-lovelace.yaml
+  #     title: Tablet
+  #     icon: mdi:tablet
+  #     show_in_sidebar: true
+  #     require_admin: false
 
 
 frontend:
