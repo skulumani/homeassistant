@@ -69,8 +69,8 @@ influxdb:
   ssl: false
   host: localhost
   port: 8086
-  token: 8ZgYwSmcMdNJv0PI_UaSOM9y-yKaJSbUGp-Qgknk_mytHZa52u4szeRxTBKrd9xP2QiiPSe2bZb2xH2ShDioGg==
-  organization: 9dc71f394ed54335
+  token: J-XPsdpBf-cKY3NbSe0MLDydbruSyHfUzGUYqEjCUv3TKj-tLj1iVyOk52w8g1LEJKIkO_5PH3GrEp7idh2R-Q==
+  organization: 3da7a417740f8816
   bucket: homeassistant
   tags:
     source: HA
