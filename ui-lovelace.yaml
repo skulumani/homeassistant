@@ -251,6 +251,7 @@ views:
       - type: 'custom:sun-card'
         showElevation: true
         showAzimuth: true
+        timeFormat: '24h'
 
   - title: Cameras
     icon: 'mdi:cctv'
