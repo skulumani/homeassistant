@@ -16,7 +16,7 @@ from influxdb_client.client.write.dataframe_serializer import data_frame_to_list
 import pandas
 
 url = "http://192.168.88.12:8086"
-token = "BeFgb61BV5RQ00imfXkU8gByv7Fm2qFzPNy_Ikhho-u9aHtoZ45sxU8Ir7C8ockI8YBuU62kgPjRhWbLB40t2g=="
+token = "Ox31ton4mootTko4SRN8eO3IzYisWLhz5A-qLpys_L2e5ocF_K1cspAouOx-oNfIbG2xqI1ujdwNdqPFwmBZog=="
 org = "wolverines"
 
 bucket = "utilities" # "investments"
@@ -50,9 +50,10 @@ def read_pepco(filename):
 
     eastern = pytz.timezone("America/New_York")
     utc = pytz.utc
-
-    df = pandas.read_csv(filename)
-    df = df.drop(columns=["TYPE"])
+    
+    # remove first 5 lines
+    df = pandas.read_csv(filename, header=4)
+    df = df.drop(columns=["TYPE", "COST"])
 
     data_date = [datetime.fromisoformat(line) for line in df["DATE"]]
     data_time = [time(int(t.split(":")[0]), int(t.split(":")[1])) for t in df["END TIME"]]
@@ -73,7 +74,7 @@ def read_pepco(filename):
 def read_dcwater(filename):
     """Read DC Water usage and parse into Pandas dataframe"""
     
-    df = pandas.read_csv(filename)
+    df = pandas.read_csv(filename, index_col=False)
     
     eastern = pytz.timezone("America/New_York")
     utc = pytz.utc
@@ -82,7 +83,7 @@ def read_dcwater(filename):
     dt = [eastern.localize(d).astimezone(utc) for d in dt] # utc time now
 
     df = df.assign(time=dt)
-    df = df.drop(columns=["Reading Time", "Units"])
+    df = df.drop(columns=["Reading Time", " Units"])
     df = df.rename(columns={"Meter Reading": "water_meter", "Consumption": "water_consumption"})
     df = df.assign(units="CuFt")
     df = df.assign(source="dcwater")    
@@ -118,11 +119,11 @@ def ingest_dataframe(df, measurement_name, tag_columns):
 # only write new data that doesn't exists in the database already
 if __name__ == "__main__":
 
-    df = read_enphase_daily_report("/tmp/solar.csv")
-    ingest_dataframe(df, measurement_name="solar_daily_production", tag_columns=["units", "source"])
+    # df = read_enphase_daily_report("/tmp/solar.csv")
+    # ingest_dataframe(df, measurement_name="solar_daily_production", tag_columns=["units", "source"])
 
-    df = read_pepco("/tmp/power.csv")
-    ingest_dataframe(df, measurement_name="energy_consumption", tag_columns=["units", "source"])
+    # df = read_pepco("/tmp/power.csv")
+    # ingest_dataframe(df, measurement_name="energy_consumption", tag_columns=["units", "source"])
 
     df = read_dcwater("/tmp/water.csv")
     ingest_dataframe(df, measurement_name="water_consumption", tag_columns=["units", "source"])
