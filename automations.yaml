@@ -425,15 +425,16 @@
 - id: frigate_signal 
   alias: Frigate Signal notification
   trigger:
-    platform: mqtt
-    topic: frigate/events
+    - platform: mqtt
+      topic: "frigate/events"
   action:
     - service: notify.signal_group
       data:
-        message: 'A {{trigger.payload_json["after"]["label"]}} was detected by the {{trigger.payload_json["after"]["camera"]}}. ID: {{trigger.payload["after"]["id"]}}. Thumbnail filename is /media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg '
-        data:
-          attachments:
-            - '/media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg'
+        message: "{{trigger.payload_json['after']['label'] detected by {{trigger.payload_json['after']['camera']}} camera"
+        # message: 'A {{trigger.payload_json["after"]["label"]}} was detected by the {{trigger.payload_json["after"]["camera"]}}. ID: {{trigger.payload["after"]["id"]}}. Thumbnail filename is /media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg '
+        # data:
+        #   attachments:
+        #     - '/media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg'
     # - service: notify.mobile_app_pixel_2
     #   data_template:
     #     message: 'A {{trigger.payload_json["after"]["label"]}} was detected.'

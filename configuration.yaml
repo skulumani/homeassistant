@@ -58,13 +58,8 @@ default_config:
 
 recorder:
   auto_purge: true
-  purge_keep_days: 7
+  purge_keep_days: 8
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
-  include:
-    domains:
-      - sensor
-      - binary_sensor
-      - climate
 
 influxdb:
   api_version: 2

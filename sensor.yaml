@@ -32,11 +32,11 @@
     google_ping:
       friendly_name: "Google Ping"
       unit_of_measurement: "ms"
-      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.google', 'round_trip_time_avg')) }}"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.google', 'round_trip_time_avg') | float ) }}"
     cloudflare_ping:
       friendly_name: "Cloudflare Ping"
       unit_of_measurement: "ms"
-      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.cloudflare', 'round_trip_time_avg')) }}"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.cloudflare', 'round_trip_time_avg') | float) }}"
 - platform: template
   sensors:
     solar_elevation:
@@ -173,7 +173,6 @@
 #       value_template: "{{ states.calendar.f1_all.attributes.message }}"
 - platform: uptime
   name: HA Uptime
-  unit_of_measurement: hours
 - platform: version
   name: HA Version
 - platform: dnsip # own ip of home

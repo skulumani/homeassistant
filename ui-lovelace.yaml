@@ -271,116 +271,98 @@ views:
   - title: Weather
     icon: mdi:weather-sunny
     cards:
-      - type: vertical-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.openweathermap
-          # - type: picture-entity
-          #   entity: camera.radar_dc_current
-          - type: picture-entity
-            entity: camera.radar_dc_animated
-      - type: vertical-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            name: Temperature
-            entities:
-              - entity: sensor.downstairs_temperature
-                name: Downstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.upstairs_temperature
-                name: Upstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.ecobee_outside_temperature
-                name: Outside
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: true
-            animate: false
-          - type: 'custom:mini-graph-card'
-            name: Humidity
-            entities:
-              - entity: sensor.downstairs_humidity
-                name: Downstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.upstairs_humidity
-                name: Upstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.ecobee_outside_humidity
-                name: Outside
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: true
-            animate: false
-          - type: 'custom:mini-graph-card'
-            name: Air Pressure
-            entities:
-              - entity: sensor.ecobee_outside_pressure
-                name: Pressure
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: false
-            animate: false
-      - type: vertical-stack
-        cards:
-          - type: history-graph
-            title: "Downstairs"
-            hours_to_show: 24
-            entities:
-              - climate.downstairs
-          - type:  history-graph
-            title: "Upstairs"
-            hours_to_show: 24
-            entities:
-              - climate.upstairs
+      - type: weather-forecast
+        entity: weather.openweathermap
+      # - type: picture-entity
+      #   entity: camera.radar_dc_current
+      - type: 'custom:mini-graph-card'
+        name: Temperature
+        entities:
+          - entity: sensor.downstairs_temperature
+            name: Downstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.upstairs_temperature
+            name: Upstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.ecobee_outside_temperature
+            name: Outside
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: true
+        animate: false
+      - type: 'custom:mini-graph-card'
+        name: Humidity
+        entities:
+          - entity: sensor.downstairs_humidity
+            name: Downstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.upstairs_humidity
+            name: Upstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.ecobee_outside_humidity
+            name: Outside
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: true
+        animate: false
+      - type: 'custom:mini-graph-card'
+        name: Air Pressure
+        entities:
+          - entity: sensor.ecobee_outside_pressure
+            name: Pressure
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: false
+        animate: false
   - title: F1
     icon: mdi:car-sports
     cards:
