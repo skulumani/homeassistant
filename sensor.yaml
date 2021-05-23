@@ -213,8 +213,8 @@
 - platform: template
   sensors:
     speedtest_last_run:
-      friendly_name: Last speedtest
-      value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
+      friendly_name: Last speed test
+      value_template: "{{ as_timestamp(states.sensor.fast_com_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
 
 - platform: moon
 # - platform: opensky

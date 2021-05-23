@@ -262,11 +262,11 @@ views:
         square: false
         cards:
           - type: picture-entity
-            title: front
+            title: Front
             entity: camera.front
 
           - type: picture-entity
-            title: back
+            title: Back
             entity: camera.back
   - title: Weather
     icon: mdi:weather-sunny
@@ -639,22 +639,21 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_hdd_usage
-          - type: 'custom:mini-graph-card'
-            name: 'Ether1 Down'
-            points_per_hour: 6
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:download'
-            show:
-              graph: line
-              extrema: false
-            unit: 'MB/s'
-            entities:
-              - entity: sensor.mikrotik_ether1_rx
-                name: Down
-              - entity: sensor.mikrotik_ether1_tx
-                name: Up
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                entities: 
+                  - entity: sensor.mikrotik_ether1_rx
+                    name: WAN In
+                show: 
+                  graph: false
+
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.mikrotik_ether1_tx
+                    name: WAN Out
+                show:
+                  graph: false
                 # color_thresholds:
                 #   - color: '#12f395'
                 #     value: 0
@@ -716,8 +715,8 @@ views:
                   fill: false
                 unit: 'Mbit/sec'
                 entities:
-                  - sensor.speedtest_download
-                  - sensor.speedtest_upload
+                  - sensor.fast_com_download
+                  # - sensor.speedtest_upload
                 # color_thresholds:
                 #   - color: '#12f395'
                 #     value: 17

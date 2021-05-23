@@ -10,6 +10,7 @@ homeassistant:
     - /tmp
     - /config
     - /media/camera
+    - /media/frigate
 
 
 lovelace:
@@ -41,8 +42,8 @@ frontend:
   # themes: !include_dir_merge_named ./themes
   themes: !include ./themes/one_dark_theme.yml
 
-hacs:
-  token: !secret hacs_github_token
+# hacs:
+#   token: !secret hacs_github_token
 # Configure a default setup of Home Assistant (frontend, api, etc)
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -90,8 +91,8 @@ influxdb:
       - sensor.processor_temperature
       - sensor.google_ping
       - sensor.cloudflare_ping
-      - sensor.speedtest_upload
-      - sensor.speedtest_download
+      # - sensor.speedtest_upload
+      # - sensor.speedtest_download
     entity_globs:
       - sensor.ecobee_*
       - sensor.period_of_the_day
@@ -108,6 +109,9 @@ duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
 
+fastdotcom:
+  scan_interval:
+    minutes: 30
 
 # Discover some devices automatically
 discovery:
@@ -207,15 +211,6 @@ notify:
 # hello_state:
 
 # hello_service:
-
-# speedtest
-speedtestdotnet:
-  scan_interval:
-    minutes: 10
-  monitored_conditions:
-    - download
-    - upload
-  manual: false
 
 sun:
   elevation: !secret home_elevation
