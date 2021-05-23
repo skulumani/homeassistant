@@ -429,15 +429,14 @@
       topic: "frigate/events"
   action:
     - service: notify.signal_group
-      data:
-        message: "{{trigger.payload_json['after']['label'] detected by {{trigger.payload_json['after']['camera']}} camera"
-        # message: 'A {{trigger.payload_json["after"]["label"]}} was detected by the {{trigger.payload_json["after"]["camera"]}}. ID: {{trigger.payload["after"]["id"]}}. Thumbnail filename is /media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg '
+      data_template:
+        message: "{{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. http://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
         # data:
         #   attachments:
-        #     - '/media/frigate/clips/{{trigger.payload_json["after"]["camera"]}}-{{trigger.payload_json["after"]["id"]}}.jpg'
+        #     - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
     # - service: notify.mobile_app_pixel_2
     #   data_template:
-    #     message: 'A {{trigger.payload_json["after"]["label"]}} was detected.'
+    #     message: "A {{trigger.payload_json['after']['label']}} was detected."
     #     data:
-    #       image: 'https://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json["after"]["id"]}}/thumbnail.jpg?format=android'
-    #       tag: '{{trigger.payload_json["after"]["id"]}}'
+    #       image: "https://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
+    #       tag: "{{trigger.payload_json['after']['id']}}"
