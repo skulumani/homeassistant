@@ -428,12 +428,13 @@
     - platform: mqtt
       topic: "frigate/events"
   action:
+    - delay: "00:00:45"
     - service: notify.signal_group
       data_template:
         message: "{{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. http://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
-        # data:
-        #   attachments:
-        #     - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
+        data:
+          attachments:
+            - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
     # - service: notify.mobile_app_pixel_2
     #   data_template:
     #     message: "A {{trigger.payload_json['after']['label']}} was detected."
