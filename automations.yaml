@@ -427,14 +427,24 @@
   trigger:
     - platform: mqtt
       topic: "frigate/events"
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.shankar_presence
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.christine_presence
+      state: 'off'
   action:
     - delay: "00:00:45"
     - service: notify.signal_group
       data_template:
-        message: "{{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. http://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
+        message: "{{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
         data:
           attachments:
             - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
+            - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.mp4"
     # - service: notify.mobile_app_pixel_2
     #   data_template:
     #     message: "A {{trigger.payload_json['after']['label']}} was detected."

@@ -123,7 +123,7 @@ views:
                         entity: light.porch
               - type: vertical-stack
                 cards:
-                  - type: weather-forecast
+                  - type: 'custom:weather-card'
                     entity: weather.openweathermap
                   - type: horizontal-stack
                     cards:
@@ -248,6 +248,8 @@ views:
           - type: sensor
             entity: sensor.moon
 
+      - type: 'custom:weather-card'
+        entity: weather.openweathermap
       - type: 'custom:sun-card'
         showElevation: true
         showAzimuth: true
@@ -271,7 +273,7 @@ views:
   - title: Weather
     icon: mdi:weather-sunny
     cards:
-      - type: weather-forecast
+      - type: 'custom:weather-card'
         entity: weather.openweathermap
       # - type: picture-entity
       #   entity: camera.radar_dc_current
@@ -801,6 +803,16 @@ views:
       #     - entity:  sensor.docker_version
       #       name: Ver
             
+      - type: entities
+        title: Server Status
+        entities:
+          - binary_sensor.influxdb_status
+          - binary_sensor.deconz_status
+          - binary_sensor.frigate_status
+          - binary_sensor.photoprism_status
+          - binary_sensor.syncthing_status
+          - binary_sensor.omada_status
+          - binary_sensor.grafan_status
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12

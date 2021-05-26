@@ -138,3 +138,47 @@
     - '2021-12-29'
     - '2021-12-30'
     - '2021-12-31'
+
+# Sensors for docker services
+- platform: command_line
+  name: Deconz Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:44449/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: Frigate Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:5000/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: Photoprism Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:2342/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: Syncthing Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:8384/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: Omada Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:8034/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: InfluxDB Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:8086/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
+- platform: command_line
+  name: Grafana Status
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:3000/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  scan_interval: 60
+  value_template: '{{value}}'
+  device_class: 'problem'
