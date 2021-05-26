@@ -431,10 +431,10 @@
   - condition: and
     conditions:
     - condition: state
-      entity_id: binary_sensor.shankar_presence
+      entity_id: "binary_sensor.shankar_presence"
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.christine_presence
+      entity_id: "binary_sensor.christine_presence"
       state: 'off'
   action:
     - delay: "00:00:45"

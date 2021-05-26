@@ -812,7 +812,7 @@ views:
           - binary_sensor.photoprism_status
           - binary_sensor.syncthing_status
           - binary_sensor.omada_status
-          - binary_sensor.grafan_status
+          - binary_sensor.grafana_status
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12
