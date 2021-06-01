@@ -10,6 +10,7 @@ homeassistant:
     - /tmp
     - /config
     - /media/camera
+    - /media/frigate
 
 
 lovelace:
@@ -27,6 +28,9 @@ lovelace:
       type: module
     - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
       type: module
+    - url: https://cdn.jsdelivr.net/gh/bramkragten/weather-card/dist/weather-card.min.js
+      type: module
+
   # dashboards:
   #   tablet-yaml:
   #     mode: storage
@@ -41,7 +45,8 @@ frontend:
   # themes: !include_dir_merge_named ./themes
   themes: !include ./themes/one_dark_theme.yml
 
-
+# hacs:
+#   token: !secret hacs_github_token
 # Configure a default setup of Home Assistant (frontend, api, etc)
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -56,21 +61,16 @@ default_config:
 
 recorder:
   auto_purge: true
-  purge_keep_days: 7
+  purge_keep_days: 8
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
-  include:
-    domains:
-      - sensor
-      - binary_sensor
-      - climate
 
 influxdb:
   api_version: 2
   ssl: false
   host: localhost
   port: 8086
-  token: 8ZgYwSmcMdNJv0PI_UaSOM9y-yKaJSbUGp-Qgknk_mytHZa52u4szeRxTBKrd9xP2QiiPSe2bZb2xH2ShDioGg==
-  organization: 9dc71f394ed54335
+  token: KlxHCEe2liYleP4s_lk6zy1Iiq-WwCWaB6Zs2ECI5tHrrxpAdYh1wbjtFDTRLBVpgvCaKBV_0esW88fEycTmFQ==
+  organization: d8070515aa71e90f
   bucket: homeassistant
   tags:
     source: HA
@@ -89,8 +89,8 @@ influxdb:
       - sensor.processor_temperature
       - sensor.google_ping
       - sensor.cloudflare_ping
-      - sensor.speedtest_upload
-      - sensor.speedtest_download
+      # - sensor.speedtest_upload
+      # - sensor.speedtest_download
     entity_globs:
       - sensor.ecobee_*
       - sensor.period_of_the_day
@@ -107,6 +107,9 @@ duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
 
+fastdotcom:
+  scan_interval:
+    minutes: 30
 
 # Discover some devices automatically
 discovery:
@@ -206,15 +209,6 @@ notify:
 # hello_state:
 
 # hello_service:
-
-# speedtest
-speedtestdotnet:
-  scan_interval:
-    minutes: 10
-  monitored_conditions:
-    - download
-    - upload
-  manual: false
 
 sun:
   elevation: !secret home_elevation

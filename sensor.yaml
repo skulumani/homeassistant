@@ -32,11 +32,11 @@
     google_ping:
       friendly_name: "Google Ping"
       unit_of_measurement: "ms"
-      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.google', 'round_trip_time_avg')) }}"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.google', 'round_trip_time_avg') | float ) }}"
     cloudflare_ping:
       friendly_name: "Cloudflare Ping"
       unit_of_measurement: "ms"
-      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.cloudflare', 'round_trip_time_avg')) }}"
+      value_template: "{{ '%.3f' | format(state_attr('binary_sensor.cloudflare', 'round_trip_time_avg') | float) }}"
 - platform: template
   sensors:
     solar_elevation:
@@ -173,7 +173,6 @@
 #       value_template: "{{ states.calendar.f1_all.attributes.message }}"
 - platform: uptime
   name: HA Uptime
-  unit_of_measurement: hours
 - platform: version
   name: HA Version
 - platform: dnsip # own ip of home
@@ -213,8 +212,8 @@
 - platform: template
   sensors:
     speedtest_last_run:
-      friendly_name: Last speedtest
-      value_template: "{{ as_timestamp(states.sensor.speedtest_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
+      friendly_name: Last speed test
+      value_template: "{{ as_timestamp(states.sensor.fast_com_download.last_changed) | timestamp_custom('%H:%M:%S', True) }}"
 
 - platform: moon
 # - platform: opensky

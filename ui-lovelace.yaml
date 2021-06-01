@@ -123,7 +123,7 @@ views:
                         entity: light.porch
               - type: vertical-stack
                 cards:
-                  - type: weather-forecast
+                  - type: 'custom:weather-card'
                     entity: weather.openweathermap
                   - type: horizontal-stack
                     cards:
@@ -248,9 +248,12 @@ views:
           - type: sensor
             entity: sensor.moon
 
+      - type: 'custom:weather-card'
+        entity: weather.openweathermap
       - type: 'custom:sun-card'
         showElevation: true
         showAzimuth: true
+        timeFormat: '24h'
 
   - title: Cameras
     icon: 'mdi:cctv'
@@ -261,125 +264,107 @@ views:
         square: false
         cards:
           - type: picture-entity
-            title: front
+            title: Front
             entity: camera.front
 
           - type: picture-entity
-            title: back
+            title: Back
             entity: camera.back
   - title: Weather
     icon: mdi:weather-sunny
     cards:
-      - type: vertical-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.openweathermap
-          # - type: picture-entity
-          #   entity: camera.radar_dc_current
-          - type: picture-entity
-            entity: camera.radar_dc_animated
-      - type: vertical-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            name: Temperature
-            entities:
-              - entity: sensor.downstairs_temperature
-                name: Downstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.upstairs_temperature
-                name: Upstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.ecobee_outside_temperature
-                name: Outside
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: true
-            animate: false
-          - type: 'custom:mini-graph-card'
-            name: Humidity
-            entities:
-              - entity: sensor.downstairs_humidity
-                name: Downstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.upstairs_humidity
-                name: Upstairs
-                show_state: true
-                state_adaptive_color: true
-              - entity: sensor.ecobee_outside_humidity
-                name: Outside
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: true
-            animate: false
-          - type: 'custom:mini-graph-card'
-            name: Air Pressure
-            entities:
-              - entity: sensor.ecobee_outside_pressure
-                name: Pressure
-                show_state: true
-                state_adaptive_color: true
-              - color: '#666666'
-                entity: sensor.solar_elevation
-                line_width: 1
-                show_fill: false
-                show_state: false
-                y_axis: secondary
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 12
-            line_width: 2
-            lower_bound_secondary: 0
-            show:
-              extrema: true
-              graph: true
-              points: false
-              legend: false
-            animate: false
-      - type: vertical-stack
-        cards:
-          - type: history-graph
-            title: "Downstairs"
-            hours_to_show: 24
-            entities:
-              - climate.downstairs
-          - type:  history-graph
-            title: "Upstairs"
-            hours_to_show: 24
-            entities:
-              - climate.upstairs
+      - type: 'custom:weather-card'
+        entity: weather.openweathermap
+      # - type: picture-entity
+      #   entity: camera.radar_dc_current
+      - type: 'custom:mini-graph-card'
+        name: Temperature
+        entities:
+          - entity: sensor.downstairs_temperature
+            name: Downstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.upstairs_temperature
+            name: Upstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.ecobee_outside_temperature
+            name: Outside
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: true
+        animate: false
+      - type: 'custom:mini-graph-card'
+        name: Humidity
+        entities:
+          - entity: sensor.downstairs_humidity
+            name: Downstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.upstairs_humidity
+            name: Upstairs
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.ecobee_outside_humidity
+            name: Outside
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: true
+        animate: false
+      - type: 'custom:mini-graph-card'
+        name: Air Pressure
+        entities:
+          - entity: sensor.ecobee_outside_pressure
+            name: Pressure
+            show_state: true
+            state_adaptive_color: true
+          - color: '#666666'
+            entity: sensor.solar_elevation
+            line_width: 1
+            show_fill: false
+            show_state: false
+            y_axis: secondary
+        hour24: true
+        hours_to_show: 168
+        points_per_hour: 12
+        line_width: 2
+        lower_bound_secondary: 0
+        show:
+          extrema: true
+          graph: true
+          points: false
+          legend: false
+        animate: false
   - title: F1
     icon: mdi:car-sports
     cards:
@@ -638,22 +623,21 @@ views:
                 points_per_hour: 10
                 entities:
                   - entity: sensor.mikrotik_hdd_usage
-          - type: 'custom:mini-graph-card'
-            name: 'Ether1 Down'
-            points_per_hour: 6
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:download'
-            show:
-              graph: line
-              extrema: false
-            unit: 'MB/s'
-            entities:
-              - entity: sensor.mikrotik_ether1_rx
-                name: Down
-              - entity: sensor.mikrotik_ether1_tx
-                name: Up
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                entities: 
+                  - entity: sensor.mikrotik_ether1_rx
+                    name: WAN In
+                show: 
+                  graph: false
+
+              - type: 'custom:mini-graph-card'
+                entities:
+                  - entity: sensor.mikrotik_ether1_tx
+                    name: WAN Out
+                show:
+                  graph: false
                 # color_thresholds:
                 #   - color: '#12f395'
                 #     value: 0
@@ -715,8 +699,8 @@ views:
                   fill: false
                 unit: 'Mbit/sec'
                 entities:
-                  - sensor.speedtest_download
-                  - sensor.speedtest_upload
+                  - sensor.fast_com_download
+                  # - sensor.speedtest_upload
                 # color_thresholds:
                 #   - color: '#12f395'
                 #     value: 17
@@ -819,6 +803,16 @@ views:
       #     - entity:  sensor.docker_version
       #       name: Ver
             
+      - type: entities
+        title: Server Status
+        entities:
+          - binary_sensor.influxdb_status
+          - binary_sensor.deconz_status
+          - binary_sensor.frigate_status
+          - binary_sensor.photoprism_status
+          - binary_sensor.syncthing_status
+          - binary_sensor.omada_status
+          - binary_sensor.grafan_status
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12
