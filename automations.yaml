@@ -198,31 +198,36 @@
 #     entity_id: script.back_camera_signal_motion
 #   mode: single
 
-# - id: hvac_away_mode
-#   alias: HVAC Away Mode when not home
-#   trigger:
-#   - platform: state
-#     entity_id: binary_sensor.shankar_presence
-#     to: 'off'
-#     for: 00:30:00
-#   - platform: state
-#     entity_id: binary_sensor.christine_presence
-#     to: 'off'
-#   condition:
-#   - condition: and
-#     conditions:
-#     - condition: state
-#       entity_id: binary_sensor.shankar_presence
-#       state: 'off'
-#     - condition: state
-#       entity_id: binary_sensor.christine_presence
-#       state: 'off'
-#   action:
-#   - service: notify.signal_group
-#     data:
-#       message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. Away mode
-#         for HVAC'
-#   mode: single
+- id: hvac_away_mode
+  alias: HVAC Away Mode when not home
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.shankar_presence
+    to: 'off'
+    for: 00:30:00
+  - platform: state
+    entity_id: binary_sensor.christine_presence
+    to: 'off'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.shankar_presence
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.christine_presence
+      state: 'off'
+  action:
+  - service: notify.signal_group
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. HVAC away mode.'
+  - service: climate.set_preset_mode
+    target:
+      entity_id: all
+    data:
+      preset_mode: away
+
 
 # Home sensors/switches
 - id: doorbell_single_click
@@ -440,7 +445,7 @@
     - delay: "00:00:45"
     - service: notify.signal_group
       data_template:
-        message: "{{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
+        message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
         data:
           attachments:
             - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
