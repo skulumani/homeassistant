@@ -53,25 +53,43 @@ views:
             entity: climate.downstairs
             step_size: 0.1
             decimals: 1
-            step_layout: row
+            layout:
+              step: row
+              mode:
+                headings: false
             fallback: ' '
             control:
               _names: true
               _headings: false
-              hvac: 
+              hvac:
                 heat_cool: false
+                'off': 
+                  name: false
+                heat: 
+                  name: false
+                cool:
+                  name: false
               preset: true
           - type: 'custom:simple-thermostat'
             entity: climate.upstairs
             step_size: 0.1
             decimals: 1
-            step_layout: row
+            layout:
+              step: row
+              mode:
+                headings: false
             fallback: ' '
             control:
               _names: true
               _headings: false
-              hvac: 
+              hvac:
                 heat_cool: false
+                'off': 
+                  name: false
+                heat: 
+                  name: false
+                cool:
+                  name: false
               preset: true
       - type: vertical-stack
         cards:

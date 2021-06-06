@@ -228,8 +228,36 @@
     data:
       preset_mode: away
 
+- id: hvac_resume_mode
+  alias: HVAC Resume program when home
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.shankar_presence
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.christine_presence
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.shankar_presence
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.christine_presence
+      state: 'on'
+  action:
+  - service: notify.signal_group
+    data:
+      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Return home. HVAC home mode'
+  - service: climate.set_preset_mode
+    target:
+      entity_id: all
+    data:
+      preset_mode: home
 
-# Home sensors/switches
+  # Home sensors/switches
 - id: doorbell_single_click
   alias: doorbell_single_click
   initial_state: true
