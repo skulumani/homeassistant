@@ -264,6 +264,9 @@ views:
             entity: sensor.solar_week_kwh
             icon: mdi:solar-panel
           - type: sensor
+            name: Max Daily Solar
+            entity: sensor.max_daily_solar_energy
+          - type: sensor
             entity: sensor.moon
 
       - type: 'custom:weather-card'

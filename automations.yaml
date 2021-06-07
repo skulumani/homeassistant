@@ -203,21 +203,13 @@
   mode: single
   trigger:
   - platform: state
-    entity_id: binary_sensor.shankar_presence
+    entity_id: group.family
     to: 'off'
-    for: 00:30:00
-  - platform: state
-    entity_id: binary_sensor.christine_presence
-    to: 'off'
+    for: 00:10:00
   condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.shankar_presence
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.christine_presence
-      state: 'off'
+  - condition: template
+    value_template: >
+      {{ (as_timestamp(now()) - as_timestamp(states.group.family.last_changed)) > 1800 }}
   action:
   - service: notify.signal_group
     data:
@@ -233,20 +225,13 @@
   mode: single
   trigger:
   - platform: state
-    entity_id: binary_sensor.shankar_presence
+    entity_id: group.family
     to: 'on'
-  - platform: state
-    entity_id: binary_sensor.christine_presence
-    to: 'on'
+    for: 00:10:00
   condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.shankar_presence
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.christine_presence
-      state: 'on'
+  - condition: template
+    value_template: >
+      {{ (as_timestamp(now()) - as_timestamp(states.group.family.last_changed)) > 1800 }}
   action:
   - service: notify.signal_group
     data:

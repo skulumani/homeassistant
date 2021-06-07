@@ -277,6 +277,20 @@
 #       unit_of_measurement: 'kB/s'
 #       value_template: "{{ states('sensor.mikrotik_router_kib_s_received') | float / 8 }}"
 
-
-
+- platform: influxdb
+  api_version: 2
+  token: 2KgtwNgNt4XbvxNAVfWId2WOYjSoAsvWs3AqEiUxonowSzgVLv_2BVmjPrsEOLC195U47cTBXVxG2qBXnxzEXQ==
+  ssl: false
+  host: localhost
+  port: 8086
+  organization: d8070515aa71e90f
+  bucket: utilities
+  queries_flux:
+    - range_start: "-365d"
+      name: "Max Daily Solar Energy"
+      query: >
+        filter(fn: (r) => r["_measurement"] == "solar_daily_production")
+        |> highestMax(n:1)
+        |> map(fn: (r) => ({ r with _value: float(v:r._value) / 1000.0 }))
+      unit_of_measurement: "MWh"
      
