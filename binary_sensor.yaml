@@ -160,13 +160,13 @@
   device_class: 'problem'
 - platform: command_line
   name: Syncthing Status
-  command: response=$(curl -LIk -m 3 http://192.168.88.12:8384/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:8384/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 401 && echo "OFF" || echo "ON"
   scan_interval: 60
   value_template: '{{value}}'
   device_class: 'problem'
 - platform: command_line
   name: Omada Status
-  command: response=$(curl -LIk -m 3 http://192.168.88.12:8034/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
+  command: response=$(curl -LIk -m 3 http://192.168.88.12:8043/ -o /dev/null -w "%{http_code}\n" -s); test "$response" -eq 200 && echo "OFF" || echo "ON"
   scan_interval: 60
   value_template: '{{value}}'
   device_class: 'problem'
