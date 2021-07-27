@@ -61,7 +61,7 @@ default_config:
 
 recorder:
   auto_purge: true
-  purge_keep_days: 8
+  purge_keep_days: 14
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
 
 influxdb:
