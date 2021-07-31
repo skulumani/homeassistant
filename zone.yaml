@@ -19,3 +19,8 @@
   longitude: -77.016012
   radius: 100
   icon: mdi:briefcase
+- name: JHU/APL
+  latitude: 39.162790001034445
+  longitude: -76.89155971252484
+  radius: 1000
+  icon: mdi:office-building
