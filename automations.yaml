@@ -475,12 +475,12 @@
   alias: Solar Stats Signal Message
   mode: single
   trigger:
-  - template:
-    value_template: '{{ states.sensor.period_of_day.state == ''civil_twilight'' }}'
+    - platform: template
+      value_template: '{{ states.sensor.period_of_day.state == ''civil_twilight'' }}'
   condition:
-  - condition: time
-    after: '16:00:00'
+    - condition: time
+      after: '16:00:00'
   action:
-  - service: notify.signal_group
-    data: 
-    message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Solar Stats {{ "\n" -}} Energy today: {{ states("sensor.solar_today_kwh") }} KWh  {{ "\n" -}} Energy Life: {{ states("sensor.solar_lifetime_mwh") }} MWh'
+    - service: notify.signal_group
+      data: 
+        message: '{{ now().strftime("%Y-%m-%d")}} Solar Stats {{ "\n" -}} Energy today: {{ states("sensor.solar_today_kwh") }} KWh  {{ "\n" -}} Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh'
