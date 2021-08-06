@@ -278,19 +278,15 @@ views:
 
   - title: Cameras
     icon: 'mdi:cctv'
-    panel: true
+    type: masonry
     cards:
-      - type: grid
-        columns: 2
-        square: false
-        cards:
-          - type: picture-entity
-            title: Front
-            entity: camera.front
+      - type: picture-entity
+        title: Front
+        entity: camera.front
 
-          - type: picture-entity
-            title: Back
-            entity: camera.back
+      - type: picture-entity
+        title: Back
+        entity: camera.back
   - title: Weather
     icon: mdi:weather-sunny
     cards:
@@ -388,8 +384,11 @@ views:
         animate: false
   - title: F1
     icon: mdi:car-sports
+    type: sidebar
     cards:
       - type: markdown
+        view_layout:
+          position: main
         card_mod:
           style:
             ha-markdown$: |
@@ -410,6 +409,8 @@ views:
           {{nr.Circuit.circuitName}}
           {% endif %}
       - type: vertical-stack
+        view_layout:
+          position: sidebar
         cards:
         - type: picture
           image: /local/f1.jpg
@@ -451,6 +452,8 @@ views:
             Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
 
       - type: markdown
+        view_layout:
+          position: sidebar
         card_mod:
           style:
             ha-markdown$: |
@@ -498,6 +501,8 @@ views:
             </tbody>
           </table>
       - type: markdown
+        view_layout:
+          position: sidebar
         card_mod:
           style:
             ha-markdown$: |
