@@ -91,8 +91,8 @@ influxdb:
       - sensor.processor_temperature
       - sensor.google_ping
       - sensor.cloudflare_ping
-      # - sensor.speedtest_upload
-      # - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
     entity_globs:
       - sensor.ecobee_*
       - sensor.period_of_the_day
@@ -109,9 +109,9 @@ duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
 
-fastdotcom:
-  scan_interval:
-    minutes: 30
+# fastdotcom:
+#   scan_interval:
+#     minutes: 30
 
 # Discover some devices automatically
 discovery:

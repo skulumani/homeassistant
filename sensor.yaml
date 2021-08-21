@@ -294,3 +294,4 @@
         |> map(fn: (r) => ({ r with _value: float(v:r._value) / 1000.0 }))
       unit_of_measurement: "MWh"
 - platform: formulaone_api 
+

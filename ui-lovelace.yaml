@@ -340,6 +340,13 @@ views:
           - entity: sensor.back_detection_fps
             name: Back
             show_state: true
+      - type: markdown
+        view_layout:
+          position: sidebar
+        content: >
+          # [Frigate Local](http://192.168.88.12:5000/)
+          
+          # [Frigate Tailscale](http://100.99.169.123:5000/)
             
 
   - title: Weather
@@ -884,16 +891,19 @@ views:
                 decimals: 1
                 font_size: 75
                 hours_to_show: 24
-                icon: 'mdi:upload'
+                icon: 'mdi:speedometer'
                 # line_color: '#80e6ff'
                 show:
                   graph: line
-                  extrema: true
+                  extrema: false
                   fill: false
                 unit: 'Mbit/sec'
                 entities:
-                  - sensor.fast_com_download
-                  # - sensor.speedtest_upload
+                  # - sensor.fast_com_download
+                  - entity: sensor.speedtest_download
+                    show_state: true
+                  - entity: sensor.speedtest_upload
+                    show_state: true
                 # color_thresholds:
                 #   - color: '#12f395'
                 #     value: 17
@@ -909,6 +919,7 @@ views:
             name: 'Ping'
             points_per_hour: 6
             decimals: 1
+            icon: 'mdi:web'
             font_size: 75
             hours_to_show: 24
             # line_color: '#80e6ff'
@@ -1006,6 +1017,9 @@ views:
           - binary_sensor.syncthing_status
           - binary_sensor.omada_status
           - binary_sensor.grafana_status
+      - type: markdown
+        content: >
+          # [PhotoPrism](http://100.99.169.123:2342/browse)
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12

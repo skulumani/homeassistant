@@ -458,7 +458,7 @@
     - delay: "00:00:45"
     - service: notify.signal_group
       data_template:
-        message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S%z') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
+        message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
         data:
           attachments:
             - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
@@ -467,10 +467,27 @@
     #   data_template:
     #     message: "A {{trigger.payload_json['after']['label']}} was detected."
     #     data:
-    #       image: "https://192.168.88.12:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
+    #       image: "https://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
     #       tag: "{{trigger.payload_json['after']['id']}}"
     #
 
+# Frigate mobile appautomation
+- id: frigate_mobile 
+  alias: Frigate Mobile App notification
+  trigger:
+    - platform: mqtt
+      topic: "frigate/events"
+  action:
+     - service: notify.mobile_app_pixel_2
+       data_template:
+         message: "A {{trigger.payload_json['after']['label']}} was detected by {{trigger.payload_json['after']['camera']}} camera."
+         data:
+           image: "http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
+           tag: "{{trigger.payload_json['after']['id']}}"
+           when: '{{trigger.payload_json["after"]["start_time"]|int}}'
+           video: "http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/{{trigger.payload_json['after']['camera']}}/clip.mp4"
+           group: 'Camera Detection'
+    
 - id: solar_eod_message
   alias: Solar Stats Signal Message
   mode: single
