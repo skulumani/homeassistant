@@ -630,89 +630,93 @@ views:
   - title: System
     icon: mdi:cog
     cards:
-      - type: vertical-stack
-        title: People
+      - type: horizontal-stack
         cards:
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:uptime-card'
-                entity: binary_sensor.shankar_presence
-                name: Shankar Presence
-                alias:
-                  ok: Home
-                  ko: Away
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                hours_to_show: 168
-                show:
-                  footer: false
-                  average: false
-                  header: true
-                status_adaptive_color: true
-              - type: 'custom:uptime-card'
-                entity: binary_sensor.christine_presence
-                name: Christine Presence
-                alias:
-                  ok: Home
-                  ko: Away
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                hours_to_show: 168
-                show:
-                  footer: false
-                  average: false
-                  header: true
-                  timeline: true
-                status_adaptive_color: true
-          - type: 'custom:battery-state-card'
-            title: false
-            sort_by_level: asc
-            entities:
-              - entity: sensor.pixel_2_battery_level
-                name: 'Pixel 2'
-              - entity: sensor.galaxy_s9_battery_level
-                name: 'S9'
-              - entity: sensor.nexus_7_battery_level
-                name: 'Nexus 7'
-
           - type: 'custom:uptime-card'
-            entity: binary_sensor.updater
+            entity: binary_sensor.shankar_presence
             icon: 'mdi:raspberry-pi'
-            name: HA Update
+            name: Shankar Presence
             alias:
-              ok: Update available !
-              ko: No update for now
+              ok: 'Home'
+              ko: 'Away'
             bar:
               height: 10
               round: 1
               spacing: 4
               amount: 36
-            hours_to_show: 168
+            hours_to_show: 12
             show:
               footer: false
             status_adaptive_color: true
-          - type: glance
-            show_icon: false
-            columns: 3
-            entities:
-              - entity: sensor.count_binary_sensors
-                name: Binary Sensors
-              - entity: sensor.count_sensors
-                name: Sensors
-              - entity: sensor.count_switches
-                name: Switches
-              - entity: sensor.count_device_trackers
-                name: Device Trackers
-              - entity: sensor.count_automations
-                name: Automations
-              - entity: sensor.count_scripts
-                name: Scripts
+          - type: 'custom:uptime-card'
+            entity: binary_sensor.christine_presence
+            icon: 'mdi:raspberry-pi'
+            name: Christine Presence
+            alias:
+              ok: 'Home'
+              ko: 'Away'
+            bar:
+              height: 10
+              round: 1
+              spacing: 4
+              amount: 36
+            hours_to_show: 12
+            show:
+              footer: false
+            status_adaptive_color: true
+      - type: 'custom:mini-graph-card'
+        name: Presence Probability
+        icon: mdi:server
+        hours_to_show: 12
+        points_per_hour: 10
+        entities:
+          - entity: sensor.shankar_presence_probability
+          - entity: sensor.christine_presence_probability
+        show:
+          fill: false
+      - type: 'custom:battery-state-card'
+        title: false
+        sort_by_level: asc
+        entities:
+          - entity: sensor.pixel_2_battery_level
+            name: 'Pixel 2'
+          - entity: sensor.galaxy_s9_battery_level
+            name: 'S9'
+          - entity: sensor.nexus_7_battery_level
+            name: 'Nexus 7'
+
+      - type: 'custom:uptime-card'
+        entity: binary_sensor.updater
+        icon: 'mdi:raspberry-pi'
+        name: HA Update
+        alias:
+          ok: Update available !
+          ko: No update for now
+        bar:
+          height: 10
+          round: 1
+          spacing: 4
+          amount: 36
+        hours_to_show: 168
+        show:
+          footer: false
+        status_adaptive_color: true
+      - type: glance
+        show_icon: false
+        columns: 3
+        entities:
+          - entity: sensor.count_binary_sensors
+            name: Binary Sensors
+          - entity: sensor.count_sensors
+            name: Sensors
+          - entity: sensor.count_switches
+            name: Switches
+          - entity: sensor.count_device_trackers
+            name: Device Trackers
+          - entity: sensor.count_automations
+            name: Automations
+          - entity: sensor.count_scripts
+            name: Scripts
       - type: vertical-stack
         title: Router
         cards:

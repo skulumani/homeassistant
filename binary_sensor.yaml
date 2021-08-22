@@ -5,16 +5,21 @@
   probability_threshold: 0.7
   device_class: 'presence'
   observations:
-    # - entity_id: 'device_tracker.galaxy_s9'
-    #   prob_given_true: 0.5
-    #   prob_given_false: 0.5
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.galaxy_s9'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
     - entity_id: 'device_tracker.galaxy_s20_router'
       prob_given_true: 0.9
       prob_given_false: 0.3
       platform: 'state'
       to_state: 'home'
+    - entity_id: 'device_tracker.galaxy_s20_router'
+      prob_given_true: 0.6
+      prob_given_false: 0.9
+      platform: 'state'
+      to_state: 'away'
     - entity_id: 'device_tracker.christine_laptop'
       prob_given_true: 0.9
       prob_given_false: 0.1
@@ -31,11 +36,11 @@
   probability_threshold: 0.8
   device_class: 'presence'
   observations:
-    # - entity_id: 'device_tracker.pixel_2'
-    #   prob_given_true: 0.5
-    #   prob_given_false: 0.5
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.pixel_2'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
     - entity_id: 'device_tracker.shankars_air'
       prob_given_true: 0.9
       prob_given_false: 0.1
