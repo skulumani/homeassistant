@@ -671,9 +671,14 @@ views:
         points_per_hour: 10
         entities:
           - entity: sensor.shankar_presence_probability
+            name: Shankar
+            show_state: true
           - entity: sensor.christine_presence_probability
+            name: Christine
+            show_state: true
         show:
           fill: false
+          legend: false
       - type: 'custom:battery-state-card'
         title: false
         sort_by_level: asc
