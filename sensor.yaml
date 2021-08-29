@@ -5,6 +5,8 @@
       arg: /config
     - type: disk_use_percent
       arg: /media/camera
+    - type: disk_use_percent
+      arg: /media/data
     - type: memory_use_percent
     - type: memory_use
     - type: memory_free
