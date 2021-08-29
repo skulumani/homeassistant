@@ -219,10 +219,10 @@
   sensors:
     shankar_presence_probability:
       friendly_name: Shankar Presence Probability
-      value_template: "{{ state_attr('binary_sensor.shankar_presence', 'probability') }}"
+      value_template: "{{ state_attr('binary_sensor.shankar_presence', 'probability') | float | round(2) }}"
     christine_presence_probability:
       friendly_name: Christine Presence Probability
-      value_template: "{{ state_attr('binary_sensor.christine_presence', 'probability') }}"
+      value_template: "{{ state_attr('binary_sensor.christine_presence', 'probability') | float | round(2)}}"
 
 - platform: moon
 # - platform: opensky
@@ -320,3 +320,14 @@
         |> highestMax(n:1)
         |> map(fn: (r) => ({ r with _value: float(v:r._value) / 1000.0 }))
       unit_of_measurement: "KWh"
+
+
+- platform: reddit
+  username: !secret reddit_username
+  password: !secret reddit_password
+  client_id: !secret reddit_client_id
+  client_secret: !secret reddit_client_secret
+  sort_by: "new"
+  subreddits:
+    - buildapcsales
+    - freegamefindings
