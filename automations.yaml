@@ -501,3 +501,25 @@
     - service: notify.signal_group
       data: 
         message: '{{ now().strftime("%Y-%m-%d")}} Solar Stats {{ "\n" -}} Energy today: {{ states("sensor.solar_today_kwh") }} KWh  {{ "\n" -}} Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh'
+
+- id: signal_buildapcsales_bot
+  alias: Signal BuildAPCSales Bot 
+  mode: single
+  trigger:
+    - platform: time
+      at: "06:00:00"
+  action: 
+    - service: notify.signal_gaming_group
+      data:
+        message: "BuildAPCSales {{ '\n\n' -}} {% for post in state_attr('sensor.reddit_buildapcsales', 'posts') %} {{post.title}} {{post.url}} {{ '\n' -}} {% endfor %}"
+
+- id: signal_freegamefindings_bot
+  alias: Signal FreeGameFindings Bot 
+  mode: single
+  trigger:
+    - platform: time
+      at: "06:00:00"
+  action: 
+    - service: notify.signal_gaming_group
+      data:
+        message: "FreeGameFindings {{ '\n\n' -}} {% for post in state_attr('sensor.reddit_freegamefindings', 'posts') %} {{post.title}} {{post.url}} {{ '\n' -}} {% endfor %}"

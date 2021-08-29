@@ -327,7 +327,7 @@
   password: !secret reddit_password
   client_id: !secret reddit_client_id
   client_secret: !secret reddit_client_secret
-  sort_by: "new"
+  sort_by: "top"
   subreddits:
     - buildapcsales
     - freegamefindings
