@@ -1028,7 +1028,9 @@ views:
           - binary_sensor.grafana_status
       - type: markdown
         content: >
-          # [PhotoPrism](http://100.99.169.123:2342/browse)
+          # [PhotoPrism TS](http://100.99.169.123:2342/browse)
+          
+          # [PhotoPrism Local](http://192.168.88.12:2342/browse)
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12
