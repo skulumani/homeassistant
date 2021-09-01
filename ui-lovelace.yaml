@@ -958,7 +958,7 @@ views:
       - type: grid
         title: Ubuntu-Server
         square: false
-        columns: 2
+        columns: 1
         cards:
           - type: 'custom:mini-graph-card'
             align_icon: left
@@ -989,7 +989,10 @@ views:
             hours_to_show: 12
             points_per_hour: 10
             entities:
-              - sensor.disk_use_percent_media_camera
+              - entity: sensor.disk_use_percent_media_camera
+                name: USB Drive
+              - entity: sensor.disk_use_percent_media_data
+                name: ZFS Data
             font_size: 75
             name: Disk Use - USB Video
             show:

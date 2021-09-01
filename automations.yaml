@@ -511,7 +511,15 @@
   action: 
     - service: notify.signal_gaming_group
       data:
-        message: "BuildAPCSales {{ '\n\n' -}} {% for post in state_attr('sensor.reddit_buildapcsales', 'posts') %} {{post.title}} {{post.url}} {{ '\n' -}} {% endfor %}"
+        message: >-
+          BuildAPCSales
+
+          {% for post in state_attr('sensor.reddit_buildapcsales', 'posts') %}
+          {{post.title|truncate(80)}}
+           http://reddit.com/{{post.id}}
+
+
+          {% endfor %}
 
 - id: signal_freegamefindings_bot
   alias: Signal FreeGameFindings Bot 
@@ -522,4 +530,12 @@
   action: 
     - service: notify.signal_gaming_group
       data:
-        message: "FreeGameFindings {{ '\n\n' -}} {% for post in state_attr('sensor.reddit_freegamefindings', 'posts') %} {{post.title}} {{post.url}} {{ '\n' -}} {% endfor %}"
+        message: >-
+          FreeGameFindings
+
+          {% for post in state_attr('sensor.reddit_freegamefindings', 'posts') %}
+          {{post.title|truncate(80)}} 
+           http://reddit.com/{{post.id}}
+
+
+          {% endfor %}
