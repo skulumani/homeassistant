@@ -514,10 +514,10 @@
         message: >-
           BuildAPCSales
 
+
           {% for post in state_attr('sensor.reddit_buildapcsales', 'posts') %}
           {{post.title|truncate(80)}}
            http://reddit.com/{{post.id}}
-
 
           {% endfor %}
 
@@ -533,9 +533,9 @@
         message: >-
           FreeGameFindings
 
+
           {% for post in state_attr('sensor.reddit_freegamefindings', 'posts') %}
           {{post.title|truncate(80)}} 
            http://reddit.com/{{post.id}}
-
 
           {% endfor %}
