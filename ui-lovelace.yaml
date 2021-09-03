@@ -287,33 +287,23 @@ views:
         columns: 3
         cards:
           - type: picture-entity
+            title: Front
+            entity: camera.front
+          - type: picture-entity
             title: Front Person
             entity: camera.front_person
           - type: picture-entity
             title: Front Cat
             entity: camera.front_cat
           - type: picture-entity
-            title: Front Dog
-            entity: camera.front_dog
+            title: Back
+            entity: camera.back
           - type: picture-entity
             title: Back Person
             entity: camera.back_person
           - type: picture-entity
             title: Back Cat
             entity: camera.back_cat
-          - type: picture-entity
-            title: Back Dog
-            entity: camera.back_dog
-      - type: horizontal-stack
-        view_layout:
-          position: main
-        cards:
-          - type: picture-entity
-            title: Front
-            entity: camera.front
-          - type: picture-entity
-            title: Back
-            entity: camera.back
       - type: 'custom:mini-graph-card'
         view_layout:
           position: sidebar
