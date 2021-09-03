@@ -188,3 +188,5 @@
   scan_interval: 60
   value_template: '{{value}}'
   device_class: 'problem'
+
+
