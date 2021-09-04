@@ -6,11 +6,18 @@
 # people home or not
 #
 - binary_sensor:
+  - name: Sufficient Outdoor Illumination
+    unique_id: sufficient_outdoor_illumination
+    state: >-
+      {% set sun_shining = states('sensor.solar_now_watts') | float > 100 %}
+
+      {{ sun_shining }}
+
   - name: Porch - Light Should be Off
     unique_id: porch_light_should_be_off
     state: >-
       {% set day = is_state('sensor.period_of_day', 'day') %}
-      {% set sun_shining = states('sensor.solar_now_watts') | float > 100 %}
+      {% set sun_shining = is_states('binary_sensor.sufficient_outdoor_illumination', 'on') %}
 
       {{ day and sun_shining }}
 
@@ -19,26 +26,27 @@
     state: >-
       {% set motion = is_state('binary_sensor.porch_person_motion', 'on') %}
       {% set front_door = is_state('binary_sensor.front_door', 'on') %}
+      {% set not_off = is_state('binary_sensor.porch_light_should_be_off', 'on') %}
 
-      {{ motion or front_door }}
+      {{ not_off and (motion or front_door) }}
 
   - name: Porch - Light should be low
     unique_id: porch_light_should_be_on_low
     state: >-
-      {% set not_day = not is_state('sensor.period_of_day', 'day') %}
       {% set not_night = not is_state('sensor.period_of_day', 'night') %}
       {% set no_event = is_state('binary_sensor.porch_light_should_be_on_high', 'off') %}
+      {% set not_off = is_state('binary_sensor.porch_light_should_be_off', 'on') %}
 
-      {{ not_day and no_event }}
+      {{ no_event and not_night and not_off}}
 
   - name: Porch - Light should be on medium
     unique_id: porch_light_should_be_on_medium
     state: >-
       {% set no_event = is_state('binary_sensor.porch_light_should_be_on_high', 'off') %}
-      {% set not_day = not is_state('sensor.period_of_day', 'day') %}
       {% set is_night = is_state('sensor.period_of_day', 'night') %}
+      {% set not_off = is_state('binary_sensor.porch_light_should_be_off', 'on') %}
 
-      {{ not_day and is_night and no_event }}
+      {{ is_night and no_event and not_off }}
 
 - sensor:
   - name: Porch Light Desired Brightness
