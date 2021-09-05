@@ -496,6 +496,17 @@ views:
             Start local: {{ states.calendar.f1_race.attributes.start_time }}
 
             Start UTC: {{ as_timestamp(states.calendar.f1_race.attributes.start_time)|timestamp_utc }}
+        - type: markdown
+          content: >
+            {% set today = states('sensor.date') %}
+            {%- for race in state_attr('sensor.formula_one_sensor', 'races') -%}
+            {% set race_day = race.date %}
+
+            {%- if race_day > today %}
+            {{ race.raceName }} {{ race_day  }}
+            {%- endif %}
+
+            {% endfor %}
 
       - type: markdown
         view_layout:
