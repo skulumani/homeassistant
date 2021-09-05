@@ -13,6 +13,20 @@
         entity_id: light.porch
       data: 
         brightness_pct: '{{ states("sensor.porch_light_desired_brightness") }}'
+- id: hallway_light_controller
+  alias: Hallway Light Controller
+  mode: single
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.hallway_light_desired_brightness
+      below: '101'
+  condition: []
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.hallway
+      data:
+        brightness_pct: '{{ states("sensor.hallway_light_desired_brightness") }}'
 
 - id: lights_on_evening_civil_twilight
   alias: Lights on at evening civil twilight
