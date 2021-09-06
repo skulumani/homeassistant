@@ -232,11 +232,11 @@
     shankar_presence_probability:
       friendly_name: Shankar Presence Probability
       unit_of_measurement: "%"
-      value_template: "{{ state_attr('binary_sensor.shankar_presence', 'probability') | float | round(2) }}"
+      value_template: "{{ state_attr('binary_sensor.shankar_presence', 'probability') | float | round(2) * 100 }}"
     christine_presence_probability:
       friendly_name: Christine Presence Probability
       unit_of_measurement: "%"
-      value_template: "{{ state_attr('binary_sensor.christine_presence', 'probability') | float | round(2)}}"
+      value_template: "{{ state_attr('binary_sensor.christine_presence', 'probability') | float | round(2) * 100}} "
 
 - platform: moon
 - platform: season
