@@ -13,6 +13,7 @@
         entity_id: light.porch
       data: 
         brightness_pct: '{{ states("sensor.porch_light_desired_brightness") }}'
+
 - id: hallway_light_controller
   alias: Hallway Light Controller
   mode: single
@@ -41,7 +42,6 @@
       brightness_pct: 30
       entity_id:
       - light.living_room_lights
-      - light.hallway
       transition: 60
     service: light.turn_on
   # - data:
@@ -49,6 +49,7 @@
   #       twilight'
   #   service: notify.signal_group
   mode: single
+
 - id: lights_on_evening_nautical_twilight
   alias: Lights on at evening nautical twilight
   trigger:
@@ -63,7 +64,6 @@
       brightness_pct: 50
       entity_id:
       - light.living_room_lights
-      - light.hallway
       transition: 60
     service: light.turn_on
   # - data:
@@ -71,6 +71,7 @@
   #       twilight'
   #   service: notify.signal_group
   mode: single
+
 - id: lights_on_morning_nautical_twilight
   alias: Lights on morning
   trigger:
@@ -85,7 +86,6 @@
       brightness_pct: 30
       entity_id:
       - light.living_room_lights
-      - light.hallway
       transition: 60
     service: light.turn_on
   # - data:
@@ -93,6 +93,7 @@
   #       nautical twilight.'
   #   service: notify.signal_group
   mode: single
+
 - id: lights_off_sunrise
   alias: Lights off after sunrise
   trigger:
@@ -102,7 +103,7 @@
   action:
   - data:
       entity_id: 
-      - light.downstairs_lights
+      - light.living_room_lights
       - light.upstairs_lights
       transition: 60
     service: light.turn_off
@@ -110,6 +111,7 @@
   #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
   #   service: notify.signal_group
   mode: single
+
 - id: lights_off_2300
   alias: Lights off at 2300
   trigger:
@@ -119,7 +121,7 @@
   action:
   - data:
       entity_id:
-      - light.downstairs_lights
+      - light.living_room_lights
       - light.upstairs_lights
       transition: 60
     service: light.turn_off
@@ -133,7 +135,7 @@
   alias: Bedroom on in morning
   trigger:
   - platform: time
-    at: 06:20:00
+    at: 05:25:00
   condition:
   - condition: state
     entity_id: binary_sensor.workday_sensor

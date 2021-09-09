@@ -9,14 +9,14 @@
       {% set sun_shining = states('sensor.solar_now_watts') | float > 100 %}
 
       {{ sun_shining }}
-
+- binary_sensor:
   - name: Porch - Light Should be Off
     unique_id: porch_light_should_be_off
     state: >-
       {% set sun_shining = is_state('binary_sensor.sufficient_outdoor_illumination', 'on') %}
 
       {{ sun_shining }}
-
+- binary_sensor:
   - name: Porch - Light should be on high
     unique_id: porch_light_should_be_on_high
     state: >-
@@ -25,7 +25,7 @@
       {% set not_off = not is_state('binary_sensor.porch_light_should_be_off', 'on') %}
 
       {{ not_off and (motion or front_door) }}
-
+- binary_sensor:
   - name: Porch - Light should be low
     unique_id: porch_light_should_be_on_low
     state: >-
@@ -35,7 +35,8 @@
       {% set not_off = not is_state('binary_sensor.porch_light_should_be_off', 'on') %}
 
       {{ no_event and not_night and not_day and not_off}}
-
+      
+- binary_sensor:
   - name: Porch - Light should be on medium
     unique_id: porch_light_should_be_on_medium
     state: >-
@@ -45,6 +46,7 @@
 
       {{ is_night and no_event and not_off }}
 
+- binary_sensor:
   - name: Hallway - Light should be off
     unique_id: hallway_light_should_be_off
     state: >-
@@ -52,6 +54,7 @@
 
       {{ sun_shining }}
 
+- binary_sensor:
   - name: Hallway - Light should be on low
     unique_id: hallway_light_should_be_on_low
     state: >-
@@ -66,7 +69,7 @@
     unique_id: porch_light_desired_brightness
     unit_of_measurement: "%"
     state: >-
-      {% if is_state('binary_sensor.porch_light_should_be_off', 'on') %}
+      {% if is_state('binary_sensor.porch_light_should_be_on_off', 'on') %}
       0.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_low', 'on') %}
       25.0
@@ -74,8 +77,11 @@
       50.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_high', 'on') %}
       100.0
+      {% else %}
+      0.0
       {% endif %}
 
+- sensor:
   - name: Hallway Light Desired Brightness
     unique_id: hallway_light_desired_brightness
     unit_of_measurement: "%"
@@ -84,6 +90,8 @@
       0.0
       {% elif is_state('binary_sensor.hallway_light_should_be_on_low', 'on') %}
       30.0
+      {% else %}
+      0.0
       {% endif %}
 
 
