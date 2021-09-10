@@ -108,9 +108,7 @@
       {% elif is_state('binary_sensor.porch_light_should_be_on_medium', 'on') %}
       50.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_high', 'on') %}
-      100.0
-      {% else %}
-      0.0
+      50.0
       {% endif %}
 
 - sensor:
@@ -122,8 +120,6 @@
       0.0
       {% elif is_state('binary_sensor.hallway_light_should_be_on_low', 'on') %}
       30.0
-      {% else %}
-      0.0
       {% endif %}
 
 #############################
