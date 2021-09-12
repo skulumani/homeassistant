@@ -1,15 +1,15 @@
 # Binary sensor
 - platform: bayesian
-  prior: 0.958
+  prior: 0.66
   name: 'Christine Presence'
   probability_threshold: 0.7
   device_class: 'presence'
   observations:
-    # - entity_id: 'device_tracker.galaxy_s9'
-    #   prob_given_true: 0.99
-    #   prob_given_false: 0.75
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.galaxy_s9'
+      prob_given_true: 0.97
+      prob_given_false: 0.94
+      platform: 'state'
+      to_state: 'home'
     - entity_id: 'device_tracker.galaxy_s20_router'
       prob_given_true: 0.9
       prob_given_false: 0.01
@@ -20,16 +20,16 @@
       prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
-    - entity_id: 'device_tracker.50tclrokutv'
-      prob_given_true: 0.09
-      prob_given_false: 0.50
-      platform: 'state'
-      to_state: 'home'
     - entity_id: 'device_tracker.christines_air'
       prob_given_true: 0.17
       prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
+    # - entity_id: 'device_tracker.50tclrokutv'
+    #   prob_given_true: 0.09
+    #   prob_given_false: 0.50
+    #   platform: 'state'
+    #   to_state: 'home'
 
 - platform: bayesian
   prior: 0.58

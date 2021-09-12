@@ -458,13 +458,13 @@ views:
         view_layout:
           position: sidebar
         cards:
-        - type: picture
-          image: /local/f1.jpg
-          tap_action:
-            action: call-service
-            service: script.turn_on
-            service_data:
-              entity_id: script.roku_espn_tap_action
+        # - type: picture
+        #   image: /local/f1.jpg
+        #   tap_action:
+        #     action: call-service
+        #     service: script.turn_on
+        #     service_data:
+        #       entity_id: script.roku_espn_tap_action
           # tap_action:
             # action: call-service
             # service: media_player.select_source
@@ -501,113 +501,121 @@ views:
             {% set today = states('sensor.date') %}
             {%- for race in state_attr('sensor.formula_one_sensor', 'races') -%}
             {% set race_day = race.date %}
+            {% set race_time = race.time %}
+            {% set race_start_string = race_day + race_time %}
 
             {%- if race_day > today %}
-            {{ race.raceName }} {{ race_day  }}
+             {{ race_start_string}} {{ race.raceName }} 
+             # {{ strptime(, '%Y-%m-%d %H:%M:%S') }}
+            {% else %}
+            ~~{{ race_day }} {{ race.raceName }}~~
             {%- endif %}
 
             {% endfor %}
-
-      - type: markdown
-        view_layout:
-          position: sidebar
-        card_mod:
-          style:
-            ha-markdown$: |
-              table {
-                width: 100%;
-                border-spacing: 0;
-                border-collapse: separate;
-              }
-              th {
-                color: white;
-                background: black;
-              }
-              tr:nth-child(even) {
-                background-color: #dddddd;;
-                color: rgb(33,33,33);
-              }
-              td:nth-child(1) {
-                width: 50px;
-                text-align: center;
-              }
-              td:nth-child(2) {
-                text-align: left;
-              }
-              td:nth-child(3) {
-                width: 60px;
-                text-align: center;
-              }
-        content: |-
-          <table>
-            <thead>
+      - type: horizontal-stack
+        view_layout: 
+          position: main
+        cards:
+          - type: markdown
+            view_layout:
+              position: main
+            card_mod:
+              style:
+                ha-markdown$: |
+                  table {
+                    width: 100%;
+                    border-spacing: 0;
+                    border-collapse: separate;
+                  }
+                  th {
+                    color: white;
+                    background: black;
+                  }
+                  tr:nth-child(even) {
+                    background-color: #dddddd;;
+                    color: rgb(33,33,33);
+                  }
+                  td:nth-child(1) {
+                    width: 50px;
+                    text-align: center;
+                  }
+                  td:nth-child(2) {
+                    text-align: left;
+                  }
+                  td:nth-child(3) {
+                    width: 60px;
+                    text-align: center;
+                  }
+            content: |-
+              <table>
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>Constructor</th>
+                    <th class="center">Pts</th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% for driver in states.sensor.formula_one_sensor.attributes.constructors %} 
               <tr>
-                <th>&nbsp;</th>
-                <th>Constructor</th>
-                <th class="center">Pts</th>
+                <td> {{driver.position}} </td>
+                <td> {{driver.Constructor.name }} </td>
+                <td> {{driver.points}} </td>
               </tr>
-            </thead>
-            <tbody>
-          {% for driver in states.sensor.formula_one_sensor.attributes.constructors %} 
-          <tr>
-            <td> {{driver.position}} </td>
-            <td> {{driver.Constructor.name }} </td>
-            <td> {{driver.points}} </td>
-          </tr>
-          {% endfor %}
-            </tbody>
-          </table>
-      - type: markdown
-        view_layout:
-          position: sidebar
-        card_mod:
-          style:
-            ha-markdown$: |
-              table {
-                width: 100%;
-                border-spacing: 0;
-                border-collapse: separate;
-              }
-              th {
-                color: white;
-                background: black;
-              }
-              tr:nth-child(even) {
-                background-color: #dddddd;
-                color: rgb(33,33,33);
-              }
-              td:nth-child(1) {
-                width: 50px;
-                text-align: center;
-              }
-              td:nth-child(2) {
-                width: 50px;
-                text-align: center;
-              }
-              td:nth-child(4) {
-                width: 60px;
-                text-align: center;
-              }
-        content: |-
-          <table>
-            <thead>
+              {% endfor %}
+                </tbody>
+              </table>
+          - type: markdown
+            view_layout:
+              position: main
+            card_mod:
+              style:
+                ha-markdown$: |
+                  table {
+                    width: 100%;
+                    border-spacing: 0;
+                    border-collapse: separate;
+                  }
+                  th {
+                    color: white;
+                    background: black;
+                  }
+                  tr:nth-child(even) {
+                    background-color: #dddddd;
+                    color: rgb(33,33,33);
+                  }
+                  td:nth-child(1) {
+                    width: 50px;
+                    text-align: center;
+                  }
+                  td:nth-child(2) {
+                    width: 50px;
+                    text-align: center;
+                  }
+                  td:nth-child(4) {
+                    width: 60px;
+                    text-align: center;
+                  }
+            content: |-
+              <table>
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th colspan="2">Drivers</th>
+                    <th class="center">Pts</th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% for driver in states.sensor.formula_one_sensor.attributes.drivers %} 
               <tr>
-                <th>&nbsp;</th>
-                <th colspan="2">Drivers</th>
-                <th class="center">Pts</th>
+                <td> {{driver.position}} </td>
+                <td> {{driver.Driver.code}} </td>
+                <td> {{driver.Driver.givenName }} {{driver.Driver.familyName}} </td>
+                <td> {{driver.points}} </td>
               </tr>
-            </thead>
-            <tbody>
-          {% for driver in states.sensor.formula_one_sensor.attributes.drivers %} 
-          <tr>
-            <td> {{driver.position}} </td>
-            <td> {{driver.Driver.code}} </td>
-            <td> {{driver.Driver.givenName }} {{driver.Driver.familyName}} </td>
-            <td> {{driver.points}} </td>
-          </tr>
-          {% endfor %}
-            </tbody>
-          </table>
+              {% endfor %}
+                </tbody>
+              </table>
 
   - title: Commute
     panel: true
