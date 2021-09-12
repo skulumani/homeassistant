@@ -502,16 +502,12 @@ views:
             {%- for race in state_attr('sensor.formula_one_sensor', 'races') -%}
             {% set race_day = race.date %}
             {% set race_time = race.time %}
-            {% set race_start_string = race_day + race_time %}
-
             {%- if race_day > today %}
-             {{ race_start_string}} {{ race.raceName }} 
-             # {{ strptime(, '%Y-%m-%d %H:%M:%S') }}
-            {% else %}
-            ~~{{ race_day }} {{ race.raceName }}~~
+             **{{ race.raceName }}** {{ race_day }} {{ race_time }}
+            {%- else %}
+             ~~**{{ race.raceName }}** {{ race_day }} {{ race_time }}~~
             {%- endif %}
-
-            {% endfor %}
+            {%- endfor %}
       - type: horizontal-stack
         view_layout: 
           position: main
