@@ -56,7 +56,7 @@
       {{ not_off and (motion or front_door) }}
 
 - binary_sensor:
-  - name: Porch - Light should be low
+  - name: Porch - Light should be on low
     unique_id: porch_light_should_be_on_low
     state: >-
       {% set no_event = is_state('binary_sensor.porch_light_should_be_on_high', 'off') %}
@@ -81,10 +81,9 @@
     state: >-
       {% set sun_shining = is_state('binary_sensor.sufficient_outdoor_illumination', 'on') %}
       {% set day = is_state('binary_sensor.day_time', 'on') %}
-      {% set night = is_state('binary_sensor.night_time', 'on') %}
       {% set no_presence = is_state('group.family_presence', 'off') %}
 
-      {{ (sun_shining and day) or no_presence or night }}
+      {{ (sun_shining and day) or no_presence }}
 
 - binary_sensor:
   - name: Hallway - Light should be on low
@@ -93,8 +92,9 @@
       {% set twilight = is_state('binary_sensor.twilight_time', 'on') %}
       {% set not_off = is_state('binary_sensor.hallway_light_should_be_off', 'off') %}
       {% set presence = is_state('group.family_presence', 'on') %}
+      {% set night = is_state('binary_sensor.night_time', 'on') %}
 
-      {{ twilight and not_off and presence }}
+      {{ (twilight or night) and not_off and presence }}
 
 - sensor:
   - name: Porch Light Desired Brightness
@@ -104,7 +104,7 @@
       {% if is_state('binary_sensor.porch_light_should_be_off', 'on') %}
       0.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_low', 'on') %}
-      25.0
+      30.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_medium', 'on') %}
       50.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_high', 'on') %}
@@ -119,7 +119,7 @@
       {% if is_state('binary_sensor.hallway_light_should_be_off', 'on') %}
       0.0
       {% elif is_state('binary_sensor.hallway_light_should_be_on_low', 'on') %}
-      30.0
+      20.0
       {% endif %}
 
 #############################
