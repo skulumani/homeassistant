@@ -999,7 +999,7 @@ views:
               - entity: sensor.disk_use_percent_media_data
                 name: ZFS Data
             font_size: 75
-            name: Disk Use - USB Video
+            name: Disk Use
             show:
               fill: false
           - type: 'custom:mini-graph-card'
