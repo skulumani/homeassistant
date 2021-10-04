@@ -960,70 +960,21 @@ views:
   - title: Docker
     icon: mdi:docker
     cards:
-      - type: grid
-        title: Ubuntu-Server
-        square: false
-        columns: 1
-        cards:
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - sensor.processor_use_percent
-            font_size: 75
-            icon: 'mdi:chip'
-            name: CPU
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - sensor.memory_use_percent
-            font_size: 75
+      - type: entities
+        title: ubuntu-server
+        entities:
+          - entity: sensor.processor_use_percent
+            name: CPU 
+          - entity: sensor.memory_use_percent
             name: Memory
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            align_icon: left
-            align_state: center
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - entity: sensor.disk_use_percent_media_camera
-                name: USB Drive
-              - entity: sensor.disk_use_percent_media_data
-                name: ZFS Data
-            font_size: 75
-            name: Disk Use
-            show:
-              fill: false
-          - type: 'custom:mini-graph-card'
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - sensor.processor_temperature
-            font_size: 75
-            name: Temp 
-            show:
-              fill: false
-      # - type: entities
-      #   entities:
-      #     - entity: sensor.docker_containers_running
-      #       name: Running
-      #     - entity: sensor.docker_containers_paused
-      #       name: Paused
-      #     - entity: sensor.docker_containers_stopped
-      #       name: Stopped
-      #     - entity: sensor.docker_homeassistant_status
-      #       name: HA
-      #     - entity:  sensor.docker_version
-      #       name: Ver
-            
+          - entity: sensor.processor_temperature
+            name: CPU temp
+          - type: divider
+          - entity: sensor.ha_db_size
+          - entity: sensor.disk_use_percent_media_data
+            name: ZFS pool
+          - entity: sensor.disk_use_percent_media_camera
+            name: USB drive
       - type: entities
         title: Server Status
         entities:

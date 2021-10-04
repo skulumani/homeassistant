@@ -159,7 +159,7 @@
 # Commute/Work
 - id: update_morning_commute_sensor
   alias: Commute - Update morning commute sensor
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
   - platform: time_pattern
     minutes: /5
@@ -574,3 +574,24 @@
            http://reddit.com/{{post.id}}
 
           {% endfor %}
+
+- id: purge_db
+  alias: Purge database
+  mode: single
+  trigger:
+    - platform: time
+      at: "04:12:00"
+  action:
+    - service: recorder.purge
+      data:
+        keep_days: 7
+        repack: true
+
+- id: healthchecks
+  alias: Healthchecks ping
+  mode: single
+  trigger:
+    - platform: time_pattern
+      minutes: "/5"
+  action:
+    - service: shell_command.healthcheck_ping

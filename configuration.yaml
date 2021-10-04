@@ -61,8 +61,13 @@ frontend:
 
 default_config:
 
+logger:
+  default: warn
+  logs:
+    homeassistant.components.recorder: debug
+
 recorder:
-  auto_purge: true
+  auto_purge: false
   purge_keep_days: 7
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
 
@@ -262,7 +267,7 @@ camera:
 
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
-
+  healthcheck_ping: "curl -m 10 --retry 5 https://hc-ping.com/4751fdd7-76bc-4e38-8c1d-aaf8512dd2cd" 
 # weather:
 #   - platform: openweathermap
 #     api_key: !secret openweathermap_api
