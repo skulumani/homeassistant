@@ -94,7 +94,7 @@
       {% set presence = is_state('group.family_presence', 'on') %}
       {% set night = is_state('binary_sensor.night_time', 'on') %}
 
-      {{ (twilight or night) and not_off and presence }}
+      {{ not_off and presence }}
 
 - sensor:
   - name: Porch Light Desired Brightness
@@ -108,7 +108,9 @@
       {% elif is_state('binary_sensor.porch_light_should_be_on_medium', 'on') %}
       50.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_high', 'on') %}
-      50.0
+      70.0
+      {% else %}
+      0.0
       {% endif %}
 
 - sensor:
@@ -119,7 +121,9 @@
       {% if is_state('binary_sensor.hallway_light_should_be_off', 'on') %}
       0.0
       {% elif is_state('binary_sensor.hallway_light_should_be_on_low', 'on') %}
-      20.0
+      30.0
+      {% else %}
+      0.0
       {% endif %}
 
 #############################

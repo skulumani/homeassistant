@@ -971,9 +971,30 @@ views:
             name: CPU temp
           - type: divider
           - entity: sensor.ha_db_size
+          - entity: sensor.disk_use_percent_config
+            name: SSD
           - entity: sensor.disk_use_percent_media_data
             name: ZFS pool
           - entity: sensor.disk_use_percent_media_camera
+            name: USB drive
+      - type: 'custom:mini-graph-card'
+        name: Disk
+        hours_to_show: 48
+        points_per_hour: 10
+        line_width: 1
+        show:
+          fill: false
+          state: true
+          labels: true
+        entities:
+          - entity: sensor.disk_use_percent_config
+            show_state: true
+            name: SSD
+          - entity: sensor.disk_use_percent_media_data
+            show_state: true
+            name: ZFS pool
+          - entity: sensor.disk_use_percent_media_camera
+            show_state: true
             name: USB drive
       - type: entities
         title: Server Status

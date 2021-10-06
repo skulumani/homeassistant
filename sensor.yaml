@@ -241,8 +241,8 @@
 - platform: moon
 - platform: season
   type: astronomical
-# - platform: opensky
-#   radius: 10
+- platform: opensky
+  radius: 20
 # - platform: enphase_envoy
 #   ip_address: !secret envoy_ip
 #   monitored_conditions:
