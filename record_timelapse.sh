@@ -2,7 +2,7 @@
 # record_lq.sh
 # Record ip cam in segments
 
-STARTTIME=$(date +"%Y%m%dT%H%M%S")
+STARTTIME=$(date +"%Y%m%dT%H%M")
 
 ## IP Camera Names ##
 FRONT_CAM="${STARTTIME}_FRONT"
@@ -27,3 +27,10 @@ fi
 
 ffmpeg -i "rtmp://${CAM_USERNAME}:${CAM_PASSWORD}@${FRONT_IP}/bcs/channel0_main.bcs?token=ssdad&channel=0&stream=0&user=${CAM_USERNAME}&password=${CAM_PASSWORD}" -t 1 -r 1 ${IMAGE_DIR}${FRONT_CAM}.jpg &
 ffmpeg -i "rtmp://${CAM_USERNAME}:${CAM_PASSWORD}@${BACK_IP}/bcs/channel0_main.bcs?token=sdasdasd&channel=0&stream=0&user=${CAM_USERNAME}&password=${CAM_PASSWORD}" -t 1 -r 1 ${IMAGE_DIR}${BACK_CAM}.jpg &
+
+
+# convert to video
+# -r 30 - framerate of output video - compute as function of length
+# get date using $(date -d "last month" +"%Y%m%d") or equivalent
+
+# ffmpeg -r 30 -pattern_type glob -i 20211010T*.jpg -vcodec libx264 -crf 18 -pix_fmt yuv420p timelapse.mp4
