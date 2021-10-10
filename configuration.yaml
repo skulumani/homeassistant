@@ -64,7 +64,7 @@ default_config:
 logger:
   default: warn
   logs:
-    homeassistant.components.recorder: debug
+    homeassistant.components.recorder: warn
 
 recorder:
   auto_purge: false
