@@ -3,11 +3,11 @@
   alias: Porch Light Controller
   mode: single
   trigger:
-    # - platform: numeric_state
-    #   entity_id: sensor.porch_light_desired_brightness
-    #   below: '101'
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.porch_light_desired_brightness
+      below: '101'
+    # - platform: state
+    #   entity_id: sensor.porch_light_brightness
   condition: []
   action:
     - service: light.turn_on
@@ -20,11 +20,11 @@
   alias: Hallway Light Controller
   mode: single
   trigger:
-    # - platform: numeric_state
-    #   entity_id: sensor.hallway_light_desired_brightness
-    #   below: '101'
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.hallway_light_desired_brightness
+      below: '101'
+    # - platform: state
+    #   entity_id: sensor.hallway_light_desired_brightness
   condition: []
   action:
     - service: light.turn_on

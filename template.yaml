@@ -55,16 +55,6 @@
       {{ no_event and not_off}}
       
 - binary_sensor:
-  - name: Porch - Light should be on medium
-    unique_id: porch_light_should_be_on_medium
-    state: >-
-      {% set no_event = is_state('binary_sensor.porch_light_should_be_on_high', 'off') %}
-      {% set not_off = is_state('binary_sensor.porch_light_should_be_off', 'off') %}
-      {% set night = is_state('binary_sensor.night_time', 'on') %}
-
-      {{ night and not_off and no_event }}
-
-- binary_sensor:
   - name: Porch - Light should be on high
     unique_id: porch_light_should_be_on_high
     state: >-
@@ -102,7 +92,7 @@
     state: >-
       {% if is_state('binary_sensor.porch_light_should_be_off', 'on') %}
       0.0
-      {% elif is_state('binary_sensor.porch_light_should_be_on_low', 'on') %}
+      {% elif is_state('binary_sensor.porch_light_should_be_low', 'on') %}
       30.0
       {% elif is_state('binary_sensor.porch_light_should_be_on_high', 'on') %}
       50.0
