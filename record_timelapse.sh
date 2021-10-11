@@ -17,7 +17,7 @@ BACK_IP="192.168.200.16"
 ## Network and Local Storage Locations  ##
 # Pay attending to when a trailing '/' is used and when it is not
 ## Network and Local Storage Locations  ##
-IMAGE_DIR="/home/shankar/Documents/timelapse/"
+IMAGE_DIR="/media/shankar/data/timelapse/"
 if [[ ! -e ${IMAGE_DIR} ]]; then
     mkdir -p ${IMAGE_DIR}
 fi
