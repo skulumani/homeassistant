@@ -67,8 +67,8 @@ logger:
     homeassistant.components.recorder: warn
 
 recorder:
-  auto_purge: false
-  purge_keep_days: 7
+  auto_purge: true
+  purge_keep_days: 5
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
 
 influxdb:

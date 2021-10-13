@@ -575,17 +575,17 @@
 
           {% endfor %}
 
-- id: purge_db
-  alias: Purge database
-  mode: single
-  trigger:
-    - platform: time
-      at: "04:12:00"
-  action:
-    - service: recorder.purge
-      data:
-        keep_days: 7
-        repack: true
+# - id: purge_db
+#   alias: Purge database
+#   mode: single
+#   trigger:
+#     - platform: time
+#       at: "04:12:00"
+#   action:
+#     - service: recorder.purge
+#       data:
+#         keep_days: 7
+#         repack: true
 
 - id: healthchecks
   alias: Healthchecks ping
