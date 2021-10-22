@@ -17,4 +17,4 @@ ffmpeg -r 30 -pattern_type glob -i "${IMAGE_DIR}${YESTERDAY}*_BACK.jpg" -vcodec 
 
 # delete images used 
 # rm "${IMAGE_DIR}${YESTERDAY}*.jpg"
-find ${IMAGE_DIR} -type f -name "${YESTERDAY}*.jpg" -exec rm {} +
+find ${IMAGE_DIR} -maxdepth 1 -type f -name "${YESTERDAY}*.jpg" -exec rm {} +
