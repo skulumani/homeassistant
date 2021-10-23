@@ -1,7 +1,8 @@
 # Lights
 - id: porch_light_controller
   alias: Porch Light Controller
-  mode: single
+  mode: queued
+  max: 5
   trigger:
     - platform: numeric_state
       entity_id: sensor.porch_light_desired_brightness
@@ -18,7 +19,8 @@
 
 - id: hallway_light_controller
   alias: Hallway Light Controller
-  mode: single
+  mode: queued
+  max: 5
   trigger:
     - platform: numeric_state
       entity_id: sensor.hallway_light_desired_brightness
@@ -33,148 +35,23 @@
       data:
         brightness_pct: '{{ states("sensor.hallway_light_desired_brightness") }}'
 
-- id: lights_on_evening_civil_twilight
-  alias: Lights on at evening civil twilight
+- id: living_room_light_controller
+  alias: Living room light controller
+  mode: queued
+  max: 5
   trigger:
-  - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''civil_twilight'' }}'
-  condition:
-  - condition: time
-    after: '16:00:00'
-  action:
-  - data:
-      brightness_pct: 30
-      entity_id:
-      - light.living_room_lights
-      transition: 60
-    service: light.turn_on
-  # - data:
-  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening civil
-  #       twilight'
-  #   service: notify.signal_group
-  mode: single
-
-- id: lights_on_evening_nautical_twilight
-  alias: Lights on at evening nautical twilight
-  trigger:
-  - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight''
-      }}'
-  condition:
-  - condition: time
-    after: '16:00:00'
-  action:
-  - data:
-      brightness_pct: 50
-      entity_id:
-      - light.living_room_lights
-      transition: 60
-    service: light.turn_on
-  # - data:
-  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Lights on at evening nautical
-  #       twilight'
-  #   service: notify.signal_group
-  mode: single
-
-- id: lights_on_morning_nautical_twilight
-  alias: Lights on morning
-  trigger:
-  - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''nautical_twilight''
-      }}'
-  condition:
-  - condition: time
-    before: 09:00:00
-  action:
-  - data:
-      brightness_pct: 30
-      entity_id:
-      - light.living_room_lights
-      transition: 60
-    service: light.turn_on
-  # - data:
-  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights on in the morning
-  #       nautical twilight.'
-  #   service: notify.signal_group
-  mode: single
-
-- id: lights_off_sunrise
-  alias: Lights off after sunrise
-  trigger:
-  - platform: template
-    value_template: '{{ states.sensor.period_of_day.state == ''day'' }}'
+    - platform: numeric_state
+      entity_id: sensor.living_room_light_desired_brightness
+      below: '101'
+    # - platform: state
+    #   entity_id: sensor.hallway_light_desired_brightness
   condition: []
   action:
-  - data:
-      entity_id: 
-      - light.living_room_lights
-      - light.upstairs_lights
-      transition: 60
-    service: light.turn_off
-  # - data:
-  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - All lights off at sunrise'
-  #   service: notify.signal_group
-  mode: single
-
-- id: lights_off_2300
-  alias: Lights off at 2300
-  trigger:
-  - at: '23:00'
-    platform: time
-  condition: []
-  action:
-  - data:
-      entity_id:
-      - light.living_room_lights
-      - light.upstairs_lights
-      transition: 60
-    service: light.turn_off
-  # - data:
-  #     message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Lights downstairs and
-  #       upstairs turned off at 2300'
-  #   service: notify.signal_group
-  mode: single
-
-- id: bedroom_light_on_morning
-  alias: Bedroom on in morning
-  trigger:
-  - platform: time
-    at: 05:25:00
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday_sensor
-    state: 'on'
-  action:
-  - data:
-      brightness_pct: 20
-      entity_id:
-      - light.upstairs_lights
-      transition: 600
-    service: light.turn_on
-  # - data:
-  #     message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Upstairs lights on in morning'
-  #   service: notify.signal_group
-  mode: single
-
-# Commute/Work
-- id: update_morning_commute_sensor
-  alias: Commute - Update morning commute sensor
-  initial_state: 'off'
-  trigger:
-  - platform: time_pattern
-    minutes: /5
-  condition:
-  - condition: time
-    after: 05:00:00
-    before: '6:00:00'
-  - condition: time
-    weekday:
-    - tue
-    - wed
-    - thu
-  action:
-  - service: homeassistant.update_entity
-    entity_id: sensor.waze_home_to_collins
+    - service: light.turn_on
+      target:
+        entity_id: light.hallway
+      data:
+        brightness_pct: '{{ states("sensor.living_room_light_desired_brightness") }}'
 
 # Phone charging
 - id: stop_pixel_charging

@@ -189,4 +189,9 @@
   value_template: '{{value}}'
   device_class: 'problem'
 
+- platform: tod
+  name: evening_tod
+  after: "16:00"
+  before: "23:00"
+
 
