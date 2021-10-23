@@ -90,20 +90,18 @@
     unique_id: living_room_should_be_off
     state: >-
       {% set sun_shining = is_state('binary_sensor.sufficient_outdoor_illumination', 'on') %}
-      {% set day = is_state('binary_sensor.day_time', 'on') %}
       {% set no_presence = is_state('group.family_presence', 'off') %}
       {% set not_evening = is_state('binary_sensor.evening_tod', 'off') %}
 
-      {{ (sun_shining and day and not_evening) or no_presence }}
+      {{ (sun_shining and not_evening) or no_presence }}
 
 - binary_sensor:
-  - name: Living Romo - Light should be on low
+  - name: Living Room - Light should be low
     unique_id: living_room_should_be_on_low
     state: >-
       {% set not_off = is_state('binary_sensor.living_room_should_be_off', 'off') %}
-      {% set evening = is_state('binary_sensor.evening_tod', 'on') %}
 
-      {{ not_off and evening }}
+      {{ not_off }}
 
 - sensor:
   - name: Porch Light Desired Brightness
@@ -135,7 +133,7 @@
 
 - sensor:
   - name: Living Room Light Desired Brightness
-    unique_id: liviing_room_light_desired_brightness
+    unique_id: living_room_light_desired_brightness
     unit_of_measurement: "%"
     state: >-
       {% if is_state('binary_sensor.living_room_should_be_off', 'on') %}
