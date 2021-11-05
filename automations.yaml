@@ -22,8 +22,6 @@
           light.turn_on
         {% endif %}
       entity_id: light.porch
-      data:
-        brightness_pct: 50.0
 
 - id: hallway_light_controller
   alias: Hallway Light Controller
@@ -51,8 +49,6 @@
           light.turn_on
         {% endif %}
       entity_id: light.hallway
-      data:
-        brightness_pct: 30.0
 
 - id: living_room_light_controller
   alias: Living room light controller
@@ -78,8 +74,6 @@
           light.turn_off
         {% endif %}
       entity_id: light.living_room_lights
-      data:
-        brightness_pct: 50.0
 
 # Phone charging
 - id: stop_pixel_charging
