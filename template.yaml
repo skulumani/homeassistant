@@ -6,7 +6,7 @@
   - name: Sufficient Outdoor Illumination
     unique_id: sufficient_outdoor_illumination
     state: >-
-      {% set sun_shining = states('sensor.solar_now_watts') | float > 100 %}
+      {% set sun_shining = states('sensor.solar_now_watts') | float > 75 %}
 
       {{ sun_shining }}
 
