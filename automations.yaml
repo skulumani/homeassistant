@@ -87,13 +87,14 @@
     entity_id: sensor.pixel_2_battery_level
     above: 80
   action:
-  - service: tts.google_translate_say
-    entity_id: media_player.bedroom_speaker
-    data:
-      message: Pixel 2 has finished charging to {{states('sensor.pixel_2_battery_level')}}
-        percent
+  # - service: tts.google_translate_say
+  #   entity_id: media_player.bedroom_speaker
+  #   data:
+  #     message: Pixel 2 has finished charging to {{states('sensor.pixel_2_battery_level')}}
+  #       percent
   - service: switch.turn_off
     entity_id: switch.plug
+
 - id: start_pixel_charging
   alias: Start Pixel 2 Charging
   trigger:
@@ -101,11 +102,11 @@
     entity_id: sensor.pixel_2_battery_level
     below: 50
   action:
-  - service: tts.google_translate_say
-    entity_id: media_player.bedroom_speaker
-    data:
-      message: Pixel 2 can now be charged from {{states('sensor.pixel_2_battery_level')}}
-        percent
+  # - service: tts.google_translate_say
+  #   entity_id: media_player.bedroom_speaker
+  #   data:
+  #     message: Pixel 2 can now be charged from {{states('sensor.pixel_2_battery_level')}}
+  #       percent
   - service: switch.turn_on
     entity_id: switch.plug
 

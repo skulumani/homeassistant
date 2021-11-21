@@ -194,4 +194,9 @@
   after: "16:00"
   before: "23:00"
 
+- platform: tod
+  name: do_not_disturb
+  after: "21:00"
+  before: "06:00"
+
 
