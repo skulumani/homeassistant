@@ -144,11 +144,7 @@
   - platform: state
     entity_id: group.family_presence
     to: 'off'
-    for: 00:10:00
-  condition:
-  - condition: template
-    value_template: >
-      {{ (as_timestamp(now()) - as_timestamp(states.group.family_presence.last_changed)) > 1800 }}
+    for: "00:05:00"
   action:
   - service: notify.signal_group
     data:
@@ -166,11 +162,6 @@
   - platform: state
     entity_id: group.family_presence
     to: 'on'
-    for: 00:10:00
-  condition:
-  - condition: template
-    value_template: >
-      {{ (as_timestamp(now()) - as_timestamp(states.group.family_presence.last_changed)) > 1800 }}
   action:
   - service: notify.signal_group
     data:
