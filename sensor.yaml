@@ -51,13 +51,13 @@
       value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'azimuth')) }}"
     sunrise:
       friendly_name: "Sunrise"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_rising'), '')) | timestamp_local }}"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_rising'), '')) | timestamp_local(0) }}"
     sunset:
       friendly_name: "Sunset"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_setting'), '')) | timestamp_local }}"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_setting'), '')) | timestamp_local(0) }}"
     noon:
       friendly_name: "Noon"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_noon'), '')) | timestamp_local }}"
+      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_noon'), '')) | timestamp_local(0) }}"
 
 - platform: template
   sensors:
@@ -132,7 +132,7 @@
     ambient_light:
       friendly_name: 'Ambient Light'
       unit_of_measurement: 'N'
-      value_template: "{{ '%.2f'|format(  state_attr('sun.sun', 'elevation') * (1 - states('sensor.dark_sky_cloud_coverage') | float/100)  ) }}"
+      value_template: "{{ '%.2f'|format(  state_attr('sun.sun', 'elevation') * (1 - states('sensor.dark_sky_cloud_coverage') | float(0)/100)  ) }}"
 
 - platform: template
   sensors:
