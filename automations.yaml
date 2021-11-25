@@ -79,6 +79,21 @@
         {% endif %}
       entity_id: light.living_room_lights
 
+- alias: "Turn off lights at night"
+  id: turn_off_lights_at_night
+  trigger:
+  - at: '23:00'
+    platform: time
+  action:
+    - service: light.turn_off
+      entity_id: 
+        - light.living_room_lights
+        - light.dining_room_lamp
+        - light.bedroom_lamp
+        - light.lamp
+    - service: switch.turn_off
+      entity_id: switch.downstairs_plug
+
 # Phone charging
 - id: stop_pixel_charging
   alias: Stop Pixel 2 Charging
@@ -144,7 +159,7 @@
   - platform: state
     entity_id: group.family_presence
     to: 'off'
-    for: "00:05:00"
+    for: "00:30:00"
   action:
   - service: notify.signal_group
     data:
@@ -162,6 +177,12 @@
   - platform: state
     entity_id: group.family_presence
     to: 'on'
+    for: "00:10:00"
+  condition:
+    condition: and
+    conditions:
+      - "{{ is_state_attr('climate.downstairs', 'preset_mode', 'Away') }}"
+      - "{{ is_state_attr('climate.upstairs', 'preset_mode', 'Away') }}"
   action:
   - service: notify.signal_group
     data:
