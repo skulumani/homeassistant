@@ -49,15 +49,15 @@
       friendly_name: "Solar Azimuth"
       unit_of_measurement: '°'
       value_template: "{{ '%+.1f'|format(state_attr('sun.sun', 'azimuth')) }}"
-    sunrise:
-      friendly_name: "Sunrise"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_rising'), '')) | timestamp_local(0) }}"
-    sunset:
-      friendly_name: "Sunset"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_setting'), '')) | timestamp_local(0) }}"
-    noon:
-      friendly_name: "Noon"
-      value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_noon'), '')) | timestamp_local(0) }}"
+    # sunrise:
+    #   friendly_name: "Sunrise"
+    #   value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_rising'), '', 0)) | timestamp_local(0) }}"
+    # sunset:
+    #   friendly_name: "Sunset"
+    #   value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_setting'), '', 0)) | timestamp_local(0) }}"
+    # noon:
+    #   friendly_name: "Noon"
+    #   value_template: "{{ as_timestamp(strptime(state_attr('sun.sun', 'next_noon'), '', 0)) | timestamp_local(0) }}"
 
 - platform: template
   sensors:
