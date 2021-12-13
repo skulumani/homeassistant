@@ -72,9 +72,9 @@ recorder:
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
   include:
     domains:
-      - alarm_control_panel
-      - light
       - sun
+      - sensor
+      - binary_sensor
     entity_globs:
       - sensor.solar_*
 
@@ -93,9 +93,10 @@ influxdb:
   default_measurement: units
   include:
     domains:
-      - light
       - alarm_control_panel
       - sun
+      - sensor
+      - binary_sensor
     entities:
       - sensor.processor_use_percent
       - sensor.memory_use_percent
