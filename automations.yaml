@@ -49,6 +49,7 @@
           light.turn_on
         {% endif %}
       entity_id: light.hallway
+      transition: 10
 
 - id: living_room_light_controller
   alias: Living room light controller
@@ -78,6 +79,7 @@
           light.turn_on
         {% endif %}
       entity_id: light.living_room_lights
+      transition: 10
 
 - alias: "Turn off lights at night"
   id: turn_off_lights_at_night
@@ -91,8 +93,10 @@
         - light.dining_room_lamp
         - light.bedroom_lamp
         - light.lamp
+      transition: 10
     - service: switch.turn_off
       entity_id: switch.downstairs_plug
+      
 
 # Phone charging
 - id: stop_pixel_charging
