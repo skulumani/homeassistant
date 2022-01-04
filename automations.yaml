@@ -49,7 +49,6 @@
           light.turn_on
         {% endif %}
       entity_id: light.hallway
-      transition: 10
 
 - id: living_room_light_controller
   alias: Living room light controller
@@ -79,7 +78,6 @@
           light.turn_on
         {% endif %}
       entity_id: light.living_room_lights
-      transition: 10
 
 - alias: "Turn off lights at night"
   id: turn_off_lights_at_night
