@@ -202,59 +202,217 @@ views:
   - title: Solar
     icon: 'mdi:solar-power'
     panel: false
+    type: sidebar
     cards:
-      - type: 'custom:mini-graph-card'
-        entities:
-          - entity: sensor.solar_now_watts
-          # - entity: sensor.envoy_122020046917_current_energy_production
-            name: Power
-            show_state: true
-          - entity: sensor.solar_elevation
-            name: Elevation
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            entities:
+              - entity: sensor.solar_now_watts
+              # - entity: sensor.envoy_122020046917_current_energy_production
+                name: Power
+                show_state: true
+              - entity: sensor.solar_elevation
+                name: Elevation
+                line_width: 1
+                show_fill: false
+                show_state: false
+                y_axis: secondary
+                color: '#666666'
+              - entity: sensor.openweathermap_cloud_coverage
+                name: Cloud Cover
+                line_width: 1
+                show_fill: false
+                show_state: true
+                y_axis: secondary
+            hour24: true
+            icon: mdi:solar-panel-large
+            hours_to_show: 48
+            points_per_hour: 15
             line_width: 1
-            show_fill: false
-            show_state: false
-            y_axis: secondary
-            color: '#666666'
-          - entity: sensor.openweathermap_cloud_coverage
-            name: Cloud Cover
-            line_width: 1
-            show_fill: false
-            show_state: true
-            y_axis: secondary
-        hour24: true
-        icon: mdi:solar-panel-large
-        hours_to_show: 48
-        points_per_hour: 15
-        line_width: 1
-        lower_bound_secondary: 0
-        # group_by: hour
-        show:
-          extrema: true
-          average: true
-          graph: true
-          points: false
-          legend: false
-      - type: 'custom:mini-graph-card'
-        entities:
-          # - entity: sensor.solar_daily_energy
-          - entity: sensor.solar_today_kwh
-            name: Daily Energy
-        aggregate_func: max
-        hour24: true
-        hours_to_show: 168
-        points_per_hour: 1
-        group_by: date
-        icon: mdi:solar-panel-large
-        lower_bound: 0
-        upper_bound: 50
-        show:
-          extrema: true
-          average: true
-          graph: bar
+            lower_bound_secondary: 0
+            # group_by: hour
+            show:
+              extrema: false
+              average: false
+              graph: true
+              points: false
+              legend: false
+          - type: 'custom:mini-graph-card'
+            entities:
+              # - entity: sensor.solar_daily_energy
+              - entity: sensor.solar_today_kwh
+                name: Daily Energy
+            aggregate_func: max
+            hour24: true
+            hours_to_show: 168
+            points_per_hour: 1
+            group_by: date
+            icon: mdi:solar-panel-large
+            lower_bound: 0
+            upper_bound: 50
+            show:
+              extrema: false
+              average: false
+              graph: bar
+
+      - type: picture-elements
+        image: /local/solar_array.png
+        view_layout:
+          position: main
+        elements:
+          # total 
+          - type: state-label
+            entity: sensor.solar_now_watts
+            style:
+              top: 10%
+              left: 90%
+              color: green
+              font-size: 200%
+          # top row
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022044232
+            style:
+              top: 17%
+              left: 20%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022043825
+            style:
+              top: 16%
+              left: 40%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022041705
+            style:
+              top: 14%
+              left: 58%
+              color: green
+              font-size: 150%
+
+          # second row
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022044444
+            style:
+              top: 43%
+              left: 8%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022045317
+            style:
+              top: 32%
+              left: 40%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022045319
+            style:
+              top: 30%
+              left: 58%
+              color: green
+              font-size: 150%
+
+          # third row
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022042115
+            style:
+              top: 48%
+              left: 40%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022041528
+            style:
+              top: 46%
+              left: 58%
+              color: green
+              font-size: 150%
+
+          # forth row
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022034607
+            style:
+              top: 75%
+              left: 10%
+              color: green
+              font-size: 150%
+
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022041716
+            style:
+              top: 67%
+              left: 23%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022044656
+            style:
+              top: 65%
+              left: 40%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022043821
+            style:
+              top: 63%
+              left: 59%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022045217
+            style:
+              top: 60%
+              left: 78%
+              color: green
+              font-size: 150%
+
+          # fifth row
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022044694
+            style:
+              top: 84%
+              left: 23%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022045256
+            style:
+              top: 82%
+              left: 42%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022042818
+            style:
+              top: 79%
+              left: 60%
+              color: green
+              font-size: 150%
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022041671
+            style:
+              top: 78%
+              left: 78%
+              color: green
+              font-size: 150%
+
+          # far bottom right panel
+          - type: state-label
+            entity: sensor.envoy_122020046917_inverter_202022042010
+            style:
+              top: 64%
+              left: 92%
+              color: green
+              font-size: 150%
+
       - type: grid
         columns: 2
         square: false
+        view_layout:
+          position: sidebar
         cards:
           - type: sensor
             entity: sensor.solar_lifetime_mwh
@@ -270,8 +428,12 @@ views:
             entity: sensor.moon
 
       - type: 'custom:weather-card'
+        view_layout:
+          position: sidebar
         entity: weather.openweathermap
       - type: 'custom:sun-card'
+        view_layout:
+          position: sidebar
         showElevation: true
         showAzimuth: true
         timeFormat: '24h'
