@@ -268,7 +268,7 @@ views:
               top: 10%
               left: 90%
               color: green
-              font-size: 200%
+              font-size: 100%
           # top row
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044232
@@ -276,21 +276,21 @@ views:
               top: 17%
               left: 20%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043825
             style:
               top: 16%
               left: 40%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041705
             style:
               top: 14%
               left: 58%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           # second row
           - type: state-label
@@ -299,21 +299,21 @@ views:
               top: 43%
               left: 8%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045317
             style:
               top: 32%
               left: 40%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045319
             style:
               top: 30%
               left: 58%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           # third row
           - type: state-label
@@ -322,14 +322,14 @@ views:
               top: 48%
               left: 40%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041528
             style:
               top: 46%
               left: 58%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           # forth row
           - type: state-label
@@ -338,7 +338,7 @@ views:
               top: 75%
               left: 10%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041716
@@ -346,28 +346,28 @@ views:
               top: 67%
               left: 23%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044656
             style:
               top: 65%
               left: 40%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043821
             style:
               top: 63%
               left: 59%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045217
             style:
               top: 60%
               left: 78%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           # fifth row
           - type: state-label
@@ -376,28 +376,28 @@ views:
               top: 84%
               left: 23%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045256
             style:
               top: 82%
               left: 42%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022042818
             style:
               top: 79%
               left: 60%
               color: green
-              font-size: 150%
+              font-size: 100%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041671
             style:
               top: 78%
               left: 78%
               color: green
-              font-size: 150%
+              font-size: 100%
 
           # far bottom right panel
           - type: state-label
@@ -406,7 +406,7 @@ views:
               top: 64%
               left: 92%
               color: green
-              font-size: 150%
+              font-size: 100%
 
       - type: grid
         columns: 2
