@@ -798,6 +798,7 @@ views:
     icon: mdi:cog
     cards:
       - type: vertical-stack
+        title: Presence 
         cards:
           - type: glance
             show_icon: true
@@ -831,7 +832,7 @@ views:
                 name: 'Nexus 7'
     
       - type: vertical-stack
-        # title: Network
+        title: Router
         cards:
           - type: glance
             columns: 4
@@ -873,78 +874,102 @@ views:
                     icon: 'mdi:download-network'
                 show:
                   graph: false
-          - type: entities
-            entities:
-              - entity: sensor.ether1_monthly_data_rx
-                name: 'Monthly data in'
-                icon: 'mdi:download-network'
-              - entity: sensor.ether1_monthly_data_tx
-                name: 'Monthly data out'
-                icon: 'mdi:upload-network'
-              - sensor.ether1_yearly_data_rx
-              - sensor.ether1_yearly_data_tx
-          - type: 'custom:mini-graph-card'
-            name: Daily data
-            entities:
-              - entity: sensor.ether1_daily_data_rx
-                name: In
-                show_state: true
-              - entity: sensor.ether1_daily_data_tx
-                name: Out
-                show_state: true
-            aggregate_func: max
-            hour24: true
-            hours_to_show: 168
-            points_per_hour: 1
-            group_by: date
-            show:
-              extrema: false
-              average: false
-              graph: line
 
       - type: vertical-stack
         square: false
-        title: Internet
+        title: WAN
         cards:
-          - type: 'custom:mini-graph-card'
-            name: 'Speed Test'
-            points_per_hour: 6
-            decimals: 1
-            font_size: 75
-            hours_to_show: 24
-            icon: 'mdi:speedometer'
-            # line_color: '#80e6ff'
-            show:
-              graph: off
-              extrema: false
-              fill: false
-            unit: 'Mbit/sec'
-            entities:
-              # - sensor.fast_com_download
-              - entity: sensor.speedtest_download
-                show_state: true
-                name: 'Download'
-              - entity: sensor.speedtest_upload
-                show_state: true
-                name: 'Upload'
-          - type: 'custom:mini-graph-card'
-            name: 'Ping Test'
-            points_per_hour: 6
-            decimals: 1
-            icon: 'mdi:web'
-            font_size: 75
-            hours_to_show: 24
-            # line_color: '#80e6ff'
-            show:
-              graph: off
-              extrema: false
-              fill: false
-            unit: 'ms'
-            entities:
-              - entity: sensor.google_ping
-                show_state: true
-              - entity: sensor.cloudflare_ping
-                show_state: true
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:download-network'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.speedtest_download
+                    show_state: true
+                    name: "Download"
+
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:upload-network'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.speedtest_upload
+                    show_state: true
+                    name: "Upload"
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:web'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.google_ping
+                    show_state: true
+                    name: 'Google Ping'
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:web'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.cloudflare_ping
+                    show_state: true
+                    name: 'Cloudflare Ping'
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:download-network'
+                entities:
+                  - entity: sensor.ether1_daily_data_rx
+                    show_state: true
+                    name: Daily Down
+                show: 
+                  graph: off
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:upload-network'
+                entities:
+                  - entity: sensor.ether1_daily_data_tx
+                    show_state: true
+                    name: Daily Up
+                show:
+                  graph: off
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:download-network'
+                entities:
+                  - entity: sensor.ether1_monthly_data_rx
+                    show_state: true
+                    name: Monthly Down
+                show: 
+                  graph: off
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:upload-network'
+                entities:
+                  - entity: sensor.ether1_monthly_data_tx
+                    show_state: true
+                    name: Monthly Up
+                show:
+                  graph: off
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:download-network'
+                entities:
+                  - entity: sensor.ether1_yearly_data_rx
+                    show_state: true
+                    name: Yearly Down
+                show: 
+                  graph: off
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:upload-network'
+                entities:
+                  - entity: sensor.ether1_yearly_data_tx
+                    show_state: true
+                    name: Yearly Up
+                show:
+                  graph: off
 
   - title: Docker
     icon: mdi:docker
