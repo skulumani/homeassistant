@@ -870,12 +870,17 @@ views:
                 entities:
                   - entity: sensor.mikrotik_ether1_tx
                     name: WAN Out
+                    icon: 'mdi:download-network'
                 show:
                   graph: false
           - type: entities
             entities:
-              - sensor.ether1_monthly_data_rx
-              - sensor.ether1_monthly_data_tx
+              - entity: sensor.ether1_monthly_data_rx
+                name: 'Monthly data in'
+                icon: 'mdi:download-network'
+              - entity: sensor.ether1_monthly_data_tx
+                name: 'Monthly data out'
+                icon: 'mdi:upload-network'
               - sensor.ether1_yearly_data_rx
               - sensor.ether1_yearly_data_tx
           - type: 'custom:mini-graph-card'
@@ -901,40 +906,29 @@ views:
         square: false
         title: Internet
         cards:
-          - type: horizontal-stack
-            cards: 
-              - type: 'custom:mini-graph-card'
-                name: 'Internet'
-                points_per_hour: 6
-                decimals: 1
-                font_size: 75
-                hours_to_show: 24
-                icon: 'mdi:speedometer'
-                # line_color: '#80e6ff'
-                show:
-                  graph: line
-                  extrema: false
-                  fill: false
-                unit: 'Mbit/sec'
-                entities:
-                  # - sensor.fast_com_download
-                  - entity: sensor.speedtest_download
-                    show_state: true
-                  - entity: sensor.speedtest_upload
-                    show_state: true
-                # color_thresholds:
-                #   - color: '#12f395'
-                #     value: 17
-                #   - color: '#7ff312'
-                #     value: 16
-                #   - color: '#dcf312'
-                #     value: 15
-                #   - color: '#f3cd12'
-                #     value: 14
-                #   - color: '#f31212'
-                #     value: 13 
           - type: 'custom:mini-graph-card'
-            name: 'Ping'
+            name: 'Speed Test'
+            points_per_hour: 6
+            decimals: 1
+            font_size: 75
+            hours_to_show: 24
+            icon: 'mdi:speedometer'
+            # line_color: '#80e6ff'
+            show:
+              graph: off
+              extrema: false
+              fill: false
+            unit: 'Mbit/sec'
+            entities:
+              # - sensor.fast_com_download
+              - entity: sensor.speedtest_download
+                show_state: true
+                name: 'Download'
+              - entity: sensor.speedtest_upload
+                show_state: true
+                name: 'Upload'
+          - type: 'custom:mini-graph-card'
+            name: 'Ping Test'
             points_per_hour: 6
             decimals: 1
             icon: 'mdi:web'
@@ -942,24 +936,15 @@ views:
             hours_to_show: 24
             # line_color: '#80e6ff'
             show:
-              graph: line
-              extrema: true
+              graph: off
+              extrema: false
               fill: false
             unit: 'ms'
             entities:
-              - sensor.google_ping
-              - sensor.cloudflare_ping
-            # color_thresholds:
-            #   - color: '#f31212'
-            #     value: 6
-            #   - color: '#f3cd12'
-            #     value: 5
-            #   - color: '#dcf312'
-            #     value: 4 
-            #   - color: '#7ff312'
-            #     value: 3
-            #   - color: '#12f395'
-            #     value: 2
+              - entity: sensor.google_ping
+                show_state: true
+              - entity: sensor.cloudflare_ping
+                show_state: true
 
   - title: Docker
     icon: mdi:docker
