@@ -280,6 +280,32 @@
       friendly_name: "Solar Lifetime"
       value_template: "{{ (states('sensor.envoy_122020046917_lifetime_energy_production') | float / 1000000) | round(3) }}"
       unit_of_measurement: "MWh"
+
+    ether1_daily_data_rx:
+      friendly_name: "Daily data in"
+      value_template: "{{ (states('sensor.ether1_daily_rx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+    ether1_daily_data_tx:
+      friendly_name: "Daily data out"
+      value_template: "{{ (states('sensor.ether1_daily_tx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+    ether1_monthly_data_rx:
+      friendly_name: "Monthly data in"
+      value_template: "{{ (states('sensor.ether1_monthly_rx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+    ether1_monthly_data_tx:
+      friendly_name: "Monthly data out"
+      value_template: "{{ (states('sensor.ether1_monthly_tx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+    ether1_yearly_data_rx:
+      friendly_name: "Yearly data in"
+      value_template: "{{ (states('sensor.ether1_yearly_rx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+    ether1_yearly_data_tx:
+      friendly_name: "Yearly data out"
+      value_template: "{{ (states('sensor.ether1_yearly_tx') | float / 8000) | round(3) }}"
+      unit_of_measurement: "GB"
+
 - platform:  integration
   # source: sensor.envoy_current_energy_production
   source: sensor.solar_now_watts

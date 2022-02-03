@@ -797,208 +797,66 @@ views:
   - title: System
     icon: mdi:cog
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:uptime-card'
-            entity: binary_sensor.shankar_presence
-            icon: 'mdi:raspberry-pi'
-            name: Shankar Presence
-            alias:
-              ok: 'Home'
-              ko: 'Away'
-            bar:
-              height: 10
-              round: 1
-              spacing: 4
-              amount: 36
-            hours_to_show: 12
-            show:
-              footer: false
-            status_adaptive_color: true
-          - type: 'custom:uptime-card'
-            entity: binary_sensor.christine_presence
-            icon: 'mdi:raspberry-pi'
-            name: Christine Presence
-            alias:
-              ok: 'Home'
-              ko: 'Away'
-            bar:
-              height: 10
-              round: 1
-              spacing: 4
-              amount: 36
-            hours_to_show: 12
-            show:
-              footer: false
-            status_adaptive_color: true
-      - type: 'custom:mini-graph-card'
-        name: Presence Probability
-        icon: mdi:server
-        hours_to_show: 12
-        points_per_hour: 10
-        entities:
-          - entity: sensor.shankar_presence_probability
-            name: Shankar
-            show_state: true
-          - entity: sensor.christine_presence_probability
-            name: Christine
-            show_state: true
-        show:
-          fill: false
-          legend: false
-      - type: 'custom:battery-state-card'
-        title: false
-        sort_by_level: asc
-        entities:
-          - entity: sensor.pixel_2_battery_level
-            name: 'Pixel 2'
-          - entity: sensor.galaxy_s9_battery_level
-            name: 'S9'
-          - entity: sensor.nexus_7_battery_level
-            name: 'Nexus 7'
-
-      - type: 'custom:uptime-card'
-        entity: binary_sensor.updater
-        icon: 'mdi:raspberry-pi'
-        name: HA Update
-        alias:
-          ok: Update available !
-          ko: No update for now
-        bar:
-          height: 10
-          round: 1
-          spacing: 4
-          amount: 36
-        hours_to_show: 168
-        show:
-          footer: false
-        status_adaptive_color: true
-      - type: glance
-        show_icon: false
-        columns: 3
-        entities:
-          - entity: sensor.count_binary_sensors
-            name: Binary Sensors
-          - entity: sensor.count_sensors
-            name: Sensors
-          - entity: sensor.count_switches
-            name: Switches
-          - entity: sensor.count_device_trackers
-            name: Device Trackers
-          - entity: sensor.count_automations
-            name: Automations
-          - entity: sensor.count_scripts
-            name: Scripts
       - type: vertical-stack
-        title: Router
         cards:
-          - type: grid
-            columns: 2
-            square: false
-            cards:
-              - type: 'custom:uptime-card'
-                entity: device_tracker.front_cam
+          - type: glance
+            show_icon: true
+            show_state: false
+            entities:
+              - binary_sensor.shankar_presence
+              - binary_sensor.christine_presence
+          - type: 'custom:mini-graph-card'
+            name: Presence Probability
+            icon: mdi:server
+            hours_to_show: 12
+            points_per_hour: 10
+            entities:
+              - entity: sensor.shankar_presence_probability
+                name: Shankar
+                show_state: true
+              - entity: sensor.christine_presence_probability
+                name: Christine
+                show_state: true
+            show:
+              fill: false
+              legend: false
+          - type: 'custom:battery-state-card'
+            sort_by_level: asc
+            entities:
+              - entity: sensor.pixel_2_battery_level
+                name: 'Pixel 2'
+              - entity: sensor.galaxy_s9_battery_level
+                name: 'S9'
+              - entity: sensor.nexus_7_battery_level
+                name: 'Nexus 7'
+    
+      - type: vertical-stack
+        # title: Network
+        cards:
+          - type: glance
+            columns: 4
+            show_state: false
+            entities:
+              - entity: device_tracker.front_cam
+                name: 'Front Cam'
                 icon: 'mdi:cctv'
-                ok: home
-                ko: away
-                alias:
-                  ok: Home
-                  ko: Away
-                name: Front Cam
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                show:
-                  footer: false
-                  timeline: true
-              - type: 'custom:uptime-card'
-                entity: device_tracker.back_cam
+              - entity: device_tracker.back_cam
+                name: 'Back Cam'
                 icon: 'mdi:cctv'
-                ok: home
-                ko: away
-                alias:
-                  ok: Home
-                  ko: Away
-                name: Back Cam
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                show:
-                  footer: false
-                  timeline: true
-              - type: 'custom:uptime-card'
-                entity: device_tracker.downstairs_wap
+              - entity: device_tracker.downstairs_wap
+                name: 'Downstairs WAP'
                 icon: 'mdi:router-wireless'
-                ok: home
-                ko: away
-                alias:
-                  ok: Online
-                  ko: Offline
-                name: Downstairs WAP
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                show:
-                  footer: false
-                  timeline: true
-              - type: 'custom:uptime-card'
-                entity: device_tracker.upstairs_wap
+              - entity: device_tracker.upstairs_wap
+                name: 'Upstairs WAP'
                 icon: 'mdi:router-wireless'
-                ok: home
-                ko: away
-                alias:
-                  ok: Online
-                  ko: Offline
-                name: Upstairs WAP
-                bar:
-                  height: 15
-                  round: 1
-                  spacing: 4
-                  amount: 36
-                show:
-                  footer: false
-                  timeline: true
+          - type: entities
+            entities:
+              - sensor.mikrotik_cpu_load
+              - sensor.mikrotik_memory_usage
+              - sensor.mikrotik_hdd_usage
+              - sensor.myip
+              - sensor.speedtest_last_run
 
-          - type: grid
-            columns: 3
-            square: false
-            cards:
-              - type: 'custom:mini-graph-card'
-                name: CPU
-                icon: mdi:server
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_cpu_load
-                font_size: 75
-                show:
-                  fill: false
-              - type: 'custom:mini-graph-card'
-                name: Memory
-                font_size: 75
-                show:
-                  fill: false
-                icon: mdi:memory
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_memory_usage
-              - type: 'custom:mini-graph-card'
-                name: HDD
-                font_size: 75
-                show:
-                  fill: false
-                icon: mdi:harddisk
-                hours_to_show: 12
-                points_per_hour: 10
-                entities:
-                  - entity: sensor.mikrotik_hdd_usage
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -1014,51 +872,35 @@ views:
                     name: WAN Out
                 show:
                   graph: false
-                # color_thresholds:
-                #   - color: '#12f395'
-                #     value: 0
-                #   - color: '#7ff312'
-                #     value: 1000
-                #   - color: '#dcf312'
-                #     value: 5000
-                #   - color: '#f3cd12'
-                #     value: 10000
-                #   - color: '#f31212'
-                #     value: 20000
-              # - type: 'custom:mini-graph-card'
-              #   name: 'Ether1 Up'
-              #   points_per_hour: 10
-              #   decimals: 1
-              #   font_size: 75
-              #   hours_to_show: 24
-              #   icon: 'mdi:upload'
-              #   line_color: '#80e6ff'
-              #   show:
-              #     graph: line
-              #     extrema: true
-              #   unit: 'KB/s'
-              #   entities:
-              #     - sensor.mikrotik_ether1_tx
-              #   color_thresholds:
-              #     - color: '#12f395'
-              #       value: 0
-              #     - color: '#7ff312'
-              #       value: 200
-              #     - color: '#dcf312'
-              #       value: 500
-              #     - color: '#f3cd12'
-              #       value: 1000
-              #     - color: '#f31212'
-              #       value: 1500
+          - type: entities
+            entities:
+              - sensor.ether1_monthly_data_rx
+              - sensor.ether1_monthly_data_tx
+              - sensor.ether1_yearly_data_rx
+              - sensor.ether1_yearly_data_tx
+          - type: 'custom:mini-graph-card'
+            name: Daily data
+            entities:
+              - entity: sensor.ether1_daily_data_rx
+                name: In
+                show_state: true
+              - entity: sensor.ether1_daily_data_tx
+                name: Out
+                show_state: true
+            aggregate_func: max
+            hour24: true
+            hours_to_show: 168
+            points_per_hour: 1
+            group_by: date
+            show:
+              extrema: false
+              average: false
+              graph: line
+
       - type: vertical-stack
         square: false
         title: Internet
         cards:
-          - type: entities
-            entities:
-              - sensor.duckdns_home
-              - sensor.myip
-              - sensor.speedtest_last_run
           - type: horizontal-stack
             cards: 
               - type: 'custom:mini-graph-card'

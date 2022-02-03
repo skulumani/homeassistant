@@ -326,6 +326,25 @@ utility_meter:
   solar_yearly_energy:
     source: sensor.solar_energy
     cycle: yearly
+  ether1_daily_rx:
+    source: sensor.mikrotik_ether1_rx
+    cycle: daily
+  ether1_daily_tx:
+    source: sensor.mikrotik_ether1_tx
+    cycle: daily
+  ether1_monthly_rx:
+    source: sensor.mikrotik_ether1_rx
+    cycle: monthly
+  ether1_monthly_tx:
+    source: sensor.mikrotik_ether1_tx
+    cycle: monthly
+  ether1_yearly_rx:
+    source: sensor.mikrotik_ether1_rx
+    cycle: yearly
+  ether1_yearly_tx:
+    source: sensor.mikrotik_ether1_tx
+    cycle: yearly
+
 
 
 light:
