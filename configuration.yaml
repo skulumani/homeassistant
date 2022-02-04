@@ -112,6 +112,7 @@ influxdb:
       - sensor.solar_*
       - sensor.envoy_*
       - sensor.mikrotik_* 
+      - sensor.ether1_*
   # exclude:
   #   entity_globs: "*"
 

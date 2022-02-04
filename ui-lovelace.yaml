@@ -857,7 +857,31 @@ views:
               - sensor.mikrotik_hdd_usage
               - sensor.myip
               - sensor.speedtest_last_run
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:download-network'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.speedtest_download
+                    show_state: true
+                    name: "Down Speed"
 
+              - type: 'custom:mini-graph-card'
+                icon: 'mdi:upload-network'
+                show:
+                  graph: off
+                entities:
+                  - entity: sensor.speedtest_upload
+                    show_state: true
+                    name: "Up Speed"
+
+
+      - type: vertical-stack
+        square: false
+        title: WAN
+        cards:
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
@@ -874,30 +898,6 @@ views:
                     icon: 'mdi:download-network'
                 show:
                   graph: false
-
-      - type: vertical-stack
-        square: false
-        title: WAN
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: 'custom:mini-graph-card'
-                icon: 'mdi:download-network'
-                show:
-                  graph: off
-                entities:
-                  - entity: sensor.speedtest_download
-                    show_state: true
-                    name: "Download"
-
-              - type: 'custom:mini-graph-card'
-                icon: 'mdi:upload-network'
-                show:
-                  graph: off
-                entities:
-                  - entity: sensor.speedtest_upload
-                    show_state: true
-                    name: "Upload"
           - type: horizontal-stack
             cards:
               - type: 'custom:mini-graph-card'
