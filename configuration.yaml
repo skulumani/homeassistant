@@ -32,6 +32,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-card-mod/card-mod.js
       type: module
+    - url: /hacsfiles/roku-card/roku-card.js
+      type: module
 
   # dashboards:
   #   tablet-yaml:

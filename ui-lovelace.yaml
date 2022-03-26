@@ -100,6 +100,14 @@ views:
           - type: picture-entity
             title: back
             entity: camera.back
+      - type: 'custom:roku-card'
+        entity: media_player.50_tcl_roku_tv
+        tv: true
+        apps:
+          - image: /local/f1.jpg
+            app: F1TV
+          - image: /local/netflix.png
+            app: Netflix
 
   - panel: true
     title: Tablet
@@ -742,25 +750,6 @@ views:
                 </tbody>
               </table>
 
-  - title: Commute
-    panel: true
-    icon: mdi:briefcase
-    cards:
-      - type: 'custom:mini-graph-card'
-        name: Commute
-        icon: mdi:briefcase
-        hours_to_show: 12
-        points_per_hour: 10
-        entities:
-          - entity: sensor.waze_shankar_work
-            name: Shankar
-            show_state: true
-          - entity: sensor.waze_christine_work
-            name: Christine
-            show_state: true
-        font_size: 75
-        show:
-          fill: false
   - title: System
     icon: mdi:cog
     cards:
