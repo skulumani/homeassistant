@@ -639,10 +639,11 @@ views:
             {%- for race in state_attr('sensor.formula_one_sensor', 'races') -%}
             {% set race_day = race.date %}
             {% set race_time = race.time %}
+            {% set race_round = race.round %}
             {%- if race_day > today %}
-             **{{ race.raceName }}** {{ race_day }} 
+             {{race_round}}. **{{ race.raceName }}** {{ race_day }} 
             {%- else %}
-             ~~**{{ race.raceName }}** {{ race_day }}~~
+             {{race_round}}. ~~**{{ race.raceName }}** {{ race_day }}~~
             {%- endif %}
             {%- endfor %}
       - type: horizontal-stack
@@ -686,6 +687,7 @@ views:
                     <th>&nbsp;</th>
                     <th>Constructor</th>
                     <th class="center">Pts</th>
+                    <th class="center">Wins</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -694,6 +696,7 @@ views:
                 <td> {{driver.position}} </td>
                 <td> {{driver.Constructor.name }} </td>
                 <td> {{driver.points}} </td>
+                <td><center>{{driver.wins}}</center></td>
               </tr>
               {% endfor %}
                 </tbody>
@@ -736,6 +739,7 @@ views:
                     <th>&nbsp;</th>
                     <th colspan="2">Drivers</th>
                     <th class="center">Pts</th>
+                    <th class="center">Wins</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -745,6 +749,7 @@ views:
                 <td> {{driver.Driver.code}} </td>
                 <td> {{driver.Driver.givenName }} {{driver.Driver.familyName}} </td>
                 <td> {{driver.points}} </td>
+                <td><center> {{driver.wins}}</center> </td>
               </tr>
               {% endfor %}
                 </tbody>
