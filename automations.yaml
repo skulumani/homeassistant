@@ -501,7 +501,7 @@
   action:
     - service: recorder.purge
       data:
-        keep_days: 7
+        keep_days: 3
         repack: true
 
 - id: healthchecks

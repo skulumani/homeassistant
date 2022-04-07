@@ -500,13 +500,6 @@ views:
           - entity: sensor.back_detection_fps
             name: Back
             show_state: true
-      - type: markdown
-        view_layout:
-          position: sidebar
-        content: >
-          # [Frigate Local](http://192.168.88.12:5000/)
-          
-          # [Frigate Tailscale](http://100.99.169.123:5000/)
             
 
   - title: Weather
@@ -986,6 +979,10 @@ views:
           # [PhotoPrism TS](http://100.99.169.123:2342/browse)
           
           # [PhotoPrism Local](http://192.168.88.12:2342/browse)
+          
+          # [Frigate Local](http://192.168.88.12:5000/)
+          
+          # [Frigate Tailscale](http://100.99.169.123:5000/)
       - type: 'custom:mini-graph-card'
         name: CPU
         hours_to_show: 12
