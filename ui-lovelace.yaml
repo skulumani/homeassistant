@@ -181,7 +181,7 @@ views:
                     show_state: true
                     y_axis: secondary
                 hour24: true
-                hours_to_show: 48
+                hours_to_show: 72
                 points_per_hour: 15
                 line_width: 1
                 lower_bound_secondary: 0
@@ -200,7 +200,7 @@ views:
                 lower_bound: 0
                 upper_bound: 50
                 hour24: true
-                hours_to_show: 168
+                hours_to_show: 72
                 points_per_hour: 1
                 group_by: date
                 show:
@@ -235,7 +235,7 @@ views:
                 y_axis: secondary
             hour24: true
             icon: mdi:solar-panel-large
-            hours_to_show: 48
+            hours_to_show: 72
             points_per_hour: 15
             line_width: 1
             lower_bound_secondary: 0
@@ -253,7 +253,7 @@ views:
                 name: Daily Energy
             aggregate_func: max
             hour24: true
-            hours_to_show: 168
+            hours_to_show: 72
             points_per_hour: 1
             group_by: date
             icon: mdi:solar-panel-large
@@ -430,8 +430,17 @@ views:
             entity: sensor.solar_week_kwh
             icon: mdi:solar-panel
           - type: sensor
+            name: Energy Generated 1Y
+            entity: sensor.energy_generated_1y
+          - type: sensor
+            name: Energy Net 1Y
+            entity: sensor.energy_net_1y
+          - type: sensor
             name: Max Daily Solar
             entity: sensor.max_daily_solar_energy
+          - type: sensor
+            name: Water Used 1Y
+            entity: sensor.water_used_1y
           - type: sensor
             entity: sensor.moon
 
@@ -531,7 +540,7 @@ views:
             show_state: false
             y_axis: secondary
         hour24: true
-        hours_to_show: 168
+        hours_to_show: 72
         points_per_hour: 12
         line_width: 2
         lower_bound_secondary: 0
@@ -563,7 +572,7 @@ views:
             show_state: false
             y_axis: secondary
         hour24: true
-        hours_to_show: 168
+        hours_to_show: 72
         points_per_hour: 12
         line_width: 2
         lower_bound_secondary: 0
@@ -587,7 +596,7 @@ views:
             show_state: false
             y_axis: secondary
         hour24: true
-        hours_to_show: 168
+        hours_to_show: 72
         points_per_hour: 12
         line_width: 2
         lower_bound_secondary: 0
@@ -760,28 +769,28 @@ views:
             entities:
               - binary_sensor.shankar_presence
               - binary_sensor.christine_presence
-          - type: 'custom:mini-graph-card'
-            name: Presence Probability
-            icon: mdi:server
-            hours_to_show: 12
-            points_per_hour: 10
-            entities:
-              - entity: sensor.shankar_presence_probability
-                name: Shankar
-                show_state: true
-              - entity: sensor.christine_presence_probability
-                name: Christine
-                show_state: true
-            show:
-              fill: false
-              legend: false
+          # - type: 'custom:mini-graph-card'
+          #   name: Presence Probability
+          #   icon: mdi:server
+          #   hours_to_show: 12
+          #   points_per_hour: 10
+          #   entities:
+          #     - entity: sensor.shankar_presence_probability
+          #       name: Shankar
+          #       show_state: true
+          #     - entity: sensor.christine_presence_probability
+          #       name: Christine
+          #       show_state: true
+          #   show:
+          #     fill: false
+          #     legend: false
           - type: 'custom:battery-state-card'
             sort_by_level: asc
             entities:
               - entity: sensor.pixel_2_battery_level
                 name: 'Pixel 2'
-              - entity: sensor.galaxy_s9_battery_level
-                name: 'S9'
+              - entity: sensor.galaxy_s20_battery_level
+                name: 'S20'
               - entity: sensor.nexus_7_battery_level
                 name: 'Nexus 7'
     
@@ -945,25 +954,25 @@ views:
             name: ZFS pool
           - entity: sensor.disk_use_percent_media_camera
             name: USB drive
-      - type: 'custom:mini-graph-card'
-        name: Disk
-        hours_to_show: 48
-        points_per_hour: 10
-        line_width: 1
-        show:
-          fill: false
-          state: true
-          labels: true
-        entities:
-          - entity: sensor.disk_use_percent_config
-            show_state: true
-            name: SSD
-          - entity: sensor.disk_use_percent_media_data
-            show_state: true
-            name: ZFS pool
-          - entity: sensor.disk_use_percent_media_camera
-            show_state: true
-            name: USB drive
+      # - type: 'custom:mini-graph-card'
+      #   name: Disk
+      #   hours_to_show: 48
+      #   points_per_hour: 10
+      #   line_width: 1
+      #   show:
+      #     fill: false
+      #     state: true
+      #     labels: true
+      #   entities:
+      #     - entity: sensor.disk_use_percent_config
+      #       show_state: true
+      #       name: SSD
+      #     - entity: sensor.disk_use_percent_media_data
+      #       show_state: true
+      #       name: ZFS pool
+      #     - entity: sensor.disk_use_percent_media_camera
+      #       show_state: true
+      #       name: USB drive
       - type: entities
         title: Server Status
         entities:
