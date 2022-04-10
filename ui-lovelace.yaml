@@ -954,25 +954,6 @@ views:
             name: ZFS pool
           - entity: sensor.disk_use_percent_media_camera
             name: USB drive
-      # - type: 'custom:mini-graph-card'
-      #   name: Disk
-      #   hours_to_show: 48
-      #   points_per_hour: 10
-      #   line_width: 1
-      #   show:
-      #     fill: false
-      #     state: true
-      #     labels: true
-      #   entities:
-      #     - entity: sensor.disk_use_percent_config
-      #       show_state: true
-      #       name: SSD
-      #     - entity: sensor.disk_use_percent_media_data
-      #       show_state: true
-      #       name: ZFS pool
-      #     - entity: sensor.disk_use_percent_media_camera
-      #       show_state: true
-      #       name: USB drive
       - type: entities
         title: Server Status
         entities:
@@ -992,52 +973,40 @@ views:
           # [Frigate Local](http://192.168.88.12:5000/)
           
           # [Frigate Tailscale](http://100.99.169.123:5000/)
-      - type: 'custom:mini-graph-card'
-        name: CPU
-        hours_to_show: 12
-        points_per_hour: 10
-        # font_size: 20
-        line_width: 1
-        show:
-          fill: false
-          state: true
-          labels: true
+      - type: entities
+        title: Docker CPU
         entities:
-          - entity: sensor.docker_cpu
-            name: Docker
-          - entity: sensor.docker_homeassistant_cpu
-            name: HA
-          - entity: sensor.docker_omada_controller_cpu
-            name: Omada
-          - entity: sensor.docker_signalcli_cpu
-            name: Signal
-          - entity: sensor.docker_mariadb_homeassistant_cpu
-            name: MariaDB
-          - entity: sensor.docker_deconz_cpu
-            name: Deconz
-      - type: 'custom:mini-graph-card'
-        name: Mem
-        hours_to_show: 12
-        points_per_hour: 10
-        # font_size: 20
-        line_width: 1
-        show:
-          fill: false
-          state: true
-          labels: true
+          - sensor.docker_1cpu
+          - sensor.docker_boinc_1cpu
+          - sensor.docker_deconz_1cpu
+          - sensor.docker_filebrowser_1cpu
+          - sensor.docker_frigate_1cpu
+          - sensor.docker_grafana_1cpu
+          - sensor.docker_homeassistant_1cpu
+          - sensor.docker_influxdb_1cpu
+          - sensor.docker_mariadb_homeassistant_1cpu
+          - sensor.docker_mosquitto_1cpu
+          - sensor.docker_omada_controller_1cpu
+          - sensor.docker_photoprism_1cpu
+          - sensor.docker_photoprism_db_1cpu
+          - sensor.docker_signalcli_1cpu
+      - type: entities
+        title: Docker Memory
         entities:
-          - entity: sensor.docker_memory
-            name: Docker
-          - entity: sensor.docker_homeassistant_memory
-            name: HA
-          - entity: sensor.docker_omada_controller_memory
-            name: Omada
-          - entity: sensor.docker_signalcli_memory
-            name: Signal
-          - entity: sensor.docker_mariadb_homeassistant_memory
-            name: MariaDB
-          - entity: sensor.docker_deconz_memory
-            name: Deconz
+          - sensor.docker_memory
+          - sensor.docker_boinc_memory
+          - sensor.docker_deconz_memory
+          - sensor.docker_filebrowser_memory
+          - sensor.docker_frigate_memory
+          - sensor.docker_grafana_memory
+          - sensor.docker_homeassistant_memory
+          - sensor.docker_influxdb_memory
+          - sensor.docker_mariadb_homeassistant_memory
+          - sensor.docker_mosquitto_memory
+          - sensor.docker_omada_controller_memory
+          - sensor.docker_photoprism_memory
+          - sensor.docker_photoprism_db_memory
+          - sensor.docker_signalcli_memory
   - panel: false
     title: Sensors
     badges: []

@@ -69,16 +69,18 @@ logger:
     homeassistant.components.recorder: warn
 
 recorder:
+  commit_interval: 3600
   auto_purge: false
   purge_keep_days: 3
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
+  # exclude:
+  #   entity_globs: "*"
   include:
-    domains:
-      - sun
-      - sensor
-      - binary_sensor
-    entity_globs:
-      - sensor.solar_*
+    entities:
+      - sensor.solar_today_kwh
+      - sensor.solar_now_watts
+      - sensor.solar_week_kwh
+      - sensor.solar_lifetime_mwh
 
 influxdb:
   api_version: 2
@@ -93,30 +95,8 @@ influxdb:
   tags_attributes:
     - friendly_name
   default_measurement: units
-  include:
-    domains:
-      - alarm_control_panel
-      - sun
-      - sensor
-      - binary_sensor
-    entities:
-      - sensor.processor_use_percent
-      - sensor.memory_use_percent
-      - sensor.disk_use_percent_config
-      - sensor.processor_temperature
-      - sensor.google_ping
-      - sensor.cloudflare_ping
-      - sensor.speedtest_upload
-      - sensor.speedtest_download
-    entity_globs:
-      - sensor.ecobee_*
-      - sensor.period_of_the_day
-      - sensor.solar_*
-      - sensor.envoy_*
-      - sensor.mikrotik_* 
-      - sensor.ether1_*
-  # exclude:
-  #   entity_globs: "*"
+  exclude:
+    entity_globs: "*"
 
 mqtt:
   broker: mosquitto
