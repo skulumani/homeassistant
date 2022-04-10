@@ -513,99 +513,37 @@ views:
 
   - title: Weather
     icon: mdi:weather-sunny
+    type: sidebar
     cards:
+      - type: picture
+        image: https://www.weather.gov/images/lwx/weatherstory.gif
+        view_layout: 
+          position: main
+      - type: picture
+        image: https://forecast.weather.gov/meteograms/Plotter.php?lat=38.9096&lon=-76.9949&wfo=LWX&zcode=DCZ001&gset=18&gdiff=3&unit=0&tinfo=EY5&ahour=0&pcmd=11011111101000000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6
+        view_layout:
+          position: main
+      - type: picture-entity
+        entity: camera.radar_dc_current
+        view_layout: 
+          position: main
       - type: 'custom:weather-card'
         entity: weather.openweathermap
-      # - type: picture-entity
-      #   entity: camera.radar_dc_current
-      - type: 'custom:mini-graph-card'
-        name: Temperature
+        view_layout: 
+          position: sidebar
+      - type: entities
+        view_layout:
+          position: sidebar
         entities:
-          - entity: sensor.downstairs_temperature
-            name: Downstairs
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.upstairs_temperature
-            name: Upstairs
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.ecobee_outside_temperature
-            name: Outside
-            show_state: true
-            state_adaptive_color: true
-          - color: '#666666'
-            entity: sensor.solar_elevation
-            line_width: 1
-            show_fill: false
-            show_state: false
-            y_axis: secondary
-        hour24: true
-        hours_to_show: 72
-        points_per_hour: 12
-        line_width: 2
-        lower_bound_secondary: 0
-        show:
-          extrema: true
-          graph: true
-          points: false
-          legend: true
-        animate: false
-      - type: 'custom:mini-graph-card'
-        name: Humidity
-        entities:
-          - entity: sensor.downstairs_humidity
-            name: Downstairs
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.upstairs_humidity
-            name: Upstairs
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.ecobee_outside_humidity
-            name: Outside
-            show_state: true
-            state_adaptive_color: true
-          - color: '#666666'
-            entity: sensor.solar_elevation
-            line_width: 1
-            show_fill: false
-            show_state: false
-            y_axis: secondary
-        hour24: true
-        hours_to_show: 72
-        points_per_hour: 12
-        line_width: 2
-        lower_bound_secondary: 0
-        show:
-          extrema: true
-          graph: true
-          points: false
-          legend: true
-        animate: false
-      - type: 'custom:mini-graph-card'
-        name: Air Pressure
-        entities:
-          - entity: sensor.ecobee_outside_pressure
-            name: Pressure
-            show_state: true
-            state_adaptive_color: true
-          - color: '#666666'
-            entity: sensor.solar_elevation
-            line_width: 1
-            show_fill: false
-            show_state: false
-            y_axis: secondary
-        hour24: true
-        hours_to_show: 72
-        points_per_hour: 12
-        line_width: 2
-        lower_bound_secondary: 0
-        show:
-          extrema: true
-          graph: true
-          points: false
-          legend: false
-        animate: false
+          - sensor.downstairs_temperature
+          - sensor.upstairs_temperature
+          - sensor.ecobee_outside_temperature
+          - type: divider
+          - sensor.downstairs_humidity
+          - sensor.upstairs_humidity
+          - sensor.ecobee_outside_humidity
+          - type: divider
+          - sensor.ecobee_outside_pressure
   - title: F1
     icon: mdi:car-sports
     type: sidebar

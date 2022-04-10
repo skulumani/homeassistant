@@ -253,8 +253,8 @@ camera:
     still_image_url: https://s.w-x.co/staticmaps/wu/wu/wxtype1200_cur/usfcx/current.png
     name: Radar DC Current
   - platform: generic
-    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=40&type=N0R&mapx=400&mapy=240&brand=wui&delay=25&frame=0&scale=1&transx=-895.5319148936169&transy=895.5319148936169&severe=1&smooth=0&centerx=-495.5319148936169&centery=1135.5319148936169&station=LWX&rainsnow=0&lightning=0&noclutter=1&showlabels=1&showstorms=5&rand=26610482
-    name: Radar DC Animated
+    still_image_url: https://www.weather.gov/images/lwx/weatherstory.gif
+    name: NWS DC Outlook
 
 shell_command:
   renew_ssl: sudo certbot renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
