@@ -520,7 +520,7 @@ views:
         view_layout: 
           position: main
       - type: picture
-        image: https://forecast.weather.gov/meteograms/Plotter.php?lat=38.9096&lon=-76.9949&wfo=LWX&zcode=DCZ001&gset=18&gdiff=3&unit=0&tinfo=EY5&ahour=0&pcmd=11011111101000000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6
+        image: https://forecast.weather.gov/meteograms/Plotter.php?lat=38.895&lon=-77.0373&wfo=LWX&zcode=DCZ001&gset=29&gdiff=5&unit=1&tinfo=EY5&ahour=0&pcmd=11011111101000000000000000000000000000000000000000000000000&lg=en&indu=2!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6 
         view_layout:
           position: main
       - type: picture-entity
