@@ -472,6 +472,19 @@
            http://reddit.com/{{post.id}}
 
           {% endfor %}
+    - service: notify.homeassistant
+      data:
+        target: ["972998437937217586"]
+        message: >-
+          BuildAPCSales
+
+
+          {% for post in state_attr('sensor.reddit_buildapcsales', 'posts') %}
+          {{post.title|truncate(80)}}
+           http://reddit.com/{{post.id}}
+
+          {% endfor %}
+
 
 - id: signal_freegamefindings_bot
   alias: Signal FreeGameFindings Bot 
@@ -482,6 +495,18 @@
   action: 
     - service: notify.signal_reddit_bot_group
       data:
+        message: >-
+          FreeGameFindings
+
+
+          {% for post in state_attr('sensor.reddit_freegamefindings', 'posts') %}
+          {{post.title|truncate(80)}} 
+           http://reddit.com/{{post.id}}
+
+          {% endfor %}
+    - service: notify.homeassistant
+      data:
+        target: ["972998437937217586"]
         message: >-
           FreeGameFindings
 
