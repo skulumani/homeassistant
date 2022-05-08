@@ -318,10 +318,10 @@
     - platform: state
       entity_id: group.family_presence
       to: "on"
-  condition:
-    - condition: state
-      entity_id: alarm_control_panel.alarm
-      state: "armed_away"
+  # condition:
+  #   - condition: state
+  #     entity_id: alarm_control_panel.alarm
+  #     state: "armed_away"
   action:
     - service: alarm_control_panel.alarm_disarm
       entity_id: alarm_control_panel.alarm
@@ -429,6 +429,16 @@
   trigger:
     - platform: mqtt
       topic: "frigate/events"
+  mode: single
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: "binary_sensor.shankar_presence"
+      state: 'off'
+    - condition: state
+      entity_id: "binary_sensor.christine_presence"
+      state: 'off'
   action:
      - service: notify.mobile_app_pixel_2
        data_template:
