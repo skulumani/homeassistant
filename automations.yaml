@@ -394,6 +394,7 @@
 # Frigate automation
 - id: frigate_signal 
   alias: Frigate Signal notification
+  mode: single
   trigger:
     - platform: mqtt
       topic: "frigate/events"
@@ -407,21 +408,22 @@
       entity_id: "binary_sensor.christine_presence"
       state: 'off'
   action:
-    - delay: "00:00:45"
+    # - delay: "00:00:45"
     - service: notify.signal_group
       data_template:
-        message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera."
+        message: >-
+          {{ now().strftime('%Y-%m-%dT%H:%M:%S') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. 
+
+          Thumbnail - http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android
+
+          Snapshot - http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/snapshot.jpg
+
+          Clip - http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/clip
+        # message: "{{ now().strftime('%Y-%m-%dT%H:%M:%S') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. "
         data:
           attachments:
             - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.jpg"
             # - "/media/frigate/clips/{{trigger.payload_json['after']['camera']}}-{{trigger.payload_json['after']['id']}}.mp4"
-    # - service: notify.mobile_app_pixel_2
-    #   data_template:
-    #     message: "A {{trigger.payload_json['after']['label']}} was detected."
-    #     data:
-    #       image: "https://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android"
-    #       tag: "{{trigger.payload_json['after']['id']}}"
-    #
 
 # Frigate mobile appautomation
 - id: frigate_mobile 
