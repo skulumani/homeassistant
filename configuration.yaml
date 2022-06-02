@@ -34,6 +34,9 @@ lovelace:
       type: module
     - url: /hacsfiles/roku-card/roku-card.js
       type: module
+    - url: /hacsfiles/apexcharts-card/apexcharts-card.js
+      type: module
+
 
   # dashboards:
   #   tablet-yaml:

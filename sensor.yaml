@@ -311,7 +311,6 @@
   source: sensor.solar_now_watts
   name: solar_energy
   unit_time: h # kilowatt hour
-  unit: "kWh"
   method: trapezoidal
   unit_prefix: k
   round: 3
@@ -417,3 +416,47 @@
       query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / POWER(1024,3), 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
       column: 'value'
       unit_of_measurement: 'GB'
+
+
+# solcast forecast
+- platform: rest
+  name: solcast_forecast
+  resource: !secret solcast_forecast_resource
+  scan_interval: '00:30:00' # max of 50 per day
+  json_attributes:
+    - forecasts
+  value_template: "OK"
+
+- platform: template
+  sensors:
+    solcast_forecast_data:
+      value_template: "{{ state_attr('sensor.solcast_forecast', 'forecasts')[0].pv_estimate|round(3) }}"
+      device_class: power
+      unit_of_measurement: "kW"
+    solcast_forecast_10:
+      value_template: "{{ state_attr('sensor.solcast_forecast', 'forecasts')[0].pv_estimate10|round(3) }}"
+      device_class: power
+      unit_of_measurement: "kW"
+    solcast_forecast_90:
+      value_template: "{{ state_attr('sensor.solcast_forecast', 'forecasts')[0].pv_estimate90|round(3) }}"
+      device_class: power
+      unit_of_measurement: "kW"
+
+- platform: mqtt
+  name: "Solcast Forecast Energy Today Predicted"
+  state_topic: "home/solcast/energy_today_predicted"
+  unit_of_measurement: 'kWh'
+  device_class: energy
+  unique_id: sensor.solcast_forecast_energy_today_predicted
+- platform: mqtt
+  name: "Solcast Forecast Peak Time Today Predicted"
+  state_topic: "home/solcast/peak_time_today_predicted"
+  icon: mdi:clock
+  unique_id: sensor.solcast_forecast_peak_time_today_predicted
+- platform: mqtt
+  name: "Solcast Forecast Peak Power Today Predicted"
+  state_topic: "home/solcast/peak_power_today_predicted"
+  unit_of_measurement: "kW"
+  device_class: power
+  state_class: measurement
+  unique_id: sensor.solcast_forecast_peak_power_today_predicted

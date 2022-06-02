@@ -185,6 +185,47 @@ views:
             name: Daily Energy
             entity: sensor.solar_today_kwh
             icon: mdi:solar-panel
+      - type: custom:apexcharts-card
+        apex_config:
+          legend:
+            show: true
+        graph_span: 24h
+        span:
+          start: day
+        header:
+          show: true
+          show_states: true
+          title: Solar Production vs. Forecast
+        now:
+          label: now
+          show: true
+        series:
+        - color: '#FFF700'
+          entity: sensor.solar_now_watts
+          extend_to: now
+          fill_raw: last
+          group_by:
+            duration: 30min
+            func: avg
+          name: Actual
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          unit: W
+        - color: '#3498DB'
+          entity: sensor.solcast_forecast
+          extend_to: now
+          fill_raw: last
+          name: Forecast History
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          transform: return x * 1000;
+          unit: W
+
+
 
       - type: picture-elements
         image: /local/solar_array.png
