@@ -72,18 +72,18 @@ logger:
     homeassistant.components.recorder: warn
 
 recorder:
-  commit_interval: 3600
+  commit_interval: 1
   auto_purge: false
   purge_keep_days: 3
   db_url: mysql://homeassistant:2PtZXpJDDjSGsv@127.0.0.1:3310/homeassistant?charset=utf8
   # exclude:
   #   entity_globs: "*"
-  include:
-    entities:
-      - sensor.solar_today_kwh
-      - sensor.solar_now_watts
-      - sensor.solar_week_kwh
-      - sensor.solar_lifetime_mwh
+  # include:
+  #   entities:
+  #     - sensor.solar_today_kwh
+  #     - sensor.solar_now_watts
+  #     - sensor.solar_week_kwh
+  #     - sensor.solar_lifetime_mwh
 
 influxdb:
   api_version: 2

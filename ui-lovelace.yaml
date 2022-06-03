@@ -189,7 +189,7 @@ views:
         apex_config:
           legend:
             show: true
-        graph_span: 24h
+        graph_span: 48h
         span:
           start: day
         header:
@@ -214,7 +214,7 @@ views:
           stroke_width: 2
           unit: W
         - color: '#3498DB'
-          entity: sensor.solcast_forecast
+          entity: sensor.solcast_forecast_data
           extend_to: now
           fill_raw: last
           name: Forecast History
@@ -223,6 +223,44 @@ views:
             in_header: false
           stroke_width: 2
           transform: return x * 1000;
+          unit: W
+        - color: '#E74C3C'
+          data_generator: "return entity.attributes.forecasts.map((entry) => {\n   return\
+                           \ [new Date(entry.period_end), entry.pv_estimate*1000];\n });\n"
+          entity: sensor.solcast_forecast
+          extend_to: now
+          name: Forecast
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          type: line
+          unit: W
+        - color: '#797D7F'
+          data_generator: "return entity.attributes.forecasts.map((entry) => {\n   return\
+                           \ [new Date(entry.period_end), entry.pv_estimate10*1000];\n });\n"
+          entity: sensor.solcast_forecast
+          extend_to: now
+          name: Forecast P10
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          opacity: 0.4
+          type: line
+          unit: W
+        - color: '#797D7F'
+          data_generator: "return entity.attributes.forecasts.map((entry) => {\n   return\
+                           \ [new Date(entry.period_end), entry.pv_estimate90*1000];\n });\n"
+          entity: sensor.solcast_forecast
+          extend_to: now
+          name: Forecast P90
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          opacity: 0.4
+          type: line
           unit: W
 
 
