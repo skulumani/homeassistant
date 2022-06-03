@@ -175,16 +175,40 @@ views:
     panel: false
     type: sidebar
     cards:
-      - type: horizontal-stack
-        cards:
-          - type: sensor
-            name: Power
-            entity: sensor.solar_now_watts
-            icon: mdi:solar-panel-large
-          - type: sensor
-            name: Daily Energy
-            entity: sensor.solar_today_kwh
-            icon: mdi:solar-panel
+      - type: entities
+        # title: Forecast
+        entities:
+        - type: custom:multiple-entity-row
+          name: Generated
+          icon: mdi:solar-panel
+          state_header: Lifetime
+          entity: sensor.solar_lifetime_mwh
+          entities:
+          - entity: sensor.solar_today_kwh
+            name: Today
+          - entity: sensor.solar_week_kwh
+            name: Week
+        - type: custom:multiple-entity-row
+          name: Hourly
+          state_header: Peak time
+          icon: mdi:solar-power
+          entity: sensor.solcast_forecast_peak_time_today_predicted
+          entities:
+          - entity: sensor.solcast_forecast_energy_current_hour
+            name: Current H
+          - entity: sensor.solcast_forecast_energy_next_hour
+            name: Next H
+        - type: custom:multiple-entity-row 
+          entities:
+          - entity: sensor.solcast_forecast
+            name: Remaining
+          - entity: sensor.solcast_forecast_energy_today_predicted
+            name: Predicted
+          entity: sensor.solcast_forecast_energy_tomorrow
+          icon: mdi:solar-power
+          state_header: Tomorrow
+          name: Daily
+          state_header: Tomorrow
       - type: custom:apexcharts-card
         apex_config:
           legend:
@@ -218,6 +242,28 @@ views:
           extend_to: now
           fill_raw: last
           name: Forecast History
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          transform: return x * 1000;
+          unit: W
+        - color: '#797D7F'
+          entity: sensor.solcast_forecast_10
+          extend_to: now
+          fill_raw: last
+          name: Forecast P10 History
+          show:
+            extremas: false
+            in_header: false
+          stroke_width: 2
+          transform: return x * 1000;
+          unit: W
+        - color: '#797D7F'
+          entity: sensor.solcast_forecast_90
+          extend_to: now
+          fill_raw: last
+          name: Forecast P90 History
           show:
             extremas: false
             in_header: false
@@ -262,8 +308,6 @@ views:
           opacity: 0.4
           type: line
           unit: W
-
-
 
       - type: picture-elements
         image: /local/solar_array.png
@@ -423,6 +467,14 @@ views:
         view_layout:
           position: sidebar
         cards:
+          - type: sensor
+            name: Power
+            entity: sensor.solar_now_watts
+            icon: mdi:solar-panel-large
+          - type: sensor
+            name: Daily Energy
+            entity: sensor.solar_today_kwh
+            icon: mdi:solar-panel
           - type: sensor
             entity: sensor.solar_lifetime_mwh
             icon: mdi:solar-power
