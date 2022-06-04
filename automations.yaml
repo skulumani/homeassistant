@@ -491,12 +491,17 @@
         message: >-
           {{ now().strftime("%Y-%m-%d")}} Solar Stats 
 
+
           Energy today: {{ states("sensor.solar_today_kwh") }} KWh
+
           Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh
-  
+ 
+
           Tomorrow
+
           Energy: {{ states("sensor.solcast_forecast_energy_tomorrow") }} KWh
-          Peak power: {{ states("sensor.solcast_forecast_peak_power_tomorrow") }} KW at {{ states("sensor.solcast_forecast_peak_time") }} 
+
+          Peak power: {{ states("sensor.solcast_forecast_peak_power_tomorrow") }} KW at {{ states("sensor.solcast_forecast_peak_time_tomorrow") }} 
 
 - id: signal_buildapcsales_bot
   alias: Signal BuildAPCSales Bot 
