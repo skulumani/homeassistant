@@ -460,3 +460,14 @@
   device_class: power
   state_class: measurement
   unique_id: sensor.solcast_forecast_peak_power_today_predicted
+
+
+- platform: statistics
+  unique_id: solcast_forecast_energy_today_max
+  name: "Solcast Forecast Energy Today"
+  entity_id: sensor.solcast_forecast_energy_today_remaining
+  state_characteristic: value_max
+  max_age:
+    hours: 24
+  sampling_size: 36
+

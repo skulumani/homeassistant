@@ -177,6 +177,8 @@ views:
     cards:
       - type: entities
         # title: Forecast
+        view_layout:
+          position: sidebar
         entities:
         - type: custom:multiple-entity-row
           name: Generated
@@ -188,11 +190,13 @@ views:
             name: Today
           - entity: sensor.solar_week_kwh
             name: Week
+        - type: section
+          label: Forecasts
         - type: custom:multiple-entity-row
           name: Hourly
           state_header: Peak time
           icon: mdi:solar-power
-          entity: sensor.solcast_forecast_peak_time_today_predicted
+          entity: sensor.solcast_forecast_peak_time_today
           entities:
           - entity: sensor.solcast_forecast_energy_current_hour
             name: Current H
@@ -200,10 +204,8 @@ views:
             name: Next H
         - type: custom:multiple-entity-row 
           entities:
-          - entity: sensor.solcast_forecast
+          - entity: sensor.solcast_forecast_energy_today_remaining
             name: Remaining
-          - entity: sensor.solcast_forecast_energy_today_predicted
-            name: Predicted
           entity: sensor.solcast_forecast_energy_tomorrow
           icon: mdi:solar-power
           state_header: Tomorrow
@@ -213,7 +215,7 @@ views:
         apex_config:
           legend:
             show: true
-        graph_span: 48h
+        graph_span: 24h
         span:
           start: day
         header:
@@ -256,7 +258,7 @@ views:
           show:
             extremas: false
             in_header: false
-          stroke_width: 2
+          stroke_width: 1
           transform: return x * 1000;
           unit: W
         - color: '#797D7F'
@@ -267,7 +269,7 @@ views:
           show:
             extremas: false
             in_header: false
-          stroke_width: 2
+          stroke_width: 1
           transform: return x * 1000;
           unit: W
         - color: '#E74C3C'
@@ -279,7 +281,7 @@ views:
           show:
             extremas: false
             in_header: false
-          stroke_width: 2
+          stroke_width: 1
           type: line
           unit: W
         - color: '#797D7F'
@@ -291,7 +293,7 @@ views:
           show:
             extremas: false
             in_header: false
-          stroke_width: 2
+          stroke_width: 1
           opacity: 0.4
           type: line
           unit: W
@@ -304,7 +306,7 @@ views:
           show:
             extremas: false
             in_header: false
-          stroke_width: 2
+          stroke_width: 1
           opacity: 0.4
           type: line
           unit: W
@@ -320,30 +322,30 @@ views:
             style:
               top: 10%
               left: 90%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           # top row
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044232
             style:
               top: 17%
               left: 20%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043825
             style:
               top: 16%
               left: 40%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041705
             style:
               top: 14%
               left: 58%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           # second row
           - type: state-label
@@ -351,22 +353,22 @@ views:
             style:
               top: 43%
               left: 8%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045317
             style:
               top: 32%
               left: 40%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045319
             style:
               top: 30%
               left: 58%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           # third row
           - type: state-label
@@ -374,15 +376,15 @@ views:
             style:
               top: 48%
               left: 40%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041528
             style:
               top: 46%
               left: 58%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           # forth row
           - type: state-label
@@ -390,37 +392,37 @@ views:
             style:
               top: 75%
               left: 10%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041716
             style:
               top: 67%
               left: 23%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044656
             style:
               top: 65%
               left: 40%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043821
             style:
               top: 63%
               left: 59%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045217
             style:
               top: 60%
               left: 78%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           # fifth row
           - type: state-label
@@ -428,29 +430,29 @@ views:
             style:
               top: 84%
               left: 23%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045256
             style:
               top: 82%
               left: 42%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022042818
             style:
               top: 79%
               left: 60%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041671
             style:
               top: 78%
               left: 78%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
           # far bottom right panel
           - type: state-label
@@ -458,44 +460,44 @@ views:
             style:
               top: 64%
               left: 92%
-              color: green
-              font-size: 100%
+              color: red
+              font-size: 200%
 
-      - type: grid
-        columns: 2
-        square: false
-        view_layout:
-          position: sidebar
-        cards:
-          - type: sensor
-            name: Power
-            entity: sensor.solar_now_watts
-            icon: mdi:solar-panel-large
-          - type: sensor
-            name: Daily Energy
-            entity: sensor.solar_today_kwh
-            icon: mdi:solar-panel
-          - type: sensor
-            entity: sensor.solar_lifetime_mwh
-            icon: mdi:solar-power
-          - type: sensor
-            name: Solar Last 7 Days
-            entity: sensor.solar_week_kwh
-            icon: mdi:solar-panel
-          - type: sensor
-            name: Energy Generated 1Y
-            entity: sensor.energy_generated_1y
-          - type: sensor
-            name: Energy Net 1Y
-            entity: sensor.energy_net_1y
-          - type: sensor
-            name: Max Daily Solar
-            entity: sensor.max_daily_solar_energy
-          - type: sensor
-            name: Water Used 1Y
-            entity: sensor.water_used_1y
-          - type: sensor
-            entity: sensor.moon
+      # - type: grid
+      #   columns: 2
+      #   square: false
+      #   view_layout:
+      #     position: sidebar
+      #   cards:
+      #     - type: sensor
+      #       name: Power
+      #       entity: sensor.solar_now_watts
+      #       icon: mdi:solar-panel-large
+      #     - type: sensor
+      #       name: Daily Energy
+      #       entity: sensor.solar_today_kwh
+      #       icon: mdi:solar-panel
+      #     - type: sensor
+      #       entity: sensor.solar_lifetime_mwh
+      #       icon: mdi:solar-power
+      #     - type: sensor
+      #       name: Solar Last 7 Days
+      #       entity: sensor.solar_week_kwh
+      #       icon: mdi:solar-panel
+      #     - type: sensor
+      #       name: Energy Generated 1Y
+      #       entity: sensor.energy_generated_1y
+      #     - type: sensor
+      #       name: Energy Net 1Y
+      #       entity: sensor.energy_net_1y
+      #     - type: sensor
+      #       name: Max Daily Solar
+      #       entity: sensor.max_daily_solar_energy
+      #     - type: sensor
+      #       name: Water Used 1Y
+      #       entity: sensor.water_used_1y
+      #     - type: sensor
+      #       entity: sensor.moon
 
       - type: 'custom:weather-card'
         view_layout:

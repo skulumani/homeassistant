@@ -164,7 +164,10 @@
   action:
   - service: notify.signal_group
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - No one home. HVAC away mode.'
+      message: >-
+        {{ now().strftime("%Y-%m-%dT%H:%M:%S") }}
+
+        No one home. HVAC away mode.
   - service: climate.set_preset_mode
     target:
       entity_id: all
@@ -187,7 +190,11 @@
   action:
   - service: notify.signal_group
     data:
-      message: '{{ now().strftime("%Y-%m-%dT%H:%M:%S%z") }} - Return home. HVAC home mode'
+      message: >-
+        {{ now().strftime("%Y-%m-%dT%H:%M:%S") }}
+
+        Return home. HVAC home mode
+
   - service: climate.set_preset_mode
     target:
       entity_id: all
@@ -219,7 +226,7 @@
         message: >-
           {% for entity in trigger.to_state.attributes.entity_id %}
           {% if states(entity) == 'on' %}
-            " {{now().strftime('%Y-%m-%dT%H:%M:%S%z')}} Water leak detected!! - {{ state_attr(entity, 'friendly_name') }}"
+            " {{now().strftime('%Y-%m-%dT%H:%M:%S')}} Water leak detected!! - {{ state_attr(entity, 'friendly_name') }}"
           {% endif %}
           {% endfor %}
     - service: tts.google_translate_say
@@ -295,7 +302,10 @@
   action: 
     - service: notify.signal_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm Triggered!!'
+        message: >- 
+          {{now().strftime("%Y-%m-%dT%H:%M:%S")}} 
+
+          Alarm Triggered!!
     - service: script.sound_alarm
 
 
@@ -328,7 +338,10 @@
     - delay: "00:00:05"
     - service: notify.signal_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed due to presence.'
+        message: >-
+          {{now().strftime("%Y-%m-%dT%H:%M:%S")}} 
+
+          Alarm disarmed due to presence.
     - service: tts.google_translate_say
       entity_id: group.google_home
       data:
@@ -349,7 +362,10 @@
       entity_id: alarm_control_panel.alarm
     - service: notify.signal_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in away mode due to lack of presence.'
+        message: >- 
+          {{now().strftime("%Y-%m-%dT%H:%M:%S")}}
+
+          Alarm armed in away mode due to lack of presence.
 
 - alias: "Arm alarm at night and home"
   trigger:
@@ -369,7 +385,10 @@
       entity_id: alarm_control_panel.alarm
     - service: notify.signal_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm armed in home mode at night and home.'
+        message: >-
+          {{now().strftime("%Y-%m-%dT%H:%M:%S")}} 
+
+          Alarm armed in home mode at night and home.
 
 - alias: "Disarm alarm when home in morning"
   trigger:
@@ -389,7 +408,10 @@
       entity_id: alarm_control_panel.alarm
     - service: notify.signal_group
       data:
-        message: '{{now().strftime("%Y-%m-%dT%H:%M:%S%z")}} Alarm disarmed in morning.'
+        message: >-
+          {{now().strftime("%Y-%m-%dT%H:%M:%S")}} 
+
+          Alarm disarmed in morning.
 
 # Frigate automation
 - id: frigate_signal 
@@ -412,7 +434,9 @@
     - service: notify.signal_group
       data:
         message: >-
-          {{ now().strftime('%Y-%m-%dT%H:%M:%S') }} - {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. 
+          {{ now().strftime('%Y-%m-%dT%H:%M:%S') }} 
+
+          {{trigger.payload_json['after']['label']}} detected by {{trigger.payload_json['after']['camera']}} camera. 
 
           Thumbnail - http://100.99.169.123:8123/api/frigate/notifications/{{trigger.payload_json['after']['id']}}/thumbnail.jpg?format=android
 
@@ -464,7 +488,15 @@
   action:
     - service: notify.signal_group
       data: 
-        message: '{{ now().strftime("%Y-%m-%d")}} Solar Stats {{ "\n" -}} Energy today: {{ states("sensor.solar_today_kwh") }} KWh  {{ "\n" -}} Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh'
+        message: >-
+          {{ now().strftime("%Y-%m-%d")}} Solar Stats 
+
+          Energy today: {{ states("sensor.solar_today_kwh") }} KWh
+          Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh
+  
+          Tomorrow
+          Energy: {{ states("sensor.solcast_forecast_energy_tomorrow") }} KWh
+          Peak power: {{ states("sensor.solcast_forecast_peak_power_tomorrow") }} KW at {{ states("sensor.solcast_forecast_peak_time") }} 
 
 - id: signal_buildapcsales_bot
   alias: Signal BuildAPCSales Bot 
