@@ -199,9 +199,9 @@ views:
           entity: sensor.solcast_forecast_peak_time_today
           entities:
           - entity: sensor.solcast_forecast_energy_current_hour
-            name: Current H
+            name: Current
           - entity: sensor.solcast_forecast_energy_next_hour
-            name: Next H
+            name: Next
         - type: custom:multiple-entity-row 
           entities:
           - entity: sensor.solcast_forecast_energy_today_remaining
@@ -214,7 +214,7 @@ views:
       - type: custom:apexcharts-card
         apex_config:
           legend:
-            show: true
+            show: false
         graph_span: 24h
         span:
           start: day
@@ -222,6 +222,7 @@ views:
           show: true
           show_states: true
           title: Solar Production vs. Forecast
+          colorize_states: true
         now:
           label: now
           show: true
@@ -323,7 +324,7 @@ views:
               top: 10%
               left: 90%
               color: red
-              font-size: 200%
+              font-size: 150%
           # top row
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044232
@@ -331,21 +332,21 @@ views:
               top: 17%
               left: 20%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043825
             style:
               top: 16%
               left: 40%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041705
             style:
               top: 14%
               left: 58%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           # second row
           - type: state-label
@@ -354,21 +355,21 @@ views:
               top: 43%
               left: 8%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045317
             style:
               top: 32%
               left: 40%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045319
             style:
               top: 30%
               left: 58%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           # third row
           - type: state-label
@@ -377,14 +378,14 @@ views:
               top: 48%
               left: 40%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041528
             style:
               top: 46%
               left: 58%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           # forth row
           - type: state-label
@@ -393,7 +394,7 @@ views:
               top: 75%
               left: 10%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041716
@@ -401,28 +402,28 @@ views:
               top: 67%
               left: 23%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022044656
             style:
               top: 65%
               left: 40%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022043821
             style:
               top: 63%
               left: 59%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045217
             style:
               top: 60%
               left: 78%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           # fifth row
           - type: state-label
@@ -431,28 +432,28 @@ views:
               top: 84%
               left: 23%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022045256
             style:
               top: 82%
               left: 42%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022042818
             style:
               top: 79%
               left: 60%
               color: red
-              font-size: 200%
+              font-size: 150%
           - type: state-label
             entity: sensor.envoy_122020046917_inverter_202022041671
             style:
               top: 78%
               left: 78%
               color: red
-              font-size: 200%
+              font-size: 150%
 
           # far bottom right panel
           - type: state-label
@@ -461,7 +462,7 @@ views:
               top: 64%
               left: 92%
               color: red
-              font-size: 200%
+              font-size: 150%
 
       # - type: grid
       #   columns: 2
@@ -509,6 +510,48 @@ views:
         showElevation: true
         showAzimuth: true
         timeFormat: '24h'
+      - type: history-graph
+        entities:
+          - entity: sensor.plug_a_current_consumption
+            name: "Plug A"
+          - entity: sensor.plug_b_current_consumption
+            name: "Plug B"
+        housr_to_show: 2
+        refresh_interval: 0
+        title: "Plug Consumption"
+      - type: entities
+        view_layout:
+          position: sidebar
+        entities:
+          - type: section
+            label: Plug A
+          - entity: sensor.plug_a_voltage
+            name: "Voltage"
+          - entity: sensor.plug_a_current
+            name: "Current"
+          - entity: sensor.plug_a_current_consumption
+            name: "Power"
+          - entity: switch.plug_a_led
+            name: "LED"
+          - type: section
+            label: Plug B
+          - entity: sensor.plug_b_voltage
+            name: "Voltage"
+          - entity: sensor.plug_b_current
+            name: "Current"
+          - entity: sensor.plug_b_current_consumption
+            name: "Power"
+          - entity: switch.plug_b_led
+            name: "LED"
+          - type: buttons
+            entities:
+              - entity: switch.plug_a
+                name: "Plug A"
+              - entity: switch.plug_b
+                name: "Plug B"
+              - entity: switch.plug
+                name: "Plug"
+
 
   - title: Cameras
     icon: 'mdi:cctv'

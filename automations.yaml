@@ -492,7 +492,7 @@
           {{ now().strftime("%Y-%m-%d")}} Solar Stats 
 
 
-          Energy today: {{ states("sensor.solar_today_kwh") }} KWh
+          Energy today: {{ states("sensor.solar_today_kwh") }}/{{ states("input_number.solcast_forecast_energy_today_predicted") }} KWh
 
           Energy Lifetime: {{ states("sensor.solar_lifetime_mwh") }} MWh
  
@@ -502,6 +502,19 @@
           Energy: {{ states("sensor.solcast_forecast_energy_tomorrow") }} KWh
 
           Peak power: {{ states("sensor.solcast_forecast_peak_power_tomorrow") }} KW at {{ states("sensor.solcast_forecast_peak_time_tomorrow") }} 
+
+- id: solcast_energy_today_predicted
+  alias: "Solcast energy today predicted"
+  mode: single
+  trigger:
+    - platform: time
+      at: "00:04:00"
+  action:
+    service: input_number.set_value
+    target:
+      entity_id: input_number.solcast_forecast_energy_today_predicted
+    data:
+      value: "{{ states('sensor.solcast_forecast_energy_today_remaining') }}"
 
 - id: signal_buildapcsales_bot
   alias: Signal BuildAPCSales Bot 
@@ -571,11 +584,11 @@
   mode: single
   trigger:
     - platform: time
-      at: "04:12:00"
+      at: "05:12:00"
   action:
     - service: recorder.purge
       data:
-        keep_days: 3
+        keep_days: 1
         repack: true
 
 - id: healthchecks
