@@ -1,6 +1,6 @@
 # Binary sensor
 - platform: bayesian
-  prior: 0.66
+  prior: 0.5
   name: 'Christine Presence'
   probability_threshold: 0.7
   device_class: 'presence'
@@ -16,12 +16,12 @@
       platform: 'state'
       to_state: 'home'
     - entity_id: 'device_tracker.christine_laptop'
-      prob_given_true: 0.35
+      prob_given_true: 0.9
       prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
     # - entity_id: 'device_tracker.christines_air'
-    #   prob_given_true: 0.17
+    #   prob_given_true: 0.9
     #   prob_given_false: 0.01
     #   platform: 'state'
     #   to_state: 'home'
@@ -32,21 +32,21 @@
     #   to_state: 'home'
 
 - platform: bayesian
-  prior: 0.58
+  prior: 0.5
   name: 'Shankar Presence'
   probability_threshold: 0.7
   device_class: 'presence'
   observations:
     - entity_id: 'device_tracker.pixel_2'
       prob_given_true: 0.99
-      prob_given_false: 0.80
+      prob_given_false: 0.94
       platform: 'state'
       to_state: 'home'
-    # - entity_id: 'device_tracker.shankars_air'
-    #   prob_given_true: 0.07
-    #   prob_given_false: 0.001
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.shankars_air'
+      prob_given_true: 0.9
+      prob_given_false: 0.01
+      platform: 'state'
+      to_state: 'home'
     - entity_id: 'device_tracker.pixel_2_router'
       prob_given_true: 0.96
       prob_given_false: 0.03

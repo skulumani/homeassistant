@@ -73,6 +73,7 @@ logger:
   default: warn
   logs:
     homeassistant.components.recorder: warn
+    custom_components.mikrotik_router: warn
 
 recorder:
   commit_interval: 1

@@ -794,8 +794,13 @@ views:
             show_icon: true
             show_state: false
             entities:
+              - group.family_presence
               - binary_sensor.shankar_presence
               - binary_sensor.christine_presence
+          - type: entities
+            entities:
+              - group.family_presence
+              - input_button.family_presence
           # - type: 'custom:mini-graph-card'
           #   name: Presence Probability
           #   icon: mdi:server
