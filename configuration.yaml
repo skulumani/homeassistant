@@ -285,11 +285,10 @@ shell_command:
   #   station: !secret nws_station
   #   name: Weather
     
-# google calendar
-google:
-  client_id: !secret google_calendar_clientid
-  client_secret: !secret google_calendar_clientsecret
-  track_new_calendar: false
+# # google calendar
+# google:
+#   client_id: !secret google_calendar_clientid
+#   client_secret: !secret google_calendar_clientsecret
 
 # monitor docker
 monitor_docker:

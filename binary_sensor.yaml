@@ -15,16 +15,16 @@
       prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
-    - entity_id: 'device_tracker.christine_laptop'
+    - entity_id: 'device_tracker.christines_air'
       prob_given_true: 0.9
       prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
-    # - entity_id: 'device_tracker.christines_air'
-    #   prob_given_true: 0.9
-    #   prob_given_false: 0.01
-    #   platform: 'state'
-    #   to_state: 'home'
+    - entity_id: 'device_tracker.christine_work_laptop'
+      prob_given_true: 0.9
+      prob_given_false: 0.01
+      platform: 'state'
+      to_state: 'home'
     # - entity_id: 'device_tracker.50tclrokutv'
     #   prob_given_true: 0.09
     #   prob_given_false: 0.50
@@ -42,7 +42,7 @@
       prob_given_false: 0.94
       platform: 'state'
       to_state: 'home'
-    - entity_id: 'device_tracker.shankars_air'
+    - entity_id: 'device_tracker.shankar_macbook_air'
       prob_given_true: 0.9
       prob_given_false: 0.01
       platform: 'state'
@@ -55,6 +55,11 @@
     - entity_id: 'device_tracker.pop_os'
       prob_given_true: 0.21
       prob_given_false: 0.05
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.shankar_work_laptop'
+      prob_given_true: 0.9
+      prob_given_false: 0.01
       platform: 'state'
       to_state: 'home'
     # - entity_id: 'device_tracker.50tclrokutv'
